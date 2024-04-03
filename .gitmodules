@@ -1,0 +1,3 @@
+[submodule "DashboardGeneral.git"]
+	path = DashboardGeneral
+	url = git@github.com:Astap21/DashboardGeneral.git
