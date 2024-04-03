@@ -147,5 +147,6 @@
         <file>DashboardGeneral/images/busRearView_PazNG.png</file>
         <file>DashboardGeneral/images/busSideView_LiazNG.png</file>
         <file>DashboardGeneral/images/busSideView_PazNG.png</file>
+        <file>img/signalLamps_font_PazNG.png</file>
     </qresource>
 </RCC>
