@@ -1,0 +1,113 @@
+﻿#include <QApplication>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
+
+#include "additionaltask.h"
+#include "DashBoardClasses/backlightcontrolclass.h"
+#include "busComponentsClasses/brakesystem.h"
+#include "busComponentsClasses/motor.h"
+#include "busComponentsClasses/suspension.h"
+#include "busComponentsClasses/exteriorlightning.h"
+#include "busComponentsClasses/drivercabin.h"
+#include "busComponentsClasses/businterior.h"
+#include "busComponentsClasses/doors.h"
+#include "DashBoardClasses/dashboardclass.h"
+#include "DashBoardClasses/trans.h"
+#include "DashBoardClasses/logtofile.h"
+
+#include "canDataBase/canDataBase.h"
+//#include <libudev.h>
+
+#include "DashBoardClasses/gpio.h"
+//#include "DashBoardClasses/fpstext.h"
+//#include "DashBoardClasses/pwm.h"s
+
+int main(int argc, char *argv[])
+{
+    QString softVersion = "1.5.18";
+    //Установка переменных среды
+    //qputenv("QT_GSTREAMER_PLAYBIN_AUDIOSINK", "alsasink");
+    //qputenv("QT_GSTREAMER_USE_PLAYBIN_VOLUME", "1");
+
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
+    QApplication app(argc, argv);
+
+    QQmlApplicationEngine engine;
+
+    LogToFile logtofile;
+
+    Trans trans(&engine);
+    // make this object available from QML side
+    engine.rootContext()->setContextProperty("trans", &trans);
+
+    qRegisterMetaType<QCanBusDevice::CanBusError>();
+    CanBus canBus("SCAN", "socketcan", "can0", 500000, &gCanDB);
+    canBus.addMessageToMissedMsgCheckList(gMessageName_EBC1);
+    canBus.addMessageToMissedMsgCheckList(gMessageName_ASC1);
+    engine.rootContext()->setContextProperty("canBus", &canBus);
+    canBus.start(QThread::TimeCriticalPriority);
+
+//    Pwm pwm(11289600, 44100);
+//    pwm.PlaySound(10);
+
+    Doors doors;
+    engine.rootContext()->setContextProperty("doors", &doors);
+    QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &doors, &Doors::canDBUpdated);
+
+    BrakeSystem brakeSystem;
+    engine.rootContext()->setContextProperty("brakeSystem", &brakeSystem);
+    QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &brakeSystem, &BrakeSystem::canDBUpdated);
+
+    Motor motor;
+    engine.rootContext()->setContextProperty("motor", &motor);
+    QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &motor, &Motor::canDBUpdated);
+
+    Suspension suspension;
+    engine.rootContext()->setContextProperty("suspension", &suspension);
+    QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &suspension, &Suspension::canDBUpdated);
+
+    ExteriorLightning exteriorLightning;
+    engine.rootContext()->setContextProperty("exteriorLightning", &exteriorLightning);
+    QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &exteriorLightning, &ExteriorLightning::canDBUpdated);
+
+    DriverCabin driverCabin;
+    engine.rootContext()->setContextProperty("driverCabin", &driverCabin);
+    QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &driverCabin, &DriverCabin::canDBUpdated);
+
+    BusInterior busInterior;
+    engine.rootContext()->setContextProperty("busInterior", &busInterior);
+    QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &busInterior, &BusInterior::canDBUpdated);
+    //    EnergyConsumption energyConsumption;
+//    engine.rootContext()->setContextProperty("energyConsumption", &energyConsumption);
+
+    BacklightControlClass backlightControlObject("backlightControlObject");
+    backlightControlObject.backlightLevelChanged(100);
+    engine.rootContext()->setContextProperty("backlightControlObject", &backlightControlObject);
+
+    Gpio KL_15(165, GPIO_INPUT);
+
+    DashboardClass dashboardObject(softVersion, &KL_15, &backlightControlObject);
+    engine.rootContext()->setContextProperty("dashboardObject", &dashboardObject);
+
+    InterfaceForConnectToQml interfaceForConnectToQml("interfaceForConnectToQml");
+    engine.rootContext()->setContextProperty("connectionFromCpp", &interfaceForConnectToQml);
+    
+    AdditionalTasks additionalTasks("additionalTasksOdject", &interfaceForConnectToQml, softVersion);
+
+    // Register the .qrc file containing QML resources
+    QResource::registerResource(":/images.qrc");
+
+//    qmlRegisterType<FPSText>("com.ast", 1, 0, "FPSText");
+
+
+    const QUrl url(QStringLiteral("qrc:/loader.qml"));
+    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
+                     &app, [url](QObject *obj, const QUrl &objUrl) {
+        if (!obj && url == objUrl)
+            QCoreApplication::exit(-1);
+    }, Qt::QueuedConnection);
+    engine.load(url);
+
+    return app.exec();
+}

@@ -1,0 +1,65 @@
+<RCC>
+    <qresource prefix="/">
+        <file>loader.qml</file>
+        <file>SignalLamps.qml</file>
+        <file>main.qml</file>
+        <file>menu.qml</file>
+        <file>SignalLamp_C.qml</file>
+        <file>TurnSignals_C.qml</file>
+        <file>DashboardGeneral/fonts/Digital/Digital_Font.ttf</file>
+        <file>DashboardGeneral/fonts/Digital/DIGITALDREAM.ttf</file>
+        <file>DashboardGeneral/fonts/Digital/DIGITALDREAMFAT.ttf</file>
+        <file>DashboardGeneral/fonts/Digital/DIGITALDREAMFATNARROW.ttf</file>
+        <file>DashboardGeneral/fonts/Digital/DIGITALDREAMFATSKEW.ttf</file>
+        <file>DashboardGeneral/fonts/Digital/DIGITALDREAMFATSKEWNARROW.ttf</file>
+        <file>DashboardGeneral/fonts/Digital/DIGITALDREAMNARROW.ttf</file>
+        <file>DashboardGeneral/fonts/Digital/DIGITALDREAMSKEW.ttf</file>
+        <file>DashboardGeneral/fonts/Digital/DIGITALDREAMSKEWNARROW.ttf</file>
+        <file>DashboardGeneral/fonts/Open Sans/OpenSans-Bold.ttf</file>
+        <file>DashboardGeneral/fonts/Open Sans/OpenSans-ExtraBold.ttf</file>
+        <file>DashboardGeneral/fonts/Open Sans/OpenSans-Light.ttf</file>
+        <file>DashboardGeneral/fonts/Open Sans/OpenSans-Regular.ttf</file>
+        <file>DashboardGeneral/fonts/Open Sans/OpenSans-Semibold.ttf</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/BrakeLining_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/Date_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/Door_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/DynamicTextRow_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/PressureCircuitBar_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/ProgressBar_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/ProgressCycle_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/ProgressCycleCurrentDchg_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/ProgressCycleCurrentDchgMini_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/RetarderScale_С.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/SignalLampNew_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/TextAndValue_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/TextSwitch_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/TextValueSwitch_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/Time_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/Tire_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/Trapezoid_С.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/Valve_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/AirConditioning_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/EnergyConsumption_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/EnergyGraph_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/Inverter24v_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/PropulsionBattery_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/ServiceInfo_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/TractionInverter_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/AdBlue_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/AxleLoad_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/BrakesAndTiresInfo_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/ClimateControl_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/DisableFaults_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/DoorControl_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/Engine_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/FireExtinguishersAndValves_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/Fuel_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/Settings_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/Suspension_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/Transmission_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/Wipers_M.qml</file>
+        <file>DashboardGeneral/sound/errorSound.wav</file>
+        <file>DashboardGeneral/sound/turnSignalSound.wav</file>
+        <file>DashboardGeneral/sound/warningSound.wav</file>
+    </qresource>
+</RCC>

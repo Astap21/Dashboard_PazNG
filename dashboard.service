@@ -1,0 +1,11 @@
+[Service]
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=DASHBOARD
+User=root
+WorkingDirectory=/home/pi/
+ExecStart=/home/pi/DashBoard_PAZ
+
+[Install]
+WantedBy=multi-user.target
