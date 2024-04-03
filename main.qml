@@ -346,9 +346,9 @@ Item{
                 interval: 3000; running: false; repeat: true
                 property int sourceNumber: 0
                 onTriggered: {
-                    if (sourceNumber == 0) busImage.source = "/DashboardGeneral/images/busSideView.png"
-                    if (sourceNumber == 1) busImage.source = "/DashboardGeneral/images/busFrontView.png"
-                    if (sourceNumber == 2) busImage.source = "/DashboardGeneral/images/busRearView.png"
+                    if (sourceNumber == 0) busImage.source = "/DashboardGeneral/images/busSideView_PazNG.png"
+                    if (sourceNumber == 1) busImage.source = "/DashboardGeneral/images/busFrontView_PazNG.png"
+                    if (sourceNumber == 2) busImage.source = "/DashboardGeneral/images/busRearView_PazNG.png"
                     sourceNumber ++
                     if (sourceNumber > 2) sourceNumber = 0
                 }
@@ -360,7 +360,7 @@ Item{
             height: 255
             visible: true
             opacity: 1
-            source: "DashboardGeneral/images/busFrontView.png"
+            source: "DashboardGeneral/images/busFrontView_PazNG.png"
             fillMode: Image.PreserveAspectFit
             //            Component.onCompleted: {
             //                timerToggle_3000ms.start()

@@ -135,8 +135,6 @@
         <file>DashboardGeneral/images/signalLamps/service.png</file>
         <file>DashboardGeneral/images/backgroundLoader.png</file>
         <file>DashboardGeneral/images/backgroundMain.png</file>
-        <file>DashboardGeneral/images/busFrontView.png</file>
-        <file>DashboardGeneral/images/busSideView.png</file>
         <file>DashboardGeneral/images/driverCabin.png</file>
         <file>DashboardGeneral/images/estimatedRange.png</file>
         <file>DashboardGeneral/images/logo.png</file>
@@ -144,5 +142,10 @@
         <file>DashboardGeneral/images/newDials.png</file>
         <file>DashboardGeneral/images/salon.png</file>
         <file>DashboardGeneral/images/estimated_range_new.png</file>
+        <file>DashboardGeneral/images/busFrontView_LiazNG.png</file>
+        <file>DashboardGeneral/images/busFrontView_PazNG.png</file>
+        <file>DashboardGeneral/images/busRearView_PazNG.png</file>
+        <file>DashboardGeneral/images/busSideView_LiazNG.png</file>
+        <file>DashboardGeneral/images/busSideView_PazNG.png</file>
     </qresource>
 </RCC>
