@@ -19,14 +19,14 @@ Item {
         visible: true
         z: -1
         fillMode: Image.PreserveAspectFit
-        source: "DashboardGeneral/images/signalLampFont_LiazNG.png"
+        source: "img/signalLamps_font_PazNG.jpg"
     }
 
 
     Rectangle {
         id: shiftSelector
-        x: 924
-        y: 83
+        x: 921
+        y: 136
         width: 78
         height: 78
         color: "#00000000"
@@ -440,6 +440,7 @@ Item {
                 }
                 else if (inputUint === 3) {
                     //errorSound.play()
+                    pwm.playSound(0)
                     ebsState_L.lampToggle()
                     ebsState_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/EBS_Red.png"
                 }
@@ -524,8 +525,8 @@ Item {
 
     SignalLamp_C {
         id: markerLights_L
-        x: 676
-        y: 93
+        x: 645
+        y: 1
         width: 75
         height: markerLights_L.width
         source: "DashboardGeneral/images/signalLamps/lights/markerLights.png"
@@ -536,7 +537,7 @@ Item {
     SignalLamp_C {
         id: pumpWork_L
         x: 1436
-        y: 468
+        y: 471
         width: 50
         height: pumpWork_L.width
         source: "DashboardGeneral/images/signalLamps/busInterior/liquidHeater.png"
@@ -545,8 +546,8 @@ Item {
 
     SignalLamp_C {
         id: motorFailure_L
-        x: 274
-        y: 225
+        x: 607
+        y: 248
         width: 60
         height: 42
         source: "DashboardGeneral/images/signalLamps/motorSystem/motorWarning.png"
@@ -555,8 +556,8 @@ Item {
 
     SignalLamp_C {
         id: wornBrakeLinings_L
-        x: 1437
-        y: 225
+        x: 1430
+        y: 222
         width: 55
         height: wornBrakeLinings_L.width
         visible: false
@@ -567,8 +568,8 @@ Item {
 
     SignalLamp_C {
         id: lowTirePressure_L
-        x: 354
-        y: 200
+        x: 1379
+        y: 284
         width: 45
         height: lowTirePressure_L.width
         visible: true
@@ -578,8 +579,8 @@ Item {
 
     SignalLamp_C {
         id: battery24v_L
-        x: 1259
-        y: 516
+        x: 1236
+        y: 418
         width: 55
         height: battery24v_L.width
         source: "DashboardGeneral/images/signalLamps/battery24v.png"
@@ -603,8 +604,8 @@ Item {
 
     SignalLamp_C {
         id: frontFogLights_L
-        x: 840
-        y: 97
+        x: 842
+        y: 10
         width: 57
         height: frontFogLights_L.width
         source: "DashboardGeneral/images/signalLamps/lights/frontFogLight.png"
@@ -613,8 +614,8 @@ Item {
 
     SignalLamp_C {
         id: highBeamHeadLights_L
-        x: 1199
-        y: 97
+        x: 1220
+        y: 13
         width: 57
         height: highBeamHeadLights_L.width
         source: "DashboardGeneral/images/signalLamps/lights/highBeamHeadLights.png"
@@ -623,8 +624,8 @@ Item {
 
     SignalLamp_C {
         id: lowBeamHeadLights_L
-        x: 1117
-        y: 98
+        x: 1123
+        y: 12
         width: 57
         height: lowBeamHeadLights_L.width
         source: "DashboardGeneral/images/signalLamps/lights/lowBeamHeadLights.png"
@@ -633,8 +634,8 @@ Item {
 
     SignalLamp_C {
         id: rearFogLight_L
-        x: 771
-        y: 97
+        x: 755
+        y: 9
         width: 57
         height: rearFogLight_L.width
         source: "DashboardGeneral/images/signalLamps/lights/rearFogLight.png"
@@ -642,8 +643,8 @@ Item {
     }
     TurnSignals_C {
         id: turnSignals
-        y: 96
-        width: 762
+        y: 10
+        width: 829
         height: 60
         anchors.horizontalCenterOffset: 1
         togglingPeriod: 500
@@ -664,8 +665,8 @@ Item {
 
     SignalLamp_C {
         id: suspensionStatus_L
-        x: 1242
-        y: 231
+        x: 1093
+        y: 138
         width: 55
         height: suspensionStatus_L.width
         visible: true
@@ -685,8 +686,8 @@ Item {
     }
     SignalLamp_C {
         id: runningLights_L
-        x: 1031
-        y: 95
+        x: 1024
+        y: 10
         width: 58
         height: runningLights_L.width
         source: "DashboardGeneral/images/signalLamps/lights/runningLights.png"
@@ -695,8 +696,8 @@ Item {
 
     SignalLamp_C {
         id: lowCoolantEngineLevel_L
-        x: 1242
-        y: 177
+        x: 1091
+        y: 80
         width: 55
         height: lowCoolantEngineLevel_L.width
         visible: true
@@ -706,8 +707,8 @@ Item {
 
     SignalLamp_C {
         id: parkingBrake_L
-        x: 1634
-        y: 274
+        x: 1642
+        y: 277
         width: 60
         height: parkingBrake_L.width
         source: "DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuitParkBrakeFailure.png"
@@ -716,8 +717,8 @@ Item {
 
     SignalLamp_C {
         id: interiorLighting_L
-        x: 1180
-        y: 175
+        x: 915
+        y: 522
         width: 50
         height: interiorLighting_L.width
         source: "DashboardGeneral/images/signalLamps/busInterior/interiorCompartmentIllumination.png"
@@ -741,9 +742,9 @@ Item {
 
     SignalLamp_C {
         id: disablePersonRequest_L
-        x: 673
-        y: 184
-        width: 44
+        x: 939
+        y: 370
+        width: 50
         height: disablePersonRequest_L.width
         source: "DashboardGeneral/images/signalLamps/disabledPersonRequest.png"
         test: signalLampTest
@@ -751,8 +752,8 @@ Item {
 
     SignalLamp_C {
         id: ebsState_L
-        x: 1641
-        y: 412
+        x: 1644
+        y: 411
         width: 56
         height: ebsState_L.width
         source: "DashboardGeneral/images/signalLamps/brakeSystem/EBS_Red.png"
@@ -761,8 +762,8 @@ Item {
 
     SignalLamp_C {
         id: pumpFail_L
-        x: 1515
-        y: 486
+        x: 1513
+        y: 501
         width: 54
         height: pumpFail_L.width
         visible: true
@@ -773,8 +774,8 @@ Item {
 
     SignalLamp_C {
         id: hammer_L
-        x: 1154
-        y: 520
+        x: 1151
+        y: 530
         width: 45
         height: hammer_L.width
         visible: true
@@ -794,8 +795,8 @@ Item {
 
     SignalLamp_C {
         id: seatBeltSwitch_L
-        x: 723
-        y: 183
+        x: 1246
+        y: 530
         width: 44
         height: seatBeltSwitch_L.width
         visible: true
@@ -815,8 +816,8 @@ Item {
 
     SignalLamp_C {
         id: asr_L
-        x: 574
-        y: 522
+        x: 518
+        y: 530
         width: 44
         height: asr_L.width
         source: "DashboardGeneral/images/signalLamps/brakeSystem/ESC_On.png"
@@ -825,8 +826,8 @@ Item {
 
     SignalLamp_C {
         id: washerFluidLevel_L
-        x: 1100
-        y: 522
+        x: 1094
+        y: 527
         width: 48
         height: washerFluidLevel_L.width
         source: "DashboardGeneral/images/signalLamps/windshield/windshielFluidLevelWarning.png"
@@ -845,8 +846,8 @@ Item {
 
     SignalLamp_C {
         id: mirrorHeating_L
-        x: 937
-        y: 523
+        x: 799
+        y: 530
         width: 44
         height: mirrorHeating_L.width
         source: "DashboardGeneral/images/signalLamps/busCabin/mirrorHeating.png"
@@ -856,8 +857,8 @@ Item {
 
     SignalLamp_C {
         id: waterInFuel_L
-        x: 810
-        y: 521
+        x: 826
+        y: 447
         width: 55
         height: waterInFuel_L.width
         visible: true
@@ -868,8 +869,8 @@ Item {
 
     SignalLamp_C {
         id: lowUrea_L
-        x: 1326
-        y: 523
+        x: 1314
+        y: 453
         width: 43
         height: lowUrea_L.width
         visible: true
@@ -880,8 +881,8 @@ Item {
 
     SignalLamp_C {
         id: airFilter_L
-        x: 744
-        y: 517
+        x: 746
+        y: 428
         width: 55
         height: airFilter_L.width
         visible: true
@@ -892,8 +893,8 @@ Item {
 
     SignalLamp_C {
         id: exhaust_L
-        x: 876
-        y: 516
+        x: 926
+        y: 468
         width: 55
         height: exhaust_L.width
         visible: true
@@ -904,8 +905,8 @@ Item {
 
     SignalLamp_C {
         id: oil_L
-        x: 675
-        y: 518
+        x: 680
+        y: 444
         width: 60
         height: oil_L.width
         visible: true
@@ -928,8 +929,8 @@ Item {
 
     SignalLamp_C {
         id: agbOverheat_L
-        x: 882
-        y: 182
+        x: 836
+        y: 245
         width: 45
         height: agbOverheat_L.width
         visible: true
@@ -940,8 +941,8 @@ Item {
 
     SignalLamp_C {
         id: route_L
-        x: 1130
-        y: 182
+        x: 680
+        y: 531
         width: 45
         height: route_L.width
         visible: false
@@ -952,8 +953,8 @@ Item {
 
     SignalLamp_C {
         id: retarder_L
-        x: 933
-        y: 178
+        x: 736
+        y: 219
         width: 55
         height: retarder_L.width
         visible: true
@@ -964,8 +965,8 @@ Item {
 
     SignalLamp_C {
         id: inputAirHeat_L
-        x: 1389
-        y: 417
+        x: 1234
+        y: 305
         width: 56
         height: inputAirHeat_L.width
         visible: true
@@ -976,8 +977,8 @@ Item {
 
     SignalLamp_C {
         id: airBrake3_L
-        x: 1515
-        y: 196
+        x: 1514
+        y: 191
         width: 55
         height: airBrake3_L.width
         source: "DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuit3Failure.png"
@@ -987,8 +988,8 @@ Item {
 
     SignalLamp_C {
         id: airBrake4_L
-        x: 1594
-        y: 224
+        x: 1598
+        y: 221
         width: 55
         height: airBrake4_L.width
         source: "DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuit4Failure.png"
@@ -998,8 +999,8 @@ Item {
 
     SignalLamp_C {
         id: fireExting_L
-        x: 1211
-        y: 520
+        x: 1202
+        y: 531
         width: 45
         height: width
         visible: true
@@ -1011,8 +1012,8 @@ Item {
 
     SignalLamp_C {
         id: noDriver_L
-        x: 777
-        y: 182
+        x: 1301
+        y: 530
         width: 44
         height: noDriver_L.width
         visible: true
@@ -1022,8 +1023,8 @@ Item {
 
     SignalLamp_C {
         id: doorValve_L
-        x: 521
-        y: 522
+        x: 546
+        y: 402
         width: 44
         height: doorValve_L.width
         source: "DashboardGeneral/images/fireExtinguishersAndTaps/valveCloseCapOpen.png"
@@ -1032,8 +1033,8 @@ Item {
 
     SignalLamp_C {
         id: rampError_L
-        x: 625
-        y: 185
+        x: 1362
+        y: 532
         width: 40
         height: rampError_L.width
         source: "DashboardGeneral/images/signalLamps/rampError.png"
@@ -1042,8 +1043,8 @@ Item {
 
     SignalLamp_C {
         id: seatHeating_L
-        x: 1047
-        y: 526
+        x: 627
+        y: 534
         width: 40
         height: width
         source: "DashboardGeneral/images/signalLamps/busCabin/seatHeating.png"

@@ -355,12 +355,12 @@ Item{
             }
             id: busImage
             x: 757
-            y: 254
+            y: 284
             width: 450
             height: 255
             visible: true
             opacity: 1
-            source: "DashboardGeneral/images/busFrontView_PazNG.png"
+            source: "img/busFrontView.png"
             fillMode: Image.PreserveAspectFit
             //            Component.onCompleted: {
             //                timerToggle_3000ms.start()
@@ -741,7 +741,7 @@ Item{
             visible: true
             z: 0
             fillMode: Image.Pad
-            source: "DashboardGeneral/images/newDials.png"
+            source: "img/dials.png"
 
             Item{
 
@@ -978,7 +978,7 @@ Item{
                     id: speedArrow
                     x: -146
                     y: 104
-                    width: 288
+                    width: 289
                     height: 38
                     z: -1
                     fillMode: Image.PreserveAspectFit
@@ -1025,7 +1025,7 @@ Item{
                     id: engineSpeedArrow
                     x: 111
                     y: 118
-                    width: 288
+                    width: 289
                     height: 38
                     rotation: 90
                     z: -1

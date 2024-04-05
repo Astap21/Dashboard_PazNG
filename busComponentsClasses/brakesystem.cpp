@@ -5,6 +5,9 @@
 
 BrakeSystem::BrakeSystem(QObject *parent) : PrimaryBusComponent(parent)
 {
+    timerPeriod_ms = 100;
+    timerForTask->setInterval(timerPeriod_ms);
+
     pressureCircuit1_bar = 0;
     pressureCircuit1_Indication = 0;
     pressureCircuit2_bar = 0;
@@ -72,6 +75,7 @@ void BrakeSystem::ReadStateFromCanDB(){
     if (checkValueChangeBy_1(pressure_kpa / 98.066f, pressureCircuit1_bar)){
         emit sendPressureCircuit1ToQml(pressureCircuit1_bar);
     }
+    //qDebug() << pressure_kpa;
     previousComponentState = pressureCircuit1_Indication;
     float lowBarPressure = 5;
     if (pressureCircuit1_bar < lowBarPressure) pressureCircuit1_Indication = 1;
@@ -211,6 +215,9 @@ void BrakeSystem::dashboardLoadFinished(){
     emit sendPressureCircuit4LampToQml(pressureCircuit4_Indication);
     emit sendLowTirePressureToQml(tireIndication);
 //    emit sendLowTirePressureToQml(false);
+
+    emit sendPressureCircuit1ToQml(pressureCircuit1_bar);
+    emit sendPressureCircuit2ToQml(pressureCircuit2_bar);
 }
 float BrakeSystem::getLowTirePressure(){return lowTirePressure;}
 float BrakeSystem::getHighTirePressure(){return highTirePressure;}

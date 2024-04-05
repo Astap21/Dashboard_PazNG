@@ -143,10 +143,10 @@
         <file>DashboardGeneral/images/salon.png</file>
         <file>DashboardGeneral/images/estimated_range_new.png</file>
         <file>DashboardGeneral/images/busFrontView_LiazNG.png</file>
-        <file>DashboardGeneral/images/busFrontView_PazNG.png</file>
         <file>DashboardGeneral/images/busRearView_PazNG.png</file>
         <file>DashboardGeneral/images/busSideView_LiazNG.png</file>
         <file>DashboardGeneral/images/busSideView_PazNG.png</file>
-        <file>img/signalLamps_font_PazNG.png</file>
+        <file>img/dials.png</file>
+        <file>img/busFrontView.png</file>
     </qresource>
 </RCC>

@@ -1,4 +1,4 @@
-//Файл сгенерирован автоматически на основе файла C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_LiazNG_v1.5.2.dbc, последние изменения Wed Feb  7 16:24:27 2024
+//Файл сгенерирован автоматически на основе файла C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_LiazNG_v1.5.2.dbc, последние изменения Fri Apr  5 14:20:37 2024
 #ifndef CANDATABASE_H_
 #define CANDATABASE_H_
 
@@ -294,20 +294,26 @@ extern canBus::signalNameCharStruct gSignalName_BtnBackAns;
 extern canBus::signalNameCharStruct gSignalName_BtnMinusAns;
 extern canBus::signalNameCharStruct gSignalName_BtnOkAns;
 extern canBus::signalNameCharStruct gSignalName_BtnPlusAns;
-extern canBus::signalNameCharStruct gSignalName_EstimatedRange;
 extern canBus::signalNameCharStruct gSignalName_HearthBeat;
 extern canBus::signalNameCharStruct gSignalName_IpAddressByte_1;
 extern canBus::signalNameCharStruct gSignalName_IpAddressByte_2;
 extern canBus::signalNameCharStruct gSignalName_IpAddressByte_3;
 extern canBus::signalNameCharStruct gSignalName_IpAddressByte_4;
+extern canBus::signalNameCharStruct gSignalName_ProgramBuild;
 extern canBus::signalNameCharStruct gSignalName_ProgramSubVersion;
 extern canBus::signalNameCharStruct gSignalName_ProgramVersion;
 extern canBus::messageNameCharStruct gMessageName_DB_1;
 
 extern canBus::signalNameCharStruct gSignalName_AutoClossingDoors;
+extern canBus::signalNameCharStruct gSignalName_CpuLoad;
 extern canBus::signalNameCharStruct gSignalName_DisableSafety;
+extern canBus::signalNameCharStruct gSignalName_MemLoad;
 extern canBus::signalNameCharStruct gSignalName_PassengerDoorControl;
 extern canBus::messageNameCharStruct gMessageName_DB_2;
+
+extern canBus::signalNameCharStruct gSignalName_TurnLeftLamp;
+extern canBus::signalNameCharStruct gSignalName_TurnRightLamp;
+extern canBus::messageNameCharStruct gMessageName_DB_3;
 
 extern CanDataBase gCanDB;
 #endif /* CANDATABASE_H_ */

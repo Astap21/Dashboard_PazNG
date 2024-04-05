@@ -1,4 +1,4 @@
-//Файл сгенерирован автоматически на основе файла C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_LiazNG_v1.5.2.dbc, последние изменения Wed Feb  7 16:24:27 2024
+//Файл сгенерирован автоматически на основе файла C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_LiazNG_v1.5.2.dbc, последние изменения Fri Apr  5 14:20:37 2024
 #include "canDataBase.h"
 
 using namespace canBus;
@@ -636,8 +636,6 @@ signalNameCharStruct gSignalName_BtnOkAns{"BtnOkAns",MAX_LENGTH_NAME};
 static CanSignal BtnOkAns{ 48, 2, gSignalName_BtnOkAns, 1, 0, canIntel, canUint, 3, 0, 0};
 signalNameCharStruct gSignalName_BtnPlusAns{"BtnPlusAns",MAX_LENGTH_NAME};
 static CanSignal BtnPlusAns{ 54, 2, gSignalName_BtnPlusAns, 1, 0, canIntel, canUint, 3, 0, 0};
-signalNameCharStruct gSignalName_EstimatedRange{"EstimatedRange",MAX_LENGTH_NAME};
-static CanSignal EstimatedRange{ 56, 8, gSignalName_EstimatedRange, 1, 0, canIntel, canUint, 250, 0, 0};
 signalNameCharStruct gSignalName_HearthBeat{"HearthBeat",MAX_LENGTH_NAME};
 static CanSignal HearthBeat{ 0, 2, gSignalName_HearthBeat, 1, 0, canIntel, canUint, 3, 0, 0};
 signalNameCharStruct gSignalName_IpAddressByte_1{"IpAddressByte_1",MAX_LENGTH_NAME};
@@ -648,27 +646,42 @@ signalNameCharStruct gSignalName_IpAddressByte_3{"IpAddressByte_3",MAX_LENGTH_NA
 static CanSignal IpAddressByte_3{ 24, 8, gSignalName_IpAddressByte_3, 1, 0, canIntel, canUint, 0, 0, 0};
 signalNameCharStruct gSignalName_IpAddressByte_4{"IpAddressByte_4",MAX_LENGTH_NAME};
 static CanSignal IpAddressByte_4{ 32, 8, gSignalName_IpAddressByte_4, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_ProgramBuild{"ProgramBuild",MAX_LENGTH_NAME};
+static CanSignal ProgramBuild{ 56, 8, gSignalName_ProgramBuild, 1, 0, canIntel, canUint, 250, 0, 0};
 signalNameCharStruct gSignalName_ProgramSubVersion{"ProgramSubVersion",MAX_LENGTH_NAME};
 static CanSignal ProgramSubVersion{ 40, 6, gSignalName_ProgramSubVersion, 1, 0, canIntel, canUint, 63, 0, 0};
 signalNameCharStruct gSignalName_ProgramVersion{"ProgramVersion",MAX_LENGTH_NAME};
 static CanSignal ProgramVersion{ 2, 6, gSignalName_ProgramVersion, 1, 0, canIntel, canUint, 63, 0, 0};
-static CanSignal *DB_1_arraySignals[DB_1_NumberOfSignals] = {&BtnBackAns, &BtnMinusAns, &BtnOkAns, &BtnPlusAns, &EstimatedRange, &HearthBeat, &IpAddressByte_1, &IpAddressByte_2, &IpAddressByte_3, &IpAddressByte_4, &ProgramSubVersion, &ProgramVersion};
+static CanSignal *DB_1_arraySignals[DB_1_NumberOfSignals] = {&BtnBackAns, &BtnMinusAns, &BtnOkAns, &BtnPlusAns, &HearthBeat, &IpAddressByte_1, &IpAddressByte_2, &IpAddressByte_3, &IpAddressByte_4, &ProgramBuild, &ProgramSubVersion, &ProgramVersion};
 messageNameCharStruct gMessageName_DB_1{"DB_1",MAX_LENGTH_NAME};
 static CanMessageTx DB_1(gMessageName_DB_1, DB_1_arraySignals, DB_1_NumberOfSignals, 0x18FF1017, 8, 200);
 
-const uint8_t DB_2_NumberOfSignals = 3;
+const uint8_t DB_2_NumberOfSignals = 5;
 signalNameCharStruct gSignalName_AutoClossingDoors{"AutoClossingDoors",MAX_LENGTH_NAME};
 static CanSignal AutoClossingDoors{ 4, 2, gSignalName_AutoClossingDoors, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_CpuLoad{"CpuLoad",MAX_LENGTH_NAME};
+static CanSignal CpuLoad{ 48, 8, gSignalName_CpuLoad, 0.4, 0, canIntel, canUint, 100, 0, 0};
 signalNameCharStruct gSignalName_DisableSafety{"DisableSafety",MAX_LENGTH_NAME};
 static CanSignal DisableSafety{ 2, 2, gSignalName_DisableSafety, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_MemLoad{"MemLoad",MAX_LENGTH_NAME};
+static CanSignal MemLoad{ 56, 8, gSignalName_MemLoad, 0.4, 0, canIntel, canUint, 100, 0, 0};
 signalNameCharStruct gSignalName_PassengerDoorControl{"PassengerDoorControl",MAX_LENGTH_NAME};
 static CanSignal PassengerDoorControl{ 0, 2, gSignalName_PassengerDoorControl, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *DB_2_arraySignals[DB_2_NumberOfSignals] = {&AutoClossingDoors, &DisableSafety, &PassengerDoorControl};
+static CanSignal *DB_2_arraySignals[DB_2_NumberOfSignals] = {&AutoClossingDoors, &CpuLoad, &DisableSafety, &MemLoad, &PassengerDoorControl};
 messageNameCharStruct gMessageName_DB_2{"DB_2",MAX_LENGTH_NAME};
 static CanMessageTx DB_2(gMessageName_DB_2, DB_2_arraySignals, DB_2_NumberOfSignals, 0x18FFA017, 8, 100);
 
+const uint8_t DB_3_NumberOfSignals = 2;
+signalNameCharStruct gSignalName_TurnLeftLamp{"TurnLeftLamp",MAX_LENGTH_NAME};
+static CanSignal TurnLeftLamp{ 2, 2, gSignalName_TurnLeftLamp, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_TurnRightLamp{"TurnRightLamp",MAX_LENGTH_NAME};
+static CanSignal TurnRightLamp{ 0, 2, gSignalName_TurnRightLamp, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *DB_3_arraySignals[DB_3_NumberOfSignals] = {&TurnLeftLamp, &TurnRightLamp};
+messageNameCharStruct gMessageName_DB_3{"DB_3",MAX_LENGTH_NAME};
+static CanMessageTx DB_3(gMessageName_DB_3, DB_3_arraySignals, DB_3_NumberOfSignals, 0x18FF1117, 8, 0);
+
 const uint8_t numberOfRxMessages = 53;
 static CanMessageRx *arrayRxMessages[numberOfRxMessages] = { &ACU_info, &AIR1, &AMB, &ASC1, &AT1IG1, &AT1T1I1, &BDS, &BJM1, &CCVS1, &CDC, &CECU_1, &CL, &CM1, &DC1, &DC2, &DCU1, &DCU2, &DCU3, &DD1_12, &DD1_1E, &DLCC1, &DLCD1, &DLCD2, &DM1_EMS, &DM1_EPB, &DM1_Suspension, &EBC1, &EBC4, &EBC5, &EDSC2_2, &EEC1, &EFL, &EPBS1, &ERC1, &ET1, &ET4, &ETC1, &ETC2, &ETC7, &FS1, &LD, &OI, &OWW, &SCU2CLM, &SHUTDN, &TCO1, &TIRE, &TRF1, &TimeData, &VDC1, &VDHR, &VEP1, &WHL_1};
-const uint8_t numberOfTxMessages = 3;
-static CanMessageTx *arrayTxMessages[numberOfTxMessages] = { &ASC2, &DB_1, &DB_2};
+const uint8_t numberOfTxMessages = 4;
+static CanMessageTx *arrayTxMessages[numberOfTxMessages] = { &ASC2, &DB_1, &DB_2, &DB_3};
 CanDataBase gCanDB(arrayRxMessages,numberOfRxMessages,arrayTxMessages,numberOfTxMessages);
