@@ -73,6 +73,25 @@ Item {
         //timerTurnToggle.stop()
         turnSignalLeft_L.visible = false
         turnSignalRight_L.visible = false
+        timerTurnToggle.running = false
+    }
+    function lampsOn(){
+        turnSignalLeft_L.visible = true
+        turnSignalRight_L.visible = true
+    }
+    function turnRightOn(){
+        turnSignalRight_L.visible = true
+        exteriorLightning.RightTurnLight_lamp = turnSignalRight_L.visible
+    }
+    function turnRightOff(){
+        turnSignalRight_L.visible = false
+        exteriorLightning.RightTurnLight_lamp = turnSignalRight_L.visible
+    }
+    function turnLeftOn(){
+        turnSignalLeft_L.visible = true
+    }
+    function turnLeftOff(){
+        turnSignalLeft_L.visible = false
     }
 //    Audio{
 //        id: turnSignalSound
@@ -112,6 +131,7 @@ Item {
             }
             //console.log("right " + turnSignalRight_L.visible)
             //console.log("left " + turnSignalLeft_L.visible)
+            exteriorLightning.RightTurnLight_lamp = turnSignalRight_L.visible
         }
     }
 }
