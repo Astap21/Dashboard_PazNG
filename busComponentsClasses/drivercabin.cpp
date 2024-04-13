@@ -38,12 +38,12 @@ void DriverCabin::ReadStateFromCanDB(){
         //qDebug() << PowerSteering;
 //        if (previousComponentState != PowerSteering) emit sendPowerSteeringStatusToQml(PowerSteering);
 
-        if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_WindshieldHeating, gMessageName_CECU_1, &gCanDB), ElecticHeatedWindshield)) {
-            emit sendWindshieldHeatingStatusToQml(ElecticHeatedWindshield);
-        }
-        if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_SeatHeating, gMessageName_CECU_1, &gCanDB), SeatHeating)) {
-            emit sendSeatHeatingStatusToQml(SeatHeating);
-        }
+//        if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_WindshieldHeating, gMessageName_CECU_1, &gCanDB), ElecticHeatedWindshield)) {
+//            emit sendWindshieldHeatingStatusToQml(ElecticHeatedWindshield);
+//        }
+//        if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_SeatHeating, gMessageName_CECU_1, &gCanDB), SeatHeating)) {
+//            emit sendSeatHeatingStatusToQml(SeatHeating);
+//        }
         uint32_t const rightMirror = gCanDB.GetSignalValueUint32_t(gSignalName_MirrorHeatRight, gMessageName_CDC);
         uint32_t const leftMirror = gCanDB.GetSignalValueUint32_t(gSignalName_MirrorHeatLeft, gMessageName_CDC);
         uint32_t mirrorHeat = 0;

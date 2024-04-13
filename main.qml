@@ -56,6 +56,20 @@ Item{
         fillMode: Image.PreserveAspectFit
         property bool bootAnimation: true
     }
+    Image {
+        id: fontTest
+        x: -3
+        y: 0
+        width: 1926
+        height: 720
+        visible: true
+        sourceSize.height: 0
+        sourceSize.width: 0
+        source: "img/signalLamps_font_PazNG.jpg"
+        z: 0
+        fillMode: Image.PreserveAspectFit
+        property bool bootAnimation: true
+    }
     Loader {
         id: menuLoader
         x: 621
@@ -71,36 +85,36 @@ Item{
         source: "qrc:/menu.qml"
         z: 2
 
-//        Rectangle {
-//            id: resetMileageWindow
-//            x: 490
-//            y: 230
-//            width: 500
-//            height: 200
-//            color: "#302e40"
-//            radius: 50
-//            visible: false
-//            border.color: "#ffffff"
-//            border.width: 2
-//            anchors.horizontalCenter: parent.horizontalCenter
-//            anchors.verticalCenter: parent.verticalCenter
+        //        Rectangle {
+        //            id: resetMileageWindow
+        //            x: 490
+        //            y: 230
+        //            width: 500
+        //            height: 200
+        //            color: "#302e40"
+        //            radius: 50
+        //            visible: false
+        //            border.color: "#ffffff"
+        //            border.width: 2
+        //            anchors.horizontalCenter: parent.horizontalCenter
+        //            anchors.verticalCenter: parent.verticalCenter
 
-//            Text {
-//                id: textResetMileage
-//                x: 56
-//                y: 32
-//                width: 500
-//                height: 100
-//                color: "#ffffff"
-//                text: qsTr("Вы хотите сбросить суточный\nпробег? Да(+) Нет(-)")
-//                font.family: "Arial"
-//                horizontalAlignment: Text.AlignHCenter
-//                verticalAlignment: Text.AlignVCenter
-//                anchors.horizontalCenter: parent.horizontalCenter
-//                anchors.verticalCenter: parent.verticalCenter
-//                font.pixelSize: 35
-//            }
-//        }
+        //            Text {
+        //                id: textResetMileage
+        //                x: 56
+        //                y: 32
+        //                width: 500
+        //                height: 100
+        //                color: "#ffffff"
+        //                text: qsTr("Вы хотите сбросить суточный\nпробег? Да(+) Нет(-)")
+        //                font.family: "Arial"
+        //                horizontalAlignment: Text.AlignHCenter
+        //                verticalAlignment: Text.AlignVCenter
+        //                anchors.horizontalCenter: parent.horizontalCenter
+        //                anchors.verticalCenter: parent.verticalCenter
+        //                font.pixelSize: 35
+        //            }
+        //        }
     }
 
     PressureCircuitBar_C {
@@ -137,7 +151,7 @@ Item{
         property double maxValue: 100
         property double lowValue: 10
         x: 1264
-        y: 51
+        y: 48
         arcEnd: 82
         z: -1
         arcBegin: arcEnd - ((actualValue - minValue) * koef*1.05)
@@ -197,12 +211,12 @@ Item{
             if (actualValue > highValue) {
                 engineTempBar.colorCircleStopGrad= "#ff0000"
                 engineTempBar.colorCircleStartGrad= "#ff0000"
-                engineTempImage.source = "/DashboardGeneral/images/signalLamps/motorSystem/engineCoolantTempFailure.png"
+                soc.source = "/DashboardGeneral/images/signalLamps/motorSystem/engineCoolantTempFailure.png"
             }
             else {
                 engineTempBar.colorCircleStopGrad = "#b7b7b7"
                 engineTempBar.colorCircleStartGrad = "#b7b7b7"
-                engineTempImage.source = "/DashboardGeneral/images/signalLamps/motorSystem/high_temp_grey.png"
+                soc.source = "/DashboardGeneral/images/signalLamps/motorSystem/high_temp_grey.png"
             }
         }
     }
@@ -322,20 +336,20 @@ Item{
         Image {
             Door_C {
                 id: door_1
-                x: 271
-                y: 60
-                width: 70
-                height: 159
+                x: 243
+                y: 48
+                width: 53
+                height: 125
                 doorNumber: "1"
                 visible: true
             }
 
             Door_C {
                 id: door_2
-                x: 109
-                y: 67
-                width: 35
-                height: 113
+                x: 150
+                y: 61
+                width: 40
+                height: 95
                 visible: true
                 doorNumber: "2"
             }
@@ -354,10 +368,10 @@ Item{
                 }
             }
             id: busImage
-            x: 757
-            y: 284
-            width: 450
-            height: 255
+            x: 688
+            y: 272
+            width: 564
+            height: 279
             visible: true
             opacity: 1
             source: "img/busFrontView.png"
@@ -367,21 +381,22 @@ Item{
             //            }
             SignalLamp_C {
                 id: rampState_L
-                x: 83
-                y: 142
-                width: 61
+                x: 202
+                y: 153
+                width: 102
                 height: 77
                 visible: true
                 fillMode: Image.PreserveAspectFit
                 source: "/DashboardGeneral/images/signalLamps/busExterior/theRampIsOpen.png"
+                z: 5
                 test: false
                 //source: "/DashboardGeneral/images/signalLamps/busExterior/rampSensorMalfunction.png"
             }
 
             SignalLamp_C {
                 id: rearCompartmentIsOpen_L
-                x: 0
-                y: 109
+                x: 62
+                y: 92
                 width: 34
                 height: 38
                 test: false
@@ -392,9 +407,9 @@ Item{
 
             SignalLamp_C {
                 id: frontCompartment_L
-                x: 383
-                y: 169
-                width: 55
+                x: 433
+                y: 158
+                width: 50
                 height: width
                 rotation: -10
                 fillMode: Image.PreserveAspectFit
@@ -403,52 +418,59 @@ Item{
                 test: false
             }
 
-            Door_C {
-                id: door_3
-                x: 40
-                y: 73
-                width: 26
-                height: 90
-                visible: true
-                doorNumber: "3"
-            }
-
         }
 
 
 
         Image {
-            id: fuelImage
-            x: 1845
-            y: 98
-            width: 35
-            height: fuelImage.Width
-            fillMode: Image.PreserveAspectFit
-            source: "DashboardGeneral/images/signalLamps/motorSystem/low_fuel_grey.png"
-        }
-
-        Image {
-            id: engineTempImage
-            x: 1845
-            y: 603
+            id: batteryVoltage
+            x: 1830
+            y: 96
             width: 50
-            height: engineTempImage.Width
+            height: batteryVoltage.Width
             fillMode: Image.PreserveAspectFit
-            source: "DashboardGeneral/images/signalLamps/motorSystem/high_temp_grey.png"
+            source: "DashboardGeneral/images/signalLamps/battery/bateryOn.png"
 
             Text {
-                id: tempOutsideUnits1
-                x: -214
-                y: 5
-                width: 20
+                id: batteryVoltageUnits
+                x: -1916
+                y: -19
+                width: 84
                 height: 40
-                color: "#ffffff"
-                text: qsTr("°C")
+                color: "#aaa4a4"
+                text: qsTr("вольт")
                 anchors.left: parent.left
-                font.pixelSize: 20
+                font.pixelSize: 17
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignBottom
-                anchors.leftMargin: -39
+                z: 1
+                font.family: "Verdana"
+                anchors.leftMargin: -104
+            }
+        }
+
+        Image {
+            id: soc
+            x: 1828
+            y: 608
+            width: 50
+            height: soc.Width
+            fillMode: Image.PreserveAspectFit
+            source: "DashboardGeneral/images/signalLamps/battery/soc.png"
+
+            Text {
+                id: socUnits
+                x: -214
+                y: 4
+                width: 28
+                height: 40
+                color: "#ffffff"
+                text: qsTr("%")
+                anchors.left: parent.left
+                font.pixelSize: 28
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignBottom
+                anchors.leftMargin: -86
                 z: 1
                 font.family: "Open Sans"
             }
@@ -680,12 +702,12 @@ Item{
                 if (background.bootAnimation === false) {
                     fuelBar.updateValue(inputInt)
                     if (inputInt <= fuelBar.lowValue) {
-                        if(fuelImage.source == "/DashboardGeneral/images/signalLamps/motorSystem/low_fuel_grey.png"){
+                        if(batteryVoltage.source == "/DashboardGeneral/images/signalLamps/motorSystem/low_fuel_grey.png"){
                             //warningSound.play()
                         }
-                        fuelImage.source = "/DashboardGeneral/images/signalLamps/motorSystem/lowFuel.png";
+                        batteryVoltage.source = "/DashboardGeneral/images/signalLamps/motorSystem/lowFuel.png";
                     }
-                    else fuelImage.source = "/DashboardGeneral/images/signalLamps/motorSystem/low_fuel_grey.png";
+                    else batteryVoltage.source = "/DashboardGeneral/images/signalLamps/motorSystem/low_fuel_grey.png";
                 }
             }
             onSendEngineTempToQml: {
@@ -755,13 +777,14 @@ Item{
 
                 Text {
                     id: actualMileageText
-                    x: 0
-                    y: 0
+                    x: -23
+                    y: -2
+                    width: 280
                     height: 50
                     color: "#ffffff"
                     text: qsTr("суточный пробег:")
                     anchors.right: actualMileageValue.left
-                    anchors.rightMargin: 55
+                    anchors.rightMargin: 43
                     font.family: "Arial"
                     font.pixelSize: 35
                     verticalAlignment: Text.AlignVCenter
@@ -770,13 +793,13 @@ Item{
 
                 Text {
                     id: actualMileageValue
-                    x: 295
-                    y: 0
+                    x: 300
+                    y: -2
                     height: 50
                     color: "#ffffff"
-                    text: qsTr("000")
+                    text: qsTr("250")
                     anchors.right: actualMileageUnit.left
-                    anchors.rightMargin: 10
+                    anchors.rightMargin: 9
                     font.family: "Arial"
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignRight
@@ -785,13 +808,13 @@ Item{
 
                 Text {
                     id: actualMileageUnit
-                    x: 413
-                    y: 0
+                    x: 368
+                    y: -2
                     height: 50
                     color: "#ffffff"
                     text: qsTr("км")
                     anchors.right: parent.right
-                    anchors.rightMargin: 5
+                    anchors.rightMargin: 13
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignRight
                     font.family: "Arial"
@@ -807,41 +830,24 @@ Item{
                 height: 40
                 Text {
                     id: tempOutsideValue
-                    y: 0
-                    width: 70
+                    y: 1
+                    width: 55
                     height: 40
                     color: "#ffffff"
-                    text: qsTr("+25")
+                    text: qsTr("-17°")
                     anchors.left: parent.left
                     verticalAlignment: Text.AlignTop
-                    anchors.leftMargin: tempOutsideIcon.width
+                    anchors.leftMargin: 78
                     z: 1
                     horizontalAlignment: Text.AlignRight
-                    font.family: "Arial"
-                    font.pixelSize: 40
-                }
-
-                Text {
-                    id: tempOutsideUnits
-                    x: 145
-                    y: 0
-                    width: 20
-                    height: 40
-                    color: "#ffffff"
-                    text: qsTr("°")
-                    anchors.right: parent.right
-                    verticalAlignment: Text.AlignVCenter
-                    anchors.rightMargin: 0
-                    z: 1
-                    font.family: "Arial"
-                    font.pixelSize: 30
-                    horizontalAlignment: Text.AlignLeft
+                    font.family: "Open Sans"
+                    font.pixelSize: 35
                 }
 
                 Image {
                     id: tempOutsideIcon
-                    x: 0
-                    y: 0
+                    x: 21
+                    y: 4
                     width: 45
                     height: 39
                     source: "DashboardGeneral/images/nature.png"
@@ -862,37 +868,20 @@ Item{
                     width: 70
                     height: 40
                     color: "#ffffff"
-                    text: qsTr("+25")
+                    text: qsTr("+20°")
                     anchors.left: parent.left
-                    font.pixelSize: 40
+                    font.pixelSize: 35
                     horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignTop
-                    font.family: "Arial"
+                    anchors.leftMargin: 63
+                    font.family: "Open Sans"
                     z: 1
-                    anchors.leftMargin: tempOutsideIcon.width
-                }
-
-                Text {
-                    id: tempCabinUnits
-                    x: 145
-                    y: 0
-                    width: 20
-                    height: 40
-                    color: "#ffffff"
-                    text: qsTr("°")
-                    anchors.right: parent.right
-                    font.pixelSize: 30
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
-                    font.family: "Arial"
-                    z: 1
-                    anchors.rightMargin: 0
                 }
 
                 Image {
                     id: tempCabinIcon
-                    x: 0
-                    y: 5
+                    x: 18
+                    y: 8
                     width: 45
                     height: 39
                     source: "DashboardGeneral/images/driverCabin.png"
@@ -902,7 +891,7 @@ Item{
 
             Item {
                 id: tempSalon
-                x: 1785
+                x: 1798
                 y: 10
                 width: 135
                 height: 40
@@ -912,37 +901,20 @@ Item{
                     width: 70
                     height: 40
                     color: "#ffffff"
-                    text: qsTr("+25")
+                    text: qsTr("+24°")
                     anchors.left: parent.left
-                    font.pixelSize: 40
+                    font.pixelSize: 35
                     horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignTop
-                    font.family: "Arial"
+                    anchors.leftMargin: 40
+                    font.family: "Open Sans"
                     z: 1
-                    anchors.leftMargin: tempOutsideIcon.width
-                }
-
-                Text {
-                    id: tempSalonUnits
-                    x: 145
-                    y: 0
-                    width: 20
-                    height: 40
-                    color: "#ffffff"
-                    text: qsTr("°")
-                    anchors.right: parent.right
-                    font.pixelSize: 30
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
-                    font.family: "Arial"
-                    z: 1
-                    anchors.rightMargin: 0
                 }
 
                 Image {
                     id: tempSalonIcon
-                    x: 0
-                    y: 5
+                    x: -6
+                    y: 8
                     width: 45
                     height: 39
                     source: "DashboardGeneral/images/salon.png"
@@ -961,17 +933,17 @@ Item{
                 radius: speedCover.width / 2
                 Text {
                     id: speedDigital
-                    x: 41
-                    y: 69
-                    width: 200
-                    height: 110
+                    x: 55
+                    y: 75
+                    width: 167
+                    height: 89
                     color: "#ffffff"
                     text: qsTr("0")
                     z: 1
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
                     font.family:  "Arial"
-                    font.pixelSize: 150
+                    font.pixelSize: 115
                 }
 
                 Image {
@@ -989,8 +961,8 @@ Item{
 
                 Text {
                     id: speedUnit
-                    x: 157
-                    y: 301
+                    x: 165
+                    y: 296
                     color: "#cccccc"
                     text: qsTr("км/ч")
                     font.family: "Arial"
@@ -1001,11 +973,11 @@ Item{
 
                 Text {
                     id: speedUnit1
-                    x: 107
-                    y: 185
+                    x: 116
+                    y: 168
                     color: "#cccccc"
                     text: qsTr("км/ч")
-                    font.pixelSize: 35
+                    font.pixelSize: 30
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     font.family: "Arial"
@@ -1045,14 +1017,14 @@ Item{
 
                     Text {
                         id: estimatedKilometersRangeValue
-                        x: 0
-                        y: 0
+                        x: 9
+                        y: 2
                         width: 90
                         height: 60
                         color: "#ffffff"
                         text: qsTr("174")
-                        font.family: "Arial"
-                        font.pixelSize: 55
+                        font.family: "Open Sans"
+                        font.pixelSize: 60
                         horizontalAlignment: Text.AlignRight
                         verticalAlignment: Text.AlignVCenter
 
@@ -1085,13 +1057,15 @@ Item{
 
                 Text {
                     id: engineSpeedUnit
-                    x: -32
-                    y: 319
+                    x: 0
+                    y: 300
+                    width: 86
+                    height: 51
                     color: "#cccccc"
+                    text: "Ампер"
                     textFormat: Text.RichText
-                    text: qsTr("x 100 мин<sup><small>-1</small></sup>")
                     font.pixelSize: 25
-                    font.family: "Arial"
+                    font.family: "Open Sans"
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                 }
@@ -1124,12 +1098,12 @@ Item{
 
                 Text {
                     id: totalMileageText
-                    y: 0
+                    y: -5
                     height: 50
                     color: "#ffffff"
                     text: qsTr("пробег:")
                     anchors.left: parent.left
-                    anchors.leftMargin: 10
+                    anchors.leftMargin: 7
                     font.family: "Arial"
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignLeft
@@ -1138,12 +1112,12 @@ Item{
 
                 Text {
                     id: totalMileageValue
-                    y: 0
+                    y: -5
                     height: 50
                     color: "#ffffff"
-                    text: qsTr("0000000")
+                    text: qsTr("9 999 990")
                     anchors.left: totalMileageText.right
-                    anchors.leftMargin: 40
+                    anchors.leftMargin: 36
                     font.family: "Arial"
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignRight
@@ -1152,13 +1126,13 @@ Item{
 
                 Text {
                     id: totalMileageUnit
-                    y: 0
+                    y: -5
                     width: 50
                     height: 50
                     color: "#ffffff"
                     text: qsTr("км")
                     anchors.left: totalMileageValue.right
-                    anchors.leftMargin: 10
+                    anchors.leftMargin: 1
                     font.family: "Arial"
                     font.pixelSize: 35
                     horizontalAlignment: Text.AlignHCenter

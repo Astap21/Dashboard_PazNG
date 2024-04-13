@@ -13,6 +13,8 @@ Item {
 
     Image {
         id: signalLamps_font
+        x: 1
+        y: 0
         width: signalLamps.width
         height: signalLamps.height
         opacity: 0.6
@@ -92,15 +94,15 @@ Item {
             }
             onSendDoorValveToQml:{
                 if (inputUint === 2) {
-                    doorValve_L.source = "DashboardGeneral/images/fireExtinguishersAndTaps/valveOpenCapOpen.png"
-                    doorValve_L.lampOn()
+                    door2Valve_L.source = "DashboardGeneral/images/fireExtinguishersAndTaps/valveOpenCapOpen.png"
+                    door2Valve_L.lampOn()
                 }
                 else if (inputUint === 1) {
-                    doorValve_L.source = "DashboardGeneral/images/fireExtinguishersAndTaps/valveCloseCapOpen.png"
-                    doorValve_L.lampOn()
+                    door2Valve_L.source = "DashboardGeneral/images/fireExtinguishersAndTaps/valveCloseCapOpen.png"
+                    door2Valve_L.lampOn()
                 }
                 else {
-                    doorValve_L.lampOff()
+                    door2Valve_L.lampOff()
                 }
             }
             onSendRampErrorToQml:{
@@ -110,10 +112,6 @@ Item {
         }
         Connections{
             target: driverCabin
-            onSendWindshieldHeatingStatusToQml:{
-                if (inputUint) electricHeatedWindShield_L.lampOn()
-                else electricHeatedWindShield_L.lampOff()
-            }
             onSendElecticHeatedSideWindowsStatusToQml:{
 //                if (inputUint) asr_L.lampOn()
 //                else asr_L.lampOff()
@@ -187,36 +185,6 @@ Item {
     //            }
     //            else overheatMotor_L.lampOff()
             }
-            onSendEngineLampToQml: {
-                // yellow = 1,
-                //red = 2,
-                if (inputUint === 1) {
-                    motorFailure_L.source = "DashboardGeneral/images/signalLamps/motorSystem/motorWarning.png"
-                    motorFailure_L.lampOn()
-                    warningSound.play()
-                }
-                else if (inputUint === 2) {
-                    motorFailure_L.source = "DashboardGeneral/images/signalLamps/motorSystem/motorFailure.png"
-                    motorFailure_L.lampOn()
-                    //errorSound.play()
-                }
-                else if (inputUint === 4) {
-                    motorFailure_L.source = "DashboardGeneral/images/signalLamps/motorSystem/motorFailure.png"
-                    motorFailure_L.lampToggle()
-                    //errorSound.play()
-                }
-                else {
-                    motorFailure_L.lampOff()
-                }
-            }
-            onSendWaterInFuelToQml: {
-                if (inputUint === 1) {
-                    waterInFuel_L.lampOn()
-                }
-                else{
-                    waterInFuel_L.lampOff()
-                }
-            }
 
             onSendCirculationPumpToQml: {
                 if (inputUint === 2) {
@@ -232,65 +200,6 @@ Item {
                     pumpFail_L.lampOff()
                 }
             }
-
-            onSendAirFilterDirtyToQml:{
-                if (inputUint === 1) {
-                    airFilter_L.lampOn()
-                }
-                else{
-                    airFilter_L.lampOff()
-                }
-            }
-            onSendLowOilPressureToQml:{
-                if (inputUint === 1) {
-                    oil_L.lampOn()
-                }
-                else{
-                    oil_L.lampOff()
-                }
-            }
-            onSendHeatingInsideAirToQml:{
-                if (inputUint === 1) {
-                    inputAirHeat_L.lampOn()
-                }
-                else{
-                    inputAirHeat_L.lampOff()
-                }
-            }
-            onSendLowUreaToQml:{
-                //console.log(inputUint)
-                if (inputUint === 1) {
-                    lowUrea_L.lampOn()
-                }
-                else{
-                    lowUrea_L.lampOff()
-                }
-            }
-            onSendExhaustErrorToQml:{
-                if (inputUint === 1) {
-                    exhaust_L.lampOn()
-                }
-                else{
-                    exhaust_L.lampOff()
-                }
-            }
-            onSendAutoTransOverheatingToQml:{
-                if (inputUint === 1) {
-                    agbOverheat_L.lampOn()
-                }
-                else{
-                    agbOverheat_L.lampOff()
-                }
-            }
-            onSendAutoTransErrorToQml:{
-                if (inputUint === 1) {
-                    agbFail_L.lampOn()
-                }
-                else{
-                    agbFail_L.lampOff()
-                }
-            }
-
         }
         Connections{
             target: suspension
@@ -332,22 +241,22 @@ Item {
                 //else suspensionError_L.lampOff()
             }
             onSendKneelingStatusToQml: {
-                if (inputUint === 2) {
-                    kneelingStatus_L.lampToggle()
-                    autokneelingStatus_L.lampOff()
-                }
-                else if (inputUint === 1) {
-                    kneelingStatus_L.lampOn()
-                    autokneelingStatus_L.lampOff()
-                }
-                else if (inputUint === 2) {
-                    autokneelingStatus_L.lampOn()
-                    kneelingStatus_L.lampOff()
-                }
-                else {
-                    autokneelingStatus_L.lampOff()
-                    kneelingStatus_L.lampOff()
-                }
+//                if (inputUint === 2) {
+//                    kneelingStatus_L.lampToggle()
+//                    autokneelingStatus_L.lampOff()
+//                }
+//                else if (inputUint === 1) {
+//                    kneelingStatus_L.lampOn()
+//                    autokneelingStatus_L.lampOff()
+//                }
+//                else if (inputUint === 2) {
+//                    autokneelingStatus_L.lampOn()
+//                    kneelingStatus_L.lampOff()
+//                }
+//                else {
+//                    autokneelingStatus_L.lampOff()
+//                    kneelingStatus_L.lampOff()
+//                }
             }
             onSendAutoKneelingStatusToQml: {
     //            if (inputBool) autokneelingStatus_L.lampOn()
@@ -536,21 +445,11 @@ Item {
 
     SignalLamp_C {
         id: pumpWork_L
-        x: 1436
+        x: 1438
         y: 471
         width: 50
         height: pumpWork_L.width
         source: "DashboardGeneral/images/signalLamps/busInterior/liquidHeater.png"
-        test: signalLampTest
-    }
-
-    SignalLamp_C {
-        id: motorFailure_L
-        x: 607
-        y: 248
-        width: 60
-        height: 42
-        source: "DashboardGeneral/images/signalLamps/motorSystem/motorWarning.png"
         test: signalLampTest
     }
 
@@ -665,23 +564,12 @@ Item {
 
     SignalLamp_C {
         id: suspensionStatus_L
-        x: 1093
-        y: 138
+        x: 1020
+        y: 139
         width: 55
         height: suspensionStatus_L.width
         visible: true
         source: "DashboardGeneral/images/signalLamps/suspension/heightControlNotNormal.png"
-        test: signalLampTest
-    }
-
-    SignalLamp_C {
-        id: autokneelingStatus_L
-        x: 1312
-        y: 182
-        width: 45
-        height: autokneelingStatus_L.width
-        visible: false
-        source: "DashboardGeneral/images/signalLamps/suspension/autoKneeling.png"
         test: signalLampTest
     }
     SignalLamp_C {
@@ -762,9 +650,9 @@ Item {
 
     SignalLamp_C {
         id: pumpFail_L
-        x: 1513
-        y: 501
-        width: 54
+        x: 1517
+        y: 504
+        width: 50
         height: pumpFail_L.width
         visible: true
         source: "DashboardGeneral/images/signalLamps/busInterior/pumpFail.png"
@@ -785,8 +673,8 @@ Item {
 
     SignalLamp_C {
         id: kneelingStatus_L
-        x: 1302
-        y: 175
+        x: 1094
+        y: 141
         width: 55
         height: kneelingStatus_L.width
         source: "DashboardGeneral/images/signalLamps/suspension/kneeling.png"
@@ -801,16 +689,6 @@ Item {
         height: seatBeltSwitch_L.width
         visible: true
         source: "DashboardGeneral/images/signalLamps/busCabin/seatBeltNotFastened.png"
-        test: signalLampTest
-    }
-
-    SignalLamp_C {
-        id: electricHeatedWindShield_L
-        x: 998
-        y: 171
-        width: 70
-        height: electricHeatedWindShield_L.width
-        source: "DashboardGeneral/images/signalLamps/windshield/windshieldHeating.png"
         test: signalLampTest
     }
 
@@ -836,8 +714,8 @@ Item {
 
     SignalLamp_C {
         id: wipers_L
-        x: 1077
-        y: 181
+        x: 741
+        y: 539
         width: 37
         height: wipers_L.width
         source: "DashboardGeneral/images/signalLamps/windshield/windshield_delayed.png"
@@ -856,90 +734,6 @@ Item {
     }
 
     SignalLamp_C {
-        id: waterInFuel_L
-        x: 826
-        y: 447
-        width: 55
-        height: waterInFuel_L.width
-        visible: true
-        source: "DashboardGeneral/images/signalLamps/motorSystem/waterInFuel.png"
-        fillMode: Image.PreserveAspectFit
-        test: signalLampTest
-    }
-
-    SignalLamp_C {
-        id: lowUrea_L
-        x: 1314
-        y: 453
-        width: 43
-        height: lowUrea_L.width
-        visible: true
-        source: "DashboardGeneral/images/signalLamps/motorSystem/lowUrea.png"
-        fillMode: Image.PreserveAspectFit
-        test: signalLampTest
-    }
-
-    SignalLamp_C {
-        id: airFilter_L
-        x: 746
-        y: 428
-        width: 55
-        height: airFilter_L.width
-        visible: true
-        source: "DashboardGeneral/images/signalLamps/motorSystem/airFilterWarning.png"
-        fillMode: Image.PreserveAspectFit
-        test: signalLampTest
-    }
-
-    SignalLamp_C {
-        id: exhaust_L
-        x: 926
-        y: 468
-        width: 55
-        height: exhaust_L.width
-        visible: true
-        source: "DashboardGeneral/images/signalLamps/motorSystem/warningExhaust.png"
-        fillMode: Image.PreserveAspectFit
-        test: signalLampTest
-    }
-
-    SignalLamp_C {
-        id: oil_L
-        x: 680
-        y: 444
-        width: 60
-        height: oil_L.width
-        visible: true
-        source: "DashboardGeneral/images/signalLamps/motorSystem/lowOil.png"
-        fillMode: Image.PreserveAspectFit
-        test: signalLampTest
-    }
-
-    SignalLamp_C {
-        id: agbFail_L
-        x: 831
-        y: 182
-        width: 45
-        height: agbFail_L.width
-        visible: true
-        source: "DashboardGeneral/images/signalLamps/motorSystem/failureAGB.png"
-        fillMode: Image.PreserveAspectFit
-        test: signalLampTest
-    }
-
-    SignalLamp_C {
-        id: agbOverheat_L
-        x: 836
-        y: 245
-        width: 45
-        height: agbOverheat_L.width
-        visible: true
-        source: "DashboardGeneral/images/signalLamps/motorSystem/overheatAGB.png"
-        fillMode: Image.PreserveAspectFit
-        test: signalLampTest
-    }
-
-    SignalLamp_C {
         id: route_L
         x: 680
         y: 531
@@ -947,30 +741,6 @@ Item {
         height: route_L.width
         visible: false
         source: "DashboardGeneral/images/signalLamps/route.png"
-        fillMode: Image.PreserveAspectFit
-        test: signalLampTest
-    }
-
-    SignalLamp_C {
-        id: retarder_L
-        x: 736
-        y: 219
-        width: 55
-        height: retarder_L.width
-        visible: true
-        source: "DashboardGeneral/images/signalLamps/motorSystem/retarder.png"
-        fillMode: Image.PreserveAspectFit
-        test: signalLampTest
-    }
-
-    SignalLamp_C {
-        id: inputAirHeat_L
-        x: 1234
-        y: 305
-        width: 56
-        height: inputAirHeat_L.width
-        visible: true
-        source: "DashboardGeneral/images/signalLamps/motorSystem/inputAirHeating.png"
         fillMode: Image.PreserveAspectFit
         test: signalLampTest
     }
@@ -1022,11 +792,11 @@ Item {
     }
 
     SignalLamp_C {
-        id: doorValve_L
-        x: 546
-        y: 402
+        id: door2Valve_L
+        x: 799
+        y: 345
         width: 44
-        height: doorValve_L.width
+        height: door2Valve_L.width
         source: "DashboardGeneral/images/fireExtinguishersAndTaps/valveCloseCapOpen.png"
         test: signalLampTest
     }
@@ -1048,6 +818,16 @@ Item {
         width: 40
         height: width
         source: "DashboardGeneral/images/signalLamps/busCabin/seatHeating.png"
+        test: signalLampTest
+    }
+
+    SignalLamp_C {
+        id: door1Valve_L
+        x: 998
+        y: 345
+        width: 44
+        height: 44
+        source: "DashboardGeneral/images/fireExtinguishersAndTaps/valveCloseCapOpen.png"
         test: signalLampTest
     }
 }

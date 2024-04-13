@@ -1,22 +1,16 @@
-//Файл сгенерирован автоматически на основе файла C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_LiazNG_v1.5.2.dbc, последние изменения Fri Apr  5 14:20:37 2024
-#include "canDataBase.h"
+//Файл сгенерирован автоматически на основе файла C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v0.1.1.dbc, последние изменения Fri Apr 12 17:59:31 2024
+#include "canDataBase/canDataBase.h"
 
 using namespace canBus;
 
 canSignalStateStruct gCanSignalState;
 
-const uint8_t ACU_info_NumberOfSignals = 4;
-signalNameCharStruct gSignalName_JointFailure{"JointFailure",MAX_LENGTH_NAME};
-static CanSignal JointFailure{ 6, 2, gSignalName_JointFailure, 1, 0, canIntel, canUint, 3, 0, 0};
-signalNameCharStruct gSignalName_JointFoldingAngle{"JointFoldingAngle",MAX_LENGTH_NAME};
-static CanSignal JointFoldingAngle{ 40, 8, gSignalName_JointFoldingAngle, 0.5, -62.5, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_JointSound{"JointSound",MAX_LENGTH_NAME};
-static CanSignal JointSound{ 16, 4, gSignalName_JointSound, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_JointWarning{"JointWarning",MAX_LENGTH_NAME};
-static CanSignal JointWarning{ 4, 2, gSignalName_JointWarning, 1, 0, canIntel, canUint, 3, 0, 0};
-static CanSignal *ACU_info_arraySignals[ACU_info_NumberOfSignals] = {&JointFailure, &JointFoldingAngle, &JointSound, &JointWarning};
-messageNameCharStruct gMessageName_ACU_info{"ACU_info",MAX_LENGTH_NAME};
-static CanMessageRx ACU_info(gMessageName_ACU_info, ACU_info_arraySignals, ACU_info_NumberOfSignals, 0x18FF07E7, 8, 200);
+const uint8_t ADAS_1_NumberOfSignals = 1;
+signalNameCharStruct gSignalName_BlindSpot{"BlindSpot",MAX_LENGTH_NAME};
+static CanSignal BlindSpot{ 32, 8, gSignalName_BlindSpot, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *ADAS_1_arraySignals[ADAS_1_NumberOfSignals] = {&BlindSpot};
+messageNameCharStruct gMessageName_ADAS_1{"ADAS_1",MAX_LENGTH_NAME};
+static CanMessageRx ADAS_1(gMessageName_ADAS_1, ADAS_1_arraySignals, ADAS_1_NumberOfSignals, 0x18A9175D, 8, 0);
 
 const uint8_t AIR1_NumberOfSignals = 6;
 signalNameCharStruct gSignalName_AirCompressorStatus{"AirCompressorStatus",MAX_LENGTH_NAME};
@@ -73,19 +67,12 @@ static CanSignal *ASC1_arraySignals[ASC1_NumberOfSignals] = {&AboveNominalLevelF
 messageNameCharStruct gMessageName_ASC1{"ASC1",MAX_LENGTH_NAME};
 static CanMessageRx ASC1(gMessageName_ASC1, ASC1_arraySignals, ASC1_NumberOfSignals, 0x0CFE5A2F, 8, 100);
 
-const uint8_t AT1IG1_NumberOfSignals = 1;
-signalNameCharStruct gSignalName_ExhaustSystemError{"ExhaustSystemError",MAX_LENGTH_NAME};
-static CanSignal ExhaustSystemError{ 48, 4, gSignalName_ExhaustSystemError, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *AT1IG1_arraySignals[AT1IG1_NumberOfSignals] = {&ExhaustSystemError};
-messageNameCharStruct gMessageName_AT1IG1{"AT1IG1",MAX_LENGTH_NAME};
-static CanMessageRx AT1IG1(gMessageName_AT1IG1, AT1IG1_arraySignals, AT1IG1_NumberOfSignals, 0x18F00E00, 8, 100);
-
-const uint8_t AT1T1I1_NumberOfSignals = 1;
-signalNameCharStruct gSignalName_LowUrea{"LowUrea",MAX_LENGTH_NAME};
-static CanSignal LowUrea{ 0, 8, gSignalName_LowUrea, 0.4, 0, canIntel, canUint, 100, 0, 0};
-static CanSignal *AT1T1I1_arraySignals[AT1T1I1_NumberOfSignals] = {&LowUrea};
-messageNameCharStruct gMessageName_AT1T1I1{"AT1T1I1",MAX_LENGTH_NAME};
-static CanMessageRx AT1T1I1(gMessageName_AT1T1I1, AT1T1I1_arraySignals, AT1T1I1_NumberOfSignals, 0x18FE5600, 8, 100);
+const uint8_t ASC2_NumberOfSignals = 1;
+signalNameCharStruct gSignalName_AutoKneeling{"AutoKneeling",MAX_LENGTH_NAME};
+static CanSignal AutoKneeling{ 6, 2, gSignalName_AutoKneeling, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *ASC2_arraySignals[ASC2_NumberOfSignals] = {&AutoKneeling};
+messageNameCharStruct gMessageName_ASC2{"ASC2",MAX_LENGTH_NAME};
+static CanMessageRx ASC2(gMessageName_ASC2, ASC2_arraySignals, ASC2_NumberOfSignals, 0x0CD22F27, 8, 100);
 
 const uint8_t BDS_NumberOfSignals = 1;
 signalNameCharStruct gSignalName_SeatBeltSwitch{"SeatBeltSwitch",MAX_LENGTH_NAME};
@@ -94,24 +81,18 @@ static CanSignal *BDS_arraySignals[BDS_NumberOfSignals] = {&SeatBeltSwitch};
 messageNameCharStruct gMessageName_BDS{"BDS",MAX_LENGTH_NAME};
 static CanMessageRx BDS(gMessageName_BDS, BDS_arraySignals, BDS_NumberOfSignals, 0x14FD171E, 8, 50);
 
-const uint8_t BJM1_NumberOfSignals = 7;
-signalNameCharStruct gSignalName_Btn12_Menu{"Btn12_Menu",MAX_LENGTH_NAME};
-static CanSignal Btn12_Menu{ 56, 2, gSignalName_Btn12_Menu, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Btn1_Ok{"Btn1_Ok",MAX_LENGTH_NAME};
-static CanSignal Btn1_Ok{ 46, 2, gSignalName_Btn1_Ok, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Btn2_Back{"Btn2_Back",MAX_LENGTH_NAME};
-static CanSignal Btn2_Back{ 44, 2, gSignalName_Btn2_Back, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Btn3_Left{"Btn3_Left",MAX_LENGTH_NAME};
-static CanSignal Btn3_Left{ 42, 2, gSignalName_Btn3_Left, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Btn4_Right{"Btn4_Right",MAX_LENGTH_NAME};
-static CanSignal Btn4_Right{ 40, 2, gSignalName_Btn4_Right, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Btn5_Vol_P{"Btn5_Vol_P",MAX_LENGTH_NAME};
-static CanSignal Btn5_Vol_P{ 54, 2, gSignalName_Btn5_Vol_P, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Btn6_Vol_M{"Btn6_Vol_M",MAX_LENGTH_NAME};
-static CanSignal Btn6_Vol_M{ 52, 2, gSignalName_Btn6_Vol_M, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *BJM1_arraySignals[BJM1_NumberOfSignals] = {&Btn12_Menu, &Btn1_Ok, &Btn2_Back, &Btn3_Left, &Btn4_Right, &Btn5_Vol_P, &Btn6_Vol_M};
-messageNameCharStruct gMessageName_BJM1{"BJM1",MAX_LENGTH_NAME};
-static CanMessageRx BJM1(gMessageName_BJM1, BJM1_arraySignals, BJM1_NumberOfSignals, 0x0CFDD64D, 8, 100);
+const uint8_t CCUT1_NumberOfSignals = 4;
+signalNameCharStruct gSignalName_RoofTemp{"RoofTemp",MAX_LENGTH_NAME};
+static CanSignal RoofTemp{ 48, 8, gSignalName_RoofTemp, 1, -40, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_SalonTemp_1{"SalonTemp_1",MAX_LENGTH_NAME};
+static CanSignal SalonTemp_1{ 0, 8, gSignalName_SalonTemp_1, 1, -40, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_SalonTemp_2{"SalonTemp_2",MAX_LENGTH_NAME};
+static CanSignal SalonTemp_2{ 8, 8, gSignalName_SalonTemp_2, 1, -40, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_SalonTemp_3{"SalonTemp_3",MAX_LENGTH_NAME};
+static CanSignal SalonTemp_3{ 16, 8, gSignalName_SalonTemp_3, 1, -40, canIntel, canUint, 0, 0, 0};
+static CanSignal *CCUT1_arraySignals[CCUT1_NumberOfSignals] = {&RoofTemp, &SalonTemp_1, &SalonTemp_2, &SalonTemp_3};
+messageNameCharStruct gMessageName_CCUT1{"CCUT1",MAX_LENGTH_NAME};
+static CanMessageRx CCUT1(gMessageName_CCUT1, CCUT1_arraySignals, CCUT1_NumberOfSignals, 0x18FF0D3A, 8, 500);
 
 const uint8_t CCVS1_NumberOfSignals = 3;
 signalNameCharStruct gSignalName_CruiseControlActive{"CruiseControlActive",MAX_LENGTH_NAME};
@@ -124,6 +105,13 @@ static CanSignal *CCVS1_arraySignals[CCVS1_NumberOfSignals] = {&CruiseControlAct
 messageNameCharStruct gMessageName_CCVS1{"CCVS1",MAX_LENGTH_NAME};
 static CanMessageRx CCVS1(gMessageName_CCVS1, CCVS1_arraySignals, CCVS1_NumberOfSignals, 0x18FEF100, 8, 100);
 
+const uint8_t CCVS1_03_NumberOfSignals = 1;
+signalNameCharStruct gSignalName_VehicleSpeed_03{"VehicleSpeed_03",MAX_LENGTH_NAME};
+static CanSignal VehicleSpeed_03{ 8, 16, gSignalName_VehicleSpeed_03, 0.00390625, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *CCVS1_03_arraySignals[CCVS1_03_NumberOfSignals] = {&VehicleSpeed_03};
+messageNameCharStruct gMessageName_CCVS1_03{"CCVS1_03",MAX_LENGTH_NAME};
+static CanMessageRx CCVS1_03(gMessageName_CCVS1_03, CCVS1_03_arraySignals, CCVS1_03_NumberOfSignals, 0x18FEF103, 8, 100);
+
 const uint8_t CDC_NumberOfSignals = 2;
 signalNameCharStruct gSignalName_MirrorHeatLeft{"MirrorHeatLeft",MAX_LENGTH_NAME};
 static CanSignal MirrorHeatLeft{ 48, 2, gSignalName_MirrorHeatLeft, 1, 0, canIntel, canUint, 0, 0, 0};
@@ -133,14 +121,48 @@ static CanSignal *CDC_arraySignals[CDC_NumberOfSignals] = {&MirrorHeatLeft, &Mir
 messageNameCharStruct gMessageName_CDC{"CDC",MAX_LENGTH_NAME};
 static CanMessageRx CDC(gMessageName_CDC, CDC_arraySignals, CDC_NumberOfSignals, 0x14FC121E, 8, 100);
 
-const uint8_t CECU_1_NumberOfSignals = 2;
-signalNameCharStruct gSignalName_SeatHeating{"SeatHeating",MAX_LENGTH_NAME};
-static CanSignal SeatHeating{ 42, 2, gSignalName_SeatHeating, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_WindshieldHeating{"WindshieldHeating",MAX_LENGTH_NAME};
-static CanSignal WindshieldHeating{ 48, 2, gSignalName_WindshieldHeating, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *CECU_1_arraySignals[CECU_1_NumberOfSignals] = {&SeatHeating, &WindshieldHeating};
-messageNameCharStruct gMessageName_CECU_1{"CECU_1",MAX_LENGTH_NAME};
-static CanMessageRx CECU_1(gMessageName_CECU_1, CECU_1_arraySignals, CECU_1_NumberOfSignals, 0x18FF0B1E, 8, 100);
+const uint8_t CECU_06_NumberOfSignals = 2;
+signalNameCharStruct gSignalName_ChargeConnect{"ChargeConnect",MAX_LENGTH_NAME};
+static CanSignal ChargeConnect{ 8, 2, gSignalName_ChargeConnect, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_LimitedPower{"LimitedPower",MAX_LENGTH_NAME};
+static CanSignal LimitedPower{ 12, 2, gSignalName_LimitedPower, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *CECU_06_arraySignals[CECU_06_NumberOfSignals] = {&ChargeConnect, &LimitedPower};
+messageNameCharStruct gMessageName_CECU_06{"CECU_06",MAX_LENGTH_NAME};
+static CanMessageRx CECU_06(gMessageName_CECU_06, CECU_06_arraySignals, CECU_06_NumberOfSignals, 0x18FD065B, 8, 1000);
+
+const uint8_t CECU_A0_NumberOfSignals = 7;
+signalNameCharStruct gSignalName_EstimatedRange{"EstimatedRange",MAX_LENGTH_NAME};
+static CanSignal EstimatedRange{ 16, 8, gSignalName_EstimatedRange, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_PantConnect{"PantConnect",MAX_LENGTH_NAME};
+static CanSignal PantConnect{ 14, 1, gSignalName_PantConnect, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_PantError{"PantError",MAX_LENGTH_NAME};
+static CanSignal PantError{ 15, 1, gSignalName_PantError, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_PantMove{"PantMove",MAX_LENGTH_NAME};
+static CanSignal PantMove{ 12, 1, gSignalName_PantMove, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_PantUp{"PantUp",MAX_LENGTH_NAME};
+static CanSignal PantUp{ 13, 1, gSignalName_PantUp, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_PowerSteeringError{"PowerSteeringError",MAX_LENGTH_NAME};
+static CanSignal PowerSteeringError{ 3, 1, gSignalName_PowerSteeringError, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_PowerSteeringOverheat{"PowerSteeringOverheat",MAX_LENGTH_NAME};
+static CanSignal PowerSteeringOverheat{ 6, 1, gSignalName_PowerSteeringOverheat, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *CECU_A0_arraySignals[CECU_A0_NumberOfSignals] = {&EstimatedRange, &PantConnect, &PantError, &PantMove, &PantUp, &PowerSteeringError, &PowerSteeringOverheat};
+messageNameCharStruct gMessageName_CECU_A0{"CECU_A0",MAX_LENGTH_NAME};
+static CanMessageRx CECU_A0(gMessageName_CECU_A0, CECU_A0_arraySignals, CECU_A0_NumberOfSignals, 0x1830A05B, 8, 1000);
+
+const uint8_t CECU_A1_NumberOfSignals = 5;
+signalNameCharStruct gSignalName_AirCompressorError{"AirCompressorError",MAX_LENGTH_NAME};
+static CanSignal AirCompressorError{ 16, 3, gSignalName_AirCompressorError, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_ContactorError{"ContactorError",MAX_LENGTH_NAME};
+static CanSignal ContactorError{ 0, 8, gSignalName_ContactorError, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_IsoControlError{"IsoControlError",MAX_LENGTH_NAME};
+static CanSignal IsoControlError{ 12, 2, gSignalName_IsoControlError, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_IsoControlGreen{"IsoControlGreen",MAX_LENGTH_NAME};
+static CanSignal IsoControlGreen{ 8, 2, gSignalName_IsoControlGreen, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_IsoControlWarning{"IsoControlWarning",MAX_LENGTH_NAME};
+static CanSignal IsoControlWarning{ 10, 2, gSignalName_IsoControlWarning, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *CECU_A1_arraySignals[CECU_A1_NumberOfSignals] = {&AirCompressorError, &ContactorError, &IsoControlError, &IsoControlGreen, &IsoControlWarning};
+messageNameCharStruct gMessageName_CECU_A1{"CECU_A1",MAX_LENGTH_NAME};
+static CanMessageRx CECU_A1(gMessageName_CECU_A1, CECU_A1_arraySignals, CECU_A1_NumberOfSignals, 0x1830A15B, 8, 1000);
 
 const uint8_t CL_NumberOfSignals = 1;
 signalNameCharStruct gSignalName_SalonLightning{"SalonLightning",MAX_LENGTH_NAME};
@@ -161,6 +183,13 @@ static CanSignal RequestedPercentFanSpeed{ 0, 8, gSignalName_RequestedPercentFan
 static CanSignal *CM1_arraySignals[CM1_NumberOfSignals] = {&AuxHeaterCoolantPumpReq, &AuxHeaterModeReq, &OperatorSeatDirectionSwitch, &RequestedPercentFanSpeed};
 messageNameCharStruct gMessageName_CM1{"CM1",MAX_LENGTH_NAME};
 static CanMessageRx CM1(gMessageName_CM1, CM1_arraySignals, CM1_NumberOfSignals, 0x18FE171E, 8, 1000);
+
+const uint8_t CM1_E1_NumberOfSignals = 1;
+signalNameCharStruct gSignalName_HeaterLiquidState{"HeaterLiquidState",MAX_LENGTH_NAME};
+static CanSignal HeaterLiquidState{ 48, 4, gSignalName_HeaterLiquidState, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *CM1_E1_arraySignals[CM1_E1_NumberOfSignals] = {&HeaterLiquidState};
+messageNameCharStruct gMessageName_CM1_E1{"CM1_E1",MAX_LENGTH_NAME};
+static CanMessageRx CM1_E1(gMessageName_CM1_E1, CM1_E1_arraySignals, CM1_E1_NumberOfSignals, 0x18FE17E1, 8, 0);
 
 const uint8_t DC1_NumberOfSignals = 1;
 signalNameCharStruct gSignalName_RampError{"RampError",MAX_LENGTH_NAME};
@@ -231,43 +260,21 @@ static CanSignal *DD1_1E_arraySignals[DD1_1E_NumberOfSignals] = {&CargoAmbientTe
 messageNameCharStruct gMessageName_DD1_1E{"DD1_1E",MAX_LENGTH_NAME};
 static CanMessageRx DD1_1E(gMessageName_DD1_1E, DD1_1E_arraySignals, DD1_1E_NumberOfSignals, 0x18FEFC1E, 8, 1000);
 
-const uint8_t DLCC1_NumberOfSignals = 5;
-signalNameCharStruct gSignalName_AirFilterClogged{"AirFilterClogged",MAX_LENGTH_NAME};
-static CanSignal AirFilterClogged{ 20, 2, gSignalName_AirFilterClogged, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_EngCoolntTemperatureHighLampCmd{"EngCoolntTemperatureHighLampCmd",MAX_LENGTH_NAME};
-static CanSignal EngCoolntTemperatureHighLampCmd{ 14, 2, gSignalName_EngCoolntTemperatureHighLampCmd, 1, 0, canIntel, canUint, 3, 0, 0};
-signalNameCharStruct gSignalName_EngineAmberWarningLamp{"EngineAmberWarningLamp",MAX_LENGTH_NAME};
-static CanSignal EngineAmberWarningLamp{ 2, 2, gSignalName_EngineAmberWarningLamp, 1, 0, canIntel, canUint, 3, 0, 0};
-signalNameCharStruct gSignalName_EngineProtectLampCommand{"EngineProtectLampCommand",MAX_LENGTH_NAME};
-static CanSignal EngineProtectLampCommand{ 0, 2, gSignalName_EngineProtectLampCommand, 1, 0, canIntel, canUint, 3, 0, 0};
-signalNameCharStruct gSignalName_EngineRedStopLamp{"EngineRedStopLamp",MAX_LENGTH_NAME};
-static CanSignal EngineRedStopLamp{ 4, 2, gSignalName_EngineRedStopLamp, 1, 0, canIntel, canUint, 3, 0, 0};
-static CanSignal *DLCC1_arraySignals[DLCC1_NumberOfSignals] = {&AirFilterClogged, &EngCoolntTemperatureHighLampCmd, &EngineAmberWarningLamp, &EngineProtectLampCommand, &EngineRedStopLamp};
-messageNameCharStruct gMessageName_DLCC1{"DLCC1",MAX_LENGTH_NAME};
-static CanMessageRx DLCC1(gMessageName_DLCC1, DLCC1_arraySignals, DLCC1_NumberOfSignals, 0x18FD071E, 8, 1000);
+const uint8_t DLDC1_NumberOfSignals = 1;
+signalNameCharStruct gSignalName_LowLevel_CL{"LowLevel_CL",MAX_LENGTH_NAME};
+static CanSignal LowLevel_CL{ 16, 2, gSignalName_LowLevel_CL, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *DLDC1_arraySignals[DLDC1_NumberOfSignals] = {&LowLevel_CL};
+messageNameCharStruct gMessageName_DLDC1{"DLDC1",MAX_LENGTH_NAME};
+static CanMessageRx DLDC1(gMessageName_DLDC1, DLDC1_arraySignals, DLDC1_NumberOfSignals, 0x18FD055B, 8, 100);
 
-const uint8_t DLCD1_NumberOfSignals = 1;
-signalNameCharStruct gSignalName_LowLevelCoolingLiquid{"LowLevelCoolingLiquid",MAX_LENGTH_NAME};
-static CanSignal LowLevelCoolingLiquid{ 16, 2, gSignalName_LowLevelCoolingLiquid, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *DLCD1_arraySignals[DLCD1_NumberOfSignals] = {&LowLevelCoolingLiquid};
-messageNameCharStruct gMessageName_DLCD1{"DLCD1",MAX_LENGTH_NAME};
-static CanMessageRx DLCD1(gMessageName_DLCD1, DLCD1_arraySignals, DLCD1_NumberOfSignals, 0x18FD051E, 8, 100);
-
-const uint8_t DLCD2_NumberOfSignals = 1;
-signalNameCharStruct gSignalName_VehicleFuelLevelLowLampData{"VehicleFuelLevelLowLampData",MAX_LENGTH_NAME};
-static CanSignal VehicleFuelLevelLowLampData{ 2, 2, gSignalName_VehicleFuelLevelLowLampData, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *DLCD2_arraySignals[DLCD2_NumberOfSignals] = {&VehicleFuelLevelLowLampData};
-messageNameCharStruct gMessageName_DLCD2{"DLCD2",MAX_LENGTH_NAME};
-static CanMessageRx DLCD2(gMessageName_DLCD2, DLCD2_arraySignals, DLCD2_NumberOfSignals, 0x0CFD0421, 8, 1000);
-
-const uint8_t DM1_EMS_NumberOfSignals = 2;
-signalNameCharStruct gSignalName_EngineError{"EngineError",MAX_LENGTH_NAME};
-static CanSignal EngineError{ 4, 2, gSignalName_EngineError, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_EngineWarning{"EngineWarning",MAX_LENGTH_NAME};
-static CanSignal EngineWarning{ 2, 2, gSignalName_EngineWarning, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *DM1_EMS_arraySignals[DM1_EMS_NumberOfSignals] = {&EngineError, &EngineWarning};
-messageNameCharStruct gMessageName_DM1_EMS{"DM1_EMS",MAX_LENGTH_NAME};
-static CanMessageRx DM1_EMS(gMessageName_DM1_EMS, DM1_EMS_arraySignals, DM1_EMS_NumberOfSignals, 0x18FECA00, 8, 100);
+const uint8_t DM1_EBS_NumberOfSignals = 2;
+signalNameCharStruct gSignalName_EbsError{"EbsError",MAX_LENGTH_NAME};
+static CanSignal EbsError{ 4, 2, gSignalName_EbsError, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_EbsWarning{"EbsWarning",MAX_LENGTH_NAME};
+static CanSignal EbsWarning{ 2, 2, gSignalName_EbsWarning, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *DM1_EBS_arraySignals[DM1_EBS_NumberOfSignals] = {&EbsError, &EbsWarning};
+messageNameCharStruct gMessageName_DM1_EBS{"DM1_EBS",MAX_LENGTH_NAME};
+static CanMessageRx DM1_EBS(gMessageName_DM1_EBS, DM1_EBS_arraySignals, DM1_EBS_NumberOfSignals, 0x18FECA0B, 8, 1000);
 
 const uint8_t DM1_EPB_NumberOfSignals = 1;
 signalNameCharStruct gSignalName_EPB_Error{"EPB_Error",MAX_LENGTH_NAME};
@@ -275,17 +282,6 @@ static CanSignal EPB_Error{ 4, 2, gSignalName_EPB_Error, 1, 0, canIntel, canUint
 static CanSignal *DM1_EPB_arraySignals[DM1_EPB_NumberOfSignals] = {&EPB_Error};
 messageNameCharStruct gMessageName_DM1_EPB{"DM1_EPB",MAX_LENGTH_NAME};
 static CanMessageRx DM1_EPB(gMessageName_DM1_EPB, DM1_EPB_arraySignals, DM1_EPB_NumberOfSignals, 0x18FECA50, 8, 1000);
-
-const uint8_t DM1_Suspension_NumberOfSignals = 3;
-signalNameCharStruct gSignalName_suspensionError1{"suspensionError1",MAX_LENGTH_NAME};
-static CanSignal suspensionError1{ 4, 2, gSignalName_suspensionError1, 1, 0, canIntel, canUint, 3, 0, 0};
-signalNameCharStruct gSignalName_suspensionError2{"suspensionError2",MAX_LENGTH_NAME};
-static CanSignal suspensionError2{ 0, 2, gSignalName_suspensionError2, 1, 0, canIntel, canUint, 3, 0, 0};
-signalNameCharStruct gSignalName_suspensionWarning{"suspensionWarning",MAX_LENGTH_NAME};
-static CanSignal suspensionWarning{ 2, 2, gSignalName_suspensionWarning, 1, 0, canIntel, canUint, 3, 0, 0};
-static CanSignal *DM1_Suspension_arraySignals[DM1_Suspension_NumberOfSignals] = {&suspensionError1, &suspensionError2, &suspensionWarning};
-messageNameCharStruct gMessageName_DM1_Suspension{"DM1_Suspension",MAX_LENGTH_NAME};
-static CanMessageRx DM1_Suspension(gMessageName_DM1_Suspension, DM1_Suspension_arraySignals, DM1_Suspension_NumberOfSignals, 0x18FECA2F, 8, 200);
 
 const uint8_t EBC1_NumberOfSignals = 9;
 signalNameCharStruct gSignalName_ABS_Active{"ABS_Active",MAX_LENGTH_NAME};
@@ -340,6 +336,13 @@ static CanSignal *EBC5_arraySignals[EBC5_NumberOfSignals] = {&HaltBrakeMode, &Hi
 messageNameCharStruct gMessageName_EBC5{"EBC5",MAX_LENGTH_NAME};
 static CanMessageRx EBC5(gMessageName_EBC5, EBC5_arraySignals, EBC5_NumberOfSignals, 0x18FDC40B, 8, 100);
 
+const uint8_t ECO_NumberOfSignals = 1;
+signalNameCharStruct gSignalName_Eco_s{"Eco_s",MAX_LENGTH_NAME};
+static CanSignal Eco_s{ 52, 2, gSignalName_Eco_s, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *ECO_arraySignals[ECO_NumberOfSignals] = {&Eco_s};
+messageNameCharStruct gMessageName_ECO{"ECO",MAX_LENGTH_NAME};
+static CanMessageRx ECO(gMessageName_ECO, ECO_arraySignals, ECO_NumberOfSignals, 0x18FF083A, 8, 100);
+
 const uint8_t EDSC2_2_NumberOfSignals = 2;
 signalNameCharStruct gSignalName_RequestOpenRamp1{"RequestOpenRamp1",MAX_LENGTH_NAME};
 static CanSignal RequestOpenRamp1{ 4, 2, gSignalName_RequestOpenRamp1, 1, 0, canIntel, canUint, 0, 0, 0};
@@ -349,19 +352,18 @@ static CanSignal *EDSC2_2_arraySignals[EDSC2_2_NumberOfSignals] = {&RequestOpenR
 messageNameCharStruct gMessageName_EDSC2_2{"EDSC2_2",MAX_LENGTH_NAME};
 static CanMessageRx EDSC2_2(gMessageName_EDSC2_2, EDSC2_2_arraySignals, EDSC2_2_NumberOfSignals, 0x18FFBDCD, 8, 100);
 
-const uint8_t EEC1_NumberOfSignals = 1;
-signalNameCharStruct gSignalName_EngineSpeed{"EngineSpeed",MAX_LENGTH_NAME};
-static CanSignal EngineSpeed{ 24, 16, gSignalName_EngineSpeed, 0.125, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *EEC1_arraySignals[EEC1_NumberOfSignals] = {&EngineSpeed};
-messageNameCharStruct gMessageName_EEC1{"EEC1",MAX_LENGTH_NAME};
-static CanMessageRx EEC1(gMessageName_EEC1, EEC1_arraySignals, EEC1_NumberOfSignals, 0x0CF00400, 8, 50);
-
-const uint8_t EFL_NumberOfSignals = 1;
-signalNameCharStruct gSignalName_EngineOilPressure{"EngineOilPressure",MAX_LENGTH_NAME};
-static CanSignal EngineOilPressure{ 24, 8, gSignalName_EngineOilPressure, 4, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *EFL_arraySignals[EFL_NumberOfSignals] = {&EngineOilPressure};
-messageNameCharStruct gMessageName_EFL{"EFL",MAX_LENGTH_NAME};
-static CanMessageRx EFL(gMessageName_EFL, EFL_arraySignals, EFL_NumberOfSignals, 0x18FEEF00, 8, 100);
+const uint8_t ELECTRO_1_NumberOfSignals = 4;
+signalNameCharStruct gSignalName_HvBatteryOn{"HvBatteryOn",MAX_LENGTH_NAME};
+static CanSignal HvBatteryOn{ 56, 2, gSignalName_HvBatteryOn, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_HvCurrent{"HvCurrent",MAX_LENGTH_NAME};
+static CanSignal HvCurrent{ 48, 8, gSignalName_HvCurrent, 4, -500, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_HvSoc{"HvSoc",MAX_LENGTH_NAME};
+static CanSignal HvSoc{ 32, 8, gSignalName_HvSoc, 0.4, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_HvVoltage{"HvVoltage",MAX_LENGTH_NAME};
+static CanSignal HvVoltage{ 40, 8, gSignalName_HvVoltage, 3.2, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *ELECTRO_1_arraySignals[ELECTRO_1_NumberOfSignals] = {&HvBatteryOn, &HvCurrent, &HvSoc, &HvVoltage};
+messageNameCharStruct gMessageName_ELECTRO_1{"ELECTRO_1",MAX_LENGTH_NAME};
+static CanMessageRx ELECTRO_1(gMessageName_ELECTRO_1, ELECTRO_1_arraySignals, ELECTRO_1_NumberOfSignals, 0x18FF9F5B, 8, 50);
 
 const uint8_t EPBS1_NumberOfSignals = 2;
 signalNameCharStruct gSignalName_AutoHold{"AutoHold",MAX_LENGTH_NAME};
@@ -372,53 +374,19 @@ static CanSignal *EPBS1_arraySignals[EPBS1_NumberOfSignals] = {&AutoHold, &Parki
 messageNameCharStruct gMessageName_EPBS1{"EPBS1",MAX_LENGTH_NAME};
 static CanMessageRx EPBS1(gMessageName_EPBS1, EPBS1_arraySignals, EPBS1_NumberOfSignals, 0x18FE1250, 8, 100);
 
-const uint8_t ERC1_NumberOfSignals = 1;
-signalNameCharStruct gSignalName_RetarderBrake{"RetarderBrake",MAX_LENGTH_NAME};
-static CanSignal RetarderBrake{ 8, 8, gSignalName_RetarderBrake, 1, -125, canIntel, canUint, 125, 125, 0};
-static CanSignal *ERC1_arraySignals[ERC1_NumberOfSignals] = {&RetarderBrake};
-messageNameCharStruct gMessageName_ERC1{"ERC1",MAX_LENGTH_NAME};
-static CanMessageRx ERC1(gMessageName_ERC1, ERC1_arraySignals, ERC1_NumberOfSignals, 0x18F00029, 8, 1000);
-
-const uint8_t ET1_NumberOfSignals = 3;
-signalNameCharStruct gSignalName_EngineCoolantTemp{"EngineCoolantTemp",MAX_LENGTH_NAME};
-static CanSignal EngineCoolantTemp{ 0, 8, gSignalName_EngineCoolantTemp, 1, -40, canIntel, canUint, 210, -40, 0};
-signalNameCharStruct gSignalName_EngineFuelTemperature1{"EngineFuelTemperature1",MAX_LENGTH_NAME};
-static CanSignal EngineFuelTemperature1{ 8, 8, gSignalName_EngineFuelTemperature1, 1, -40, canIntel, canUint, 210, -40, 0};
-signalNameCharStruct gSignalName_EngineOilTemp{"EngineOilTemp",MAX_LENGTH_NAME};
-static CanSignal EngineOilTemp{ 16, 8, gSignalName_EngineOilTemp, 0.03125, -273, canIntel, canUint, 1734, -273, 0};
-static CanSignal *ET1_arraySignals[ET1_NumberOfSignals] = {&EngineCoolantTemp, &EngineFuelTemperature1, &EngineOilTemp};
+const uint8_t ET1_NumberOfSignals = 1;
+signalNameCharStruct gSignalName_Temp_CL{"Temp_CL",MAX_LENGTH_NAME};
+static CanSignal Temp_CL{ 0, 8, gSignalName_Temp_CL, 1, -40, canIntel, canUint, 0, 0, 0};
+static CanSignal *ET1_arraySignals[ET1_NumberOfSignals] = {&Temp_CL};
 messageNameCharStruct gMessageName_ET1{"ET1",MAX_LENGTH_NAME};
-static CanMessageRx ET1(gMessageName_ET1, ET1_arraySignals, ET1_NumberOfSignals, 0x18FEEE00, 8, 1000);
-
-const uint8_t ET4_NumberOfSignals = 2;
-signalNameCharStruct gSignalName_EngineCoolantTemperature2{"EngineCoolantTemperature2",MAX_LENGTH_NAME};
-static CanSignal EngineCoolantTemperature2{ 0, 8, gSignalName_EngineCoolantTemperature2, 1, -40, canIntel, canUint, 210, -40, 0};
-signalNameCharStruct gSignalName_EngineCoolantTemperature3{"EngineCoolantTemperature3",MAX_LENGTH_NAME};
-static CanSignal EngineCoolantTemperature3{ 56, 8, gSignalName_EngineCoolantTemperature3, 1, -40, canIntel, canUint, 210, -40, 0};
-static CanSignal *ET4_arraySignals[ET4_NumberOfSignals] = {&EngineCoolantTemperature2, &EngineCoolantTemperature3};
-messageNameCharStruct gMessageName_ET4{"ET4",MAX_LENGTH_NAME};
-static CanMessageRx ET4(gMessageName_ET4, ET4_arraySignals, ET4_NumberOfSignals, 0x18FD6600, 8, 1000);
-
-const uint8_t ETC1_NumberOfSignals = 1;
-signalNameCharStruct gSignalName_TranOutputShaftSpeed{"TranOutputShaftSpeed",MAX_LENGTH_NAME};
-static CanSignal TranOutputShaftSpeed{ 8, 16, gSignalName_TranOutputShaftSpeed, 0.125, 0, canIntel, canUint, 8000, 0, 0};
-static CanSignal *ETC1_arraySignals[ETC1_NumberOfSignals] = {&TranOutputShaftSpeed};
-messageNameCharStruct gMessageName_ETC1{"ETC1",MAX_LENGTH_NAME};
-static CanMessageRx ETC1(gMessageName_ETC1, ETC1_arraySignals, ETC1_NumberOfSignals, 0x18F00203, 8, 10);
+static CanMessageRx ET1(gMessageName_ET1, ET1_arraySignals, ET1_NumberOfSignals, 0x18FEEE5B, 8, 0);
 
 const uint8_t ETC2_NumberOfSignals = 1;
 signalNameCharStruct gSignalName_TransmissionCurrentGear{"TransmissionCurrentGear",MAX_LENGTH_NAME};
 static CanSignal TransmissionCurrentGear{ 24, 8, gSignalName_TransmissionCurrentGear, 1, -125, canIntel, canUint, 125, -125, 0};
 static CanSignal *ETC2_arraySignals[ETC2_NumberOfSignals] = {&TransmissionCurrentGear};
 messageNameCharStruct gMessageName_ETC2{"ETC2",MAX_LENGTH_NAME};
-static CanMessageRx ETC2(gMessageName_ETC2, ETC2_arraySignals, ETC2_NumberOfSignals, 0x18F00503, 8, 50);
-
-const uint8_t ETC7_NumberOfSignals = 1;
-signalNameCharStruct gSignalName_AutoTrasmissionError{"AutoTrasmissionError",MAX_LENGTH_NAME};
-static CanSignal AutoTrasmissionError{ 14, 2, gSignalName_AutoTrasmissionError, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *ETC7_arraySignals[ETC7_NumberOfSignals] = {&AutoTrasmissionError};
-messageNameCharStruct gMessageName_ETC7{"ETC7",MAX_LENGTH_NAME};
-static CanMessageRx ETC7(gMessageName_ETC7, ETC7_arraySignals, ETC7_NumberOfSignals, 0x18FE4A03, 8, 100);
+static CanMessageRx ETC2(gMessageName_ETC2, ETC2_arraySignals, ETC2_NumberOfSignals, 0x18F0055B, 8, 50);
 
 const uint8_t FS1_NumberOfSignals = 8;
 signalNameCharStruct gSignalName_EmergHammer_1{"EmergHammer_1",MAX_LENGTH_NAME};
@@ -464,12 +432,25 @@ static CanSignal *LD_arraySignals[LD_NumberOfSignals] = {&FrontFogLight, &HighBe
 messageNameCharStruct gMessageName_LD{"LD",MAX_LENGTH_NAME};
 static CanMessageRx LD(gMessageName_LD, LD_arraySignals, LD_NumberOfSignals, 0x18FE401E, 8, 500);
 
-const uint8_t OI_NumberOfSignals = 1;
-signalNameCharStruct gSignalName_WaterInFuel{"WaterInFuel",MAX_LENGTH_NAME};
-static CanSignal WaterInFuel{ 0, 2, gSignalName_WaterInFuel, 1, 0, canIntel, canUint, 3, 0, 0};
-static CanSignal *OI_arraySignals[OI_NumberOfSignals] = {&WaterInFuel};
-messageNameCharStruct gMessageName_OI{"OI",MAX_LENGTH_NAME};
-static CanMessageRx OI(gMessageName_OI, OI_arraySignals, OI_NumberOfSignals, 0x18FEFF00, 8, 100);
+const uint8_t LD_2_NumberOfSignals = 1;
+signalNameCharStruct gSignalName_LowBeamLightAuto{"LowBeamLightAuto",MAX_LENGTH_NAME};
+static CanSignal LowBeamLightAuto{ 4, 2, gSignalName_LowBeamLightAuto, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *LD_2_arraySignals[LD_2_NumberOfSignals] = {&LowBeamLightAuto};
+messageNameCharStruct gMessageName_LD_2{"LD_2",MAX_LENGTH_NAME};
+static CanMessageRx LD_2(gMessageName_LD_2, LD_2_arraySignals, LD_2_NumberOfSignals, 0x0CFE4189, 8, 1000);
+
+const uint8_t Motor_1_NumberOfSignals = 4;
+signalNameCharStruct gSignalName_BatteryError{"BatteryError",MAX_LENGTH_NAME};
+static CanSignal BatteryError{ 16, 2, gSignalName_BatteryError, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_MotorError{"MotorError",MAX_LENGTH_NAME};
+static CanSignal MotorError{ 4, 2, gSignalName_MotorError, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_MotorWarning{"MotorWarning",MAX_LENGTH_NAME};
+static CanSignal MotorWarning{ 2, 2, gSignalName_MotorWarning, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_ReadyToMove{"ReadyToMove",MAX_LENGTH_NAME};
+static CanSignal ReadyToMove{ 24, 2, gSignalName_ReadyToMove, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *Motor_1_arraySignals[Motor_1_NumberOfSignals] = {&BatteryError, &MotorError, &MotorWarning, &ReadyToMove};
+messageNameCharStruct gMessageName_Motor_1{"Motor_1",MAX_LENGTH_NAME};
+static CanMessageRx Motor_1(gMessageName_Motor_1, Motor_1_arraySignals, Motor_1_NumberOfSignals, 0x18FD075B, 8, 1000);
 
 const uint8_t OWW_NumberOfSignals = 3;
 signalNameCharStruct gSignalName_FrontNonOperatorWiperSwitch{"FrontNonOperatorWiperSwitch",MAX_LENGTH_NAME};
@@ -488,13 +469,6 @@ static CanSignal HeatingWheel{ 6, 2, gSignalName_HeatingWheel, 1, 0, canIntel, c
 static CanSignal *SCU2CLM_arraySignals[SCU2CLM_NumberOfSignals] = {&HeatingWheel};
 messageNameCharStruct gMessageName_SCU2CLM{"SCU2CLM",MAX_LENGTH_NAME};
 static CanMessageRx SCU2CLM(gMessageName_SCU2CLM, SCU2CLM_arraySignals, SCU2CLM_NumberOfSignals, 0x18FF114D, 8, 50);
-
-const uint8_t SHUTDN_NumberOfSignals = 1;
-signalNameCharStruct gSignalName_EngineIntakeAirHeating{"EngineIntakeAirHeating",MAX_LENGTH_NAME};
-static CanSignal EngineIntakeAirHeating{ 24, 2, gSignalName_EngineIntakeAirHeating, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *SHUTDN_arraySignals[SHUTDN_NumberOfSignals] = {&EngineIntakeAirHeating};
-messageNameCharStruct gMessageName_SHUTDN{"SHUTDN",MAX_LENGTH_NAME};
-static CanMessageRx SHUTDN(gMessageName_SHUTDN, SHUTDN_arraySignals, SHUTDN_NumberOfSignals, 0x18FEE400, 8, 100);
 
 const uint8_t TCO1_NumberOfSignals = 14;
 signalNameCharStruct gSignalName_DirectionIndicator{"DirectionIndicator",MAX_LENGTH_NAME};
@@ -529,6 +503,13 @@ static CanSignal *TCO1_arraySignals[TCO1_NumberOfSignals] = {&DirectionIndicator
 messageNameCharStruct gMessageName_TCO1{"TCO1",MAX_LENGTH_NAME};
 static CanMessageRx TCO1(gMessageName_TCO1, TCO1_arraySignals, TCO1_NumberOfSignals, 0x0CFE6C18, 8, 50);
 
+const uint8_t TCO1_EE_NumberOfSignals = 1;
+signalNameCharStruct gSignalName_TcoVehicleSpeed{"TcoVehicleSpeed",MAX_LENGTH_NAME};
+static CanSignal TcoVehicleSpeed{ 48, 16, gSignalName_TcoVehicleSpeed, 390625, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *TCO1_EE_arraySignals[TCO1_EE_NumberOfSignals] = {&TcoVehicleSpeed};
+messageNameCharStruct gMessageName_TCO1_EE{"TCO1_EE",MAX_LENGTH_NAME};
+static CanMessageRx TCO1_EE(gMessageName_TCO1_EE, TCO1_EE_arraySignals, TCO1_EE_NumberOfSignals, 0x18FE6CEE, 8, 50);
+
 const uint8_t TIRE_NumberOfSignals = 4;
 signalNameCharStruct gSignalName_TireAxis{"TireAxis",MAX_LENGTH_NAME};
 static CanSignal TireAxis{ 4, 4, gSignalName_TireAxis, 1, 0, canIntel, canUint, 15, 0, 0};
@@ -542,38 +523,14 @@ static CanSignal *TIRE_arraySignals[TIRE_NumberOfSignals] = {&TireAxis, &TireLoc
 messageNameCharStruct gMessageName_TIRE{"TIRE",MAX_LENGTH_NAME};
 static CanMessageRx TIRE(gMessageName_TIRE, TIRE_arraySignals, TIRE_NumberOfSignals, 0x18FEF433, 8, 10000);
 
-const uint8_t TRF1_NumberOfSignals = 1;
-signalNameCharStruct gSignalName_AutoTransmissionOverheat{"AutoTransmissionOverheat",MAX_LENGTH_NAME};
-static CanSignal AutoTransmissionOverheat{ 32, 16, gSignalName_AutoTransmissionOverheat, 0.03125, -273, canIntel, canUint, 2000, -273, 0};
-static CanSignal *TRF1_arraySignals[TRF1_NumberOfSignals] = {&AutoTransmissionOverheat};
-messageNameCharStruct gMessageName_TRF1{"TRF1",MAX_LENGTH_NAME};
-static CanMessageRx TRF1(gMessageName_TRF1, TRF1_arraySignals, TRF1_NumberOfSignals, 0x18FEF803, 8, 100);
-
-const uint8_t TimeData_NumberOfSignals = 6;
-signalNameCharStruct gSignalName_Day{"Day",MAX_LENGTH_NAME};
-static CanSignal Day{ 32, 8, gSignalName_Day, 0.25, 0, canIntel, canUint, 31.75, 0.25, 0};
-signalNameCharStruct gSignalName_Hours{"Hours",MAX_LENGTH_NAME};
-static CanSignal Hours{ 16, 8, gSignalName_Hours, 1, 0, canIntel, canUint, 23, 0, 0};
-signalNameCharStruct gSignalName_Minutes{"Minutes",MAX_LENGTH_NAME};
-static CanSignal Minutes{ 8, 8, gSignalName_Minutes, 1, 0, canIntel, canUint, 59, 0, 0};
-signalNameCharStruct gSignalName_Month{"Month",MAX_LENGTH_NAME};
-static CanSignal Month{ 24, 8, gSignalName_Month, 1, 0, canIntel, canUint, 12, 1, 0};
-signalNameCharStruct gSignalName_Seconds{"Seconds",MAX_LENGTH_NAME};
-static CanSignal Seconds{ 0, 8, gSignalName_Seconds, 0.25, 0, canIntel, canUint, 59.75, 0, 0};
-signalNameCharStruct gSignalName_Year{"Year",MAX_LENGTH_NAME};
-static CanSignal Year{ 40, 8, gSignalName_Year, 1, 1985, canIntel, canUint, 2235, 1985, 0};
-static CanSignal *TimeData_arraySignals[TimeData_NumberOfSignals] = {&Day, &Hours, &Minutes, &Month, &Seconds, &Year};
-messageNameCharStruct gMessageName_TimeData{"TimeData",MAX_LENGTH_NAME};
-static CanMessageRx TimeData(gMessageName_TimeData, TimeData_arraySignals, TimeData_NumberOfSignals, 0x18FEE6EE, 8, 10000);
-
-const uint8_t VDC1_NumberOfSignals = 2;
-signalNameCharStruct gSignalName_VDC_FullyOperational{"VDC_FullyOperational",MAX_LENGTH_NAME};
-static CanSignal VDC_FullyOperational{ 2, 2, gSignalName_VDC_FullyOperational, 1, 0, canIntel, canUint, 3, 0, 0};
-signalNameCharStruct gSignalName_VDC_InfoSignal{"VDC_InfoSignal",MAX_LENGTH_NAME};
-static CanSignal VDC_InfoSignal{ 0, 2, gSignalName_VDC_InfoSignal, 1, 0, canIntel, canUint, 3, 0, 0};
-static CanSignal *VDC1_arraySignals[VDC1_NumberOfSignals] = {&VDC_FullyOperational, &VDC_InfoSignal};
-messageNameCharStruct gMessageName_VDC1{"VDC1",MAX_LENGTH_NAME};
-static CanMessageRx VDC1(gMessageName_VDC1, VDC1_arraySignals, VDC1_NumberOfSignals, 0x18FE4F0B, 8, 100);
+const uint8_t TMS_NumberOfSignals = 2;
+signalNameCharStruct gSignalName_TmsError{"TmsError",MAX_LENGTH_NAME};
+static CanSignal TmsError{ 32, 6, gSignalName_TmsError, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_TmsMode{"TmsMode",MAX_LENGTH_NAME};
+static CanSignal TmsMode{ 17, 3, gSignalName_TmsMode, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *TMS_arraySignals[TMS_NumberOfSignals] = {&TmsError, &TmsMode};
+messageNameCharStruct gMessageName_TMS{"TMS",MAX_LENGTH_NAME};
+static CanMessageRx TMS(gMessageName_TMS, TMS_arraySignals, TMS_NumberOfSignals, 0x18FFF345, 8, 500);
 
 const uint8_t VDHR_NumberOfSignals = 2;
 signalNameCharStruct gSignalName_TotalVehicleDistance{"TotalVehicleDistance",MAX_LENGTH_NAME};
@@ -590,42 +547,6 @@ static CanSignal ActualVoltage_24v{ 32, 16, gSignalName_ActualVoltage_24v, 0.05,
 static CanSignal *VEP1_arraySignals[VEP1_NumberOfSignals] = {&ActualVoltage_24v};
 messageNameCharStruct gMessageName_VEP1{"VEP1",MAX_LENGTH_NAME};
 static CanMessageRx VEP1(gMessageName_VEP1, VEP1_arraySignals, VEP1_NumberOfSignals, 0x18FEF71E, 8, 1000);
-
-const uint8_t WHL_1_NumberOfSignals = 10;
-signalNameCharStruct gSignalName_BtnCirc{"BtnCirc",MAX_LENGTH_NAME};
-static CanSignal BtnCirc{ 24, 2, gSignalName_BtnCirc, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Btn_Action{"Btn_Action",MAX_LENGTH_NAME};
-static CanSignal Btn_Action{ 20, 2, gSignalName_Btn_Action, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Btn_Back{"Btn_Back",MAX_LENGTH_NAME};
-static CanSignal Btn_Back{ 12, 2, gSignalName_Btn_Back, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Btn_Down{"Btn_Down",MAX_LENGTH_NAME};
-static CanSignal Btn_Down{ 18, 2, gSignalName_Btn_Down, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Btn_Left{"Btn_Left",MAX_LENGTH_NAME};
-static CanSignal Btn_Left{ 10, 2, gSignalName_Btn_Left, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Btn_Mode{"Btn_Mode",MAX_LENGTH_NAME};
-static CanSignal Btn_Mode{ 22, 2, gSignalName_Btn_Mode, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Btn_Ok{"Btn_Ok",MAX_LENGTH_NAME};
-static CanSignal Btn_Ok{ 16, 2, gSignalName_Btn_Ok, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Btn_Right{"Btn_Right",MAX_LENGTH_NAME};
-static CanSignal Btn_Right{ 8, 2, gSignalName_Btn_Right, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Btn_Sqr{"Btn_Sqr",MAX_LENGTH_NAME};
-static CanSignal Btn_Sqr{ 26, 2, gSignalName_Btn_Sqr, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Btn_Up{"Btn_Up",MAX_LENGTH_NAME};
-static CanSignal Btn_Up{ 14, 2, gSignalName_Btn_Up, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *WHL_1_arraySignals[WHL_1_NumberOfSignals] = {&BtnCirc, &Btn_Action, &Btn_Back, &Btn_Down, &Btn_Left, &Btn_Mode, &Btn_Ok, &Btn_Right, &Btn_Sqr, &Btn_Up};
-messageNameCharStruct gMessageName_WHL_1{"WHL_1",MAX_LENGTH_NAME};
-static CanMessageRx WHL_1(gMessageName_WHL_1, WHL_1_arraySignals, WHL_1_NumberOfSignals, 0x18A50075, 8, 100);
-
-const uint8_t ASC2_NumberOfSignals = 3;
-signalNameCharStruct gSignalName_KneelingControlModeReq{"KneelingControlModeReq",MAX_LENGTH_NAME};
-static CanSignal KneelingControlModeReq{ 6, 2, gSignalName_KneelingControlModeReq, 1, 0, canIntel, canUint, 3, 0, 0};
-signalNameCharStruct gSignalName_ReqRegulationBusFrontAxle{"ReqRegulationBusFrontAxle",MAX_LENGTH_NAME};
-static CanSignal ReqRegulationBusFrontAxle{ 8, 4, gSignalName_ReqRegulationBusFrontAxle, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_ReqRegulationBusRearAxle{"ReqRegulationBusRearAxle",MAX_LENGTH_NAME};
-static CanSignal ReqRegulationBusRearAxle{ 12, 4, gSignalName_ReqRegulationBusRearAxle, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *ASC2_arraySignals[ASC2_NumberOfSignals] = {&KneelingControlModeReq, &ReqRegulationBusFrontAxle, &ReqRegulationBusRearAxle};
-messageNameCharStruct gMessageName_ASC2{"ASC2",MAX_LENGTH_NAME};
-static CanMessageTx ASC2(gMessageName_ASC2, ASC2_arraySignals, ASC2_NumberOfSignals, 0x0CD21E17, 8, 100);
 
 const uint8_t DB_1_NumberOfSignals = 12;
 signalNameCharStruct gSignalName_BtnBackAns{"BtnBackAns",MAX_LENGTH_NAME};
@@ -654,7 +575,7 @@ signalNameCharStruct gSignalName_ProgramVersion{"ProgramVersion",MAX_LENGTH_NAME
 static CanSignal ProgramVersion{ 2, 6, gSignalName_ProgramVersion, 1, 0, canIntel, canUint, 63, 0, 0};
 static CanSignal *DB_1_arraySignals[DB_1_NumberOfSignals] = {&BtnBackAns, &BtnMinusAns, &BtnOkAns, &BtnPlusAns, &HearthBeat, &IpAddressByte_1, &IpAddressByte_2, &IpAddressByte_3, &IpAddressByte_4, &ProgramBuild, &ProgramSubVersion, &ProgramVersion};
 messageNameCharStruct gMessageName_DB_1{"DB_1",MAX_LENGTH_NAME};
-static CanMessageTx DB_1(gMessageName_DB_1, DB_1_arraySignals, DB_1_NumberOfSignals, 0x18FF1017, 8, 200);
+static CanMessageTx DB_1(gMessageName_DB_1, DB_1_arraySignals, DB_1_NumberOfSignals, 0x18FF1017, 8, 1000);
 
 const uint8_t DB_2_NumberOfSignals = 5;
 signalNameCharStruct gSignalName_AutoClossingDoors{"AutoClossingDoors",MAX_LENGTH_NAME};
@@ -680,8 +601,8 @@ static CanSignal *DB_3_arraySignals[DB_3_NumberOfSignals] = {&TurnLeftLamp, &Tur
 messageNameCharStruct gMessageName_DB_3{"DB_3",MAX_LENGTH_NAME};
 static CanMessageTx DB_3(gMessageName_DB_3, DB_3_arraySignals, DB_3_NumberOfSignals, 0x18FF1117, 8, 0);
 
-const uint8_t numberOfRxMessages = 53;
-static CanMessageRx *arrayRxMessages[numberOfRxMessages] = { &ACU_info, &AIR1, &AMB, &ASC1, &AT1IG1, &AT1T1I1, &BDS, &BJM1, &CCVS1, &CDC, &CECU_1, &CL, &CM1, &DC1, &DC2, &DCU1, &DCU2, &DCU3, &DD1_12, &DD1_1E, &DLCC1, &DLCD1, &DLCD2, &DM1_EMS, &DM1_EPB, &DM1_Suspension, &EBC1, &EBC4, &EBC5, &EDSC2_2, &EEC1, &EFL, &EPBS1, &ERC1, &ET1, &ET4, &ETC1, &ETC2, &ETC7, &FS1, &LD, &OI, &OWW, &SCU2CLM, &SHUTDN, &TCO1, &TIRE, &TRF1, &TimeData, &VDC1, &VDHR, &VEP1, &WHL_1};
-const uint8_t numberOfTxMessages = 4;
-static CanMessageTx *arrayTxMessages[numberOfTxMessages] = { &ASC2, &DB_1, &DB_2, &DB_3};
+const uint8_t numberOfRxMessages = 47;
+static CanMessageRx *arrayRxMessages[numberOfRxMessages] = { &ADAS_1, &AIR1, &AMB, &ASC1, &ASC2, &BDS, &CCUT1, &CCVS1, &CCVS1_03, &CDC, &CECU_06, &CECU_A0, &CECU_A1, &CL, &CM1, &CM1_E1, &DC1, &DC2, &DCU1, &DCU2, &DCU3, &DD1_12, &DD1_1E, &DLDC1, &DM1_EBS, &DM1_EPB, &EBC1, &EBC4, &EBC5, &ECO, &EDSC2_2, &ELECTRO_1, &EPBS1, &ET1, &ETC2, &FS1, &LD, &LD_2, &Motor_1, &OWW, &SCU2CLM, &TCO1, &TCO1_EE, &TIRE, &TMS, &VDHR, &VEP1};
+const uint8_t numberOfTxMessages = 3;
+static CanMessageTx *arrayTxMessages[numberOfTxMessages] = { &DB_1, &DB_2, &DB_3};
 CanDataBase gCanDB(arrayRxMessages,numberOfRxMessages,arrayTxMessages,numberOfTxMessages);

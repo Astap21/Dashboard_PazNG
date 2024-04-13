@@ -194,9 +194,9 @@ void BrakeSystem::ReadStateFromCanDB(){
         emit sendLowTirePressureToQml(tireIndication);
     }
 
-    if (checkValueChangeBy_1(gCanDB.GetSignalValueFloat(gSignalName_RetarderBrake,gMessageName_ERC1), retarderPercent)){
-        emit sendRetarderPercentToQml(retarderPercent);
-    }
+//    if (checkValueChangeBy_1(gCanDB.GetSignalValueFloat(gSignalName_RetarderBrake,gMessageName_ERC1), retarderPercent)){
+//        emit sendRetarderPercentToQml(retarderPercent);
+//    }
 }
 void BrakeSystem::SendStateToQml(){
 
