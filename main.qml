@@ -265,7 +265,7 @@ Item{
         duration: 1500
         onStopped: {
             a_speedArrowLaunchUp.running = true
-            a_currentArrowLaunchUp.running = true
+            a_rightArrowLaunchUp.running = true
             signalLamps.signalLampTest = true
         }
     }
@@ -309,8 +309,8 @@ Item{
         }
     }
     PropertyAnimation {
-        id: a_currentArrowLaunchUp
-        target: engineSpeedArrow
+        id: a_rightArrowLaunchUp
+        target: rightArrow
         properties: "rotation"
         from: 90
         to: -120
@@ -321,7 +321,7 @@ Item{
     }
     PropertyAnimation {
         id: a_rightArrowLaunchDown
-        target: engineSpeedArrow
+        target: rightArrow
         properties: "rotation"
         from: -120
         to: 90
@@ -483,16 +483,20 @@ Item{
         }
 
         RotationAnimator {
-            id: engineSpeedArrowAnimation
-            target: engineSpeedArrow
-            property int angleForZeroIndication: 90
+            id: rightArrowAnimation
+            target: rightArrow
+            property int angleForZeroIndication: 0
             property double angleRotation: angleForZeroIndication
-            property int maxIndicator: -3500
-            property int fullRotation: -210
-            property double angleKoef: fullRotation/maxIndicator
+            property int maxIndicatorChg: 500
+            property int fullRotationChg: 120
+            property double angleKoefChg: fullRotationChg/maxIndicatorChg
+            property int maxIndicatorDchg: 300
+            property int fullRotationDchg: 90
+            property double angleKoefDchg: fullRotationDchg/maxIndicatorDchg
             property double previosAngle: angleForZeroIndication
             property int baseDuration: 30
         }
+
 
         RotationAnimator {
             id: speedArrowAnimation
@@ -689,13 +693,19 @@ Item{
             }
             onSendEngineSpeedToQml: {
                 //console.log(inputFloat)
-                engineSpeedArrowAnimation.angleRotation = engineSpeedArrowAnimation.angleForZeroIndication - engineSpeedArrowAnimation.angleKoef * inputFloat
-                if (background.bootAnimation === false) {
-                    engineSpeedArrowAnimation.from = engineSpeedArrowAnimation.previosAngle
-                    engineSpeedArrowAnimation.to = engineSpeedArrowAnimation.angleRotation
-                    engineSpeedArrowAnimation.duration = engineSpeedArrowAnimation.baseDuration
-                    engineSpeedArrowAnimation.start()
-                    engineSpeedArrowAnimation.previosAngle = engineSpeedArrowAnimation.angleRotation
+                if (inputFloat <=0){
+                    rightArrowAnimation.angleRotation = rightArrowAnimation.angleKoefChg * inputFloat
+
+                }
+                else if (inputFloat > 0){
+                    rightArrowAnimation.angleRotation = rightArrowAnimation.angleKoefDchg * inputFloat
+                }
+                if (background.bootAnimation === false){
+                    rightArrowAnimation.from = rightArrow.previosAngle
+                    rightArrowAnimation.to = rightArrowAnimation.angleRotation
+                    rightArrowAnimation.duration = rightArrowAnimation.baseDuration
+                    rightArrowAnimation.start()
+                    rightArrow.previosAngle = rightArrowAnimation.angleRotation
                 }
             }
             onSendFuelLevelToQml: {
@@ -985,16 +995,16 @@ Item{
             }
 
             Rectangle {
-                id: engineCover
+                id: rightCover
                 x: 1430
                 y: 235
                 width: 250
-                height: engineCover.width
+                height: rightCover.width
                 color: "#00000000"
-                radius: engineCover.width / 2
+                radius: rightCover.width / 2
                 z: 0
                 Image {
-                    id: engineSpeedArrow
+                    id: rightArrow
                     x: 111
                     y: 118
                     width: 289
@@ -1056,7 +1066,7 @@ Item{
                 }
 
                 Text {
-                    id: engineSpeedUnit
+                    id: rightUnit
                     x: 0
                     y: 300
                     width: 86
@@ -1302,8 +1312,6 @@ Item{
                 minimumPointSize: 20
                 horizontalAlignment: Text.AlignLeft
             }
-
-
 
         }
     }
