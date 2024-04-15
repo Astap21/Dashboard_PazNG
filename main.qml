@@ -701,11 +701,11 @@ Item{
                     rightArrowAnimation.angleRotation = rightArrowAnimation.angleKoefDchg * inputFloat
                 }
                 if (background.bootAnimation === false){
-                    rightArrowAnimation.from = rightArrow.previosAngle
+                    rightArrowAnimation.from = rightArrowAnimation.previosAngle
                     rightArrowAnimation.to = rightArrowAnimation.angleRotation
                     rightArrowAnimation.duration = rightArrowAnimation.baseDuration
                     rightArrowAnimation.start()
-                    rightArrow.previosAngle = rightArrowAnimation.angleRotation
+                    rightArrowAnimation.previosAngle = rightArrowAnimation.angleRotation
                 }
             }
             onSendFuelLevelToQml: {
