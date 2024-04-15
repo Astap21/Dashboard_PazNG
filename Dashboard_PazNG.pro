@@ -116,3 +116,7 @@ lupdate_only { # that way those files will be skipped by C++ compiler
     SOURCES = *.qml # \
               # pages/*.qml
 }
+
+DISTFILES += \
+    DashboardGeneral/images/signalLamps/battery/batHvOn.png \
+    DashboardGeneral/images/signalLamps/battery/batHvWarning.png

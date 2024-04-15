@@ -143,7 +143,7 @@ Item{
     }
 
     ProgressCycle_C {
-        id: fuelBar
+        id: voltageBar
         property double arcMax: 32.5
         property double koef: arcMax / (maxValue - minValue)
         property double actualValue: 100
@@ -170,18 +170,18 @@ Item{
             else if (inputValue < minValue) actualValue = minValue
             else actualValue = inputValue
             if (actualValue < lowValue) {
-                fuelBar.colorCircleStopGrad= "#ff0000"
-                fuelBar.colorCircleStartGrad= "#ff0000"
+                voltageBar.colorCircleStopGrad= "#ff0000"
+                voltageBar.colorCircleStartGrad= "#ff0000"
             }
             else {
-                fuelBar.colorCircleStopGrad = "#b7b7b7"
-                fuelBar.colorCircleStartGrad = "#b7b7b7"
+                voltageBar.colorCircleStopGrad = "#b7b7b7"
+                voltageBar.colorCircleStartGrad = "#b7b7b7"
             }
         }
     }
 
     ProgressCycle_C {
-        id: engineTempBar
+        id: socBar
         property double arcMax: 32.5
         property double koef: arcMax / (maxValue - minValue)
         property double actualValue: 120
@@ -209,14 +209,14 @@ Item{
             else if (inputValue < minValue) actualValue = minValue
             else actualValue = inputValue
             if (actualValue > highValue) {
-                engineTempBar.colorCircleStopGrad= "#ff0000"
-                engineTempBar.colorCircleStartGrad= "#ff0000"
-                soc.source = "/DashboardGeneral/images/signalLamps/motorSystem/engineCoolantTempFailure.png"
+                socBar.colorCircleStopGrad= "#ff0000"
+                socBar.colorCircleStartGrad= "#ff0000"
+                //soc.source = "/DashboardGeneral/images/signalLamps/motorSystem/engineCoolantTempFailure.png"
             }
             else {
-                engineTempBar.colorCircleStopGrad = "#b7b7b7"
-                engineTempBar.colorCircleStartGrad = "#b7b7b7"
-                soc.source = "/DashboardGeneral/images/signalLamps/motorSystem/high_temp_grey.png"
+                socBar.colorCircleStopGrad = "#b7b7b7"
+                socBar.colorCircleStartGrad = "#b7b7b7"
+                //soc.source = "/DashboardGeneral/images/signalLamps/motorSystem/high_temp_grey.png"
             }
         }
     }
@@ -429,7 +429,7 @@ Item{
             width: 50
             height: batteryVoltage.Width
             fillMode: Image.PreserveAspectFit
-            source: "DashboardGeneral/images/signalLamps/battery/bateryOn.png"
+            source: "DashboardGeneral/images/signalLamps/battery/batHvOn.png"
 
             Text {
                 id: batteryVoltageUnits
@@ -456,7 +456,7 @@ Item{
             width: 50
             height: soc.Width
             fillMode: Image.PreserveAspectFit
-            source: "DashboardGeneral/images/signalLamps/battery/soc.png"
+            source: "DashboardGeneral/images/signalLamps/battery/batHvWarning.png"
 
             Text {
                 id: socUnits
@@ -710,19 +710,19 @@ Item{
             }
             onSendFuelLevelToQml: {
                 if (background.bootAnimation === false) {
-                    fuelBar.updateValue(inputInt)
-                    if (inputInt <= fuelBar.lowValue) {
-                        if(batteryVoltage.source == "/DashboardGeneral/images/signalLamps/motorSystem/low_fuel_grey.png"){
-                            //warningSound.play()
-                        }
-                        batteryVoltage.source = "/DashboardGeneral/images/signalLamps/motorSystem/lowFuel.png";
-                    }
-                    else batteryVoltage.source = "/DashboardGeneral/images/signalLamps/motorSystem/low_fuel_grey.png";
+                    voltageBar.updateValue(inputInt)
+//                    if (inputInt <= voltageBar.lowValue) {
+//                        if(batteryVoltage.source == "/DashboardGeneral/images/signalLamps/motorSystem/low_fuel_grey.png"){
+//                            //warningSound.play()
+//                        }
+//                        batteryVoltage.source = "/DashboardGeneral/images/signalLamps/motorSystem/lowFuel.png";
+//                    }
+//                    else batteryVoltage.source = "/DashboardGeneral/images/signalLamps/motorSystem/low_fuel_grey.png";
                 }
             }
             onSendEngineTempToQml: {
                 if (background.bootAnimation === false) {
-                    engineTempBar.updateValue(inputFloat)
+                    socBar.updateValue(inputFloat)
                 }
             }
         }

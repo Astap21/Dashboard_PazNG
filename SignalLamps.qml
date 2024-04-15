@@ -478,8 +478,8 @@ Item {
 
     SignalLamp_C {
         id: battery24v_L
-        x: 1236
-        y: 418
+        x: 1447
+        y: 591
         width: 55
         height: battery24v_L.width
         source: "DashboardGeneral/images/signalLamps/battery24v.png"
