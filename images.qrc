@@ -150,5 +150,6 @@
         <file>img/busFrontView.png</file>
         <file>DashboardGeneral/images/signalLamps/battery/batHvOn.png</file>
         <file>DashboardGeneral/images/signalLamps/battery/batHvWarning.png</file>
+        <file>img/backFon.png</file>
     </qresource>
 </RCC>

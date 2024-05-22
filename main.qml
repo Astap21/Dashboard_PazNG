@@ -51,7 +51,7 @@ Item{
         visible: true
         sourceSize.height: 0
         sourceSize.width: 0
-        source: "DashboardGeneral/images/backgroundMain.png"
+        source: "img/backFon.png"
         z: 0
         fillMode: Image.PreserveAspectFit
         property bool bootAnimation: true
@@ -62,6 +62,7 @@ Item{
         y: 0
         width: 1926
         height: 720
+        opacity: 0
         visible: true
         sourceSize.height: 0
         sourceSize.width: 0
@@ -121,12 +122,16 @@ Item{
         id: brakePressureCircuit_1
         x: 303
         y: 310
+        highPressure: 10.01
+        actualPressure: 0
+        counterClockwise: true
+        lowPressure: 6
+        maxPressure: 12
         z: -1
         size: 650
-        arcOffset: 276.5
-        lineWidth: 38
-        arcMax: 32.5
-        actualPressure: 0
+        arcOffset: 309
+        lineWidth: 40
+        arcMax: -32.5
     }
 
     PressureCircuitBar_C {
@@ -137,6 +142,9 @@ Item{
         arcOffset: 233.5
         size: 740
         opacity: 1
+        highPressure: 10.01
+        maxPressure: 12
+        lowPressure: 6
         lineWidth: 35
         arcMax: 28.3
         actualPressure: 0
@@ -151,7 +159,7 @@ Item{
         property double maxValue: 100
         property double lowValue: 10
         x: 1264
-        y: 48
+        y: 53
         arcEnd: 82
         z: -1
         arcBegin: arcEnd - ((actualValue - minValue) * koef*1.05)
@@ -1056,7 +1064,7 @@ Item{
                     Image {
 
                         id: estimatedRangeImage
-                        x: 80
+                        x: 85
                         y: 15
                         width: 100
                         height: 42
