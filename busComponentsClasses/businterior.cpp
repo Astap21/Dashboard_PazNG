@@ -62,13 +62,13 @@ void BusInterior::ReadStateFromCanDB(){
         else fireExtingusherLamp = 0;
         if (previousComponentState != fireExtingusherLamp) emit sendFireExtingStatusToQml(fireExtingusherLamp);
         previousComponentState = doorValve;
-        if (gCanDB.GetSignalValueUint32_t(gSignalName_Door1EmergencyOpening1, gMessageName_DCU1) == 1) doorValve = 2;
-        else if (gCanDB.GetSignalValueUint32_t(gSignalName_Door2EmergencyOpening1, gMessageName_DCU2) == 1) doorValve = 2;
-        else if (gCanDB.GetSignalValueUint32_t(gSignalName_Door3EmergencyOpening1, gMessageName_DCU3) == 1) doorValve = 2;
-        else if (gCanDB.GetSignalValueUint32_t(gSignalName_Door1Pinching, gMessageName_DCU1) == 1) doorValve = 1;
-        else if (gCanDB.GetSignalValueUint32_t(gSignalName_Door2Pinching, gMessageName_DCU2) == 1) doorValve = 1;
-        else if (gCanDB.GetSignalValueUint32_t(gSignalName_Door3Pinching, gMessageName_DCU3) == 1) doorValve = 1;
-        else doorValve = 0;
+//        if (gCanDB.GetSignalValueUint32_t(gSignalName_Door1EmergencyOpening1, gMessageName_DCU1) == 1) doorValve = 2;
+//        else if (gCanDB.GetSignalValueUint32_t(gSignalName_Door2EmergencyOpening1, gMessageName_DCU2) == 1) doorValve = 2;
+//        else if (gCanDB.GetSignalValueUint32_t(gSignalName_Door3EmergencyOpening1, gMessageName_DCU3) == 1) doorValve = 2;
+//        else if (gCanDB.GetSignalValueUint32_t(gSignalName_Door1Pinching, gMessageName_DCU1) == 1) doorValve = 1;
+//        else if (gCanDB.GetSignalValueUint32_t(gSignalName_Door2Pinching, gMessageName_DCU2) == 1) doorValve = 1;
+//        else if (gCanDB.GetSignalValueUint32_t(gSignalName_Door3Pinching, gMessageName_DCU3) == 1) doorValve = 1;
+//        else doorValve = 0;
         if (previousComponentState != doorValve) {
             emit sendDoorValveToQml(doorValve);
         }

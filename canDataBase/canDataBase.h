@@ -1,4 +1,4 @@
-//Файл сгенерирован автоматически на основе файла C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v0.1.1.dbc, последние изменения Fri Apr 12 17:59:31 2024
+//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v0.1.1.dbc, последние изменения Wed May 22 15:29:11 2024
 #ifndef CANDATABASE_H_
 #define CANDATABASE_H_
 
@@ -97,24 +97,6 @@ extern canBus::messageNameCharStruct gMessageName_DC1;
 extern canBus::signalNameCharStruct gSignalName_EngineHatchOpen;
 extern canBus::messageNameCharStruct gMessageName_DC2;
 
-extern canBus::signalNameCharStruct gSignalName_Door1EmergencyOpening1;
-extern canBus::signalNameCharStruct gSignalName_Door1NotDefine;
-extern canBus::signalNameCharStruct gSignalName_Door1Open;
-extern canBus::signalNameCharStruct gSignalName_Door1Pinching;
-extern canBus::messageNameCharStruct gMessageName_DCU1;
-
-extern canBus::signalNameCharStruct gSignalName_Door2EmergencyOpening1;
-extern canBus::signalNameCharStruct gSignalName_Door2NotDefine;
-extern canBus::signalNameCharStruct gSignalName_Door2Open;
-extern canBus::signalNameCharStruct gSignalName_Door2Pinching;
-extern canBus::messageNameCharStruct gMessageName_DCU2;
-
-extern canBus::signalNameCharStruct gSignalName_Door3EmergencyOpening1;
-extern canBus::signalNameCharStruct gSignalName_Door3NotDefine;
-extern canBus::signalNameCharStruct gSignalName_Door3Open;
-extern canBus::signalNameCharStruct gSignalName_Door3Pinching;
-extern canBus::messageNameCharStruct gMessageName_DCU3;
-
 extern canBus::signalNameCharStruct gSignalName_DD1_ReserveFuelLevel;
 extern canBus::messageNameCharStruct gMessageName_DD1_12;
 
@@ -131,6 +113,28 @@ extern canBus::messageNameCharStruct gMessageName_DM1_EBS;
 
 extern canBus::signalNameCharStruct gSignalName_EPB_Error;
 extern canBus::messageNameCharStruct gMessageName_DM1_EPB;
+
+extern canBus::signalNameCharStruct gSignalName_Door1Close;
+extern canBus::signalNameCharStruct gSignalName_Door1Closing;
+extern canBus::signalNameCharStruct gSignalName_Door1EmergencyOpening1;
+extern canBus::signalNameCharStruct gSignalName_Door1NotDefine;
+extern canBus::signalNameCharStruct gSignalName_Door1Open;
+extern canBus::signalNameCharStruct gSignalName_Door1Opening;
+extern canBus::signalNameCharStruct gSignalName_Door1Pinching;
+extern canBus::signalNameCharStruct gSignalName_Door1RqOpenInv;
+extern canBus::signalNameCharStruct gSignalName_Door1RqOpenPas;
+extern canBus::messageNameCharStruct gMessageName_DOZC_1;
+
+extern canBus::signalNameCharStruct gSignalName_Door2Close;
+extern canBus::signalNameCharStruct gSignalName_Door2Closing;
+extern canBus::signalNameCharStruct gSignalName_Door2EmergencyOpening1;
+extern canBus::signalNameCharStruct gSignalName_Door2NotDefine;
+extern canBus::signalNameCharStruct gSignalName_Door2Open;
+extern canBus::signalNameCharStruct gSignalName_Door2Opening;
+extern canBus::signalNameCharStruct gSignalName_Door2Pinching;
+extern canBus::signalNameCharStruct gSignalName_Door2RqOpenInv;
+extern canBus::signalNameCharStruct gSignalName_Door2RqOpenPas;
+extern canBus::messageNameCharStruct gMessageName_DOZC_2;
 
 extern canBus::signalNameCharStruct gSignalName_ABS_Active;
 extern canBus::signalNameCharStruct gSignalName_ABS_FullyOpeartinal;
@@ -263,6 +267,7 @@ extern canBus::signalNameCharStruct gSignalName_IpAddressByte_1;
 extern canBus::signalNameCharStruct gSignalName_IpAddressByte_2;
 extern canBus::signalNameCharStruct gSignalName_IpAddressByte_3;
 extern canBus::signalNameCharStruct gSignalName_IpAddressByte_4;
+extern canBus::signalNameCharStruct gSignalName_KL_15;
 extern canBus::signalNameCharStruct gSignalName_ProgramBuild;
 extern canBus::signalNameCharStruct gSignalName_ProgramSubVersion;
 extern canBus::signalNameCharStruct gSignalName_ProgramVersion;

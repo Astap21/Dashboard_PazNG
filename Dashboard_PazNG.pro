@@ -26,7 +26,6 @@ SOURCES += \
     DashboardGeneral/DashBoardClasses/pwm.cpp \
     DashboardGeneral/DashBoardClasses/trans.cpp \
     DashboardGeneral/additionaltask.cpp \
-    DashboardGeneral/busComponentsClasses/doors.cpp \
     DashboardGeneral/busComponentsClasses/exteriorlightning.cpp \
     DashboardGeneral/busComponentsClasses/primarybuscomponent.cpp \
     DashboardGeneral/busComponentsClasses/tire.cpp \
@@ -34,7 +33,8 @@ SOURCES += \
     DashboardGeneral/canDataBase/canMessageClass.cpp \
     DashboardGeneral/canDataBase/canSignalClass.cpp \
     DashboardGeneral/can_bus.cpp \
-    DashboardGeneral/qml_interface.cpp \     
+    DashboardGeneral/qml_interface.cpp \
+    busComponentsClasses/doors.cpp \
     busComponentsClasses/brakesystem.cpp \
     busComponentsClasses/businterior.cpp \
     busComponentsClasses/drivercabin.cpp \
@@ -78,7 +78,6 @@ HEADERS += \
     DashboardGeneral/DashBoardClasses/pwm.h \
     DashboardGeneral/DashBoardClasses/trans.h \
     DashboardGeneral/additionaltask.h \
-    DashboardGeneral/busComponentsClasses/doors.h \
     DashboardGeneral/busComponentsClasses/exteriorlightning.h \
     DashboardGeneral/busComponentsClasses/primarybuscomponent.h \
     DashboardGeneral/busComponentsClasses/tire.h \
@@ -90,6 +89,7 @@ HEADERS += \
     DashboardGeneral/qml_interface.h \
     busComponentsClasses/brakesystem.h \
     busComponentsClasses/businterior.h \
+    busComponentsClasses/doors.h \
     busComponentsClasses/drivercabin.h \
     busComponentsClasses/energyconsumption.h \
     busComponentsClasses/motor.h \

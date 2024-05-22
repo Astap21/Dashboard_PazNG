@@ -344,24 +344,25 @@ Item{
         Image {
             Door_C {
                 id: door_1
-                x: 243
-                y: 48
-                width: 53
-                height: 125
+                x: 182
+                y: 46
+                width: 55
+                height: 131
                 doorNumber: "1"
                 visible: true
+                doorSource: "DashboardGeneral/images/Doors/doorIsOpen.png"
             }
 
             Door_C {
                 id: door_2
-                x: 150
-                y: 61
-                width: 40
-                height: 95
+                x: 93
+                y: 56
+                width: 38
+                height: 104
                 visible: true
                 doorNumber: "2"
+                doorSource: "DashboardGeneral/images/Doors/doorIsOpen.png"
             }
-
 
             Timer {
                 id: timerToggle_3000ms
@@ -376,10 +377,10 @@ Item{
                 }
             }
             id: busImage
-            x: 688
-            y: 272
-            width: 564
-            height: 279
+            x: 753
+            y: 280
+            width: 440
+            height: 270
             visible: true
             opacity: 1
             source: "img/busFrontView.png"
@@ -389,13 +390,13 @@ Item{
             //            }
             SignalLamp_C {
                 id: rampState_L
-                x: 202
-                y: 153
-                width: 102
-                height: 77
+                x: 142
+                y: 150
+                width: 97
+                height: 71
                 visible: true
                 fillMode: Image.PreserveAspectFit
-                source: "/DashboardGeneral/images/signalLamps/busExterior/theRampIsOpen.png"
+                source: "DashboardGeneral/images/signalLamps/busExterior/theRampIsOpen.png"
                 z: 5
                 test: false
                 //source: "/DashboardGeneral/images/signalLamps/busExterior/rampSensorMalfunction.png"
@@ -403,25 +404,25 @@ Item{
 
             SignalLamp_C {
                 id: rearCompartmentIsOpen_L
-                x: 62
-                y: 92
-                width: 34
+                x: 16
+                y: 85
+                width: 23
                 height: 38
                 test: false
                 fillMode: Image.PreserveAspectFit
                 visible: true
-                source: "/DashboardGeneral/images/signalLamps/busExterior/theEngineCompartmentHatchIsOpen.png"
+                source: "DashboardGeneral/images/signalLamps/busExterior/theEngineCompartmentHatchIsOpen.png"
             }
 
             SignalLamp_C {
                 id: frontCompartment_L
-                x: 433
-                y: 158
-                width: 50
+                x: 363
+                y: 147
+                width: 55
                 height: width
                 rotation: -10
                 fillMode: Image.PreserveAspectFit
-                source: "/DashboardGeneral/images/signalLamps/busExterior/frontCompartment.png"
+                source: "DashboardGeneral/images/signalLamps/busExterior/frontCompartment.png"
                 visible: true
                 test: false
             }
@@ -526,10 +527,6 @@ Item{
             onSendDoor2StatusToQml:{
                 door_2.checkStatus(doorStatus);
                 //console.log(door2Status);
-            }
-            onSendDoor3StatusToQml:{
-                door_3.checkStatus(doorStatus);
-                //console.log(doorStatus);
             }
         }
         Connections {

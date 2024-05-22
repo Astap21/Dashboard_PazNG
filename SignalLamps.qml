@@ -267,18 +267,18 @@ Item {
             target: exteriorLightning
             onSendRightTurnSignalLightToQml: {
                 if (inputUint === 1){
-                    turnSignals.turnSignalRightSetState(true)
+                    turnSignals.turnRightOn()
                 }
                 else{
-                    turnSignals.turnSignalRightSetState(false)
+                    turnSignals.turnRightOff()
                 }
             }
             onSendLeftTurnSignalLightToQml: {
                 if (inputUint === 1){
-                    turnSignals.turnSignalLeftSetState(true)
+                    turnSignals.turnLeftOn()
                 }
                 else {
-                    turnSignals.turnSignalLeftSetState(false)
+                    turnSignals.turnLeftOff()
                 }
             }
             onSendMarkerLightsToQml:{
