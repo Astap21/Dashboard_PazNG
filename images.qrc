@@ -152,5 +152,9 @@
         <file>DashboardGeneral/images/signalLamps/battery/batHvWarning.png</file>
         <file>img/backFon.png</file>
         <file>DashboardGeneral/images/Doors/requestOpenDoor.png</file>
+        <file>DashboardGeneral/images/signalLamps/battery/batHvFail.png</file>
+        <file>DashboardGeneral/images/signalLamps/battery/batHvOff.png</file>
+        <file>DashboardGeneral/images/signalLamps/motorSystem/electricMotorFailure.png</file>
+        <file>DashboardGeneral/images/signalLamps/motorSystem/electricMotorWarning.png</file>
     </qresource>
 </RCC>

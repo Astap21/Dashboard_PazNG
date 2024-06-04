@@ -185,6 +185,27 @@ Item {
     //            }
     //            else overheatMotor_L.lampOff()
             }
+            onSendEngineLampToQml: {
+                if (inputUint === 2){
+                    motorError_L.source = "DashboardGeneral/images/signalLamps/motorSystem/electricMotorFailure.png"
+                }
+                else if (inputUint === 1) {
+                    //errorSound.play()
+                    motorError_L.lampOn()
+                    motorError_L.source = "DashboardGeneral/images/signalLamps/motorSystem/electricMotorWarning.png"
+                }
+                else {
+                    motorError_L.lampOff()
+                }
+            }
+            onSendBatteryStatusToQml:{
+                if(inputUint === 2){
+                    hvBatError_L.lampOn()
+                }
+                else{
+                    hvBatError_L.lampOff()
+                }
+            }
 
             onSendCirculationPumpToQml: {
                 if (inputUint === 2) {
@@ -241,22 +262,22 @@ Item {
                 //else suspensionError_L.lampOff()
             }
             onSendKneelingStatusToQml: {
-//                if (inputUint === 2) {
-//                    kneelingStatus_L.lampToggle()
-//                    autokneelingStatus_L.lampOff()
-//                }
-//                else if (inputUint === 1) {
-//                    kneelingStatus_L.lampOn()
-//                    autokneelingStatus_L.lampOff()
-//                }
-//                else if (inputUint === 2) {
-//                    autokneelingStatus_L.lampOn()
-//                    kneelingStatus_L.lampOff()
-//                }
-//                else {
-//                    autokneelingStatus_L.lampOff()
-//                    kneelingStatus_L.lampOff()
-//                }
+                if (inputUint === 2) {
+                    kneelingStatus_L.lampToggle()
+                    //autokneelingStatus_L.lampOff()
+                }
+                else if (inputUint === 1) {
+                    kneelingStatus_L.lampOn()
+                    //autokneelingStatus_L.lampOff()
+                }
+                else if (inputUint === 2) {
+                    //autokneelingStatus_L.lampOn()
+                    kneelingStatus_L.lampOff()
+                }
+                else {
+                    //autokneelingStatus_L.lampOff()
+                    kneelingStatus_L.lampOff()
+                }
             }
             onSendAutoKneelingStatusToQml: {
     //            if (inputBool) autokneelingStatus_L.lampOn()
@@ -478,9 +499,9 @@ Item {
 
     SignalLamp_C {
         id: battery24v_L
-        x: 1447
-        y: 591
-        width: 55
+        x: 556
+        y: 85
+        width: 50
         height: battery24v_L.width
         source: "DashboardGeneral/images/signalLamps/battery24v.png"
         visible: true
@@ -488,14 +509,14 @@ Item {
 
         Text {
             id: battery24Voltage_T
-            x: 8
-            y: 22
             width: 42
             height: 17
             color: "#ffffff"
             text: qsTr("--")
+            anchors.verticalCenter: parent.verticalCenter
             font.family: "Arial"
             verticalAlignment: Text.AlignVCenter
+            anchors.horizontalCenter: parent.horizontalCenter
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 20
         }
@@ -513,11 +534,12 @@ Item {
 
     SignalLamp_C {
         id: highBeamHeadLights_L
-        x: 1220
-        y: 13
+        x: 1221
+        y: 14
         width: 57
         height: highBeamHeadLights_L.width
         source: "DashboardGeneral/images/signalLamps/lights/highBeamHeadLights.png"
+        fillMode: Image.PreserveAspectFit
         test: signalLampTest
     }
 
@@ -605,21 +627,21 @@ Item {
 
     SignalLamp_C {
         id: interiorLighting_L
-        x: 915
-        y: 522
-        width: 50
+        x: 918
+        y: 523
+        width: 47
         height: interiorLighting_L.width
         source: "DashboardGeneral/images/signalLamps/busInterior/interiorCompartmentIllumination.png"
         fillMode: Image.PreserveAspectFit
         test: signalLampTest
         Text {
             id: interiorLighting_T
-            x: 3
-            y: 37
+            x: 2
+            y: 34
             width: 50
             height: 17
             color: "#ffff00"
-            text: qsTr("21%")
+            text: qsTr("25%")
             font.family: "Arial"
             verticalAlignment: Text.AlignVCenter
             font.weight: Font.Normal
@@ -640,8 +662,8 @@ Item {
 
     SignalLamp_C {
         id: ebsState_L
-        x: 1644
-        y: 411
+        x: 1645
+        y: 410
         width: 56
         height: ebsState_L.width
         source: "DashboardGeneral/images/signalLamps/brakeSystem/EBS_Red.png"
@@ -823,11 +845,31 @@ Item {
 
     SignalLamp_C {
         id: door1Valve_L
-        x: 998
+        x: 1000
         y: 345
         width: 44
         height: 44
         source: "DashboardGeneral/images/fireExtinguishersAndTaps/valveCloseCapOpen.png"
+        test: signalLampTest
+    }
+
+    SignalLamp_C {
+        id: hvBatError_L
+        x: 803
+        y: 81
+        width: 50
+        height: width
+        source: "DashboardGeneral/images/signalLamps/battery/batHvFail.png"
+        test: signalLampTest
+    }
+
+    SignalLamp_C {
+        id: motorError_L
+        x: 864
+        y: 83
+        width: 50
+        height: width
+        source: "DashboardGeneral/images/signalLamps/motorSystem/electricMotorFailure.png"
         test: signalLampTest
     }
 }

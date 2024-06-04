@@ -122,7 +122,7 @@ Item{
         id: brakePressureCircuit_1
         x: 303
         y: 310
-        highPressure: 10.01
+        highPressure: 12
         actualPressure: 0
         counterClockwise: true
         lowPressure: 6
@@ -142,7 +142,7 @@ Item{
         arcOffset: 233.5
         size: 740
         opacity: 1
-        highPressure: 10.01
+        highPressure: 12
         maxPressure: 12
         lowPressure: 6
         lineWidth: 35
@@ -154,10 +154,10 @@ Item{
         id: voltageBar
         property double arcMax: 32.5
         property double koef: arcMax / (maxValue - minValue)
-        property double actualValue: 100
+        property double actualValue: 0
         property double minValue: 0
-        property double maxValue: 100
-        property double lowValue: 10
+        property double maxValue: 800
+        property double lowValue: 420
         x: 1264
         y: 53
         arcEnd: 82
@@ -192,10 +192,10 @@ Item{
         id: socBar
         property double arcMax: 32.5
         property double koef: arcMax / (maxValue - minValue)
-        property double actualValue: 120
-        property double minValue: 40
-        property double maxValue: 120
-        property double highValue: 113
+        property double actualValue: 0
+        property double minValue: 0
+        property double maxValue: 100
+        property double lowValue: 25
 
         x: 1259
         y: 80
@@ -216,15 +216,16 @@ Item{
             if (inputValue > maxValue) actualValue = maxValue
             else if (inputValue < minValue) actualValue = minValue
             else actualValue = inputValue
-            if (actualValue > highValue) {
+            socValue.text = actualValue.toFixed(0) + " %"
+            if (actualValue < lowValue) {
                 socBar.colorCircleStopGrad= "#ff0000"
                 socBar.colorCircleStartGrad= "#ff0000"
-                //soc.source = "/DashboardGeneral/images/signalLamps/motorSystem/engineCoolantTempFailure.png"
+                soc.source = "DashboardGeneral/images/signalLamps/battery/batHvWarning.png"
             }
             else {
                 socBar.colorCircleStopGrad = "#b7b7b7"
                 socBar.colorCircleStartGrad = "#b7b7b7"
-                //soc.source = "/DashboardGeneral/images/signalLamps/motorSystem/high_temp_grey.png"
+                soc.source = "DashboardGeneral/images/signalLamps/battery/batHvOff.png"
             }
         }
     }
@@ -465,7 +466,7 @@ Item{
             width: 50
             height: soc.Width
             fillMode: Image.PreserveAspectFit
-            source: "DashboardGeneral/images/signalLamps/battery/batHvWarning.png"
+            source: "DashboardGeneral/images/signalLamps/battery/batHvOff.png"
 
             Text {
                 id: socUnits
@@ -619,9 +620,9 @@ Item{
             onSendWeekDayToQml: {
                 actualDate.weekDay_str = qsTr(weekDayRx);
             }
-            onSendEstimatedKmRangeToQml:{
-                estimatedKilometersRangeValue.text = inputFloat.toFixed(0)
-            }
+            //            onSendEstimatedKmRangeToQml:{
+            //                estimatedKilometersRangeValue.text = inputFloat.toFixed(0)
+            //            }
             onSendTotalMileageToQml: {
                 totalMileageValue.text = totalMileageCalc;
             }
@@ -696,7 +697,7 @@ Item{
                     speedDigital.text = inputFloat.toFixed(0)
                 }
             }
-            onSendEngineSpeedToQml: {
+            onSendHvCurrentToQml: {
                 //console.log(inputFloat)
                 if (inputFloat <=0){
                     rightArrowAnimation.angleRotation = rightArrowAnimation.angleKoefChg * inputFloat
@@ -713,21 +714,32 @@ Item{
                     rightArrowAnimation.previosAngle = rightArrowAnimation.angleRotation
                 }
             }
-            onSendFuelLevelToQml: {
+            onSendHvVoltageToQml: {
                 if (background.bootAnimation === false) {
-                    voltageBar.updateValue(inputInt)
-//                    if (inputInt <= voltageBar.lowValue) {
-//                        if(batteryVoltage.source == "/DashboardGeneral/images/signalLamps/motorSystem/low_fuel_grey.png"){
-//                            //warningSound.play()
-//                        }
-//                        batteryVoltage.source = "/DashboardGeneral/images/signalLamps/motorSystem/lowFuel.png";
-//                    }
-//                    else batteryVoltage.source = "/DashboardGeneral/images/signalLamps/motorSystem/low_fuel_grey.png";
+                    voltageBar.updateValue(inputFloat)
                 }
             }
-            onSendEngineTempToQml: {
+            onSendHvSocToQml: {
                 if (background.bootAnimation === false) {
                     socBar.updateValue(inputFloat)
+                }
+            }
+            onSendEstimatedRangeToQml:{
+                if (background.bootAnimation === false) {
+                    estimatedKilometersRangeValue.text = inputUint
+                }
+            }
+            onSendBatteryStatusToQml:{
+                if (background.bootAnimation === false) {
+                    if (inputUint === 1){
+                        batteryVoltage.source = "/DashboardGeneral/images/signalLamps/battery/batHvOn.png"
+                    }
+                    else if(inputUint === 2){
+                        batteryVoltage.source = "/DashboardGeneral/images/signalLamps/battery/batHvFail.png"
+                    }
+                    else{
+                        batteryVoltage.source = "/DashboardGeneral/images/signalLamps/battery/batHvOff.png"
+                    }
                 }
             }
         }
@@ -1032,13 +1044,13 @@ Item{
 
                     Text {
                         id: estimatedKilometersRangeValue
-                        x: 9
+                        x: 0
                         y: 2
-                        width: 90
+                        width: 110
                         height: 60
                         color: "#ffffff"
-                        text: qsTr("174")
-                        font.family: "Open Sans"
+                        text: "120"
+                        font.family: "Arial"
                         font.pixelSize: 60
                         horizontalAlignment: Text.AlignRight
                         verticalAlignment: Text.AlignVCenter
@@ -1061,8 +1073,8 @@ Item{
                     Image {
 
                         id: estimatedRangeImage
-                        x: 85
-                        y: 15
+                        x: 101
+                        y: 14
                         width: 100
                         height: 42
                         fillMode: Image.PreserveAspectFit
@@ -1083,6 +1095,20 @@ Item{
                     font.family: "Open Sans"
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
+                }
+
+                Text {
+                    id: socValue
+                    x: 61
+                    y: 45
+                    width: 110
+                    height: 60
+                    color: "#ffffff"
+                    text: "100 %"
+                    font.pixelSize: 30
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.family: "Arial"
                 }
             }
             Rectangle{
