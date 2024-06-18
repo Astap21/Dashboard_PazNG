@@ -59,7 +59,7 @@ Window {
     }
     Connections{
         target: dashboardObject
-        onSendAppViewToQml:{
+        function onSendAppViewToQml(inputBool){
             //console.log(inputBool)
             if (inputBool === true){
                 logo.opacity = 0;
