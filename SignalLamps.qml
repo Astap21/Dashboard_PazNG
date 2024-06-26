@@ -221,6 +221,87 @@ Item {
                     pumpFail_L.lampOff()
                 }
             }
+            onSend_tmsErrorToQml:{
+                if(inputUint !== 0){
+                    tmsError_L.lampOn()
+                }
+                else{
+                    tmsError_L.lampOff()
+                }
+                if (inputUint === 12){
+                    tmsWarning_L.lampOn()
+                }
+                else{
+                    tmsWarning_L.lampOff()
+                }
+            }
+//            onSend_tmsOnToQml:{
+//                if(inputUint === 2){
+//                    tmsHeating_L.lampOn()
+//                }
+//                else{
+//                    tmsHeating_L.lampOff()
+//                }
+//            }
+            onSend_motorStatusToQml:{
+                if(inputUint === 1){
+                    motorError_L.lampOn()
+                    motorError_L.source = "DashboardGeneral/images/signalLamps/motorSystem/electricMotorWarning.png"
+                }
+                else if(inputUint === 2){
+                    motorError_L.lampOn()
+                    motorError_L.source = "DashboardGeneral/images/signalLamps/motorSystem/electricMotorFailure.png"
+                }
+                else{
+                    motorError_L.lampOff()
+                }
+            }
+            onSend_steeringWheelToQml:{
+                if(inputUint === 1){
+                    steering_L.lampOn()
+                    steering_L.source = "DashboardGeneral/images/signalLamps/steeringOff.png"
+                }
+                else if(inputUint === 2){
+                    steering_L.lampOn()
+                    steering_L.source = "DashboardGeneral/images/signalLamps/steeringFailure.png"
+                }
+                else{
+                    steering_L.lampOff()
+                }
+            }
+            onSend_batteryHeatingToQml:{
+                if(inputUint === 2){
+                    tmsHeating_L.lampOn()
+                }
+                else{
+                    tmsHeating_L.lampOff()
+                }
+            }
+            onSend_externalCordToQml:{
+                if(inputUint === 1){
+                    externalCord_L.lampOn()
+                }
+                else{
+                    externalCord_L.lampOff()
+                }
+            }
+            onSend_isolationToQml:{
+                if(inputUint === 1){
+                    isolation_L.lampOn()
+                    isolation_L.source = "DashboardGeneral/images/signalLamps/battery/insulationControlWarning.png"
+                }
+                else if(inputUint === 2){
+                    isolation_L.lampOn()
+                    isolation_L.source = "DashboardGeneral/images/signalLamps/battery/insulationControlFailure.png"
+                }
+                else if(inputUint === 3){
+                    isolation_L.lampOn()
+                    isolation_L.source = "DashboardGeneral/images/signalLamps/battery/insulationControlOk.png"
+                }
+                else{
+                    isolation_L.lampOff()
+                }
+            }
         }
         Connections{
             target: suspension
@@ -736,9 +817,9 @@ Item {
 
     SignalLamp_C {
         id: wipers_L
-        x: 741
-        y: 539
-        width: 37
+        x: 742
+        y: 526
+        width: 45
         height: wipers_L.width
         source: "DashboardGeneral/images/signalLamps/windshield/windshield_delayed.png"
         test: signalLampTest
@@ -870,6 +951,68 @@ Item {
         width: 50
         height: width
         source: "DashboardGeneral/images/signalLamps/motorSystem/electricMotorFailure.png"
+        test: signalLampTest
+    }
+
+    SignalLamp_C {
+        id: tmsError_L
+        x: 680
+        y: 75
+        width: 55
+        height: width
+        source: "DashboardGeneral/images/signalLamps/battery/tmsFailure.png"
+        test: signalLampTest
+    }
+
+    SignalLamp_C {
+        id: steering_L
+        x: 621
+        y: 84
+        width: 50
+        height: width
+        source: "DashboardGeneral/images/signalLamps/steeringFailure.png"
+        test: signalLampTest
+    }
+
+    SignalLamp_C {
+        id: tmsWarning_L
+        x: 680
+        y: 136
+        width: 55
+        height: width
+        source: "DashboardGeneral/images/signalLamps/battery/tmsCoolantLowLevel.png"
+        test: signalLampTest
+    }
+
+    SignalLamp_C {
+        id: externalCord_L
+        x: 1214
+        y: 87
+        width: 50
+        height: externalCord_L.width
+        visible: true
+        source: "DashboardGeneral/images/signalLamps/battery/externalCordConnect.png"
+        test: signalLampTest
+    }
+
+    SignalLamp_C {
+        id: isolation_L
+        x: 1156
+        y: 84
+        width: 50
+        height: isolation_L.width
+        visible: true
+        source: "DashboardGeneral/images/signalLamps/battery/insulationControlWarning.png"
+        test: signalLampTest
+    }
+
+    SignalLamp_C {
+        id: tmsHeating_L
+        x: 1384
+        y: 412
+        width: 55
+        height: width
+        source: "DashboardGeneral/images/signalLamps/battery/tmsOn.png"
         test: signalLampTest
     }
 }

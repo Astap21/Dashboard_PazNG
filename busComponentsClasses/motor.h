@@ -50,6 +50,14 @@ private:
     float hvSoc;
     int engineTemp;
     uint estimatedRange;
+    uint tmsError;
+    uint tmsOn;
+    uint motorStatus;
+    uint steeringWheel;
+    uint batteryHeating;
+    uint externalCord;
+    uint isolation;
+    uint pant;
 
 signals:
     void sendActualGearToQml(const QString& inputString);
@@ -70,6 +78,15 @@ signals:
 
     void sendEngineTempToQml(const float& inputFloat);
     void sendCirculationPumpToQml(const uint& inputUint);
+
+    void send_tmsErrorToQml(const uint& inputUint);
+    void send_tmsOnToQml(const uint& inputUint);
+    void send_motorStatusToQml(const uint& inputUint);
+    void send_steeringWheelToQml(const uint& inputUint);
+    void send_batteryHeatingToQml(const uint& inputUint);
+    void send_externalCordToQml(const uint& inputUint);
+    void send_isolationToQml(const uint& inputUint);
+    void send_pantToQml(const uint& inputUint);
 
 };
 
