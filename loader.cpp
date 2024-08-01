@@ -20,7 +20,6 @@
 
 #include "DashBoardClasses/gpio.h"
 //#include "DashBoardClasses/fpstext.h"
-#include "DashBoardClasses/pwm.h"
 
 int main(int argc, char *argv[])
 {
@@ -38,7 +37,7 @@ int main(int argc, char *argv[])
 
     //criticalThread.setPriority(QThread::TimeCriticalPriority);
 
-    LogToFile logtofile;
+    //LogToFile logtofile;
 
     Trans trans(&engine);
     // make this object available from QML side
@@ -50,10 +49,7 @@ int main(int argc, char *argv[])
     canBus.addMessageToMissedMsgCheckList(gMessageName_ASC1);
     canBus.addMessageToFastReceived(gMessageName_LD);
     engine.rootContext()->setContextProperty("canBus", &canBus);
-    canBus.start(QThread::IdlePriority);
 
-    Pwm pwm(1000000, 22050);
-    engine.rootContext()->setContextProperty("pwm", &pwm);
     //QThread thread;
     //pwm.moveToThread(&thread);
     //pwm.playSound(0);

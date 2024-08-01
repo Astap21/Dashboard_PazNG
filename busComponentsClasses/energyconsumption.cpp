@@ -16,7 +16,7 @@ EnergyConsumption::EnergyConsumption(QObject *parent) : PrimaryBusComponent(pare
     recuperationDailyEnergy = 0;
 
     timerPeriod_ms = 300;
-    timerForTask->setInterval(timerPeriod_ms);
+    timerForTask.setInterval(timerPeriod_ms);
 }
 void EnergyConsumption::ReadStateFromCanDB(){
 //    climatSystemTotalEnergyCons = gCanDB_ICAN.GetSignalValueFloat(gSignalName_TotalEnergyConsump, gMessageName_AirCondEnergyConsumption);

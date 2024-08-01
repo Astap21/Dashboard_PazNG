@@ -970,7 +970,7 @@ Item {
         y: 84
         width: 50
         height: width
-        source: "DashboardGeneral/images/signalLamps/steeringFailure.png"
+        source: "DashboardGeneral/images/signalLamps/steering/steeringFailure.png"
         test: signalLampTest
     }
 

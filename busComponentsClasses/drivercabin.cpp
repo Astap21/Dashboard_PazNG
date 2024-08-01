@@ -17,7 +17,7 @@ DriverCabin::DriverCabin(QObject *parent) : PrimaryBusComponent(parent)
     WasherFluidLevel = 0;
 
     timerPeriod_ms = 500;
-    timerForTask->setInterval(timerPeriod_ms);
+    timerForTask.setInterval(timerPeriod_ms);
 }
 
 uint DriverCabin::GetWipersWorkCounter(){

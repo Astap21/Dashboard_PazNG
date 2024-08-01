@@ -165,11 +165,13 @@
         <file>DashboardGeneral/images/signalLamps/battery/tmsCoolantLowLevel.png</file>
         <file>DashboardGeneral/images/signalLamps/battery/tmsFailure.png</file>
         <file>DashboardGeneral/images/signalLamps/battery/tmsOn.png</file>
-        <file>DashboardGeneral/images/signalLamps/steeringFailure.png</file>
-        <file>DashboardGeneral/images/signalLamps/steeringOff.png</file>
         <file>DashboardGeneral/images/signalLamps/battery/pantConnect.png</file>
         <file>DashboardGeneral/images/signalLamps/battery/pantError.png</file>
         <file>DashboardGeneral/images/signalLamps/battery/pantMove.png</file>
         <file>DashboardGeneral/images/signalLamps/battery/pantUp.png</file>
+        <file>DashboardGeneral/images/signalLamps/steering/heatedSteering.png</file>
+        <file>DashboardGeneral/images/signalLamps/steering/parkingAssistance.png</file>
+        <file>DashboardGeneral/images/signalLamps/steering/steeringFailure.png</file>
+        <file>DashboardGeneral/images/signalLamps/steering/steeringOff.png</file>
     </qresource>
 </RCC>

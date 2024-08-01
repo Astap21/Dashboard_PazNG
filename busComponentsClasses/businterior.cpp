@@ -22,7 +22,7 @@ BusInterior::BusInterior(QObject *parent) : PrimaryBusComponent(parent)
     outsideTempS = "";
 
     timerPeriod_ms = 500;
-    timerForTask->setInterval(timerPeriod_ms);
+    timerForTask.setInterval(timerPeriod_ms);
 }
 void BusInterior::ReadStateFromCanDB(){
         previousComponentState = 0;

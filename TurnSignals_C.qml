@@ -93,11 +93,11 @@ Item {
     function turnLeftOff(){
         turnSignalLeft_L.visible = false
     }
-//    Audio{
-//        id: turnSignalSound
-//        source: "qrc:/sound/turnSignalSound.wav"
-//        volume: 0.0
-//    }
+    SoundEffect{
+        id: turnSignalSound
+        source: "qrc:/sound/turnSignalSound.wav"
+        volume: 0.0
+    }
     Timer {
         id: timerTurnToggle
         interval: togglingPeriod; running: false; repeat: true

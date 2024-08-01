@@ -31,16 +31,16 @@ Item{
         //        busInterior.dashboardLoadFinished()
         background.bootAnimation = true
     }
-    //    Audio{
-    //        id: warningSound
-    //        source: "qrc:/sound/warningSound.wav"
-    //        volume: 0.0
-    //    }
-    //    Audio{
-    //        id: errorSound
-    //        source: "qrc:/sound/errorSound.wav"
-    //        volume: 0.0
-    //    }
+    SoundEffect{
+        id: warningSound
+        source: "qrc:/sound/warningSound.wav"
+        volume: 0.0
+    }
+    SoundEffect{
+        id: errorSound
+        source: "qrc:/sound/errorSound.wav"
+        volume: 0.0
+    }
 
     Image {
         id: background

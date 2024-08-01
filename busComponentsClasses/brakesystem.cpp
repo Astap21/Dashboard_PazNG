@@ -6,7 +6,7 @@
 BrakeSystem::BrakeSystem(QObject *parent) : PrimaryBusComponent(parent)
 {
     timerPeriod_ms = 100;
-    timerForTask->setInterval(timerPeriod_ms);
+    timerForTask.setInterval(timerPeriod_ms);
 
     pressureCircuit1_bar = 0;
     pressureCircuit1_Indication = 0;
