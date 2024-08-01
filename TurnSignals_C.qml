@@ -95,7 +95,7 @@ Item {
     }
     SoundEffect{
         id: turnSignalSound
-        source: "qrc:/sound/turnSignalSound.wav"
+        source: "qrc:/DashboardGeneral/sound/turnSignalSound.wav"
         volume: 0.0
     }
     Timer {

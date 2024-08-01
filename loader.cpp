@@ -23,7 +23,7 @@
 
 int main(int argc, char *argv[])
 {
-    QString softVersion = "1.0.4";
+    QString softVersion = "1.0.5";
     //Установка переменных среды
     //qputenv("QT_GSTREAMER_PLAYBIN_AUDIOSINK", "alsasink");
     //qputenv("QT_GSTREAMER_USE_PLAYBIN_VOLUME", "1");

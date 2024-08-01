@@ -130,7 +130,7 @@ Item {
             onSendWasherFluidLampToQml:{
                 if (inputUint) {
                     washerFluidLevel_L.lampOn()
-                    //warningSound.play()
+                    warningSound.play()
                 }
                 else washerFluidLevel_L.lampOff()
             }
@@ -173,7 +173,7 @@ Item {
             onSendEngineLowCoolantLevelToQml: {
                 //console.log("inputBool");
                 if (inputBool) {
-                    //errorSound.play()
+                    errorSound.play()
                     lowCoolantEngineLevel_L.lampOn();
                 }
                 else lowCoolantEngineLevel_L.lampOff();
@@ -190,7 +190,7 @@ Item {
                     motorError_L.source = "DashboardGeneral/images/signalLamps/motorSystem/electricMotorFailure.png"
                 }
                 else if (inputUint === 1) {
-                    //errorSound.play()
+                    errorSound.play()
                     motorError_L.lampOn()
                     motorError_L.source = "DashboardGeneral/images/signalLamps/motorSystem/electricMotorWarning.png"
                 }
@@ -422,17 +422,17 @@ Item {
                     parkingBrake_L.lampOn()
                 }
                 else if (inputUint === 2){
-                    //errorSound.play()
+                    errorSound.play()
                     parkingBrake_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuitParkBrakeFailure.png"
                     parkingBrake_L.lampToggle()
                 }
                 else if (inputUint === 3){
-                    //errorSound.play()
+                    errorSound.play()
                     parkingBrake_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/autoHold.png"
                     parkingBrake_L.lampOn()
                 }
                 else if (inputUint === 4){
-                    //errorSound.play()
+                    errorSound.play()
                     parkingBrake_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/errorEPB.png"
                     parkingBrake_L.lampOn()
                 }
@@ -450,8 +450,7 @@ Item {
                     ebsState_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/EBS_Red.png"
                 }
                 else if (inputUint === 3) {
-                    //errorSound.play()
-                    pwm.playSound(0)
+                    errorSound.play()
                     ebsState_L.lampToggle()
                     ebsState_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/EBS_Red.png"
                 }
@@ -494,14 +493,14 @@ Item {
             }
             onSendLowBrakePadsToQml:{
                 if (inputBool) {
-                    //warningSound.play()
+                    warningSound.play()
                     wornBrakeLinings_L.lampOn()
                 }
                 else wornBrakeLinings_L.lampOff()
             }
             onSendPressureCircuit3LampToQml: {
                 if (inputBool) {
-                    //errorSound.play()
+                    errorSound.play()
                     airBrake3_L.visible = true;
                     airBrake3_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuit3Failure.png"
                 }
@@ -509,7 +508,7 @@ Item {
             }
             onSendPressureCircuit4LampToQml: {
                 if (inputBool) {
-                    //errorSound.play()
+                    errorSound.play()
                     airBrake4_L.visible = true;
                     airBrake4_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuit4Failure.png"
                 }

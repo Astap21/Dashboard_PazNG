@@ -33,12 +33,12 @@ Item{
     }
     SoundEffect{
         id: warningSound
-        source: "qrc:/sound/warningSound.wav"
+        source: "qrc:/DashboardGeneral/sound/warningSound.wav"
         volume: 0.0
     }
     SoundEffect{
         id: errorSound
-        source: "qrc:/sound/errorSound.wav"
+        source: "qrc:/DashboardGeneral/sound/errorSound.wav"
         volume: 0.0
     }
 
@@ -634,16 +634,16 @@ Item{
                 else dynamicTextRow.deleteRowFromArray(qsTr("Внутренняя ошибка, нет доступного CAN интерфейса"))
             }
         }
-        Connections {
-            target: canBus
-            onSendAddCanErrorToQml:{
-                //console.log(error_str)
-                dynamicTextRow.addCanBusError(error_str)
-            }
-            onSendDeleteCanErrorToQml:{
-                dynamicTextRow.deleteCanBusError(error_str)
-            }
-        }
+//        Connections {
+//            target: canBus
+//            onSendAddCanErrorToQml:{
+//                //console.log(error_str)
+//                dynamicTextRow.addCanBusError(error_str)
+//            }
+//            onSendDeleteCanErrorToQml:{
+//                dynamicTextRow.deleteCanBusError(error_str)
+//            }
+//        }
         Connections {
             target: busInterior
             onSendTempOutsideToQml: {
