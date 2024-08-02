@@ -443,9 +443,11 @@ Item {
                 if (inputUint === 0) {
                     ebsState_L.lampOff()
                 } else if (inputUint === 1) {
+                    warningSound.play()
                     ebsState_L.lampOn()
                     ebsState_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/EBS_Yellow.png"
                 } else if (inputUint === 2) {
+                    errorSound.play()
                     ebsState_L.lampOn()
                     ebsState_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/EBS_Red.png"
                 }
