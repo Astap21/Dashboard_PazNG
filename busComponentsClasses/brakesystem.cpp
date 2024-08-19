@@ -137,31 +137,50 @@ void BrakeSystem::ReadStateFromCanDB(){
     }
     if (TractionControl != previousComponentState) emit sendTractionControlToQml(TractionControl);
 
-//    previousComponentState = ASR_Indication;
-//    if (gCanDB.checkSignalValue_4bit(gCanDB.GetSignalValueUint32_t(gSignalName_ASR_infoSignal, gMessageName_EBC1))) ASR_Indication = ASR_Lamp.lampASR_Off;
-//    else if (gCanDB.checkSignalValue_4bit(gCanDB.GetSignalValueUint32_t(gSignalName_ASR_informationSignal, gMessageName_EBC1))) ASR_Indication = ASR_Lamp.lampASR_Off;
-//    else if ((gCanDB.checkSignalValue_4bit(gCanDB.GetSignalValueUint32_t(gSignalName_ASR_EngineControlActive, gMessageName_EBC1)))
-//             ||  (gCanDB.checkSignalValue_4bit(gCanDB.GetSignalValueUint32_t(gSignalName_ASR_BrakeControlActive, gMessageName_EBC1)))) ASR_Indication = ASR_Lamp.toggleLampASR_On;
-//    else ASR_Indication = ASR_Lamp.off;
-//    if (gCanDB.checkSignalValue_4bit(gCanDB.GetSignalValueUint32_t(gSignalName_ASR_infoSignal, gMessageName_EBC1))) ASR_Indication = ASR_Lamp.lampASR_On;
-//    else ASR_Indication = ASR_Lamp.off;
-//    if (ASR_Indication != previousComponentState) emit sendASR_IndicationToQml(ASR_Indication);
+    previousComponentState = ASR_Indication;
+    if ((gCanDB.GetSignalValueUint32_t(gSignalName_ASR_EngineControlActive, gMessageName_EBC1) == 1) &&
+       (gCanDB.GetSignalValueUint32_t(gSignalName_ASR_infoSignal, gMessageName_EBC1) == 1)) {
+            ASR_Indication = 1;
+    }
+    else if ((gCanDB.GetSignalValueUint32_t(gSignalName_ASR_BrakeControlActive, gMessageName_EBC1) == 1) &&
+       (gCanDB.GetSignalValueUint32_t(gSignalName_ASR_infoSignal, gMessageName_EBC1) == 1)) {
+            ASR_Indication = 1;
+    }
+    else if ((gCanDB.GetSignalValueUint32_t(gSignalName_ASR_OffRoadSwitch, gMessageName_EBC1) == 1) &&
+       (gCanDB.GetSignalValueUint32_t(gSignalName_ASR_infoSignal, gMessageName_EBC1) == 1)) {
+            ASR_Indication = 2;
+    }
+    else{
+        ASR_Indication = 0;
+    }
+    if (ASR_Indication != previousComponentState) emit sendASR_IndicationToQml(ASR_Indication);
 
-//    previousComponentState = ESC_Indication;
-//    if ((gCanDB.checkSignalValue_4bit(gCanDB.GetSignalValue(gSignalName_VDC_InfoSignal, gMessageName_EBC1)))
-//            && (!gCanDB.checkSignalValue_4bit(gCanDB.GetSignalValue(gSignalName_VDC_FullyOperational, gMessageName_VDC1)))
-//            && (gCanDB.checkSignalValue_4bit(gCanDB.GetSignalValue(gSignalName_ASR_OffRoadSwitch, gMessageName_EBC1)))) ESC_Indication = ESC_Lamp.lampESC_Off;
-//    else if ((gCanDB.checkSignalValue_4bit(gCanDB.GetSignalValue(gSignalName_VDC_InfoSignal, gMessageName_VDC1)))
-//             && (!gCanDB.checkSignalValue_4bit(gCanDB.GetSignalValue(gSignalName_VDC_FullyOperational, gMessageName_VDC1)))) ESC_Indication = ESC_Lamp.lampESC_On;
-//    else if ((gCanDB.checkSignalValue_4bit(gCanDB.GetSignalValue(gSignalName_VDC_InfoSignal, gMessageName_VDC1)))
-//             && (gCanDB.checkSignalValue_4bit(gCanDB.GetSignalValue(gSignalName_VDC_FullyOperational, gMessageName_VDC1)))) ESC_Indication = ESC_Lamp.toggleLampESC_On;
-//    else ESC_Indication = ESC_Lamp.off;
-//    if (ESC_Indication != previousComponentState) signalLampStateChanged = true;
+    previousComponentState = ESC_Indication;
+    if ((gCanDB.GetSignalValueUint32_t(gSignalName_VDC_InformationSignal, gMessageName_VDC1) == 1) &&
+            (gCanDB.GetSignalValueUint32_t(gSignalName_ASR_OffRoadSwitch, gMessageName_EBC1) == 1))
+    {
+            ESC_Indication = ESC_Lamp.lampESC_Off;
+    }
+    else if ((gCanDB.GetSignalValueUint32_t(gSignalName_VDC_InformationSignal, gMessageName_VDC1) == 1) &&
+            (gCanDB.GetSignalValueUint32_t(gSignalName_VDC_FullyOperational, gMessageName_VDC1) == 1))
+    {
+            ESC_Indication = ESC_Lamp.toggleLampESC_On;
+    }
+    else if ((gCanDB.GetSignalValueUint32_t(gSignalName_VDC_InformationSignal, gMessageName_VDC1) == 1) &&
+            (gCanDB.GetSignalValueUint32_t(gSignalName_VDC_FullyOperational, gMessageName_VDC1) == 0)&&
+            (gCanDB.GetSignalValueUint32_t(gSignalName_ASR_OffRoadSwitch, gMessageName_EBC1) == 0))
+    {
+            ESC_Indication = ESC_Lamp.lampESC_On;
+    }
+    else {
+        ESC_Indication = ESC_Lamp.off;
+    }
+    if (ESC_Indication != previousComponentState) emit sendESC_IndicationToQml(ESC_Indication);
 
 
     previousComponentState = HillHolder_Indication;
-    if ((gCanDB.GetSignalValueUint32_t(gSignalName_HillHolderMode, gMessageName_EBC5)) == 2.0f) HillHolder_Indication = HillHolderLamp.toggleFastLampHH_On;
-    else if ((gCanDB.GetSignalValueUint32_t(gSignalName_HillHolderMode, gMessageName_EBC5)) == 1.0f) HillHolder_Indication = HillHolderLamp.toggleLampHH_On;
+    if ((gCanDB.GetSignalValueUint32_t(gSignalName_HillHolderMode, gMessageName_EBC5)) == 2.0f) HillHolder_Indication = HillHolderLamp.toggleLampHH_On;
+    else if ((gCanDB.GetSignalValueUint32_t(gSignalName_HillHolderMode, gMessageName_EBC5)) == 1.0f) HillHolder_Indication = HillHolderLamp.LampHH_On;
     else HillHolder_Indication = HillHolderLamp.off;
     if (HillHolder_Indication != previousComponentState) emit sendHillHolderIndicationToQml(HillHolder_Indication);
 
@@ -224,7 +243,7 @@ void BrakeSystem::dashboardLoadFinished(){
     emit sendTractionControlToQml(TractionControl);
     emit sendEBS_IndicationToQml(EBS_Indication);
     emit sendASR_IndicationToQml(ASR_Indication);
-    //emit sendESC_IndicationToQml(ESC_Indication);
+    emit sendESC_IndicationToQml(ESC_Indication);
     emit sendHillHolderIndicationToQml(HillHolder_Indication);
     emit sendHaltBrakeStatusToQml(HaltBrake_Indication);
     emit sendLowBrakePadsToQml(minBrakePadsIndication);

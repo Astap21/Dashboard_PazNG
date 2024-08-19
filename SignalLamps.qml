@@ -518,6 +518,56 @@ Item {
 
         Connections {
             target: brakeSystem
+            function onSendHillHolderIndicationToQml(inputUint){
+                if (inputUint === 1){
+                    hilHolder_L.lampOn()
+                    warningSound.play()
+                }
+                else if (inputUint === 2){
+                    hilHolder_L.togglingPeriod = 300
+                    hilHolder_L.lampToggle()
+                    warningSound.play()
+                }
+                else{
+                    hilHolder_L.lampOff()
+                }
+            }
+            function onSendASR_IndicationToQml(inputUint){
+                if (inputUint === 2){
+                    asr_L.lampOn()
+                    warningSound.play()
+                }
+                else if (inputUint === 1){
+                    asr_L.togglingPeriod = 300
+                    asr_L.lampToggle()
+                    warningSound.play()
+                }
+                else{
+                    asr_L.lampOff()
+                }
+            }
+            function onSendESC_IndicationToQml(inputUint){
+                if (inputUint === 3){
+                    esc_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ESC_Off.png"
+                    esc_L.lampOn()
+                    warningSound.play()
+                }
+                else if (inputUint === 2){
+                    esc_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ESC_On.png"
+                    esc_L.lampOn()
+                    warningSound.play()
+                }
+                else if (inputUint === 1){
+                    esc_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ESC_On.png"
+                    esc_L.togglingPeriod = 300
+                    esc_L.lampToggle()
+                    warningSound.play()
+                }
+                else{
+                    esc_L.lampOff()
+                }
+            }
+
             function onSendCompressorStateToQml(inputUint){
                 if (inputUint === 2){
                    compressorError_L.lampOn()
@@ -547,11 +597,6 @@ Item {
                 else{
                     tractionControl_L.lampOff()
                 }
-            }
-
-            function onSendASR_IndicationToQml(inputUint){
-                if (inputUint) asr_L.lampOn()
-                else asr_L.lampOff()
             }
             function onSendPressureCircuitParkBrakeToQml(inputUint){
                 if (inputUint === 1) {
@@ -592,37 +637,6 @@ Item {
                     errorSound.play()
                     ebsState_L.lampToggle()
                     ebsState_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/EBS_Red.png"
-                }
-
-            }
-            function onSendESC_IndicationToQml(inputUint){
-                if (inputUint === 0) {
-                    pumpFail_L.lampOff()
-                } else if (indicationState === 1) {
-                    pumpFail_L.lampToggle()
-                    pumpFail_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ESC_On.png"
-                } else if (inputUint === 2) {
-                    pumpFail_L.lampOn()
-                    pumpFail_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ESC_On.png"
-                }
-                else if (inputUint === 3) {
-                    pumpFail_L.lampOn()
-                    pumpFail_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ESC_Off.png"
-                }
-            }
-            function onSendHillHolderIndicationToQml(inputUint){
-                //console.log(indicationState)
-                if (inputUint === 0) {
-                    //hillHolder_L.lampOff()
-                } else if (inputUint === 1) {
-                    hillHolder_L.lampOn()
-                } else if (inputUint === 2) {
-                    hillHolder_L.togglingPeriod = 500
-                    //hillHolder_L.lampToggle()
-                }
-                else if (inputUint === 3) {
-                    hillHolder_L.togglingPeriod = 200
-                    //hillHolder_L.lampToggle()
                 }
 
             }
@@ -937,12 +951,12 @@ Item {
     }
 
     SignalLamp_C {
-        id: asr_L
+        id: esc_L
         x: 522
         y: 522
         width: 44
-        height: asr_L.width
-        source: "DashboardGeneral/images/signalLamps/brakeSystem/ESC_On.png"
+        height: esc_L.width
+        source: "DashboardGeneral/images/signalLamps/brakeSystem/ESC_Off.png"
         test: signalLampTest
     }
 
@@ -1230,5 +1244,25 @@ Item {
         visible: true
         test: signalLampTest
         source: "DashboardGeneral/images/signalLamps/brakeSystem/ASR_On.png"
+    }
+
+    SignalLamp_C {
+        id: asr_L
+        x: 577
+        y: 522
+        width: 44
+        height: asr_L.width
+        test: signalLampTest
+        source: "DashboardGeneral/images/signalLamps/brakeSystem/ASR_Yellow.png"
+    }
+
+    SignalLamp_C {
+        id: hilHolder_L
+        x: 1661
+        y: 345
+        width: 56
+        height: hilHolder_L.width
+        test: signalLampTest
+        source: "DashboardGeneral/images/signalLamps/brakeSystem/hillHolder.png"
     }
 }

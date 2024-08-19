@@ -547,7 +547,6 @@ Item{
                 else{
                     buttonIsVisible = false
                 }
-
                 //console.log()
                 dynamicTextRow.deleteRowFromArray(oldIp)
                 dynamicTextRow.insertRowToArray(inputStr)
