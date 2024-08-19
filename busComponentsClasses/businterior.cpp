@@ -61,7 +61,7 @@ void BusInterior::ReadStateFromCanDB(){
         else if (gCanDB.GetSignalValueUint32_t(gSignalName_FireExting_4, gMessageName_FS1) == 1) fireExtingusherLamp = 1;
         else fireExtingusherLamp = 0;
         if (previousComponentState != fireExtingusherLamp) emit sendFireExtingStatusToQml(fireExtingusherLamp);
-        previousComponentState = doorValve;
+//        previousComponentState = doorValve;
 //        if (gCanDB.GetSignalValueUint32_t(gSignalName_Door1EmergencyOpening1, gMessageName_DCU1) == 1) doorValve = 2;
 //        else if (gCanDB.GetSignalValueUint32_t(gSignalName_Door2EmergencyOpening1, gMessageName_DCU2) == 1) doorValve = 2;
 //        else if (gCanDB.GetSignalValueUint32_t(gSignalName_Door3EmergencyOpening1, gMessageName_DCU3) == 1) doorValve = 2;
@@ -69,12 +69,17 @@ void BusInterior::ReadStateFromCanDB(){
 //        else if (gCanDB.GetSignalValueUint32_t(gSignalName_Door2Pinching, gMessageName_DCU2) == 1) doorValve = 1;
 //        else if (gCanDB.GetSignalValueUint32_t(gSignalName_Door3Pinching, gMessageName_DCU3) == 1) doorValve = 1;
 //        else doorValve = 0;
-        if (previousComponentState != doorValve) {
-            emit sendDoorValveToQml(doorValve);
-        }
+//        if (previousComponentState != doorValve) {
+//            emit sendDoorValveToQml(doorValve);
+//        }
         if (checkValueChangeBy_01(gCanDB.GetSignalValueFloat(gSignalName_ActualVoltage_24v, gMessageName_VEP1), BatteryVoltage24v)){
             emit sendBattery24VoltageToQml(BatteryVoltage24v);
         }
+        if (checkValueChange(uint(getNewValueFromOneCanSignalF(gSignalName_VehicleBatteryChargingLC, gMessageName_DLCC2, &gCanDB)), error24v)) {
+            emit sendError24VToQml(error24v);
+            emit sendBattery24VoltageToQml(BatteryVoltage24v);
+        }
+
         if (checkValueChangeBy_1(gCanDB.GetSignalValueFloat(gSignalName_AmbientAirTemp, gMessageName_AMB), outsideTempF)){
             outsideTempS = convertFloatToStrForTemp(outsideTempF);
             emit sendTempOutsideToQml(outsideTempS);
@@ -103,6 +108,7 @@ void BusInterior::dashboardLoadFinished(){
     emit sendFireExtingStatusToQml(fireExtingusherLamp);
     emit sendRampErrorToQml(rampError);
     emit sendDoorValveToQml(doorValve);
+    emit sendBattery24VoltageToQml(BatteryVoltage24v);
 }
 
 QString BusInterior::convertFloatToStrForTemp(double inputNumber){

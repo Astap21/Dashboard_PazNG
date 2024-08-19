@@ -13,7 +13,7 @@ Item {
 
     Image {
         id: signalLamps_font
-        x: 1
+        x: 0
         y: 0
         width: signalLamps.width
         height: signalLamps.height
@@ -21,14 +21,14 @@ Item {
         visible: true
         z: -1
         fillMode: Image.PreserveAspectFit
-        source: "img/signalLamps_font_PazNG.jpg"
+        source: "img/signalLampsFontPazNg_v2.png"
     }
 
 
     Rectangle {
         id: shiftSelector
         x: 921
-        y: 136
+        y: 85
         width: 78
         height: 78
         color: "#00000000"
@@ -44,7 +44,7 @@ Item {
             height: 78
             color: "#ffffff"
             text: "N"
-            anchors.verticalCenterOffset: 2
+            anchors.verticalCenterOffset: 0
             anchors.horizontalCenterOffset: 0
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
@@ -56,23 +56,32 @@ Item {
     }
     Connections{
             target: busInterior
-            onSendBattery24VoltageToQml: {
-                if (inputFloat <= 24) {
-                    battery24v_L.source = "DashboardGeneral/images/signalLamps/battery24vFailure.png"
+            function onSendError24VToQml(inputUint){
+                battery24v_L.errorLamp = inputUint
+            }
+            function onSendBattery24VoltageToQml(inputFloat) {
+                if (battery24v_L.errorLamp == 2){
+                    battery24v_L.lampToggle()()
+                }
+                else{
+                    battery24v_L.lampOn()
+                }
+                if (inputFloat <= 24 || battery24v_L.errorLamp == 1) {
+                    battery24v_L.source = "DashboardGeneral/images/signalLamps/battery24vFailure.png"                    
                 }
                 else {
                     battery24v_L.source = "DashboardGeneral/images/signalLamps/battery24v.png"
                 }
                 battery24Voltage_T.text = inputFloat.toFixed(1)
             }
-            onSendRequestDisablePersonToQml: {
+            function onSendRequestDisablePersonToQml(inputUint) {
                 if (inputUint) {
                     warningSound.play()
                     disablePersonRequest_L.lampOn()
                 }
                 else disablePersonRequest_L.lampOff()
             }
-            onSendInteriorLightingToQml: {
+            function onSendInteriorLightingToQml(inputUint) {
                 if (inputUint !== 0 ) {
                     interiorLighting_L.lampOn()
                     interiorLighting_T.text = inputUint + "%"
@@ -80,19 +89,19 @@ Item {
                 else interiorLighting_L.lampOff()
 
             }
-            onSendLiquidHeaterToQml:{
+            function onSendLiquidHeaterToQml(inputUint){
                 if (inputUint) pumpWork_L.lampOn()
                 else pumpWork_L.lampOff()
             }
-            onSendHammerStatusToQml:{
+            function onSendHammerStatusToQml(inputUint){
                 if (inputUint) hammer_L.lampOn()
                 else hammer_L.lampOff()
             }
-            onSendFireExtingStatusToQml:{
+            function onSendFireExtingStatusToQml(inputUint){
                 if (inputUint) fireExting_L.lampOn()
                 else fireExting_L.lampOff()
             }
-            onSendDoorValveToQml:{
+            function onSendDoorValveToQml(inputUint){
                 if (inputUint === 2) {
                     door2Valve_L.source = "DashboardGeneral/images/fireExtinguishersAndTaps/valveOpenCapOpen.png"
                     door2Valve_L.lampOn()
@@ -103,50 +112,39 @@ Item {
                 }
                 else {
                     door2Valve_L.lampOff()
+                    door1Valve_L.lampOff()
                 }
             }
-            onSendRampErrorToQml:{
+            function onSendRampErrorToQml(inputUint){
                 if (inputUint === 2) rampError_L.lampOn()
                 else rampError_L.lampOff()
             }
         }
         Connections{
             target: driverCabin
-            onSendElecticHeatedSideWindowsStatusToQml:{
+            function onSendElecticHeatedSideWindowsStatusToQml(inputUint){
 //                if (inputUint) asr_L.lampOn()
 //                else asr_L.lampOff()
             }
-            onSendSeatHeatingStatusToQml:{
+            function onSendSeatHeatingStatusToQml(inputUint){
                 if (inputUint) seatHeating_L.lampOn()
                 else seatHeating_L.lampOff()
             }
 
-            onSendHeaterMirrorsStatusToQml:{
+            function onSendHeaterMirrorsStatusToQml(inputUint){
                 //console.log(inputUint)
                 if (inputUint === 1) mirrorHeating_L.lampOn()
                 else if (inputUint === 2) mirrorHeating_L.lampOn()
                 else mirrorHeating_L.lampOff()
             }
-            onSendWasherFluidLampToQml:{
+            function onSendWasherFluidLampToQml(inputUint){
                 if (inputUint) {
                     washerFluidLevel_L.lampOn()
                     warningSound.play()
                 }
                 else washerFluidLevel_L.lampOff()
             }
-            onSendPowerSteeringStatusToQml: {
-                //console.log(inputUint)
-                if (inputUint === 1) {
-                    steeringOff_L.source = "DashboardGeneral/images/signalLamps/busCabin/steeringOff.png"
-                    //steeringOff_L.lampOn()
-                }
-                else if (inputUint === 2) {
-                    steeringOff_L.source = "DashboardGeneral/images/signalLamps/busCabin/steeringFailure.png"
-                    //steeringOff_L.lampOn()
-                }
-                //else steeringOff_L.lampOff()
-            }
-            onSendWipersStatusToQml:{
+            function onSendWipersStatusToQml(inputUint){
                 if (inputUint !== 0) wipers_L.lampOn()
                 else wipers_L.lampOff()
 
@@ -155,42 +153,92 @@ Item {
                 if (inputUint === 4) wipers_L.source = "DashboardGeneral/images/signalLamps/windshield/windshield_delayed.png"
                 if (inputUint === 7) wipers_L.source= "DashboardGeneral/images/signalLamps/windshield/windshieldAuto.png"
             }
-            onSendOperatorSeatDirectionSwitchToQml:{
+            function onSendOperatorSeatDirectionSwitchToQml(inputUint){
                 if (inputUint === 1) noDriver_L.lampOn()
                 else noDriver_L.lampOff()
             }
 
-            onSendSeatBeltSwitchToQml:{
+            function onSendSeatBeltSwitchToQml(inputUint){
                 if (inputUint === 1) seatBeltSwitch_L.lampOn()
                 else seatBeltSwitch_L.lampOff()
             }
         }
         Connections {
             target: motor
-            onSendActualGearToQml: {
+            function onSend_pantToQml(inputUint){
+                if (inputUint === 0 || inputUint === 15){
+                    pantograph_L.lampOff()
+                }
+                else{
+                    pantograph_L.lampOn()
+                }
+                if (inputUint === 2){
+                    pantograph_L.source = "DashboardGeneral/images/signalLamps/battery/pantMove.png"
+                }
+                else if(inputUint === 1){
+                    pantograph_L.source = "DashboardGeneral/images/signalLamps/battery/pantUp.png"
+                }
+                else if(inputUint === 3){
+                    pantograph_L.source = "DashboardGeneral/images/signalLamps/battery/pantError.png"
+                }
+            }
+            function onSendReadyToMoveToQml(inputUint){
+                if (inputUint === 1){
+                    readyToMove_L.lampOn()
+                }
+                else if (inputUint === 2){
+                    readyToMove_L.lampToggle()
+                }
+                else {
+                    readyToMove_L.lampOff()
+                }
+            }
+            function onSendOverheatMotorToQml(inputUint){
+                if (inputUint === 1){
+                    errorSound.play()
+                    motorOverheat_L.lampOn()
+                }
+                else if (inputUint === 2){
+                    errorSound.play()
+                    motorOverheat_L.lampToggle()
+                }
+                else {
+                    motorOverheat_L.lampOff()
+                }
+            }
+            function onSendActualGearToQml(inputString) {
+                console.log(inputString)
                 shiftSelectorText.text = inputString;
             }
-            onSendEngineLowCoolantLevelToQml: {
-                //console.log("inputBool");
-                if (inputBool) {
+            function onSendEngineLowCoolantLevelToQml(inputUint) {
+                if (inputUint) {
                     errorSound.play()
                     lowCoolantEngineLevel_L.lampOn();
                 }
+                else if (inputUint === 2){
+                    errorSound.play()
+                    lowCoolantEngineLevel_L.lampToggle()
+                }
                 else lowCoolantEngineLevel_L.lampOff();
             }
-            onSendOverheatMotorToQml: {
-    //            if (inputBool) {
-    //                errorSound.play()
-    //                overheatMotor_L.lampOn()
-    //            }
-    //            else overheatMotor_L.lampOff()
-            }
-            onSendEngineLampToQml: {
+            function onSendEngineLampToQml(inputUint) {
                 if (inputUint === 2){
+                    errorSound.play()
                     motorError_L.source = "DashboardGeneral/images/signalLamps/motorSystem/electricMotorFailure.png"
+                    motorError_L.lampOn()
+                }
+                else if (inputUint === 3){
+                    errorSound.play()
+                    motorError_L.source = "DashboardGeneral/images/signalLamps/motorSystem/electricMotorFailure.png"
+                    motorError_L.lampToggle()
+                }
+                else if (inputUint === 4){
+                    warningSound.play()
+                    motorError_L.source = "DashboardGeneral/images/signalLamps/motorSystem/electricMotorWarning.png"
+                    motorError_L.lampToggle()
                 }
                 else if (inputUint === 1) {
-                    errorSound.play()
+                    warningSound.play()
                     motorError_L.lampOn()
                     motorError_L.source = "DashboardGeneral/images/signalLamps/motorSystem/electricMotorWarning.png"
                 }
@@ -198,16 +246,29 @@ Item {
                     motorError_L.lampOff()
                 }
             }
-            onSendBatteryStatusToQml:{
-                if(inputUint === 2){
+            function onSendBatteryStatusToQml(inputUint){
+                if(inputUint === 1){
                     hvBatError_L.lampOn()
+                    hvBatError_L.source = "DashboardGeneral/images/signalLamps/battery/batHvFail.png"
+                }
+                else if(inputUint === 2){
+                    hvBatError_L.lampToggle()
+                    hvBatError_L.source = "DashboardGeneral/images/signalLamps/battery/batHvFail.png"
+                }
+                else if(inputUint === 3){
+                    hvBatError_L.lampOn()
+                    hvBatError_L.source = "DashboardGeneral/images/signalLamps/battery/batHvWarning.png"
+                }
+                else if(inputUint === 4){
+                    hvBatError_L.lampToggle()
+                    hvBatError_L.source = "DashboardGeneral/images/signalLamps/battery/batHvWarning.png"
                 }
                 else{
                     hvBatError_L.lampOff()
                 }
             }
 
-            onSendCirculationPumpToQml: {
+            function onSendCirculationPumpToQml(inputUint) {
                 if (inputUint === 2) {
                     pumpFail_L.lampOn()
                     pumpWork_L.lampOff()
@@ -221,7 +282,7 @@ Item {
                     pumpFail_L.lampOff()
                 }
             }
-            onSend_tmsErrorToQml:{
+            function onSend_tmsErrorToQml(inputUint){
                 if(inputUint !== 0){
                     tmsError_L.lampOn()
                 }
@@ -235,7 +296,7 @@ Item {
                     tmsWarning_L.lampOff()
                 }
             }
-//            onSend_tmsOnToQml:{
+//            function onSend_tmsOnToQml(inputUint){
 //                if(inputUint === 2){
 //                    tmsHeating_L.lampOn()
 //                }
@@ -243,7 +304,7 @@ Item {
 //                    tmsHeating_L.lampOff()
 //                }
 //            }
-            onSend_motorStatusToQml:{
+            function onSend_motorStatusToQml(inputUint){
                 if(inputUint === 1){
                     motorError_L.lampOn()
                     motorError_L.source = "DashboardGeneral/images/signalLamps/motorSystem/electricMotorWarning.png"
@@ -256,20 +317,20 @@ Item {
                     motorError_L.lampOff()
                 }
             }
-            onSend_steeringWheelToQml:{
+            function onSend_steeringWheelToQml(inputUint){
                 if(inputUint === 1){
                     steering_L.lampOn()
-                    steering_L.source = "DashboardGeneral/images/signalLamps/steeringOff.png"
+                    steering_L.source = "DashboardGeneral/images/signalLamps/steering/steeringOff.png"
                 }
                 else if(inputUint === 2){
                     steering_L.lampOn()
-                    steering_L.source = "DashboardGeneral/images/signalLamps/steeringFailure.png"
+                    steering_L.source = "DashboardGeneral/images/signalLamps/steering/steeringFailure.png"
                 }
                 else{
                     steering_L.lampOff()
                 }
             }
-            onSend_batteryHeatingToQml:{
+            function onSend_batteryHeatingToQml(inputUint){
                 if(inputUint === 2){
                     tmsHeating_L.lampOn()
                 }
@@ -277,35 +338,71 @@ Item {
                     tmsHeating_L.lampOff()
                 }
             }
-            onSend_externalCordToQml:{
+            function onSendLowPowerToQml(inputUint){
+                if(inputUint === 1){
+                    lowPower_L.lampOn()
+                }
+                else if(inputUint === 2){
+                    lowPower_L.lampToggle()
+                }
+                else{
+                    lowPower_L.lampOff()
+                }
+            }
+            function onSend_externalCordToQml(inputUint){
                 if(inputUint === 1){
                     externalCord_L.lampOn()
+                }
+                else if(inputUint === 2){
+                    externalCord_L.togglingPeriod = 1000
+                    externalCord_L.lampToggle()
+                }
+                else if(inputUint === 13){
+                    externalCord_L.togglingPeriod = 500
+                    externalCord_L.lampToggle()
+                }
+                else if(inputUint === 14){
+                    externalCord_L.togglingPeriod = 500
+                    externalCord_L.lampToggle()
                 }
                 else{
                     externalCord_L.lampOff()
                 }
             }
-            onSend_isolationToQml:{
-                if(inputUint === 1){
+            function onSend_isolationToQml(inputUint){
+                if(inputUint === 5){
                     isolation_L.lampOn()
-                    isolation_L.source = "DashboardGeneral/images/signalLamps/battery/insulationControlWarning.png"
+                    isolation_L.source = "DashboardGeneral/images/signalLamps/battery/insulationControlFailure.png"
                 }
-                else if(inputUint === 2){
-                    isolation_L.lampOn()
+                else if(inputUint === 4){
+                    isolation_L.lampToggle()
                     isolation_L.source = "DashboardGeneral/images/signalLamps/battery/insulationControlFailure.png"
                 }
                 else if(inputUint === 3){
                     isolation_L.lampOn()
-                    isolation_L.source = "DashboardGeneral/images/signalLamps/battery/insulationControlOk.png"
+                    isolation_L.source = "DashboardGeneral/images/signalLamps/battery/insulationControlWarning.png"
+                }
+                else if(inputUint === 2){
+                    isolation_L.lampToggle()
+                    isolation_L.source = "DashboardGeneral/images/signalLamps/battery/insulationControlWarning.png"
                 }
                 else{
-                    isolation_L.lampOff()
+                    isolation_L.lampOn()
+                    isolation_L.source = "DashboardGeneral/images/signalLamps/battery/insulationControlOk.png"
+                }
+            }
+            function onSend_contactorToQml(inputUint){
+                if(inputUint === 2){
+                    contactorError_L.lampToggle()
+                }
+                else{
+                    contactorError_L.lampOff()
                 }
             }
         }
         Connections{
             target: suspension
-            onSendSuspensionStatusToQml: {
+            function onSendSuspensionStatusToQml(inputUint) {
                 //console.log(inputUint)
                 if (inputUint === 0){
                     suspensionStatus_L.lampOff()
@@ -331,7 +428,7 @@ Item {
                     suspensionStatus_L.source = "DashboardGeneral/images/signalLamps/suspension/heightDecrease.png"
                 }
             }
-            onSendSuspensionErrorToQml:{
+            function onSendSuspensionErrorToQml(inputUint){
                 if (inputUint === 1){
                     //suspensionError_L.lampOn()
                     suspensionError_L.source = "DashboardGeneral/images/signalLamps/suspension/heightControlNotNormal.png"
@@ -342,7 +439,7 @@ Item {
                 }
                 //else suspensionError_L.lampOff()
             }
-            onSendKneelingStatusToQml: {
+            function onSendKneelingStatusToQml(inputUint) {
                 if (inputUint === 2) {
                     kneelingStatus_L.lampToggle()
                     //autokneelingStatus_L.lampOff()
@@ -360,14 +457,23 @@ Item {
                     kneelingStatus_L.lampOff()
                 }
             }
-            onSendAutoKneelingStatusToQml: {
+            function onSendAutoKneelingStatusToQml(inputBool) {
     //            if (inputBool) autokneelingStatus_L.lampOn()
     //            else autokneelingStatus_L.lampOff()
             }
         }
         Connections {
             target: exteriorLightning
-            onSendRightTurnSignalLightToQml: {
+            function onSendExteriorLightsStatusToQml(inputUint) {
+                if (inputUint === 1){
+                    exteriorLightFailure_L.lampOn()
+                }
+                else{
+                    exteriorLightFailure_L.lampOff()
+                }
+
+            }
+            function onSendRightTurnSignalLightToQml(inputUint) {
                 if (inputUint === 1){
                     turnSignals.turnRightOn()
                 }
@@ -375,7 +481,7 @@ Item {
                     turnSignals.turnRightOff()
                 }
             }
-            onSendLeftTurnSignalLightToQml: {
+            function onSendLeftTurnSignalLightToQml(inputUint) {
                 if (inputUint === 1){
                     turnSignals.turnLeftOn()
                 }
@@ -383,27 +489,27 @@ Item {
                     turnSignals.turnLeftOff()
                 }
             }
-            onSendMarkerLightsToQml:{
+            function onSendMarkerLightsToQml(inputUint){
                 if (inputUint) markerLights_L.lampOn()
                 else markerLights_L.lampOff()
             }
-            onSendRearFogLightsToQml:{
+            function onSendRearFogLightsToQml(inputUint){
                 if (inputUint) rearFogLight_L.lampOn()
                 else rearFogLight_L.lampOff()
             }
-            onSendFrontFogLightsToQml:{
+            function onSendFrontFogLightsToQml(inputUint){
                 if (inputUint) frontFogLights_L.lampOn()
                 else frontFogLights_L.lampOff()
             }
-            onSendLowBeamHeadLightsToQml:{
+            function onSendLowBeamHeadLightsToQml(inputUint){
                 if (inputUint) lowBeamHeadLights_L.lampOn()
                 else lowBeamHeadLights_L.lampOff()
             }
-            onSendHighBeamHeadLightsToQml:{
+            function onSendHighBeamHeadLightsToQml(inputUint){
                 if (inputUint) highBeamHeadLights_L.lampOn()
                 else highBeamHeadLights_L.lampOff()
             }
-            onSendRunningLightsToQml:{
+            function onSendRunningLightsToQml(inputUint){
                 if (inputUint) runningLights_L.lampOn()
                 else runningLights_L.lampOff()
             }
@@ -412,11 +518,42 @@ Item {
 
         Connections {
             target: brakeSystem
-            onSendASR_IndicationToQml:{
+            function onSendCompressorStateToQml(inputUint){
+                if (inputUint === 2){
+                   compressorError_L.lampOn()
+                }
+                else{
+                    compressorError_L.lampOff()
+                }
+            }
+
+            function onSendTractionControlToQml(inputUint){
+                if (inputUint === 1){
+                   tractionControl_L.lampOn()
+                   tractionControl_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ASR_On.png"
+                }
+                else if (inputUint === 2){
+                   tractionControl_L.lampToggle()
+                   tractionControl_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ASR_On.png"
+                }
+                else if (inputUint === 3){
+                   tractionControl_L.lampOn()
+                   tractionControl_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ASR_Off.png"
+                }
+                else if (inputUint === 4){
+                   tractionControl_L.lampToggle()
+                   tractionControl_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ASR_Off.png"
+                }
+                else{
+                    tractionControl_L.lampOff()
+                }
+            }
+
+            function onSendASR_IndicationToQml(inputUint){
                 if (inputUint) asr_L.lampOn()
                 else asr_L.lampOff()
             }
-            onSendPressureCircuitParkBrakeToQml:{
+            function onSendPressureCircuitParkBrakeToQml(inputUint){
                 if (inputUint === 1) {
                     parkingBrake_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuitParkBrakeFailure.png"
                     parkingBrake_L.lampOn()
@@ -438,7 +575,7 @@ Item {
                 }
                 else parkingBrake_L.lampOff()
             }
-            onSendEBS_IndicationToQml:{
+            function onSendEBS_IndicationToQml(inputUint){
                 //console.log(inputUint)
                 if (inputUint === 0) {
                     ebsState_L.lampOff()
@@ -458,7 +595,7 @@ Item {
                 }
 
             }
-            onSendESC_IndicationToQml:{
+            function onSendESC_IndicationToQml(inputUint){
                 if (inputUint === 0) {
                     pumpFail_L.lampOff()
                 } else if (indicationState === 1) {
@@ -473,7 +610,7 @@ Item {
                     pumpFail_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ESC_Off.png"
                 }
             }
-            onSendHillHolderIndicationToQml:{
+            function onSendHillHolderIndicationToQml(inputUint){
                 //console.log(indicationState)
                 if (inputUint === 0) {
                     //hillHolder_L.lampOff()
@@ -489,18 +626,18 @@ Item {
                 }
 
             }
-            onSendHaltBrakeStatusToQml:{
+            function onSendHaltBrakeStatusToQml(inputBool){
     //            if (inputBool) haltBrake_L.lampOn()
     //            else haltBrake_L.lampOff()
             }
-            onSendLowBrakePadsToQml:{
+            function onSendLowBrakePadsToQml(inputBool){
                 if (inputBool) {
                     warningSound.play()
                     wornBrakeLinings_L.lampOn()
                 }
                 else wornBrakeLinings_L.lampOff()
             }
-            onSendPressureCircuit3LampToQml: {
+            function onSendPressureCircuit3LampToQml(inputBool) {
                 if (inputBool) {
                     errorSound.play()
                     airBrake3_L.visible = true;
@@ -508,7 +645,7 @@ Item {
                 }
                 else airBrake3_L.visible = false
             }
-            onSendPressureCircuit4LampToQml: {
+            function onSendPressureCircuit4LampToQml(inputBool) {
                 if (inputBool) {
                     errorSound.play()
                     airBrake4_L.visible = true;
@@ -516,7 +653,7 @@ Item {
                 }
                 else airBrake4_L.visible = false
             }
-            onSendRetarderPercentToQml:{
+            function onSendRetarderPercentToQml(inputFloat){
                 if(inputFloat > 0){
                     retarder_L.lampOn()
                 }
@@ -524,7 +661,7 @@ Item {
                     retarder_L.lampOff()
                 }
             }
-            onSendLowTirePressureToQml:{
+            function onSendLowTirePressureToQml(inputBool){
                 if (inputBool){
                     lowTirePressure_L.lampOn()
                 }
@@ -537,7 +674,7 @@ Item {
 
     SignalLamp_C {
         id: markerLights_L
-        x: 645
+        x: 688
         y: 1
         width: 75
         height: markerLights_L.width
@@ -570,7 +707,7 @@ Item {
 
     SignalLamp_C {
         id: lowTirePressure_L
-        x: 1379
+        x: 1381
         y: 284
         width: 45
         height: lowTirePressure_L.width
@@ -581,13 +718,14 @@ Item {
 
     SignalLamp_C {
         id: battery24v_L
-        x: 556
-        y: 85
-        width: 50
+        x: 555
+        y: 95
+        width: 55
         height: battery24v_L.width
         source: "DashboardGeneral/images/signalLamps/battery24v.png"
         visible: true
         property bool lowVoltageStartSound: false
+        property int errorLamp: 0
 
         Text {
             id: battery24Voltage_T
@@ -595,6 +733,8 @@ Item {
             height: 17
             color: "#ffffff"
             text: qsTr("--")
+            anchors.verticalCenterOffset: 2
+            anchors.horizontalCenterOffset: 0
             anchors.verticalCenter: parent.verticalCenter
             font.family: "Arial"
             verticalAlignment: Text.AlignVCenter
@@ -606,8 +746,8 @@ Item {
 
     SignalLamp_C {
         id: frontFogLights_L
-        x: 842
-        y: 10
+        x: 858
+        y: 11
         width: 57
         height: frontFogLights_L.width
         source: "DashboardGeneral/images/signalLamps/lights/frontFogLight.png"
@@ -616,8 +756,8 @@ Item {
 
     SignalLamp_C {
         id: highBeamHeadLights_L
-        x: 1221
-        y: 14
+        x: 1187
+        y: 11
         width: 57
         height: highBeamHeadLights_L.width
         source: "DashboardGeneral/images/signalLamps/lights/highBeamHeadLights.png"
@@ -627,8 +767,8 @@ Item {
 
     SignalLamp_C {
         id: lowBeamHeadLights_L
-        x: 1123
-        y: 12
+        x: 1099
+        y: 13
         width: 57
         height: lowBeamHeadLights_L.width
         source: "DashboardGeneral/images/signalLamps/lights/lowBeamHeadLights.png"
@@ -637,8 +777,8 @@ Item {
 
     SignalLamp_C {
         id: rearFogLight_L
-        x: 755
-        y: 9
+        x: 781
+        y: 10
         width: 57
         height: rearFogLight_L.width
         source: "DashboardGeneral/images/signalLamps/lights/rearFogLight.png"
@@ -656,20 +796,20 @@ Item {
     }
 
     SignalLamp_C {
-        id: exteriorBulbFailure_L
-        x: 568
-        y: 183
+        id: exteriorLightFailure_L
+        x: 937
+        y: 17
         width: 46
-        height: exteriorBulbFailure_L.width
-        visible: false
+        height: exteriorLightFailure_L.width
+        visible: true
         source: "DashboardGeneral/images/signalLamps/lights/exteriorBulbFailure.png"
         test: signalLampTest
     }
 
     SignalLamp_C {
         id: suspensionStatus_L
-        x: 1020
-        y: 139
+        x: 1102
+        y: 152
         width: 55
         height: suspensionStatus_L.width
         visible: true
@@ -678,8 +818,8 @@ Item {
     }
     SignalLamp_C {
         id: runningLights_L
-        x: 1024
-        y: 10
+        x: 1014
+        y: 11
         width: 58
         height: runningLights_L.width
         source: "DashboardGeneral/images/signalLamps/lights/runningLights.png"
@@ -688,8 +828,8 @@ Item {
 
     SignalLamp_C {
         id: lowCoolantEngineLevel_L
-        x: 1091
-        y: 80
+        x: 1104
+        y: 93
         width: 55
         height: lowCoolantEngineLevel_L.width
         visible: true
@@ -709,8 +849,8 @@ Item {
 
     SignalLamp_C {
         id: interiorLighting_L
-        x: 918
-        y: 523
+        x: 924
+        y: 516
         width: 47
         height: interiorLighting_L.width
         source: "DashboardGeneral/images/signalLamps/busInterior/interiorCompartmentIllumination.png"
@@ -744,8 +884,8 @@ Item {
 
     SignalLamp_C {
         id: ebsState_L
-        x: 1645
-        y: 410
+        x: 1643
+        y: 411
         width: 56
         height: ebsState_L.width
         source: "DashboardGeneral/images/signalLamps/brakeSystem/EBS_Red.png"
@@ -766,8 +906,8 @@ Item {
 
     SignalLamp_C {
         id: hammer_L
-        x: 1151
-        y: 530
+        x: 1157
+        y: 521
         width: 45
         height: hammer_L.width
         visible: true
@@ -777,9 +917,9 @@ Item {
 
     SignalLamp_C {
         id: kneelingStatus_L
-        x: 1094
-        y: 141
-        width: 55
+        x: 1172
+        y: 153
+        width: 50
         height: kneelingStatus_L.width
         source: "DashboardGeneral/images/signalLamps/suspension/kneeling.png"
         test: signalLampTest
@@ -787,8 +927,8 @@ Item {
 
     SignalLamp_C {
         id: seatBeltSwitch_L
-        x: 1246
-        y: 530
+        x: 1247
+        y: 521
         width: 44
         height: seatBeltSwitch_L.width
         visible: true
@@ -798,8 +938,8 @@ Item {
 
     SignalLamp_C {
         id: asr_L
-        x: 518
-        y: 530
+        x: 522
+        y: 522
         width: 44
         height: asr_L.width
         source: "DashboardGeneral/images/signalLamps/brakeSystem/ESC_On.png"
@@ -808,8 +948,8 @@ Item {
 
     SignalLamp_C {
         id: washerFluidLevel_L
-        x: 1094
-        y: 527
+        x: 1099
+        y: 521
         width: 48
         height: washerFluidLevel_L.width
         source: "DashboardGeneral/images/signalLamps/windshield/windshielFluidLevelWarning.png"
@@ -819,7 +959,7 @@ Item {
     SignalLamp_C {
         id: wipers_L
         x: 742
-        y: 526
+        y: 514
         width: 45
         height: wipers_L.width
         source: "DashboardGeneral/images/signalLamps/windshield/windshield_delayed.png"
@@ -828,8 +968,8 @@ Item {
 
     SignalLamp_C {
         id: mirrorHeating_L
-        x: 799
-        y: 530
+        x: 801
+        y: 522
         width: 44
         height: mirrorHeating_L.width
         source: "DashboardGeneral/images/signalLamps/busCabin/mirrorHeating.png"
@@ -873,8 +1013,8 @@ Item {
 
     SignalLamp_C {
         id: fireExting_L
-        x: 1202
-        y: 531
+        x: 1208
+        y: 521
         width: 45
         height: width
         visible: true
@@ -886,8 +1026,8 @@ Item {
 
     SignalLamp_C {
         id: noDriver_L
-        x: 1301
-        y: 530
+        x: 1297
+        y: 521
         width: 44
         height: noDriver_L.width
         visible: true
@@ -907,8 +1047,8 @@ Item {
 
     SignalLamp_C {
         id: rampError_L
-        x: 1362
-        y: 532
+        x: 1356
+        y: 523
         width: 40
         height: rampError_L.width
         source: "DashboardGeneral/images/signalLamps/rampError.png"
@@ -918,7 +1058,7 @@ Item {
     SignalLamp_C {
         id: seatHeating_L
         x: 627
-        y: 534
+        y: 528
         width: 40
         height: width
         source: "DashboardGeneral/images/signalLamps/busCabin/seatHeating.png"
@@ -927,8 +1067,8 @@ Item {
 
     SignalLamp_C {
         id: door1Valve_L
-        x: 1000
-        y: 345
+        x: 997
+        y: 361
         width: 44
         height: 44
         source: "DashboardGeneral/images/fireExtinguishersAndTaps/valveCloseCapOpen.png"
@@ -937,18 +1077,19 @@ Item {
 
     SignalLamp_C {
         id: hvBatError_L
-        x: 803
-        y: 81
+        x: 799
+        y: 98
         width: 50
         height: width
+        fillMode: Image.PreserveAspectFit
         source: "DashboardGeneral/images/signalLamps/battery/batHvFail.png"
         test: signalLampTest
     }
 
     SignalLamp_C {
         id: motorError_L
-        x: 864
-        y: 83
+        x: 853
+        y: 96
         width: 50
         height: width
         source: "DashboardGeneral/images/signalLamps/motorSystem/electricMotorFailure.png"
@@ -957,8 +1098,8 @@ Item {
 
     SignalLamp_C {
         id: tmsError_L
-        x: 680
-        y: 75
+        x: 676
+        y: 92
         width: 55
         height: width
         source: "DashboardGeneral/images/signalLamps/battery/tmsFailure.png"
@@ -967,8 +1108,8 @@ Item {
 
     SignalLamp_C {
         id: steering_L
-        x: 621
-        y: 84
+        x: 619
+        y: 97
         width: 50
         height: width
         source: "DashboardGeneral/images/signalLamps/steering/steeringFailure.png"
@@ -977,8 +1118,8 @@ Item {
 
     SignalLamp_C {
         id: tmsWarning_L
-        x: 680
-        y: 136
+        x: 732
+        y: 143
         width: 55
         height: width
         source: "DashboardGeneral/images/signalLamps/battery/tmsCoolantLowLevel.png"
@@ -987,8 +1128,8 @@ Item {
 
     SignalLamp_C {
         id: externalCord_L
-        x: 1214
-        y: 87
+        x: 1228
+        y: 96
         width: 50
         height: externalCord_L.width
         visible: true
@@ -998,8 +1139,8 @@ Item {
 
     SignalLamp_C {
         id: isolation_L
-        x: 1156
-        y: 84
+        x: 1171
+        y: 96
         width: 50
         height: isolation_L.width
         visible: true
@@ -1015,5 +1156,79 @@ Item {
         height: width
         source: "DashboardGeneral/images/signalLamps/battery/tmsOn.png"
         test: signalLampTest
+    }
+
+    SignalLamp_C {
+        id: motorOverheat_L
+        x: 851
+        y: 148
+        width: 45
+        height: width
+        test: signalLampTest
+        source: "DashboardGeneral/images/signalLamps/motorSystem/engineCoolantTempFailure.png"
+    }
+
+    SignalLamp_C {
+        id: readyToMove_L
+        x: 1033
+        y: 96
+        width: 55
+        height: readyToMove_L.width
+        visible: true
+        test: signalLampTest
+        source: "DashboardGeneral/images/signalLamps/motorSystem/electricMotorEnabled.png"
+    }
+
+    SignalLamp_C {
+        id: lowPower_L
+        x: 1038
+        y: 522
+        width: 45
+        height: width
+        test: signalLampTest
+        source: "DashboardGeneral/images/signalLamps/motorSystem/lowPower.png"
+    }
+
+    SignalLamp_C {
+        id: pantograph_L
+        x: 1330
+        y: 104
+        width: 40
+        height: pantograph_L.width
+        visible: true
+        test: signalLampTest
+        source: "DashboardGeneral/images/signalLamps/battery/pantMove.png"
+    }
+
+    SignalLamp_C {
+        id: contactorError_L
+        x: 1282
+        y: 99
+        width: 45
+        height: contactorError_L.width
+        visible: true
+        test: signalLampTest
+        source: "DashboardGeneral/images/signalLamps/battery/contactorFailure.png"
+    }
+
+    SignalLamp_C {
+        id: compressorError_L
+        x: 735
+        y: 99
+        width: 50
+        height: width
+        test: signalLampTest
+        source: "DashboardGeneral/images/signalLamps/brakeSystem/compressorError.png"
+    }
+
+    SignalLamp_C {
+        id: tractionControl_L
+        x: 1371
+        y: 345
+        width: 45
+        height: tractionControl_L.width
+        visible: true
+        test: signalLampTest
+        source: "DashboardGeneral/images/signalLamps/brakeSystem/ASR_On.png"
     }
 }

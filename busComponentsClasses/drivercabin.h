@@ -37,18 +37,10 @@ private:
         uint8_t LampOnIntermittentMode = 3;
     } wipersStatusLamp;
 
-    uint PowerSteering = 0;
-    struct {
-        uint8_t LampOff = 0;
-        uint8_t LampYellow = 1;
-        uint8_t LampRed = 2;
-    } PowerSteeringLamp;
-
 signals:
     void sendWindshieldHeatingStatusToQml(const uint& inputUint);
     void sendElecticHeatedSideWindowsStatusToQml(const uint& inputUint);
     void sendSeatHeatingStatusToQml(const uint& inputUint);
-    void sendPowerSteeringStatusToQml(const uint& inputUint);
     void sendWasherFluidLampToQml(const uint& inputUint);
     void sendWipersStatusToQml(const uint& inputUint);
     void sendWipersAutoStatusToQml(const uint& inputUint);

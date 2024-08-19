@@ -44,7 +44,8 @@ private:
     bool pressureCircuit4_Indication;
     float brakePedalPosition;
     float retarderPercent = 0;
-    uint reqStopSound;
+    uint reqStopSound = 0;
+    uint compressorState = 0;
 
     float lowBrakePads_Percent = 25;
     float  frontLeftBrakePads_Percent;
@@ -80,6 +81,13 @@ private:
         uint8_t toggleLampHH_On = 2;
         uint8_t toggleFastLampHH_On = 3;
     } HillHolderLamp;
+    struct {
+        uint8_t off = 0;
+        uint8_t tractionControl_On = 1;
+        uint8_t tractionControl_Off = 2;
+    } TractionControlLamp;
+    uint TractionControl= 0;
+
     uint HaltBrake_Indication = 0;
     float pressureParkingBrake_bar = 0;
     uint parkingBrake_Indication = 0;
@@ -112,6 +120,7 @@ signals:
     void sendPressureCircuit2LampToQml(const bool& inputBool);
     void sendPressureCircuit3LampToQml(const bool& inputBool);
     void sendPressureCircuit4LampToQml(const bool& inputBool);
+    void sendCompressorStateToQml(const uint& inputUint);
 
 
     void sendPressureCircuitParkBrakeToQml(const uint& inputUint);
@@ -133,8 +142,8 @@ signals:
     void sendRearRightBrakePercentToQml(const float& inputFloat);
     //ERC1
     void sendRetarderPercentToQml(const float& inputFloat);
-
     void sendReqStopSoundToQml(const uint& inputUint);
+    void sendTractionControlToQml(const uint& inputUint);
 };
 
 #endif // BRAKESYSTEM_H

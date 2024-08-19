@@ -28,7 +28,7 @@
         <file>DashboardGeneral/images/signalLamps/ADAS/ldws.png</file>
         <file>DashboardGeneral/images/signalLamps/ADAS/lkas.png</file>
         <file>DashboardGeneral/images/signalLamps/ADAS/obstruction.png</file>
-        <file>DashboardGeneral/images/signalLamps/brakeSystem/ASR_off.png</file>
+        <file>DashboardGeneral/images/signalLamps/brakeSystem/ASR_Off.png</file>
         <file>DashboardGeneral/images/signalLamps/brakeSystem/ASR_On.png</file>
         <file>DashboardGeneral/images/signalLamps/brakeSystem/autoHold.png</file>
         <file>DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuit1.png</file>
@@ -173,5 +173,9 @@
         <file>DashboardGeneral/images/signalLamps/steering/parkingAssistance.png</file>
         <file>DashboardGeneral/images/signalLamps/steering/steeringFailure.png</file>
         <file>DashboardGeneral/images/signalLamps/steering/steeringOff.png</file>
+        <file>DashboardGeneral/images/signalLamps/motorSystem/electricMotorEnabled.png</file>
+        <file>DashboardGeneral/images/signalLamps/motorSystem/lowPower.png</file>
+        <file>DashboardGeneral/images/signalLamps/brakeSystem/compressorError.png</file>
+        <file>DashboardGeneral/images/signalLamps/battery/contactorFailure.png</file>
     </qresource>
 </RCC>

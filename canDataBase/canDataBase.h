@@ -1,4 +1,4 @@
-//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v0.1.1.dbc, последние изменения Wed May 22 15:29:11 2024
+//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.0.2.dbc, последние изменения Mon Aug 19 14:44:41 2024
 #ifndef CANDATABASE_H_
 #define CANDATABASE_H_
 
@@ -38,6 +38,9 @@ extern canBus::messageNameCharStruct gMessageName_ASC1;
 extern canBus::signalNameCharStruct gSignalName_AutoKneeling;
 extern canBus::messageNameCharStruct gMessageName_ASC2;
 
+extern canBus::signalNameCharStruct gSignalName_BatteryCharger1State;
+extern canBus::messageNameCharStruct gMessageName_BCH1;
+
 extern canBus::signalNameCharStruct gSignalName_SeatBeltSwitch;
 extern canBus::messageNameCharStruct gMessageName_BDS;
 
@@ -58,10 +61,6 @@ extern canBus::messageNameCharStruct gMessageName_CCVS1_03;
 extern canBus::signalNameCharStruct gSignalName_MirrorHeatLeft;
 extern canBus::signalNameCharStruct gSignalName_MirrorHeatRight;
 extern canBus::messageNameCharStruct gMessageName_CDC;
-
-extern canBus::signalNameCharStruct gSignalName_ChargeConnect;
-extern canBus::signalNameCharStruct gSignalName_LimitedPower;
-extern canBus::messageNameCharStruct gMessageName_CECU_06;
 
 extern canBus::signalNameCharStruct gSignalName_EstimatedRange;
 extern canBus::signalNameCharStruct gSignalName_PantConnect;
@@ -104,6 +103,21 @@ extern canBus::signalNameCharStruct gSignalName_CargoAmbientTemp;
 extern canBus::signalNameCharStruct gSignalName_DD1_WasherFluidLow;
 extern canBus::messageNameCharStruct gMessageName_DD1_1E;
 
+extern canBus::signalNameCharStruct gSignalName_EngineAmberWarningLC;
+extern canBus::signalNameCharStruct gSignalName_EngineCoolantLevelLowLC;
+extern canBus::signalNameCharStruct gSignalName_EngineCoolantTempHighLC;
+extern canBus::signalNameCharStruct gSignalName_EngineRedStopLC;
+extern canBus::signalNameCharStruct gSignalName_ReadyForUseLC;
+extern canBus::messageNameCharStruct gMessageName_DLCC1;
+
+extern canBus::signalNameCharStruct gSignalName_Optional1LC;
+extern canBus::signalNameCharStruct gSignalName_Optional2LC;
+extern canBus::signalNameCharStruct gSignalName_Optional3LC;
+extern canBus::signalNameCharStruct gSignalName_Optional4LC;
+extern canBus::signalNameCharStruct gSignalName_VehicleBatteryChargingLC;
+extern canBus::signalNameCharStruct gSignalName_VehicleLimitedPerformanceModeLC;
+extern canBus::messageNameCharStruct gMessageName_DLCC2;
+
 extern canBus::signalNameCharStruct gSignalName_LowLevel_CL;
 extern canBus::messageNameCharStruct gMessageName_DLDC1;
 
@@ -145,6 +159,7 @@ extern canBus::signalNameCharStruct gSignalName_ASR_OffRoadSwitch;
 extern canBus::signalNameCharStruct gSignalName_ASR_infoSignal;
 extern canBus::signalNameCharStruct gSignalName_EBS_RedLamp;
 extern canBus::signalNameCharStruct gSignalName_EBS_WarningLamp;
+extern canBus::signalNameCharStruct gSignalName_TractionControlOverrideSwitch;
 extern canBus::messageNameCharStruct gMessageName_EBC1;
 
 extern canBus::signalNameCharStruct gSignalName_FrontAxleLeft;
@@ -178,6 +193,9 @@ extern canBus::signalNameCharStruct gSignalName_AutoHold;
 extern canBus::signalNameCharStruct gSignalName_ParkingBrake;
 extern canBus::messageNameCharStruct gMessageName_EPBS1;
 
+extern canBus::signalNameCharStruct gSignalName_WheelSteerActuatorState;
+extern canBus::messageNameCharStruct gMessageName_ESC2;
+
 extern canBus::signalNameCharStruct gSignalName_Temp_CL;
 extern canBus::messageNameCharStruct gMessageName_ET1;
 
@@ -194,6 +212,20 @@ extern canBus::signalNameCharStruct gSignalName_FireExting_3;
 extern canBus::signalNameCharStruct gSignalName_FireExting_4;
 extern canBus::messageNameCharStruct gMessageName_FS1;
 
+extern canBus::signalNameCharStruct gSignalName_HVESS_Current;
+extern canBus::signalNameCharStruct gSignalName_HVESS_VoltageLevel;
+extern canBus::messageNameCharStruct gMessageName_HVESSD1;
+
+extern canBus::signalNameCharStruct gSignalName_HVESS_FastUpdateSoc;
+extern canBus::messageNameCharStruct gMessageName_HVESSD2;
+
+extern canBus::signalNameCharStruct gSignalName_HVESS_CenterOfPackContactor;
+extern canBus::signalNameCharStruct gSignalName_HVESS_HvBusConnectionStatus;
+extern canBus::signalNameCharStruct gSignalName_HVESS_HvBusPrechargeRelay;
+extern canBus::signalNameCharStruct gSignalName_HVESS_HvNegativeContactorState;
+extern canBus::signalNameCharStruct gSignalName_HVESS_HvPositiveContactorState;
+extern canBus::messageNameCharStruct gMessageName_HVESSS1;
+
 extern canBus::signalNameCharStruct gSignalName_FrontFogLight;
 extern canBus::signalNameCharStruct gSignalName_HighBeamHeadLight;
 extern canBus::signalNameCharStruct gSignalName_ImplementOEMOption1Light;
@@ -208,16 +240,13 @@ extern canBus::messageNameCharStruct gMessageName_LD;
 extern canBus::signalNameCharStruct gSignalName_LowBeamLightAuto;
 extern canBus::messageNameCharStruct gMessageName_LD_2;
 
-extern canBus::signalNameCharStruct gSignalName_BatteryError;
-extern canBus::signalNameCharStruct gSignalName_MotorError;
-extern canBus::signalNameCharStruct gSignalName_MotorWarning;
-extern canBus::signalNameCharStruct gSignalName_ReadyToMove;
-extern canBus::messageNameCharStruct gMessageName_Motor_1;
-
 extern canBus::signalNameCharStruct gSignalName_FrontNonOperatorWiperSwitch;
 extern canBus::signalNameCharStruct gSignalName_FrontOperatorWiperSwitch;
 extern canBus::signalNameCharStruct gSignalName_WindshieldWasherOn;
 extern canBus::messageNameCharStruct gMessageName_OWW;
+
+extern canBus::signalNameCharStruct gSignalName_PantographModuleState;
+extern canBus::messageNameCharStruct gMessageName_PCM1;
 
 extern canBus::signalNameCharStruct gSignalName_HeatingWheel;
 extern canBus::messageNameCharStruct gMessageName_SCU2CLM;
@@ -250,6 +279,10 @@ extern canBus::messageNameCharStruct gMessageName_TIRE;
 extern canBus::signalNameCharStruct gSignalName_TmsError;
 extern canBus::signalNameCharStruct gSignalName_TmsMode;
 extern canBus::messageNameCharStruct gMessageName_TMS;
+
+extern canBus::signalNameCharStruct gSignalName_VDC_FullyOperational;
+extern canBus::signalNameCharStruct gSignalName_VDC_InformationSignal;
+extern canBus::messageNameCharStruct gMessageName_VDC1;
 
 extern canBus::signalNameCharStruct gSignalName_TotalVehicleDistance;
 extern canBus::signalNameCharStruct gSignalName_TripDistance;

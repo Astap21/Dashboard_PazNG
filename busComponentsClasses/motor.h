@@ -37,27 +37,30 @@ private:
         uint8_t greenLampOn_5s = 6;
     } lamp;
 
-    uint tractionMotorError;
-    uint tractionMotorOverheat;
-    uint lowLiquidLevelMotorSystem;
-    uint circulationPump;
+    uint tractionMotorError = 0;
+    uint tractionMotorOverheat = 0;
+    uint lowLiquidLevelMotorSystem = 0;
+    uint circulationPump = 0;
+    uint readyToMove = 0;
+    uint lowPower = 0;
 
-    uint batteryStatus;
+    uint batteryStatus = 0;
+    uint chargingStatus = 0;
 
-    float vehicleSpeed;
-    float hvCurrent;
-    float hvVoltage;
-    float hvSoc;
-    int engineTemp;
-    uint estimatedRange;
-    uint tmsError;
-    uint tmsOn;
-    uint motorStatus;
-    uint steeringWheel;
-    uint batteryHeating;
-    uint externalCord;
-    uint isolation;
-    uint pant;
+    float vehicleSpeed = 0;
+    float hvCurrent = 0;
+    float hvVoltage = 0;
+    float hvSoc = 0;
+    int engineTemp = 0;
+    uint estimatedRange = 0;
+    uint tmsError = 0;
+    uint tmsOn = 0;
+    uint motorStatus = 0;
+    uint steeringWheel = 0;
+    uint batteryHeating = 0;
+    uint isolation = 0;
+    uint pant = 0;
+    uint contactor = 0;
 
 signals:
     void sendActualGearToQml(const QString& inputString);
@@ -71,10 +74,11 @@ signals:
     //CCVS1
     void sendSpeedToQml(const float& inputFloat);
     //
-    void sendOverheatMotorToQml(const bool& inputBool);
+    void sendOverheatMotorToQml(const uint& inputUint);
     void sendEngineLampToQml(const uint& inputUint);
-    void sendEngineLowCoolantLevelToQml(const bool& inputBool);
-
+    void sendEngineLowCoolantLevelToQml(const uint& inputUint);
+    void sendReadyToMoveToQml(const uint& inputUint);
+    void sendLowPowerToQml(const uint& inputUint);
 
     void sendEngineTempToQml(const float& inputFloat);
     void sendCirculationPumpToQml(const uint& inputUint);
@@ -87,6 +91,7 @@ signals:
     void send_externalCordToQml(const uint& inputUint);
     void send_isolationToQml(const uint& inputUint);
     void send_pantToQml(const uint& inputUint);
+    void send_contactorToQml(const uint& inputUint);
 
 };
 

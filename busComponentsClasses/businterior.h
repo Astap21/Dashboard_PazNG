@@ -26,6 +26,7 @@ private:
     uint frontCompartment = 0;
     uint rampError = 0;
     uint doorValve = 0;
+    uint error24v = 0;
     float FuelLevel = 0;
     float BatteryVoltage24v = 0;
     float insideTempF = 0;
@@ -35,8 +36,6 @@ private:
     QString outsideTempS = "--";
     QString salonTempS = "--";
     QString convertFloatToStrForTemp(double inputNumber);
-
-
 
 signals:
     void sendInteriorLightingToQml(const uint& inputUint);
@@ -50,6 +49,7 @@ signals:
     void sendFrontCompartmentStatusToQml(const uint& inputUint);
     void sendFuelLevelToQml(const float& inputFloat);
     void sendBattery24VoltageToQml(const float& inputFloat);
+    void sendError24VToQml(const uint& inputUint);
     void sendTempOutsideToQml(const QString& inputString);
     void sendTempInsideToQml(const QString& inputString);
     void sendTempSalonToQml(const QString& inputString);

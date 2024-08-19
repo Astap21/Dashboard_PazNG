@@ -4,8 +4,8 @@ import "DashboardGeneral/qmlUserClass"
 import "DashboardGeneral/qmlUserClass/baseClasses"
 import QtMultimedia 5.9
 //import QtQuick.Controls 2.11
-import QtQuick.Controls 2.0
-import QtQml 2.0
+import QtQuick.Controls 2.11
+import QtQml 2.11
 
 Item{    
     id: baseElement
@@ -34,12 +34,12 @@ Item{
     SoundEffect{
         id: warningSound
         source: "qrc:/DashboardGeneral/sound/warningSound.wav"
-        volume: 0.0
+        volume: 1.0
     }
     SoundEffect{
         id: errorSound
         source: "qrc:/DashboardGeneral/sound/errorSound.wav"
-        volume: 0.0
+        volume: 1.0
     }
 
     Image {
@@ -195,7 +195,8 @@ Item{
         property double actualValue: 0
         property double minValue: 0
         property double maxValue: 100
-        property double lowValue: 25
+        property double lowValue: 20
+        property double criticalLowValue: 10
 
         x: 1259
         y: 80
@@ -217,15 +218,23 @@ Item{
             else if (inputValue < minValue) actualValue = minValue
             else actualValue = inputValue
             socValue.text = actualValue.toFixed(0) + " %"
-            if (actualValue < lowValue) {
+            if (actualValue < criticalLowValue) {
                 socBar.colorCircleStopGrad= "#ff0000"
                 socBar.colorCircleStartGrad= "#ff0000"
-                soc.source = "DashboardGeneral/images/signalLamps/battery/batHvWarning.png"
+                soc_L.source = "DashboardGeneral/images/signalLamps/battery/batHvWarning.png"
+                soc_L.lampToggle()
+            }
+            else if(actualValue < lowValue) {
+                socBar.colorCircleStopGrad= "#ff0000"
+                socBar.colorCircleStartGrad= "#ff0000"
+                soc_L.source = "DashboardGeneral/images/signalLamps/battery/batHvWarning.png"
+                soc_L.lampOn()
             }
             else {
                 socBar.colorCircleStopGrad = "#b7b7b7"
                 socBar.colorCircleStartGrad = "#b7b7b7"
-                soc.source = "DashboardGeneral/images/signalLamps/battery/batHvOff.png"
+                soc_L.source = "DashboardGeneral/images/signalLamps/battery/batHvOff.png"
+                soc_L.lampOn()
             }
         }
     }
@@ -432,58 +441,53 @@ Item{
 
 
 
-        Image {
-            id: batteryVoltage
+        SignalLamp_C {
+            id: batteryVoltage_L
             x: 1830
             y: 96
             width: 50
-            height: batteryVoltage.Width
+            height: batteryVoltage_L.Width
             fillMode: Image.PreserveAspectFit
             source: "DashboardGeneral/images/signalLamps/battery/batHvOn.png"
-
-            Text {
-                id: batteryVoltageUnits
-                x: -1916
-                y: -19
-                width: 84
-                height: 40
-                color: "#aaa4a4"
-                text: qsTr("вольт")
-                anchors.left: parent.left
-                font.pixelSize: 17
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignBottom
-                z: 1
-                font.family: "Verdana"
-                anchors.leftMargin: -104
-            }
         }
 
-        Image {
-            id: soc
+        Text {
+            id: batteryVoltageUnits
+            x: 1726
+            y: 77
+            width: 84
+            height: 40
+            color: "#aaa4a4"
+            text: qsTr("вольт")
+            font.pixelSize: 17
+            horizontalAlignment: Text.AlignLeft
+            verticalAlignment: Text.AlignBottom
+            z: 1
+            font.family: "Verdana"
+        }
+
+        SignalLamp_C {
+            id: soc_L
             x: 1828
             y: 608
             width: 50
-            height: soc.Width
+            height: soc_L.Width
             fillMode: Image.PreserveAspectFit
             source: "DashboardGeneral/images/signalLamps/battery/batHvOff.png"
-
-            Text {
-                id: socUnits
-                x: -214
-                y: 4
-                width: 28
-                height: 40
-                color: "#ffffff"
-                text: qsTr("%")
-                anchors.left: parent.left
-                font.pixelSize: 28
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignBottom
-                anchors.leftMargin: -86
-                z: 1
-                font.family: "Open Sans"
-            }
+        }
+        Text {
+            id: socUnits
+            x: 1745
+            y: 613
+            width: 28
+            height: 40
+            color: "#ffffff"
+            text: qsTr("%")
+            font.pixelSize: 28
+            horizontalAlignment: Text.AlignLeft
+            verticalAlignment: Text.AlignBottom
+            z: 1
+            font.family: "Open Sans"
         }
 
         FontLoader {
@@ -521,11 +525,11 @@ Item{
         }
         Connections {
             target: doors
-            onSendDoor1StatusToQml:{
+            function onSendDoor1StatusToQml(doorStatus){
                 door_1.checkStatus(doorStatus);
                 //console.log(door1Status);
             }
-            onSendDoor2StatusToQml:{
+            function onSendDoor2StatusToQml(doorStatus){
                 door_2.checkStatus(doorStatus);
                 //console.log(door2Status);
             }
@@ -534,10 +538,11 @@ Item{
             target: dashboardObject
             property string oldIp
             property string skString;
-            onSendIpToQml:{
+            function onSendIpToQml(inputStr){
                 skString = inputStr
                 if (skString.indexOf("10.0") !== -1 || skString.indexOf("10.6") !== -1){
                     buttonIsVisible = true
+                    backlightControlObject.backlightLevelChanged(30)
                 }
                 else{
                     buttonIsVisible = false
@@ -557,13 +562,13 @@ Item{
             //
             property int test: -1
             property bool testBool: true
-            onSendResetActualMileageToQml: {
+            function onSendResetActualMileageToQml() {
                 resetMileageWindow.visible = true
-                //console.log("onSendResetActualMileageToQml")
+                //console.log("function onSendResetActualMileageToQml")
             }
             property bool buttonOkStatus: false
             property bool buttonMinusStatus: false
-            onSendButtonOkStateToQml:{
+            function onSendButtonOkStateToQml(){
                 if (state) {
                     buttonOkStatus = true
                 }
@@ -572,7 +577,7 @@ Item{
                     menuLoader.active = true
                 }
             }
-            onSendButtonMenuStateToQml: {
+            function onSendButtonMenuStateToQml() {
                 if (state && menuLoader.active === false) {
                     menuLoader.active = true
                 }
@@ -580,21 +585,21 @@ Item{
                 //                    menuLoader.active = false
                 //                }
             }
-            onSendAddErrorCanSignalToQml: {
+            function onSendAddErrorCanSignalToQml(canSignalName) {
                 dynamicTextRow.addCanSignalError(canSignalName);
             }
-            onSendDeleteErrorCanSignalToQml: {
+            function onSendDeleteErrorCanSignalToQml(canSignalName) {
                 dynamicTextRow.deleteCanSignalError(canSignalName);
             }
-            //            onSendAddMissedCanMsgToQml:{
+            //            function onSendAddMissedCanMsgToQml(){
             //                //if (canMsgName == "ASC1_A") console.log("ASC1_A")
             //                downDynamicTextRow.addCanMsgMissedError(canMsgName);
             //            }
-            //            onSendDeleteMissedCanMsgToQml:{
+            //            function onSendDeleteMissedCanMsgToQml(){
             //                //if (canMsgName == "ASC1_A") console.log("not ASC1_A")
             //                downDynamicTextRow.deleteCanMsgMissedError(canMsgName);
             //            }
-            onSendTimeToQml: {
+            function onSendTimeToQml(timeRx) {
                 actualTime.time_str = timeRx;
                 //                if (testBool) {
                 //                    menuLoader.active = true
@@ -607,7 +612,7 @@ Item{
                 //                    upperDynamicTextRow.insertRowToArray("Ошибка ЭБСУ")
                 //                }
             }
-            onSendDateToQml: {
+            function onSendDateToQml(dateRx) {
                 actualDate.date_str = dateRx;
             }
             property string translateDay1: qsTr("пн")
@@ -617,45 +622,41 @@ Item{
             property string translateDay5: qsTr("пт")
             property string translateDay6: qsTr("сб")
             property string translateDay7: qsTr("вс")
-            onSendWeekDayToQml: {
+            function onSendWeekDayToQml(weekDayRx) {
                 actualDate.weekDay_str = qsTr(weekDayRx);
             }
-            //            onSendEstimatedKmRangeToQml:{
+            //            function onSendEstimatedKmRangeToQml(){
             //                estimatedKilometersRangeValue.text = inputFloat.toFixed(0)
             //            }
-            onSendTotalMileageToQml: {
+            function onSendTotalMileageToQml(totalMileageCalc) {
                 totalMileageValue.text = totalMileageCalc;
             }
-            onSendActualMileageToQml: {
+            function onSendActualMileageToQml(actualMileageCalc) {
                 actualMileageValue.text = actualMileageCalc;
             }
-            onSendErrorMcp2515ToQml:{
-                if (errorMcp2515) dynamicTextRow.insertRowToArray(qsTr("Внутренняя ошибка, нет доступного CAN интерфейса"))
-                else dynamicTextRow.deleteRowFromArray(qsTr("Внутренняя ошибка, нет доступного CAN интерфейса"))
-            }
         }
-//        Connections {
-//            target: canBus
-//            onSendAddCanErrorToQml:{
-//                //console.log(error_str)
-//                dynamicTextRow.addCanBusError(error_str)
-//            }
-//            onSendDeleteCanErrorToQml:{
-//                dynamicTextRow.deleteCanBusError(error_str)
-//            }
-//        }
+        //        Connections {
+        //            target: canBus
+        //            function onSendAddCanErrorToQml(){
+        //                //console.log(error_str)
+        //                dynamicTextRow.addCanBusError(error_str)
+        //            }
+        //            function onSendDeleteCanErrorToQml(){
+        //                dynamicTextRow.deleteCanBusError(error_str)
+        //            }
+        //        }
         Connections {
             target: busInterior
-            onSendTempOutsideToQml: {
+            function onSendTempOutsideToQml(inputString) {
                 tempOutsideValue.text = inputString
             }
-            onSendTempInsideToQml: {
+            function onSendTempInsideToQml(inputString) {
                 tempCabinValue.text = inputString
             }
-            onSendTempSalonToQml: {
+            function onSendTempSalonToQml(inputString) {
                 tempSalonValue.text = inputString
             }
-            onSendRampStatusToQml: {
+            function onSendRampStatusToQml(inputUint) {
                 if (inputUint === 2) {
                     rampState_L.source = "/DashboardGeneral/images/signalLamps/busExterior/rampSensorMalfunction.png"
                     rampState_L.lampOn()
@@ -668,16 +669,16 @@ Item{
                     rampState_L.lampOff()
                 }
             }
-            onSendRearCompartmentStatusToQml: {
+            function onSendRearCompartmentStatusToQml(inputUint) {
                 if (inputUint) {
-                    //warningSound.play()
+                    warningSound.play()
                     rearCompartmentIsOpen_L.lampOn()
                 }
                 else rearCompartmentIsOpen_L.lampOff()
             }
-            onSendFrontCompartmentStatusToQml: {
+            function onSendFrontCompartmentStatusToQml(inputUint) {
                 if (inputUint){
-                    //warningSound.play()
+                    warningSound.play()
                     frontCompartment_L.lampOn()
                 }
                 else frontCompartment_L.lampOff()
@@ -685,7 +686,7 @@ Item{
         }
         Connections {
             target: motor
-            onSendSpeedToQml: {
+            function onSendSpeedToQml(inputFloat) {
                 speedArrowAnimation.angleRotation = speedArrowAnimation.angleKoef * inputFloat + speedArrowAnimation.angleForZeroIndication
                 if (background.bootAnimation === false) {
                     speedArrowAnimation.from = speedArrowAnimation.previosAngle
@@ -697,7 +698,7 @@ Item{
                     speedDigital.text = inputFloat.toFixed(0)
                 }
             }
-            onSendHvCurrentToQml: {
+            function onSendHvCurrentToQml(inputFloat) {
                 //console.log(inputFloat)
                 if (inputFloat <=0){
                     rightArrowAnimation.angleRotation = rightArrowAnimation.angleKoefChg * inputFloat
@@ -714,71 +715,74 @@ Item{
                     rightArrowAnimation.previosAngle = rightArrowAnimation.angleRotation
                 }
             }
-            onSendHvVoltageToQml: {
+            function onSendHvVoltageToQml(inputFloat) {
                 if (background.bootAnimation === false) {
                     voltageBar.updateValue(inputFloat)
                 }
             }
-            onSendHvSocToQml: {
+            function onSendHvSocToQml(inputFloat) {
                 if (background.bootAnimation === false) {
                     socBar.updateValue(inputFloat)
                 }
             }
-            onSendEstimatedRangeToQml:{
+            function onSendEstimatedRangeToQml(inputUint){
                 if (background.bootAnimation === false) {
                     estimatedKilometersRangeValue.text = inputUint
                 }
             }
-            onSendBatteryStatusToQml:{
+            function onSendBatteryStatusToQml(inputUint){
                 if (background.bootAnimation === false) {
-                    if (inputUint === 1){
-                        batteryVoltage.source = "/DashboardGeneral/images/signalLamps/battery/batHvOn.png"
+                    if (inputUint === 5){
+                        batteryVoltage_L.lampOn()
+                        batteryVoltage_L.source = "/DashboardGeneral/images/signalLamps/battery/batHvOn.png"
                     }
-                    else if(inputUint === 2){
-                        batteryVoltage.source = "/DashboardGeneral/images/signalLamps/battery/batHvFail.png"
+                    else if(inputUint === 6){
+                        batteryVoltage_L.lampToggle()
+                        batteryVoltage_L.source = "/DashboardGeneral/images/signalLamps/battery/batHvOn.png"
                     }
                     else{
-                        batteryVoltage.source = "/DashboardGeneral/images/signalLamps/battery/batHvOff.png"
+                        batteryVoltage_L.lampOn()
+                        batteryVoltage_L.source = "/DashboardGeneral/images/signalLamps/battery/batHvOff.png"
                     }
                 }
             }
         }
         Connections {
             target: brakeSystem
-            onSendPressureCircuit1ToQml: {
+            function onSendPressureCircuit1ToQml(inputFloat) {
                 if (background.bootAnimation === false) {
                     brakePressureCircuit_1.updatePressure(inputFloat)
                 }
             }
-            onSendPressureCircuit2ToQml: {
+            function onSendPressureCircuit2ToQml(inputFloat) {
                 if (background.bootAnimation === false) {
                     brakePressureCircuit_2.updatePressure(inputFloat)
                 }
             }
-            onSendPressureCircuit1LampToQml: {
+            function onSendPressureCircuit1LampToQml(inputBool) {
                 if (inputBool) {
-                    //errorSound.play()
+                    errorSound.play()
                     brakeCircuit1_L.source = "/DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuit1Failure.png"
                 }
                 else brakeCircuit1_L.source = "/DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuit1.png"
             }
-            onSendPressureCircuit2LampToQml: {
+            function onSendPressureCircuit2LampToQml(inputBool) {
                 if (inputBool) {
-                    //errorSound.play()
+                    errorSound.play()
                     brakeCircuit2_L.source = "/DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuit2Failure.png"
                 }
                 else brakeCircuit2_L.source = "/DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuit2.png"
             }
         }
-        Connections {
-            target: menuLoader.item
-            onMenuOff: {
-                if (menuStateOff === true) {
-                    //console.log("main")
-                    menuLoader.active = false
-                }
-            }
-        }
+        //        Connections {
+        //            target: menuLoader.item
+        //            onMenuOff: {
+        //                if (menuStateOff === true) {
+        //                    //console.log("main")
+        //                    menuLoader.active = false
+        //                }
+        //            }
+        //        }
         Image {
             id: dials
             x: 0
@@ -1290,7 +1294,7 @@ Item{
                 height: 720
             }
 
-            Image {
+            SignalLamp_C {
                 id: brakeCircuit1_L
                 x: 25
                 y: 79
@@ -1301,14 +1305,14 @@ Item{
                 fillMode: Image.PreserveAspectFit
             }
 
-            Image {
+            SignalLamp_C {
                 id: brakeCircuit2_L
                 x: 25
                 y: 600
                 width: 60
                 height: brakeCircuit2_L.width
                 visible: true
-                source: "/DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuit2.png"
+                source: "DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuit2.png"
                 fillMode: Image.PreserveAspectFit
             }
 
@@ -1345,6 +1349,7 @@ Item{
             }
 
         }
+
     }
 }
 

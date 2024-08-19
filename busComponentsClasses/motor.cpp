@@ -1,5 +1,6 @@
 ﻿#include "motor.h"
 #include "canDataBase/canDataBase.h"
+#include "canDataBase/canDB_Libs.h"
 #include "qdebug.h"
 
 Motor::Motor(QObject *parent) : PrimaryBusComponent(parent)
@@ -11,28 +12,50 @@ Motor::Motor(QObject *parent) : PrimaryBusComponent(parent)
     vehicleSpeed = 0;
     batteryStatus = 0;
     engineTemp = 0;
+    chargingStatus = 0;
+    readyToMove = 0;
 }
 void Motor::ReadStateFromCanDB(){
 
     vehicleSpeed = gCanDB.GetSignalValueFloat(gSignalName_WheelBasedVehicleSpeed,gMessageName_CCVS1);
-    hvCurrent = gCanDB.GetSignalValueFloat(gSignalName_HvCurrent, gMessageName_ELECTRO_1);
-    hvVoltage = gCanDB.GetSignalValueFloat(gSignalName_HvVoltage, gMessageName_ELECTRO_1);
-    hvSoc = gCanDB.GetSignalValueFloat(gSignalName_HvSoc, gMessageName_ELECTRO_1);
+    hvCurrent = gCanDB.GetSignalValueFloat(gSignalName_HVESS_Current, gMessageName_HVESSD1);
+    hvVoltage = gCanDB.GetSignalValueFloat(gSignalName_HVESS_VoltageLevel, gMessageName_HVESSD1);
+    hvSoc = gCanDB.GetSignalValueFloat(gSignalName_HVESS_FastUpdateSoc, gMessageName_HVESSD2);
     if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_EstimatedRange, gMessageName_CECU_A0, &gCanDB), estimatedRange)) emit sendEstimatedRangeToQml(estimatedRange);
 
     previousComponentState = batteryStatus;
-    if ((getNewValueFromOneCanSignalU32(gSignalName_BatteryError, gMessageName_Motor_1, &gCanDB) == 1)){
+    if ((getNewValueFromOneCanSignalU32(gSignalName_Optional1LC, gMessageName_DLCC2, &gCanDB) == canBus::canSignalStateStructObj.on)){
+        batteryStatus = 1;
+    }
+    else if ((getNewValueFromOneCanSignalU32(gSignalName_Optional1LC, gMessageName_DLCC2, &gCanDB) == canBus::canSignalStateStructObj.error)){
         batteryStatus = 2;
     }
-    else if ((getNewValueFromOneCanSignalU32(gSignalName_HvBatteryOn, gMessageName_ELECTRO_1, &gCanDB) == 1)){
-        batteryStatus = 1;
+    else if ((getNewValueFromOneCanSignalU32(gSignalName_Optional2LC, gMessageName_DLCC2, &gCanDB) == canBus::canSignalStateStructObj.on)){
+        batteryStatus = 3;
+    }
+    else if ((getNewValueFromOneCanSignalU32(gSignalName_Optional2LC, gMessageName_DLCC2, &gCanDB) == canBus::canSignalStateStructObj.error)){
+        batteryStatus = 4;
+    }
+    else if ((getNewValueFromOneCanSignalU32(gSignalName_HVESS_HvBusConnectionStatus, gMessageName_HVESSS1, &gCanDB) == 1)){
+        batteryStatus = 5;
+    }
+    else if ((getNewValueFromOneCanSignalU32(gSignalName_HVESS_HvBusConnectionStatus, gMessageName_HVESSS1, &gCanDB) == 2)){
+        batteryStatus = 6;
     }
     else{
         batteryStatus = 0;
     }
     if (batteryStatus != previousComponentState) emit sendBatteryStatusToQml(batteryStatus);
     //sqDebug() << estimatedRange;
-    //engineTemp = gCanDB.GetSignalValueFloat(gSignalName_EngineCoolantTemp,gMessageName_ET1);
+    engineTemp = gCanDB.GetSignalValueFloat(gSignalName_Temp_CL,gMessageName_ET1);
+    const float highTemp = 65;
+    if (engineTemp >= highTemp && tractionMotorOverheat != 1){
+        tractionMotorOverheat = 1;
+        emit sendOverheatMotorToQml(tractionMotorOverheat);
+    }
+    else{
+        if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_EngineCoolantTempHighLC, gMessageName_DLCC1, &gCanDB), tractionMotorOverheat)) emit sendOverheatMotorToQml(tractionMotorOverheat);
+    }
 
     //oilPressure = gCanDB.GetSignalValueInt(gSignalName_EngineOilPressure,gMessageName_EFL);
    // oilTemp = (gCanDB.GetSignalValueInt(gSignalName_EngineOilTemp, gMessageName_ET1));
@@ -43,23 +66,25 @@ void Motor::ReadStateFromCanDB(){
 
     previousComponentStateString = actualGear;
     //Селектор
-    if (gCanDB.GetSignalValueInt(gSignalName_TransmissionCurrentGear, gMessageName_ETC2) >= 1.0f) actualGear = "D";
-    else if (gCanDB.GetSignalValueInt(gSignalName_TransmissionCurrentGear, gMessageName_ETC2) == 0.0f) actualGear = "N";
-    else if (gCanDB.GetSignalValueInt(gSignalName_TransmissionCurrentGear, gMessageName_ETC2) <= -1.0f) actualGear = "R";
+    //qDebug() << gCanDB.GetSignalValueUint32_t(gSignalName_TransmissionCurrentGear, gMessageName_ETC2);
+    if (gCanDB.GetSignalValueUint32_t(gSignalName_TransmissionCurrentGear, gMessageName_ETC2) == 0x7D) actualGear = "N";
+    else if (gCanDB.GetSignalValueUint32_t(gSignalName_TransmissionCurrentGear, gMessageName_ETC2) == 0xDF) actualGear = "R";
+    else if (gCanDB.GetSignalValueUint32_t(gSignalName_TransmissionCurrentGear, gMessageName_ETC2) == 0xE0) actualGear = "P";
+     else if (gCanDB.GetSignalValueUint32_t(gSignalName_TransmissionCurrentGear, gMessageName_ETC2) == 0xFB) actualGear = "P";
+     else if (gCanDB.GetSignalValueUint32_t(gSignalName_TransmissionCurrentGear, gMessageName_ETC2) == 0xFC) actualGear = "D";
     if (actualGear != previousComponentStateString) emit sendActualGearToQml(actualGear);
 
     previousComponentState = tractionMotorError;
-    if (gCanDB.checkSignalValue_4bit(gCanDB.GetSignalValueUint32_t(gSignalName_MotorError, gMessageName_Motor_1))) tractionMotorError = lamp.redLamp;
-    else if (gCanDB.checkSignalValue_4bit(gCanDB.GetSignalValueUint32_t(gSignalName_MotorWarning, gMessageName_Motor_1))) tractionMotorError = lamp.yellowLamp;
+    if (gCanDB.checkSignalValue_4bit(gCanDB.GetSignalValueUint32_t(gSignalName_EngineRedStopLC, gMessageName_DLCC1))) tractionMotorError = 1;
+    else if (gCanDB.GetSignalValueUint32_t(gSignalName_EngineRedStopLC, gMessageName_DLCC1) == canBus::canSignalStateStructObj.error) tractionMotorError = 2;
+    else if (gCanDB.checkSignalValue_4bit(gCanDB.GetSignalValueUint32_t(gSignalName_EngineAmberWarningLC, gMessageName_DLCC1))) tractionMotorError = 3;
+    else if (gCanDB.GetSignalValueUint32_t(gSignalName_EngineAmberWarningLC, gMessageName_DLCC1) == canBus::canSignalStateStructObj.error) tractionMotorError = 4;
     else tractionMotorError = lamp.off;
     if (tractionMotorError != previousComponentState) emit sendEngineLampToQml(tractionMotorError);
-
 
     //if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_EngineIntakeAirHeating, gMessageName_SHUTDN, &gCanDB), heatingInsideAir)) emit sendHeatingInsideAirToQml(heatingInsideAir);
     //if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_ExhaustSystemError, gMessageName_AT1IG1, &gCanDB), exhaustError)) emit sendExhaustErrorToQml(exhaustError);
     //if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_AutoTrasmissionError, gMessageName_ETC7, &gCanDB), autoTransError)) emit sendAutoTransErrorToQml(autoTransError);
-
-
 
     previousComponentState = circulationPump;
     if (gCanDB.GetSignalValueUint32_t(gSignalName_AuxHeaterModeReq, gMessageName_CM1) == 5) circulationPump = lamp.redLamp;
@@ -68,32 +93,37 @@ void Motor::ReadStateFromCanDB(){
     else circulationPump = lamp.off;
     if (circulationPump != previousComponentState) emit sendCirculationPumpToQml(circulationPump);
 
-    previousComponentState = motorStatus;
-    if (gCanDB.GetSignalValueUint32_t(gSignalName_MotorError, gMessageName_Motor_1) == 1) motorStatus = lamp.redLamp;
-    else if (gCanDB.GetSignalValueUint32_t(gSignalName_MotorWarning, gMessageName_Motor_1) == 1) motorStatus = lamp.yellowLamp;
-    else motorStatus = lamp.off;
-    if (motorStatus != previousComponentState) emit send_steeringWheelToQml(motorStatus);
-
     previousComponentState = steeringWheel;
-    if (gCanDB.GetSignalValueUint32_t(gSignalName_PowerSteeringError, gMessageName_CECU_A0) == 1) steeringWheel = lamp.redLamp;
-    else if (gCanDB.GetSignalValueUint32_t(gSignalName_PowerSteeringOverheat, gMessageName_CECU_A0) == 1) steeringWheel = lamp.yellowLamp;
+    if (gCanDB.GetSignalValueUint32_t(gSignalName_WheelSteerActuatorState, gMessageName_ESC2) == 2) steeringWheel = lamp.redLamp;
+    else if (gCanDB.GetSignalValueUint32_t(gSignalName_WheelSteerActuatorState, gMessageName_ESC2) == 0) steeringWheel = lamp.yellowLamp;
     else steeringWheel = lamp.off;
     if (steeringWheel != previousComponentState) emit send_steeringWheelToQml(steeringWheel);
 
     previousComponentState = isolation;
-    if (gCanDB.GetSignalValueUint32_t(gSignalName_IsoControlError, gMessageName_CECU_A1) == 1) isolation = lamp.redLamp;
-    else if (gCanDB.GetSignalValueUint32_t(gSignalName_IsoControlWarning, gMessageName_CECU_A1) == 1) isolation = lamp.yellowLamp;
-    else if (gCanDB.GetSignalValueUint32_t(gSignalName_IsoControlGreen, gMessageName_CECU_A1) == 1) isolation = lamp.greenLamp;
-    else isolation = lamp.off;
+    if (gCanDB.GetSignalValueUint32_t(gSignalName_Optional4LC, gMessageName_DLCC2) == canBus::canSignalStateStructObj.on) isolation = 5;
+    else if (gCanDB.GetSignalValueUint32_t(gSignalName_Optional4LC, gMessageName_DLCC2) == canBus::canSignalStateStructObj.error) isolation = 4;
+    else if (gCanDB.GetSignalValueUint32_t(gSignalName_Optional3LC, gMessageName_DLCC2) == canBus::canSignalStateStructObj.on) isolation = 3;
+    else if (gCanDB.GetSignalValueUint32_t(gSignalName_Optional3LC, gMessageName_DLCC2) == canBus::canSignalStateStructObj.error) isolation = 2;
+    else isolation = 0;
     if (isolation != previousComponentState) emit send_isolationToQml(isolation);
 
     previousComponentState = pant;
-    if (gCanDB.GetSignalValueUint32_t(gSignalName_PantError, gMessageName_CECU_A0) == 1) pant = 1;
-    else if (gCanDB.GetSignalValueUint32_t(gSignalName_PantMove, gMessageName_CECU_A0) == 1) pant = 2;
-    else if (gCanDB.GetSignalValueUint32_t(gSignalName_PantUp, gMessageName_CECU_A0) == 1) pant = 3;
-    else if (gCanDB.GetSignalValueUint32_t(gSignalName_PantConnect, gMessageName_CECU_A0) == 1) pant = 4;
-    else pant = 0;
-    if (pant != previousComponentState) emit send_pantToQml(pant);
+    uint newPantState = gCanDB.GetSignalValueUint32_t(gSignalName_PantographModuleState, gMessageName_PCM1);
+    if (newPantState == 1) {
+        pant = 1;
+    }
+    else if (newPantState == 2 || (newPantState == 3) || (newPantState == 4) || (newPantState == 5)) {
+        pant = 2;
+    }
+    else if (newPantState == 8 || (newPantState == 9) || (newPantState == 10) || (newPantState == 11) || (newPantState == 12) || (newPantState == 14)) {
+        pant = 3;
+    }
+    else {
+        pant = 0;
+    }
+    if (pant != previousComponentState) {
+        emit send_pantToQml(pant);
+    }
 
     previousComponentState = batteryHeating;
     if (gCanDB.GetSignalValueUint32_t(gSignalName_TmsMode, gMessageName_TMS) == 2) batteryHeating = 1;
@@ -107,7 +137,20 @@ void Motor::ReadStateFromCanDB(){
 
 
     if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_TmsMode, gMessageName_TMS, &gCanDB), tmsOn)) emit send_tmsOnToQml(tmsOn);
-    if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_ChargeConnect, gMessageName_CECU_06, &gCanDB), tmsOn)) emit send_externalCordToQml(externalCord);
+    if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_BatteryCharger1State, gMessageName_BCH1, &gCanDB), chargingStatus)) emit send_externalCordToQml(chargingStatus);
+    if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_EngineCoolantLevelLowLC, gMessageName_DLCC1, &gCanDB), lowLiquidLevelMotorSystem)) emit sendEngineLowCoolantLevelToQml(lowLiquidLevelMotorSystem);
+    if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_ReadyForUseLC, gMessageName_DLCC1, &gCanDB), readyToMove)) emit sendReadyToMoveToQml(readyToMove);
+    if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_VehicleLimitedPerformanceModeLC, gMessageName_DLCC2, &gCanDB), lowPower)) emit sendLowPowerToQml(lowPower);
+
+    previousComponentState = contactor;
+    if (getNewValueFromOneCanSignalU32(gSignalName_HVESS_HvPositiveContactorState, gMessageName_HVESSS1, &gCanDB) == 2 ||
+        getNewValueFromOneCanSignalU32(gSignalName_HVESS_HvNegativeContactorState, gMessageName_HVESSS1, &gCanDB) == 2 ||
+        getNewValueFromOneCanSignalU32(gSignalName_HVESS_HvBusPrechargeRelay, gMessageName_HVESSS1, &gCanDB) == 2 ||
+        getNewValueFromOneCanSignalU32(gSignalName_HVESS_CenterOfPackContactor, gMessageName_HVESSS1, &gCanDB) == 2)
+    {
+        contactor = 2;
+    }
+    if (contactor != previousComponentState) emit send_contactorToQml(contactor);
 }
 
 void Motor::SendStateToQml(){
@@ -119,6 +162,8 @@ void Motor::SendStateToQml(){
 
 }
 void Motor::dashboardLoadFinished(){
+    emit sendLowPowerToQml(lowPower);
+    emit sendReadyToMoveToQml(readyToMove);
     emit sendOverheatMotorToQml(tractionMotorOverheat);
     emit sendEngineLampToQml(tractionMotorError);
     emit sendEngineLowCoolantLevelToQml(lowLiquidLevelMotorSystem);
@@ -129,7 +174,9 @@ void Motor::dashboardLoadFinished(){
     emit send_batteryHeatingToQml(batteryHeating);
     emit send_motorStatusToQml(motorStatus);
     emit send_tmsErrorToQml(tmsError);
-    emit send_externalCordToQml(externalCord);
+    emit send_externalCordToQml(chargingStatus);
     emit send_steeringWheelToQml(steeringWheel);
     emit send_isolationToQml(isolation);
+    emit send_pantToQml(pant);
+    emit send_contactorToQml(contactor);
 }

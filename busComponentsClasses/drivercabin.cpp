@@ -11,7 +11,6 @@ DriverCabin::DriverCabin(QObject *parent) : PrimaryBusComponent(parent)
     WipersAutoStatus = 0;
     HeaterMirrorsStatus = 0;
     WipersStatus = 0;
-    PowerSteering = 0;
     SeatHeating = 0;
 
     WasherFluidLevel = 0;
@@ -30,13 +29,6 @@ void DriverCabin::SetWipersWorkCounter(const uint& inputUint){
 
 void DriverCabin::ReadStateFromCanDB(){
         previousComponentState = 0;
-
-//        previousComponentState = PowerSteering;;
-//        if (gCanDB_ICAN.checkSignalValue_4bit(gCanDB_ICAN.GetSignalValueUint32_t(gSignalName_PowerSteeringError, gMessageName_EVCU_DB1))) PowerSteering = PowerSteeringLamp.LampRed;
-//        else if (gCanDB_ICAN.checkSignalValue_4bit(gCanDB_ICAN.GetSignalValueUint32_t(gSignalName_PowerSteeringOff, gMessageName_EVCU_DB1))) PowerSteering = PowerSteeringLamp.LampYellow;
-//        else PowerSteering = PowerSteeringLamp.LampOff;
-        //qDebug() << PowerSteering;
-//        if (previousComponentState != PowerSteering) emit sendPowerSteeringStatusToQml(PowerSteering);
 
 //        if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_WindshieldHeating, gMessageName_CECU_1, &gCanDB), ElecticHeatedWindshield)) {
 //            emit sendWindshieldHeatingStatusToQml(ElecticHeatedWindshield);
@@ -75,7 +67,6 @@ void DriverCabin::SendStateToQml(){
 void DriverCabin::dashboardLoadFinished(){
     emit sendWindshieldHeatingStatusToQml(ElecticHeatedWindshield);
     emit sendElecticHeatedSideWindowsStatusToQml(ElecticHeatedSideWindows);
-    emit sendPowerSteeringStatusToQml(PowerSteering);
     emit sendWasherFluidLampToQml(WasherFluidLamp);
     emit sendWipersStatusToQml(WipersStatus);
     emit sendWipersAutoStatusToQml(WipersAutoStatus);
