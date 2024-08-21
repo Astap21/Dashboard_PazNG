@@ -1,6 +1,5 @@
-import QtQuick 2.9
-import QtMultimedia 5.9
-import QtQuick 2.0
+import QtQuick 2.11
+import QtMultimedia 5.12
 
 Item {
     id: turnSignals
@@ -10,7 +9,7 @@ Item {
     height: 60
     property int distanceBetweenImages: 100
     property bool test: false
-    property int togglingPeriod: 500
+    property int togglingPeriod: 400
     SignalLamp_C {
         id: turnSignalLeft_L
         x: 0
@@ -64,16 +63,18 @@ Item {
 
     }
     function lampsToggle(turnId){
-        //console.log(turnId)
         if (!timerTurnToggle.running) {
+            //console.log(turnId)
+            turnSignalSound.play()
             timerTurnToggle.start()
         }
     }
     function lampsOff(){
-        //timerTurnToggle.stop()
+        timerTurnToggle.stop()
         turnSignalLeft_L.visible = false
         turnSignalRight_L.visible = false
         timerTurnToggle.running = false
+        turnSignalSound.stop()
     }
     function lampsOn(){
         turnSignalLeft_L.visible = true
@@ -96,13 +97,14 @@ Item {
     SoundEffect{
         id: turnSignalSound
         source: "qrc:/DashboardGeneral/sound/turnSignalSound.wav"
-        volume: 0.0
+        volume: 1.0
     }
     Timer {
         id: timerTurnToggle
         interval: togglingPeriod; running: false; repeat: true
         onTriggered: {
-            //turnSignalSound.play();
+            //console.log("turnSignalLeft_L.visible ")
+            //console.log(turnSignalLeft_L.visible)
             //cинхронное включение двух поворотников
             if (turnSignalRight_L.turnStateOn && turnSignalLeft_L.turnStateOn) {
                 if (turnSignalRight_L.visible){
@@ -131,7 +133,12 @@ Item {
             }
             //console.log("right " + turnSignalRight_L.visible)
             //console.log("left " + turnSignalLeft_L.visible)
-            exteriorLightning.RightTurnLight_lamp = turnSignalRight_L.visible
+            if(turnSignalRight_L.visible || turnSignalLeft_L.visible){
+                turnSignalSound.stop()
+                turnSignalSound.play()
+                //console.log("*")
+            }
+            //exteriorLightning.RightTurnLight_lamp = turnSignalRight_L.visible
         }
     }
 }

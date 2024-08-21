@@ -474,20 +474,10 @@ Item {
 
             }
             function onSendRightTurnSignalLightToQml(inputUint) {
-                if (inputUint === 1){
-                    turnSignals.turnRightOn()
-                }
-                else{
-                    turnSignals.turnRightOff()
-                }
+                turnSignals.turnSignalRightSetState(inputUint)
             }
             function onSendLeftTurnSignalLightToQml(inputUint) {
-                if (inputUint === 1){
-                    turnSignals.turnLeftOn()
-                }
-                else {
-                    turnSignals.turnLeftOff()
-                }
+                turnSignals.turnSignalLeftSetState(inputUint)
             }
             function onSendMarkerLightsToQml(inputUint){
                 if (inputUint) markerLights_L.lampOn()
@@ -1205,9 +1195,9 @@ Item {
 
     SignalLamp_C {
         id: pantograph_L
-        x: 1330
-        y: 104
-        width: 40
+        x: 1332
+        y: 114
+        width: 30
         height: pantograph_L.width
         visible: true
         test: signalLampTest
@@ -1216,8 +1206,8 @@ Item {
 
     SignalLamp_C {
         id: contactorError_L
-        x: 1282
-        y: 99
+        x: 1283
+        y: 100
         width: 45
         height: contactorError_L.width
         visible: true

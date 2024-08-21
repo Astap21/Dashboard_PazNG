@@ -1,4 +1,4 @@
-//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.0.2.dbc, последние изменения Mon Aug 19 14:44:41 2024
+//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Wed Aug 21 12:08:33 2024
 #ifndef CANDATABASE_H_
 #define CANDATABASE_H_
 
@@ -44,13 +44,22 @@ extern canBus::messageNameCharStruct gMessageName_BCH1;
 extern canBus::signalNameCharStruct gSignalName_SeatBeltSwitch;
 extern canBus::messageNameCharStruct gMessageName_BDS;
 
+extern canBus::signalNameCharStruct gSignalName_Btn12_Menu;
+extern canBus::signalNameCharStruct gSignalName_Btn1_Ok;
+extern canBus::signalNameCharStruct gSignalName_Btn2_Back;
+extern canBus::signalNameCharStruct gSignalName_Btn3_Left;
+extern canBus::signalNameCharStruct gSignalName_Btn4_Right;
+extern canBus::signalNameCharStruct gSignalName_Btn5_Vol_P;
+extern canBus::signalNameCharStruct gSignalName_Btn6_Vol_M;
+extern canBus::messageNameCharStruct gMessageName_BJM1;
+
 extern canBus::signalNameCharStruct gSignalName_RoofTemp;
 extern canBus::signalNameCharStruct gSignalName_SalonTemp_1;
 extern canBus::signalNameCharStruct gSignalName_SalonTemp_2;
 extern canBus::signalNameCharStruct gSignalName_SalonTemp_3;
 extern canBus::messageNameCharStruct gMessageName_CCUT1;
 
-extern canBus::signalNameCharStruct gSignalName_CruiseControlActive;
+extern canBus::signalNameCharStruct gSignalName_CruiseControl;
 extern canBus::signalNameCharStruct gSignalName_ParkingBrakeState;
 extern canBus::signalNameCharStruct gSignalName_WheelBasedVehicleSpeed;
 extern canBus::messageNameCharStruct gMessageName_CCVS1;
@@ -63,20 +72,7 @@ extern canBus::signalNameCharStruct gSignalName_MirrorHeatRight;
 extern canBus::messageNameCharStruct gMessageName_CDC;
 
 extern canBus::signalNameCharStruct gSignalName_EstimatedRange;
-extern canBus::signalNameCharStruct gSignalName_PantConnect;
-extern canBus::signalNameCharStruct gSignalName_PantError;
-extern canBus::signalNameCharStruct gSignalName_PantMove;
-extern canBus::signalNameCharStruct gSignalName_PantUp;
-extern canBus::signalNameCharStruct gSignalName_PowerSteeringError;
-extern canBus::signalNameCharStruct gSignalName_PowerSteeringOverheat;
 extern canBus::messageNameCharStruct gMessageName_CECU_A0;
-
-extern canBus::signalNameCharStruct gSignalName_AirCompressorError;
-extern canBus::signalNameCharStruct gSignalName_ContactorError;
-extern canBus::signalNameCharStruct gSignalName_IsoControlError;
-extern canBus::signalNameCharStruct gSignalName_IsoControlGreen;
-extern canBus::signalNameCharStruct gSignalName_IsoControlWarning;
-extern canBus::messageNameCharStruct gMessageName_CECU_A1;
 
 extern canBus::signalNameCharStruct gSignalName_SalonLightning;
 extern canBus::messageNameCharStruct gMessageName_CL;
@@ -182,12 +178,6 @@ extern canBus::messageNameCharStruct gMessageName_ECO;
 extern canBus::signalNameCharStruct gSignalName_RequestOpenRamp1;
 extern canBus::signalNameCharStruct gSignalName_RequestOpenRamp2;
 extern canBus::messageNameCharStruct gMessageName_EDSC2_2;
-
-extern canBus::signalNameCharStruct gSignalName_HvBatteryOn;
-extern canBus::signalNameCharStruct gSignalName_HvCurrent;
-extern canBus::signalNameCharStruct gSignalName_HvSoc;
-extern canBus::signalNameCharStruct gSignalName_HvVoltage;
-extern canBus::messageNameCharStruct gMessageName_ELECTRO_1;
 
 extern canBus::signalNameCharStruct gSignalName_AutoHold;
 extern canBus::signalNameCharStruct gSignalName_ParkingBrake;

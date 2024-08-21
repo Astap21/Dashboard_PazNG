@@ -11,6 +11,8 @@
 #include "busComponentsClasses/drivercabin.h"
 #include "busComponentsClasses/businterior.h"
 #include "busComponentsClasses/doors.h"
+#include "busComponentsClasses/tachograph.h"
+#include "busComponentsClasses/adas.h"
 #include "DashBoardClasses/dashboardclass.h"
 #include "DashBoardClasses/trans.h"
 #include "DashBoardClasses/logtofile.h"
@@ -23,7 +25,7 @@
 
 int main(int argc, char *argv[])
 {
-    QString softVersion = "1.1.0";
+    QString softVersion = "1.1.1";
     //Установка переменных среды
     //qputenv("QT_GSTREAMER_PLAYBIN_AUDIOSINK", "alsasink");
     //qputenv("QT_GSTREAMER_USE_PLAYBIN_VOLUME", "1");
@@ -59,6 +61,14 @@ int main(int argc, char *argv[])
     Doors doors;
     engine.rootContext()->setContextProperty("doors", &doors);
     QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &doors, &Doors::canDBUpdated);
+
+    Tachograph tachograph;
+    engine.rootContext()->setContextProperty("tachograph", &tachograph);
+    QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &doors, &Tachograph::canDBUpdated);
+
+    Adas adas;
+    engine.rootContext()->setContextProperty("adas", &adas);
+    QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &doors, &Adas::canDBUpdated);
 
     BrakeSystem brakeSystem;
     engine.rootContext()->setContextProperty("brakeSystem", &brakeSystem);

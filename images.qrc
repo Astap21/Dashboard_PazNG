@@ -160,8 +160,6 @@
         <file>DashboardGeneral/images/signalLamps/battery/insulationControlFailure.png</file>
         <file>DashboardGeneral/images/signalLamps/battery/insulationControlOk.png</file>
         <file>DashboardGeneral/images/signalLamps/battery/insulationControlWarning.png</file>
-        <file>DashboardGeneral/images/signalLamps/battery/propulsionBatteryFailure.png</file>
-        <file>DashboardGeneral/images/signalLamps/battery/propulsionBatteryFailureYellow.png</file>
         <file>DashboardGeneral/images/signalLamps/battery/tmsCoolantLowLevel.png</file>
         <file>DashboardGeneral/images/signalLamps/battery/tmsFailure.png</file>
         <file>DashboardGeneral/images/signalLamps/battery/tmsOn.png</file>

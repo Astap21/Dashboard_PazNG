@@ -1,6 +1,7 @@
 QT += quick
 CONFIG += c++14
 
+QMAKE_CXXFLAGS += -Ofast
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
 # depend on your compiler). Refer to the documentation for the
@@ -14,6 +15,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 GIT_COMMIT_HASH = $$system(git rev-parse --verify HEAD)
 DEFINES += GIT_COMMIT_HASH="\\\"$$GIT_COMMIT_HASH\\\""
+DEFINES += BUTTONS
 
 INCLUDEPATH += DashboardGeneral
 
@@ -29,8 +31,10 @@ SOURCES += \
     DashboardGeneral/DashBoardClasses/pwm.cpp \
     DashboardGeneral/DashBoardClasses/trans.cpp \
     DashboardGeneral/additionaltask.cpp \
+    DashboardGeneral/busComponentsClasses/adas.cpp \
     DashboardGeneral/busComponentsClasses/exteriorlightning.cpp \
     DashboardGeneral/busComponentsClasses/primarybuscomponent.cpp \
+    DashboardGeneral/busComponentsClasses/tachograph.cpp \
     DashboardGeneral/busComponentsClasses/tire.cpp \
     DashboardGeneral/canDataBase/canDataClass.cpp \
     DashboardGeneral/canDataBase/canMessageClass.cpp \
@@ -81,8 +85,10 @@ HEADERS += \
     DashboardGeneral/DashBoardClasses/pwm.h \
     DashboardGeneral/DashBoardClasses/trans.h \
     DashboardGeneral/additionaltask.h \
+    DashboardGeneral/busComponentsClasses/adas.h \
     DashboardGeneral/busComponentsClasses/exteriorlightning.h \
     DashboardGeneral/busComponentsClasses/primarybuscomponent.h \
+    DashboardGeneral/busComponentsClasses/tachograph.h \
     DashboardGeneral/busComponentsClasses/tire.h \
     DashboardGeneral/canDataBase/canDB_Libs.h \
     DashboardGeneral/canDataBase/canDataClass.h \

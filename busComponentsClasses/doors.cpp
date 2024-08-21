@@ -41,8 +41,6 @@ void Doors::ReadStateFromCanDB(){
     door2State = returnDoorStatus(2);
     if (door2State != previousComponentState) sendDoor2StatusToQml(door2State);
 
-
-
     uint valves1State = returnValveStatus(1);
     uint valves2State = returnValveStatus(2);
 
@@ -86,11 +84,6 @@ bool Doors::getPassControlDoor2(){
 
 bool Doors::getAutoClosing(){
     return autoClosing;
-    autoClosingTime = 0;
-    autoOpening = 0;
-    stepLightning = 0;
-    stepLightningDistance = 0;
-    passSensor = 0;
 }
 uint Doors::getAutoClosingTime(){
     return autoClosingTime;
@@ -152,11 +145,16 @@ void Doors::SendStateToQml(){
 
 }
 uint Doors::GetDoorState(const int& doorNumber){
-    if (doorNumber == 1) return door1State;
-    else if (doorNumber == 2) return door2State;
+    if (doorNumber == 1) {
+        return door1State;
+    }
+    else if (doorNumber == 2) {
+        return door2State;
+    }
     else return 0;
 }
 uint Doors::returnValveStatus(const int &_doorNumber){
+    return 0;
 //    canBus::messageNameCharStruct *EDSC2;
 //    canBus::signalNameCharStruct *ValveOut;
 //    canBus::signalNameCharStruct *ValveIn;
@@ -308,6 +306,9 @@ void Doors::dashboardLoadFinished(){
     sendValveIn2StatusToQml (valvesMap["valvesIn2State"]);
     sendValveOut1StatusToQml (valvesMap["valvesOut1State"]);
     sendValveOut2StatusToQml (valvesMap["valvesOut2State"]);
+
+    sendDoor1StatusToQml(door1State);
+    sendDoor2StatusToQml(door2State);
 
     leastOneCapIsOpen = false;
     leastOneValveIsOpen = false;

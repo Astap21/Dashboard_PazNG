@@ -85,37 +85,6 @@ Item{
         active: false
         source: "qrc:/menu.qml"
         z: 2
-
-        //        Rectangle {
-        //            id: resetMileageWindow
-        //            x: 490
-        //            y: 230
-        //            width: 500
-        //            height: 200
-        //            color: "#302e40"
-        //            radius: 50
-        //            visible: false
-        //            border.color: "#ffffff"
-        //            border.width: 2
-        //            anchors.horizontalCenter: parent.horizontalCenter
-        //            anchors.verticalCenter: parent.verticalCenter
-
-        //            Text {
-        //                id: textResetMileage
-        //                x: 56
-        //                y: 32
-        //                width: 500
-        //                height: 100
-        //                color: "#ffffff"
-        //                text: qsTr("Вы хотите сбросить суточный\nпробег? Да(+) Нет(-)")
-        //                font.family: "Arial"
-        //                horizontalAlignment: Text.AlignHCenter
-        //                verticalAlignment: Text.AlignVCenter
-        //                anchors.horizontalCenter: parent.horizontalCenter
-        //                anchors.verticalCenter: parent.verticalCenter
-        //                font.pixelSize: 35
-        //            }
-        //        }
     }
 
     PressureCircuitBar_C {
@@ -324,6 +293,7 @@ Item{
             exteriorLightning.dashboardLoadFinished()
             driverCabin.dashboardLoadFinished()
             busInterior.dashboardLoadFinished()
+            doors.dashboardLoadFinished()
         }
     }
     PropertyAnimation {
