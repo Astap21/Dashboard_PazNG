@@ -61,5 +61,6 @@
         <file>DashboardGeneral/sound/errorSound.wav</file>
         <file>DashboardGeneral/sound/turnSignalSound.wav</file>
         <file>DashboardGeneral/sound/warningSound.wav</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/ShiftSelector_C.qml</file>
     </qresource>
 </RCC>

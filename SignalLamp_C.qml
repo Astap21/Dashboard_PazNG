@@ -47,6 +47,17 @@ Image {
             toggling = true
         }
     }
+    function checkStatus(status, textArea){
+       if(status === 1){
+           lampOn(textArea)
+       }
+       else if (status === 3){
+           lampToggle(textArea)
+       }
+       else{
+           lampOff(textArea)
+       }
+    }
 
     Timer {
         id: timerToggle

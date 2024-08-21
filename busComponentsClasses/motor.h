@@ -22,6 +22,8 @@ public:
 
 public slots:
     void dashboardLoadFinished( )override;
+    void NeedMovementBanByDoor(const uint& inputUint);
+    void NeedMovementBanByBrakeSystem(const uint& inputUint);
 
 private:
     QString previousComponentStateString = "P";
@@ -61,8 +63,13 @@ private:
     uint isolation = 0;
     uint pant = 0;
     uint contactor = 0;
+    uint movementBanByDoor = 0;
+    uint movementBanByBrakeSystem = 0;
+    uint service = 0;
+    uint fuelLevel;
 
 signals:
+    void sendServiceToQml(const uint& inputUint);
     void sendActualGearToQml(const QString& inputString);
     //ELECTRO
     void sendHvCurrentToQml(const float& inputFloat);
@@ -82,6 +89,7 @@ signals:
 
     void sendEngineTempToQml(const float& inputFloat);
     void sendCirculationPumpToQml(const uint& inputUint);
+    void sendFuelLevelToQml(const uint& inputUint);
 
     void send_tmsErrorToQml(const uint& inputUint);
     void send_tmsOnToQml(const uint& inputUint);

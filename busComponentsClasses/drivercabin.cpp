@@ -50,7 +50,7 @@ void DriverCabin::ReadStateFromCanDB(){
 
         previousComponentState = WasherFluidLamp;
         WasherFluidLevel = gCanDB.GetSignalValueFloat(gSignalName_DD1_WasherFluidLow, gMessageName_DD1_1E);
-        float washerFluidLampLevel_percent = 50;
+        float washerFluidLampLevel_percent = 25;
         float washerFluidHysteresisLevel_percent = 5;
         if (WasherFluidLevel < washerFluidLampLevel_percent) WasherFluidLamp = 1;
         if (WasherFluidLevel > (washerFluidLampLevel_percent + washerFluidHysteresisLevel_percent)) WasherFluidLamp = 0;
@@ -74,4 +74,6 @@ void DriverCabin::dashboardLoadFinished(){
     emit sendOperatorSeatDirectionSwitchToQml(NoDriver);
     emit sendSeatBeltSwitchToQml(SeatBelt);
     emit sendSeatHeatingStatusToQml(SeatHeating);
+    emit sendRouteIndicatorToQml(routeIndicator);
+    emit sendHeatedSteeringToQml(heatedSteering);
 }

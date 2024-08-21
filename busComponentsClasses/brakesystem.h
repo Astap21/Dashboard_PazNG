@@ -98,7 +98,9 @@ private:
     } parkingBrake_Lamp;
     bool minBrakePadsIndication;
     bool tireIndication;
+    uint movementsBan;
 signals:
+    void sendMovementsBanState(const uint& inputUint);
     //TIRE
     void sendPressureFrontLeftTireToQml(const float& inputFloat);
     void sendTempFrontLeftTireToQml(const float& inputFloat);

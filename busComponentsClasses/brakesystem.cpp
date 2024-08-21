@@ -191,7 +191,7 @@ void BrakeSystem::ReadStateFromCanDB(){
     pressure_kpa = gCanDB.GetSignalValueFloat(gSignalName_ParkingAirPressure, gMessageName_AIR1);
     pressureParkingBrake_bar = pressure_kpa / 98.066f;
     if (pressureParkingBrake_bar < lowBarPressure) parkingBrake_Indication = 2;
-    else if (gCanDB.GetSignalValueUint32_t(gSignalName_ParkingBrake, gMessageName_EPBS1) == 1) parkingBrake_Indication = 1;
+    else if (gCanDB.GetSignalValueUint32_t(gSignalName_ParkingBrakeState, gMessageName_CCVS1) == 1) parkingBrake_Indication = 1;
     else if (gCanDB.GetSignalValueUint32_t(gSignalName_AutoHold, gMessageName_EPBS1) == 1) parkingBrake_Indication = 3;
     else if (gCanDB.GetSignalValueUint32_t(gSignalName_EPB_Error, gMessageName_DM1_EPB) == 1) parkingBrake_Indication = 4;
     else parkingBrake_Indication = 0;
@@ -234,6 +234,16 @@ void BrakeSystem::ReadStateFromCanDB(){
 //    if (checkValueChangeBy_1(gCanDB.GetSignalValueFloat(gSignalName_RetarderBrake,gMessageName_ERC1), retarderPercent)){
 //        emit sendRetarderPercentToQml(retarderPercent);
 //    }
+    previousComponentState = movementsBan;
+    if ((parkingBrake_Indication == 1) || pressureCircuit1_Indication || pressureCircuit2_Indication || pressureCircuit3_Indication || pressureCircuit4_Indication){
+        movementsBan = 1;
+    }
+    else{
+        movementsBan = 0;
+    }
+    if (movementsBan != previousComponentState) {
+        emit sendMovementsBanState(movementsBan);
+    }
 }
 void BrakeSystem::SendStateToQml(){
 

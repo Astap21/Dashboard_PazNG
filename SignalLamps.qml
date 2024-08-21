@@ -23,36 +23,12 @@ Item {
         fillMode: Image.PreserveAspectFit
         source: "img/signalLampsFontPazNg_v2.png"
     }
-
-
-    Rectangle {
+    ShiftSelector_C {
         id: shiftSelector
-        x: 921
-        y: 85
-        width: 78
-        height: 78
-        color: "#00000000"
-        radius: 5
-        border.width: 2
-        border.color: "#ffffff"
-
-        Text {
-            id: shiftSelectorText
-            x: 0
-            y: 0
-            width: 78
-            height: 78
-            color: "#ffffff"
-            text: "N"
-            anchors.verticalCenterOffset: 0
-            anchors.horizontalCenterOffset: 0
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
-            font.family: "Arial"
-            font.pixelSize: 75
-        }
+        x: 902
+        y: 84
+        width: 120
+        height: 80
     }
     Connections{
             target: busInterior
@@ -162,6 +138,22 @@ Item {
                 if (inputUint === 1) seatBeltSwitch_L.lampOn()
                 else seatBeltSwitch_L.lampOff()
             }
+            function onSendRouteIndicatorToQml(inputUint){
+                if (inputUint === 1){
+                    route_L.lampOn()
+                }
+                else{
+                    route_L.lampOff()
+                }
+            }
+            function onSendHeatedSteeringToQml(inputUint){
+                if (inputUint === 1){
+                    heatedSteering_L.lampOn()
+                }
+                else{
+                    heatedSteering_L.lampOff()
+                }
+            }
         }
         Connections {
             target: motor
@@ -206,9 +198,13 @@ Item {
                     motorOverheat_L.lampOff()
                 }
             }
-            function onSendActualGearToQml(inputString) {
-                console.log(inputString)
-                shiftSelectorText.text = inputString;
+            function onSendActualGearToQml(inputString){
+                if (inputString === "STOP"){
+                    shiftSelector.viewShiftSelector(false, inputString)
+                }
+                else{
+                    shiftSelector.viewShiftSelector(true, inputString)
+                }
             }
             function onSendEngineLowCoolantLevelToQml(inputUint) {
                 if (inputUint) {
@@ -244,6 +240,18 @@ Item {
                 }
                 else {
                     motorError_L.lampOff()
+                }
+            }
+            function onSendFuelLevelToQml(inputUint) {
+                //console.log(inputUint)
+                if (inputUint < lowFuel_L.criticalLowlevel){
+                    lowFuel_L.lampOn()
+                }
+                else if (inputUint < lowFuel_L.lowLevel && inputUint >= lowFuel_L.criticalLowlevel){
+                    lowFuel_L.lampToggle()
+                }
+                else{
+                    lowFuel_L.lampOff()
                 }
             }
             function onSendBatteryStatusToQml(inputUint){
@@ -399,6 +407,14 @@ Item {
                     contactorError_L.lampOff()
                 }
             }
+            function onSendServiceToQml(inputUint) {
+                if (inputUint === 1) {
+                    wrench_L.lampOn()
+                }
+                else{
+                    wrench_L.lampOff()
+                }
+            }
         }
         Connections{
             target: suspension
@@ -505,7 +521,71 @@ Item {
             }
         }
 
-
+        Connections {
+            target: adas
+            function onSendLdwsToQml(inputUint){
+                ldws_L.checkStatus(inputUint)
+            }
+            function onSendDeadZoneToQml(inputUint){
+                deadZoneRight_L.checkStatus(inputUint)
+                deadZoneLeft_L.checkStatus(inputUint)
+            }
+            function onSendObstacleToQml(inputUint){
+                obstruction_L.checkStatus(inputUint)
+            }
+            function onSendLkasToQml(inputUint){
+                lkas_L.checkStatus(inputUint)
+            }
+            function onSendFcwsToQml(inputUint){
+                fkws_L.checkStatus(inputUint)
+            }
+            function onSendCruiseControlToQml(inputUint){
+                if (inputUint === 1 || inputUint === 6){
+                    cruiseControl_L.lampOn()
+                }
+                else if(inputUint === 7){
+                    cruiseControl_L.lampToggle()
+                }
+                else{
+                    cruiseControl_L.lampOff()
+                }
+            }
+            function onSendParkingAssistanceToQml(inputUint){
+                parkingAssistance_L.checkStatus(inputUint)
+            }
+        }
+        Connections {
+            target: tachograph
+            function onSendTachographError(inputUint){
+                if (inputUint !== 0){
+                    tachographError_L.source = "DashboardGeneral/images/signalLamps/tachograph/tachographFailure.png"
+                }
+                tachographError_L.checkStatus(inputUint)
+            }
+            function onSendTachographWarning(inputUint){
+                if (inputUint !== 0){
+                    tachographError_L.source = "DashboardGeneral/images/signalLamps/tachograph/tachographWarning.png"
+                }
+                tachographError_L.checkStatus(inputUint)
+            }
+            function onSendTachographState(inputUint){
+                if (inputUint === 0){
+                    tachographStatus_L.source =  "DashboardGeneral/images/signalLamps/tachograph/rest.png"
+                    tachographStatus_L.lampOn()
+                }
+                else if(inputUint === 2){
+                    tachographStatus_L.source =  "DashboardGeneral/images/signalLamps/tachograph/workTime.png"
+                    tachographStatus_L.lampOn()
+                }
+                else if(inputUint === 3){
+                    tachographStatus_L.source =  "DashboardGeneral/images/signalLamps/tachograph/move.png"
+                    tachographStatus_L.lampOn()
+                }
+                else{
+                    tachographStatus_L.lampOff()
+                }
+            }
+        }
         Connections {
             target: brakeSystem
             function onSendHillHolderIndicationToQml(inputUint){
@@ -791,7 +871,7 @@ Item {
     TurnSignals_C {
         id: turnSignals
         y: 10
-        width: 829
+        width: 761
         height: 60
         anchors.horizontalCenterOffset: 1
         togglingPeriod: 500
@@ -942,9 +1022,9 @@ Item {
 
     SignalLamp_C {
         id: esc_L
-        x: 522
-        y: 522
-        width: 44
+        x: 519
+        y: 519
+        width: 50
         height: esc_L.width
         source: "DashboardGeneral/images/signalLamps/brakeSystem/ESC_Off.png"
         test: signalLampTest
@@ -984,10 +1064,10 @@ Item {
     SignalLamp_C {
         id: route_L
         x: 680
-        y: 531
+        y: 521
         width: 45
         height: route_L.width
-        visible: false
+        visible: true
         source: "DashboardGeneral/images/signalLamps/route.png"
         fillMode: Image.PreserveAspectFit
         test: signalLampTest
@@ -1238,8 +1318,8 @@ Item {
 
     SignalLamp_C {
         id: asr_L
-        x: 577
-        y: 522
+        x: 477
+        y: 523
         width: 44
         height: asr_L.width
         test: signalLampTest
@@ -1254,5 +1334,151 @@ Item {
         height: hilHolder_L.width
         test: signalLampTest
         source: "DashboardGeneral/images/signalLamps/brakeSystem/hillHolder.png"
+    }
+    SignalLamp_C {
+        id: deadZoneRight_L
+        x: 336
+        y: 499
+        width: 50
+        height: deadZoneRight_L.width
+        visible: true
+        source: "DashboardGeneral/images/signalLamps/ADAS/deadZoneRight.png"
+        test: signalLampTest
+    }
+
+    SignalLamp_C {
+        id: deadZoneLeft_L
+        x: 369
+        y: 499
+        width: 50
+        height: deadZoneLeft_L.width
+        visible: true
+        source: "DashboardGeneral/images/signalLamps/ADAS/deadZoneLeft.png"
+        test: signalLampTest
+    }
+
+    SignalLamp_C {
+        id: obstruction_L
+        x: 269
+        y: 466
+        width: 35
+        height: width + 15
+        visible: true
+        source: "DashboardGeneral/images/signalLamps/ADAS/obstruction.png"
+        fillMode: Image.PreserveAspectCrop
+        test: signalLampTest
+    }
+
+    SignalLamp_C {
+        id: ldws_L
+        x: 205
+        y: 348
+        width: 47
+        height: ldws_L.width
+        visible: true
+        source: "DashboardGeneral/images/signalLamps/ADAS/ldws.png"
+        test: signalLampTest
+    }
+
+    SignalLamp_C {
+        id: lkas_L
+        x: 212
+        y: 278
+        width: 65
+        height: width - 25
+        visible: true
+        source: "DashboardGeneral/images/signalLamps/ADAS/lkas.png"
+        fillMode: Image.PreserveAspectCrop
+        test: signalLampTest
+    }
+    SignalLamp_C {
+        id: tachographError_L
+        x: 441
+        y: 224
+        width: 50
+        height: tachographError_L.width
+        visible: true
+        source: "DashboardGeneral/images/signalLamps/tachograph/tachographWarning.png"
+        test: signalLampTest
+    }
+
+    SignalLamp_C {
+        id: tachographStatus_L
+        x: 368
+        y: 275
+        width: 30
+        height: tachographStatus_L.width
+        visible: true
+        source: "DashboardGeneral/images/signalLamps/tachograph/workTime.png"
+        fillMode: Image.PreserveAspectFit
+        test: signalLampTest
+    }
+
+    SignalLamp_C {
+        id: cruiseControl_L
+        x: 443
+        y: 471
+        width: 42
+        height: cruiseControl_L.width
+        visible: true
+        source: "DashboardGeneral/images/signalLamps/motorSystem/cruiseControl.png"
+        test: signalLampTest
+    }
+
+    SignalLamp_C {
+        id: fkws_L
+        x: 218
+        y: 417
+        width: 50
+        height: fkws_L.width
+        visible: true
+        source: "DashboardGeneral/images/signalLamps/ADAS/fkws.png"
+        test: signalLampTest
+    }
+    SignalLamp_C {
+        id: wrench_L
+        x: 491
+        y: 274
+        width: 45
+        height: wrench_L.width
+        visible: true
+        source: "DashboardGeneral/images/signalLamps/service.png"
+        test: signalLampTest
+    }
+
+    SignalLamp_C {
+        id: parkingAssistance_L
+        x: 990
+        y: 524
+        width: 40
+        height: parkingAssistance_L.width
+        source: "DashboardGeneral/images/signalLamps/steering/parkingAssistance.png"
+        mirror: false
+        test: signalLampTest
+    }
+
+    SignalLamp_C {
+        id: heatedSteering_L
+        x: 577
+        y: 522
+        width: 45
+        height: width+10
+        source: "DashboardGeneral/images/signalLamps/steering/heatedSteering.png"
+        fillMode: Image.PreserveAspectCrop
+        test: signalLampTest
+    }
+
+    SignalLamp_C {
+        id: lowFuel_L
+        x: 809
+        y: 156
+        width: 30
+        height: lowFuel_L.width
+        fillMode: Image.PreserveAspectFit
+        source: "DashboardGeneral/images/signalLamps/motorSystem/lowFuel.png"
+        visible: true
+        test: signalLampTest
+        property int lowLevel: 25
+        property int criticalLowlevel: 15
     }
 }

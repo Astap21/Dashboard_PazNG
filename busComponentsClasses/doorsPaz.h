@@ -13,8 +13,6 @@ public:
     explicit DoorsPaz(QObject *parent = nullptr);
     uint returnDoorStatus(const int& doorNumber) override;
     uint returnValveStatus(const int& doorNumber) override;
-    void SendStateToQml() override;
-
 };
 
 #endif // DOORSPAZ_H

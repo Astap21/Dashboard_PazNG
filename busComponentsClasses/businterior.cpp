@@ -27,7 +27,11 @@ BusInterior::BusInterior(QObject *parent) : PrimaryBusComponent(parent)
 void BusInterior::ReadStateFromCanDB(){
         previousComponentState = 0;
 
-        if (checkValueChange(uint(getNewValueFromOneCanSignalF(gSignalName_SalonLightning, gMessageName_CL, &gCanDB)), interiorLightning)) emit sendInteriorLightingToQml(interiorLightning);
+        if (checkValueChange(uint(getNewValueFromOneCanSignalF(gSignalName_SalonLightning, gMessageName_CL, &gCanDB)), interiorLightning)) {
+            const float roundStep = 25.0;
+            interiorLightning = qRound(interiorLightning / roundStep) * roundStep;
+            emit sendInteriorLightingToQml(interiorLightning);
+        }
 //        if (checkValueChange(uint(getNewValueFromOneCanSignalF(gSignalName_LiquidHeater, gMessageName_CM1)), liquidHeater)) emit sendLiquidHeaterToQml(liquidHeater);
 //        if (checkValueChange(uint(getNewValueFromOneCanSignalF(gSignalName_LowFuelLevel, gMessageName_DLCD2)), fuelLevelLamp)) emit sendFuelLevelLampToQml(fuelLevelLamp);
         if (checkValueChange(uint(getNewValueFromOneCanSignalU32(gSignalName_RampError, gMessageName_DC1, &gCanDB)), rampError)) emit sendRampErrorToQml(rampError);

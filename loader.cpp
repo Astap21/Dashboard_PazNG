@@ -25,7 +25,7 @@
 
 int main(int argc, char *argv[])
 {
-    QString softVersion = "1.1.1";
+    QString softVersion = "1.1.2";
     //Установка переменных среды
     //qputenv("QT_GSTREAMER_PLAYBIN_AUDIOSINK", "alsasink");
     //qputenv("QT_GSTREAMER_USE_PLAYBIN_VOLUME", "1");
@@ -114,6 +114,9 @@ int main(int argc, char *argv[])
     softVersion = softVersion  + " - " + QString::number(GetGitCommitHash(),16);
     qDebug() << "softVersion " << softVersion;
     AdditionalTasks additionalTasks("additionalTasksOdject", &interfaceForConnectToQml, softVersion);
+
+    QObject::connect(&brakeSystem, &BrakeSystem::sendMovementsBanState, &motor, &Motor::NeedMovementBanByBrakeSystem);
+    QObject::connect(&doors, &Doors::sendMovementsBanState, &motor, &Motor::NeedMovementBanByDoor);
 
     // Register the .qrc file containing QML resources
     QResource::registerResource(":/images.qrc");

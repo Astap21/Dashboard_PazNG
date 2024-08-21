@@ -30,6 +30,8 @@ private:
     uint NoDriver = 0;
     uint SeatHeating = 0;
     float WasherFluidLevel = 0;
+    uint routeIndicator = 0;
+    uint heatedSteering = 0;
     struct {
         uint8_t LampOff = 0;
         uint8_t LampOnSpeed1 = 1;
@@ -49,6 +51,8 @@ signals:
     void sendOperatorSeatDirectionSwitchToQml(const uint& inputUint);
     void sendSeatBeltSwitchToQml(const uint& inputUint);
     void sendWipersWorkCounter(const uint& inputUint);
+    void sendRouteIndicatorToQml(const uint& inputUint);
+    void sendHeatedSteeringToQml(const uint& inputUint);
 };
 
 #endif // DRIVERCABIN_H

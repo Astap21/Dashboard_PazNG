@@ -294,6 +294,8 @@ Item{
             driverCabin.dashboardLoadFinished()
             busInterior.dashboardLoadFinished()
             doors.dashboardLoadFinished()
+            adas.dashboardLoadFinished()
+            tachograph.dashboardLoadFinished()
         }
     }
     PropertyAnimation {

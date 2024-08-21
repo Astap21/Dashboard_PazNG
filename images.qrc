@@ -176,5 +176,7 @@
         <file>DashboardGeneral/images/signalLamps/brakeSystem/compressorError.png</file>
         <file>DashboardGeneral/images/signalLamps/battery/contactorFailure.png</file>
         <file>DashboardGeneral/images/signalLamps/brakeSystem/ASR_Yellow.png</file>
+        <file>DashboardGeneral/images/signalLamps/ADAS/fkws.png</file>
+        <file>DashboardGeneral/images/signalLamps/ADAS/deadZoneLeft.png</file>
     </qresource>
 </RCC>

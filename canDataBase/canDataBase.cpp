@@ -408,7 +408,7 @@ static CanMessageRx ET1(gMessageName_ET1, ET1_arraySignals, ET1_NumberOfSignals,
 
 const uint8_t ETC2_NumberOfSignals = 1;
 signalNameCharStruct gSignalName_TransmissionCurrentGear{"TransmissionCurrentGear",MAX_LENGTH_NAME};
-static CanSignal TransmissionCurrentGear{ 24, 8, gSignalName_TransmissionCurrentGear, 1, -125, canIntel, canUint, 130, -125, 0};
+static CanSignal TransmissionCurrentGear{ 24, 8, gSignalName_TransmissionCurrentGear, 1, 0, canIntel, canUint, 0, 0, 0};
 static CanSignal *ETC2_arraySignals[ETC2_NumberOfSignals] = {&TransmissionCurrentGear};
 messageNameCharStruct gMessageName_ETC2{"ETC2",MAX_LENGTH_NAME};
 static CanMessageRx ETC2(gMessageName_ETC2, ETC2_arraySignals, ETC2_NumberOfSignals, 0x18F0055B, 8, 100);

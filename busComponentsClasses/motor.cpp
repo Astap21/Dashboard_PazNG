@@ -5,7 +5,7 @@
 
 Motor::Motor(QObject *parent) : PrimaryBusComponent(parent)
 {
-    actualGear = "P";
+    actualGear = "STOP";
     tractionMotorError = 0;
     tractionMotorOverheat = 0;
     lowLiquidLevelMotorSystem = 0;
@@ -18,6 +18,7 @@ Motor::Motor(QObject *parent) : PrimaryBusComponent(parent)
 void Motor::ReadStateFromCanDB(){
 
     vehicleSpeed = gCanDB.GetSignalValueFloat(gSignalName_WheelBasedVehicleSpeed,gMessageName_CCVS1);
+    fuelLevel = gCanDB.GetSignalValueInt(gSignalName_DD1_ReserveFuelLevel,gMessageName_DD1_12);
     hvCurrent = gCanDB.GetSignalValueFloat(gSignalName_HVESS_Current, gMessageName_HVESSD1);
     hvVoltage = gCanDB.GetSignalValueFloat(gSignalName_HVESS_VoltageLevel, gMessageName_HVESSD1);
     hvSoc = gCanDB.GetSignalValueFloat(gSignalName_HVESS_FastUpdateSoc, gMessageName_HVESSD2);
@@ -66,12 +67,19 @@ void Motor::ReadStateFromCanDB(){
 
     previousComponentStateString = actualGear;
     //Селектор
-    //qDebug() << gCanDB.GetSignalValueUint32_t(gSignalName_TransmissionCurrentGear, gMessageName_ETC2);
-    if (gCanDB.GetSignalValueUint32_t(gSignalName_TransmissionCurrentGear, gMessageName_ETC2) == 0x7D) actualGear = "N";
-    else if (gCanDB.GetSignalValueUint32_t(gSignalName_TransmissionCurrentGear, gMessageName_ETC2) == 0xDF) actualGear = "R";
-    else if (gCanDB.GetSignalValueUint32_t(gSignalName_TransmissionCurrentGear, gMessageName_ETC2) == 0xE0) actualGear = "P";
-     else if (gCanDB.GetSignalValueUint32_t(gSignalName_TransmissionCurrentGear, gMessageName_ETC2) == 0xFB) actualGear = "P";
-     else if (gCanDB.GetSignalValueUint32_t(gSignalName_TransmissionCurrentGear, gMessageName_ETC2) == 0xFC) actualGear = "D";
+    uint8_t gear = gCanDB.GetSignalValueUint32_t(gSignalName_TransmissionCurrentGear, gMessageName_ETC2);
+    if (movementBanByDoor || movementBanByBrakeSystem){
+        actualGear = "STOP";
+    }
+    else if (gear == 0x7D) actualGear = "N";
+    else if (gear == 0xDF) actualGear = "R";
+    else if (gear == 0xE0) actualGear = "P";
+    else if (gear == 0xFB) actualGear = "P";
+    else if (gear == 0xFC) actualGear = "D";
+    else{
+        qDebug() << "Actual gear error -" << gear;
+        actualGear = "STOP";
+    }
     if (actualGear != previousComponentStateString) emit sendActualGearToQml(actualGear);
 
     previousComponentState = tractionMotorError;
@@ -159,9 +167,12 @@ void Motor::SendStateToQml(){
     emit sendHvVoltageToQml(hvVoltage);
     emit sendHvSocToQml(hvSoc);
     emit sendEngineTempToQml(engineTemp);
-
+    emit sendFuelLevelToQml(fuelLevel);
 }
 void Motor::dashboardLoadFinished(){
+    emit sendServiceToQml(service);
+    emit sendActualGearToQml(actualGear);
+
     emit sendLowPowerToQml(lowPower);
     emit sendReadyToMoveToQml(readyToMove);
     emit sendOverheatMotorToQml(tractionMotorOverheat);
@@ -179,4 +190,10 @@ void Motor::dashboardLoadFinished(){
     emit send_isolationToQml(isolation);
     emit send_pantToQml(pant);
     emit send_contactorToQml(contactor);
+}
+void Motor::NeedMovementBanByDoor(const uint& inputUint){
+    movementBanByDoor = inputUint;
+}
+void Motor::NeedMovementBanByBrakeSystem(const uint& inputUint){
+    movementBanByBrakeSystem = inputUint;
 }
