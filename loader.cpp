@@ -10,7 +10,7 @@
 #include "busComponentsClasses/exteriorlightning.h"
 #include "busComponentsClasses/drivercabin.h"
 #include "busComponentsClasses/businterior.h"
-#include "busComponentsClasses/doors.h"
+#include "busComponentsClasses/doorsPaz.h"
 #include "busComponentsClasses/tachograph.h"
 #include "busComponentsClasses/adas.h"
 #include "DashBoardClasses/dashboardclass.h"
@@ -58,9 +58,9 @@ int main(int argc, char *argv[])
     //pwm.playSound(1);
     //pwm.playSound(2);
 
-    Doors doors;
+    DoorsPaz doors;
     engine.rootContext()->setContextProperty("doors", &doors);
-    QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &doors, &Doors::canDBUpdated);
+    QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &doors, &DoorsPaz::canDBUpdated);
 
     Tachograph tachograph;
     engine.rootContext()->setContextProperty("tachograph", &tachograph);
