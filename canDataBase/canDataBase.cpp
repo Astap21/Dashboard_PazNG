@@ -441,14 +441,14 @@ signalNameCharStruct gSignalName_HVESS_VoltageLevel{"HVESS_VoltageLevel",MAX_LEN
 static CanSignal HVESS_VoltageLevel{ 32, 16, gSignalName_HVESS_VoltageLevel, 0.05, 0, canIntel, canUint, 3212.75, 0, 0};
 static CanSignal *HVESSD1_arraySignals[HVESSD1_NumberOfSignals] = {&HVESS_Current, &HVESS_VoltageLevel};
 messageNameCharStruct gMessageName_HVESSD1{"HVESSD1",MAX_LENGTH_NAME};
-static CanMessageRx HVESSD1(gMessageName_HVESSD1, HVESSD1_arraySignals, HVESSD1_NumberOfSignals, 0x18F090F3, 8, 20);
+static CanMessageRx HVESSD1(gMessageName_HVESSD1, HVESSD1_arraySignals, HVESSD1_NumberOfSignals, 0x0CF090F3, 8, 20);
 
 const uint8_t HVESSD2_NumberOfSignals = 1;
 signalNameCharStruct gSignalName_HVESS_FastUpdateSoc{"HVESS_FastUpdateSoc",MAX_LENGTH_NAME};
 static CanSignal HVESS_FastUpdateSoc{ 0, 16, gSignalName_HVESS_FastUpdateSoc, 0.0015625, 0, canIntel, canUint, 100, 0, 0};
 static CanSignal *HVESSD2_arraySignals[HVESSD2_NumberOfSignals] = {&HVESS_FastUpdateSoc};
 messageNameCharStruct gMessageName_HVESSD2{"HVESSD2",MAX_LENGTH_NAME};
-static CanMessageRx HVESSD2(gMessageName_HVESSD2, HVESSD2_arraySignals, HVESSD2_NumberOfSignals, 0x18F091F3, 8, 20);
+static CanMessageRx HVESSD2(gMessageName_HVESSD2, HVESSD2_arraySignals, HVESSD2_NumberOfSignals, 0x0CF091F3, 8, 20);
 
 const uint8_t HVESSS1_NumberOfSignals = 5;
 signalNameCharStruct gSignalName_HVESS_CenterOfPackContactor{"HVESS_CenterOfPackContactor",MAX_LENGTH_NAME};
