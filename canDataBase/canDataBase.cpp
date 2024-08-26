@@ -1,4 +1,4 @@
-//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Wed Aug 21 12:08:33 2024
+//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Thu Aug 22 14:58:24 2024
 #include "canDataBase/canDataBase.h"
 
 using namespace canBus;
@@ -287,7 +287,7 @@ signalNameCharStruct gSignalName_Door1RqOpenPas{"Door1RqOpenPas",MAX_LENGTH_NAME
 static CanSignal Door1RqOpenPas{ 38, 2, gSignalName_Door1RqOpenPas, 1, 0, canIntel, canUint, 0, 0, 0};
 static CanSignal *DOZC_1_arraySignals[DOZC_1_NumberOfSignals] = {&Door1Close, &Door1Closing, &Door1EmergencyOpening1, &Door1NotDefine, &Door1Open, &Door1Opening, &Door1Pinching, &Door1RqOpenInv, &Door1RqOpenPas};
 messageNameCharStruct gMessageName_DOZC_1{"DOZC_1",MAX_LENGTH_NAME};
-static CanMessageRx DOZC_1(gMessageName_DOZC_1, DOZC_1_arraySignals, DOZC_1_NumberOfSignals, 0x18FC1ECC, 8, 100);
+static CanMessageRx DOZC_1(gMessageName_DOZC_1, DOZC_1_arraySignals, DOZC_1_NumberOfSignals, 0x18FD1ECC, 8, 100);
 
 const uint8_t DOZC_2_NumberOfSignals = 9;
 signalNameCharStruct gSignalName_Door2Close{"Door2Close",MAX_LENGTH_NAME};
@@ -310,7 +310,7 @@ signalNameCharStruct gSignalName_Door2RqOpenPas{"Door2RqOpenPas",MAX_LENGTH_NAME
 static CanSignal Door2RqOpenPas{ 38, 2, gSignalName_Door2RqOpenPas, 1, 0, canIntel, canUint, 0, 0, 0};
 static CanSignal *DOZC_2_arraySignals[DOZC_2_NumberOfSignals] = {&Door2Close, &Door2Closing, &Door2EmergencyOpening1, &Door2NotDefine, &Door2Open, &Door2Opening, &Door2Pinching, &Door2RqOpenInv, &Door2RqOpenPas};
 messageNameCharStruct gMessageName_DOZC_2{"DOZC_2",MAX_LENGTH_NAME};
-static CanMessageRx DOZC_2(gMessageName_DOZC_2, DOZC_2_arraySignals, DOZC_2_NumberOfSignals, 0x18FC1ECD, 8, 100);
+static CanMessageRx DOZC_2(gMessageName_DOZC_2, DOZC_2_arraySignals, DOZC_2_NumberOfSignals, 0x18FD1ECD, 8, 100);
 
 const uint8_t EBC1_NumberOfSignals = 10;
 signalNameCharStruct gSignalName_ABS_Active{"ABS_Active",MAX_LENGTH_NAME};

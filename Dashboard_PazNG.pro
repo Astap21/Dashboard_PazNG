@@ -98,6 +98,7 @@ HEADERS += \
     DashboardGeneral/canDataBase/canSignalClass.h \
     DashboardGeneral/can_bus.h \
     DashboardGeneral/qml_interface.h \
+    DashboardGeneral/signal_lamp.h \
     busComponentsClasses/brakesystem.h \
     busComponentsClasses/businterior.h \
     busComponentsClasses/doorsPaz.h \

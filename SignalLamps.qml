@@ -618,7 +618,7 @@ Item {
             }
             function onSendESC_IndicationToQml(inputUint){
                 if (inputUint === 3){
-                    esc_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ESC_Off.png"
+                    esc_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ESC_Off_2.png"
                     esc_L.lampOn()
                     warningSound.play()
                 }
@@ -670,16 +670,15 @@ Item {
             }
             function onSendPressureCircuitParkBrakeToQml(inputUint){
                 if (inputUint === 1) {
+                    errorSound.play()
                     parkingBrake_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuitParkBrakeFailure.png"
                     parkingBrake_L.lampOn()
                 }
                 else if (inputUint === 2){
-                    errorSound.play()
                     parkingBrake_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuitParkBrakeFailure.png"
                     parkingBrake_L.lampToggle()
                 }
                 else if (inputUint === 3){
-                    errorSound.play()
                     parkingBrake_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/autoHold.png"
                     parkingBrake_L.lampOn()
                 }
@@ -1022,11 +1021,12 @@ Item {
 
     SignalLamp_C {
         id: esc_L
-        x: 519
-        y: 519
+        x: 520
+        y: 526
         width: 50
         height: esc_L.width
-        source: "DashboardGeneral/images/signalLamps/brakeSystem/ESC_Off.png"
+        fillMode: Image.PreserveAspectFit
+        source: "DashboardGeneral/images/signalLamps/brakeSystem/ESC_Off_2.png"
         test: signalLampTest
     }
 
@@ -1265,10 +1265,11 @@ Item {
 
     SignalLamp_C {
         id: lowPower_L
-        x: 1038
-        y: 522
-        width: 45
+        x: 1043
+        y: 525
+        width: 40
         height: width
+        fillMode: Image.PreserveAspectFit
         test: signalLampTest
         source: "DashboardGeneral/images/signalLamps/motorSystem/lowPower.png"
     }
@@ -1404,11 +1405,11 @@ Item {
 
     SignalLamp_C {
         id: tachographStatus_L
-        x: 368
+        x: 360
         y: 275
         width: 30
         height: tachographStatus_L.width
-        visible: true
+        visible: false
         source: "DashboardGeneral/images/signalLamps/tachograph/workTime.png"
         fillMode: Image.PreserveAspectFit
         test: signalLampTest
@@ -1476,7 +1477,7 @@ Item {
         height: lowFuel_L.width
         fillMode: Image.PreserveAspectFit
         source: "DashboardGeneral/images/signalLamps/motorSystem/lowFuel.png"
-        visible: true
+        visible: false
         test: signalLampTest
         property int lowLevel: 25
         property int criticalLowlevel: 15

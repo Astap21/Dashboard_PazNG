@@ -188,14 +188,26 @@ void BrakeSystem::ReadStateFromCanDB(){
 
     previousComponentState = parkingBrake_Indication;
     //qDebug() << parkingBrake_Indication;
-    pressure_kpa = gCanDB.GetSignalValueFloat(gSignalName_ParkingAirPressure, gMessageName_AIR1);
-    pressureParkingBrake_bar = pressure_kpa / 98.066f;
-    if (pressureParkingBrake_bar < lowBarPressure) parkingBrake_Indication = 2;
-    else if (gCanDB.GetSignalValueUint32_t(gSignalName_ParkingBrakeState, gMessageName_CCVS1) == 1) parkingBrake_Indication = 1;
-    else if (gCanDB.GetSignalValueUint32_t(gSignalName_AutoHold, gMessageName_EPBS1) == 1) parkingBrake_Indication = 3;
-    else if (gCanDB.GetSignalValueUint32_t(gSignalName_EPB_Error, gMessageName_DM1_EPB) == 1) parkingBrake_Indication = 4;
-    else parkingBrake_Indication = 0;
-    if (parkingBrake_Indication != previousComponentState) emit sendPressureCircuitParkBrakeToQml(parkingBrake_Indication);
+//    pressure_kpa = gCanDB.GetSignalValueFloat(gSignalName_ParkingAirPressure, gMessageName_AIR1);
+//    pressureParkingBrake_bar = pressure_kpa / 98.066f;
+//    if (pressureParkingBrake_bar < lowBarPressure) {
+//        parkingBrake_Indication = 1;
+//    }
+    if (gCanDB.GetSignalValueUint32_t(gSignalName_ParkingBrakeState, gMessageName_CCVS1) == 1) {
+        parkingBrake_Indication = 2;
+    }
+    else if (gCanDB.GetSignalValueUint32_t(gSignalName_AutoHold, gMessageName_EPBS1) == 1) {
+        parkingBrake_Indication = 3;
+    }
+    else if (gCanDB.GetSignalValueUint32_t(gSignalName_EPB_Error, gMessageName_DM1_EPB) == 1) {
+        parkingBrake_Indication = 4;
+    }
+    else {
+        parkingBrake_Indication = 0;
+    }
+    if (parkingBrake_Indication != previousComponentState) {
+        emit sendPressureCircuitParkBrakeToQml(parkingBrake_Indication);
+    }
 
     if (checkValueChangeBy_1(gCanDB.GetSignalValueFloat(gSignalName_FrontAxleLeft,gMessageName_EBC4), frontLeftBrakePads_Percent)){
         emit sendFrontLeftBrakePercentToQml(frontLeftBrakePads_Percent);

@@ -167,7 +167,7 @@ void Motor::SendStateToQml(){
     emit sendHvVoltageToQml(hvVoltage);
     emit sendHvSocToQml(hvSoc);
     emit sendEngineTempToQml(engineTemp);
-    emit sendFuelLevelToQml(fuelLevel);
+    //emit sendFuelLevelToQml(fuelLevel);
 }
 void Motor::dashboardLoadFinished(){
     emit sendServiceToQml(service);

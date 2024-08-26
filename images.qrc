@@ -178,5 +178,7 @@
         <file>DashboardGeneral/images/signalLamps/brakeSystem/ASR_Yellow.png</file>
         <file>DashboardGeneral/images/signalLamps/ADAS/fkws.png</file>
         <file>DashboardGeneral/images/signalLamps/ADAS/deadZoneLeft.png</file>
+        <file>DashboardGeneral/images/signalLamps/brakeSystem/ESC_Off_2.png</file>
+        <file>DashboardGeneral/images/signalLamps/brakeSystem/removeMoveBlock.png</file>
     </qresource>
 </RCC>
