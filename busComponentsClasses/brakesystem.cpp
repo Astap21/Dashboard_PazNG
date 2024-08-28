@@ -110,8 +110,8 @@ void BrakeSystem::ReadStateFromCanDB(){
     if (pressureCircuit4_Indication != previousComponentState) emit sendPressureCircuit4LampToQml(pressureCircuit4_Indication);
 
     previousComponentState = EBS_Indication;
-    if (gCanDB.checkSignalValue_4bit(gCanDB.GetSignalValueUint32_t(gSignalName_EBS_RedLamp, gMessageName_EBC1))) EBS_Indication = EBS_Lamp.redLamp;
-    else if (gCanDB.checkSignalValue_4bit(gCanDB.GetSignalValueUint32_t(gSignalName_EBS_WarningLamp, gMessageName_EBC1))) EBS_Indication = EBS_Lamp.yellowLamp;
+    if (gCanDB.GetSignalValueUint32_t(gSignalName_EBS_RedLamp, gMessageName_EBC1) == canBus::canSignalStateStructObj.on) EBS_Indication = EBS_Lamp.redLamp;
+    else if (gCanDB.GetSignalValueUint32_t(gSignalName_EBS_WarningLamp, gMessageName_EBC1) == canBus::canSignalStateStructObj.on) EBS_Indication = EBS_Lamp.yellowLamp;
     else EBS_Indication = EBS_Lamp.off;
 //    uint32_t CountMissedMessages = gCanDB.CheckNumberMissedMessages(gCanDB.GetMessageId(gMessageName_EBC1));
 //    uint32_t limitMissedMessages = 5;
@@ -159,7 +159,7 @@ void BrakeSystem::ReadStateFromCanDB(){
     if ((gCanDB.GetSignalValueUint32_t(gSignalName_VDC_InformationSignal, gMessageName_VDC1) == 1) &&
             (gCanDB.GetSignalValueUint32_t(gSignalName_ASR_OffRoadSwitch, gMessageName_EBC1) == 1))
     {
-            ESC_Indication = ESC_Lamp.lampESC_Off;
+            ESC_Indication = ESC_Lamp.toggleLampESC_Off;
     }
     else if ((gCanDB.GetSignalValueUint32_t(gSignalName_VDC_InformationSignal, gMessageName_VDC1) == 1) &&
             (gCanDB.GetSignalValueUint32_t(gSignalName_VDC_FullyOperational, gMessageName_VDC1) == 1))

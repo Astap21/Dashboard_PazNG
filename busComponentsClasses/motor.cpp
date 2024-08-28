@@ -83,9 +83,9 @@ void Motor::ReadStateFromCanDB(){
     if (actualGear != previousComponentStateString) emit sendActualGearToQml(actualGear);
 
     previousComponentState = tractionMotorError;
-    if (gCanDB.checkSignalValue_4bit(gCanDB.GetSignalValueUint32_t(gSignalName_EngineRedStopLC, gMessageName_DLCC1))) tractionMotorError = 1;
+    if (gCanDB.GetSignalValueUint32_t(gSignalName_EngineRedStopLC, gMessageName_DLCC1) == canBus::canSignalStateStructObj.on) tractionMotorError = 1;
     else if (gCanDB.GetSignalValueUint32_t(gSignalName_EngineRedStopLC, gMessageName_DLCC1) == canBus::canSignalStateStructObj.error) tractionMotorError = 2;
-    else if (gCanDB.checkSignalValue_4bit(gCanDB.GetSignalValueUint32_t(gSignalName_EngineAmberWarningLC, gMessageName_DLCC1))) tractionMotorError = 3;
+    else if (gCanDB.GetSignalValueUint32_t(gSignalName_EngineAmberWarningLC, gMessageName_DLCC1) == canBus::canSignalStateStructObj.on) tractionMotorError = 3;
     else if (gCanDB.GetSignalValueUint32_t(gSignalName_EngineAmberWarningLC, gMessageName_DLCC1) == canBus::canSignalStateStructObj.error) tractionMotorError = 4;
     else tractionMotorError = lamp.off;
     if (tractionMotorError != previousComponentState) emit sendEngineLampToQml(tractionMotorError);

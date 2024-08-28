@@ -73,6 +73,7 @@ private:
         uint8_t toggleLampESC_On = 1;
         uint8_t lampESC_On = 2;
         uint8_t lampESC_Off = 3;
+        uint8_t toggleLampESC_Off = 4;
     } ESC_Lamp;
     uint HillHolder_Indication = 0;
     struct {

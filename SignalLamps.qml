@@ -617,9 +617,9 @@ Item {
                 }
             }
             function onSendESC_IndicationToQml(inputUint){
-                if (inputUint === 3){
+                if (inputUint === 4){
                     esc_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ESC_Off_2.png"
-                    esc_L.lampOn()
+                    esc_L.lampToggle()
                     warningSound.play()
                 }
                 else if (inputUint === 2){
@@ -648,25 +648,25 @@ Item {
             }
 
             function onSendTractionControlToQml(inputUint){
-                if (inputUint === 1){
-                   tractionControl_L.lampOn()
-                   tractionControl_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ASR_On.png"
-                }
-                else if (inputUint === 2){
-                   tractionControl_L.lampToggle()
-                   tractionControl_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ASR_On.png"
-                }
-                else if (inputUint === 3){
-                   tractionControl_L.lampOn()
-                   tractionControl_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ASR_Off.png"
-                }
-                else if (inputUint === 4){
-                   tractionControl_L.lampToggle()
-                   tractionControl_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ASR_Off.png"
-                }
-                else{
-                    tractionControl_L.lampOff()
-                }
+//                if (inputUint === 1){
+//                   tractionControl_L.lampOn()
+//                   tractionControl_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ASR_On.png"
+//                }
+//                else if (inputUint === 2){
+//                   tractionControl_L.lampToggle()
+//                   tractionControl_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ASR_On.png"
+//                }
+//                else if (inputUint === 3){
+//                   tractionControl_L.lampOn()
+//                   tractionControl_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ASR_Off.png"
+//                }
+//                else if (inputUint === 4){
+//                   tractionControl_L.lampToggle()
+//                   tractionControl_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ASR_Off.png"
+//                }
+//                else{
+//                    tractionControl_L.lampOff()
+//                }
             }
             function onSendPressureCircuitParkBrakeToQml(inputUint){
                 if (inputUint === 1) {
@@ -1312,7 +1312,7 @@ Item {
         y: 345
         width: 45
         height: tractionControl_L.width
-        visible: true
+        visible: false
         test: signalLampTest
         source: "DashboardGeneral/images/signalLamps/brakeSystem/ASR_On.png"
     }
