@@ -153,13 +153,15 @@ void BrakeSystem::ReadStateFromCanDB(){
     else{
         ASR_Indication = 0;
     }
-    if (ASR_Indication != previousComponentState) emit sendASR_IndicationToQml(ASR_Indication);
+    if (ASR_Indication != previousComponentState) {
+        emit sendASR_IndicationToQml(ASR_Indication);
+    }
 
     previousComponentState = ESC_Indication;
     if ((gCanDB.GetSignalValueUint32_t(gSignalName_VDC_InformationSignal, gMessageName_VDC1) == 1) &&
             (gCanDB.GetSignalValueUint32_t(gSignalName_ASR_OffRoadSwitch, gMessageName_EBC1) == 1))
     {
-            ESC_Indication = ESC_Lamp.toggleLampESC_Off;
+            ESC_Indication = ESC_Lamp.lampESC_Off;
     }
     else if ((gCanDB.GetSignalValueUint32_t(gSignalName_VDC_InformationSignal, gMessageName_VDC1) == 1) &&
             (gCanDB.GetSignalValueUint32_t(gSignalName_VDC_FullyOperational, gMessageName_VDC1) == 1))
@@ -175,7 +177,9 @@ void BrakeSystem::ReadStateFromCanDB(){
     else {
         ESC_Indication = ESC_Lamp.off;
     }
-    if (ESC_Indication != previousComponentState) emit sendESC_IndicationToQml(ESC_Indication);
+    if (ESC_Indication != previousComponentState) {
+        emit sendESC_IndicationToQml(ESC_Indication);
+    }
 
 
     previousComponentState = HillHolder_Indication;
@@ -227,8 +231,12 @@ void BrakeSystem::ReadStateFromCanDB(){
     if (minBrakePadsPercent > rearLeftBrakePads_Percent)  minBrakePadsPercent = rearLeftBrakePads_Percent;
     if (minBrakePadsPercent > rearRightBrakePads_Percent)  minBrakePadsPercent = rearRightBrakePads_Percent;
     previousComponentState = minBrakePadsIndication;
-    if (minBrakePadsPercent < lowBrakePads_Percent) minBrakePadsIndication = 1;
-    else minBrakePadsIndication = 0;
+    if (minBrakePadsPercent < lowBrakePads_Percent) {
+        minBrakePadsIndication = 1;
+    }
+    else {
+        minBrakePadsIndication = 0;
+    }
     if (minBrakePadsIndication != previousComponentState) emit sendLowBrakePadsToQml(minBrakePadsIndication);
 
     previousComponentState = tireIndication;

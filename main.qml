@@ -512,7 +512,7 @@ Item{
             property string skString;
             function onSendIpToQml(inputStr){
                 skString = inputStr
-                if (skString.indexOf("10.0") !== -1 || skString.indexOf("10.6") !== -1){
+                if (skString.indexOf("10.0") !== -1 || skString.indexOf("10.6") !== -1 || skString.indexOf("172.19") !== -1){
                     buttonIsVisible = true
                     backlightControlObject.backlightLevelChanged(30)
                 }
@@ -531,30 +531,19 @@ Item{
             // Разница в том, что добавляем в начале on и далее пишем
             // с заглавной буквы
             //
-            property int test: -1
-            property bool testBool: true
-            function onSendResetActualMileageToQml() {
-                resetMileageWindow.visible = true
-                //console.log("function onSendResetActualMileageToQml")
-            }
-            property bool buttonOkStatus: false
-            property bool buttonMinusStatus: false
-            function onSendButtonOkStateToQml(){
-                if (state) {
-                    buttonOkStatus = true
-                }
-                else buttonOkStatus = false
-                if (state && menuLoader.active === false && buttonMinusStatus === false) {
-                    menuLoader.active = true
-                }
-            }
-            function onSendButtonMenuStateToQml() {
+            function onSendButtonOkStateToQml(state){
                 if (state && menuLoader.active === false) {
                     menuLoader.active = true
                 }
-                //                if (state && menuLoader.active === true) {
-                //                    menuLoader.active = false
-                //                }
+            }
+            function onSendButtonMenuStateToQml(state) {
+                //console.log("menu " + state)
+                if (state && menuLoader.active === false) {
+                    menuLoader.active = true
+                }
+                if (state && menuLoader.active === true) {
+                    menuLoader.active = false
+                }
             }
             function onSendAddErrorCanSignalToQml(canSignalName) {
                 dynamicTextRow.addCanSignalError(canSignalName);
@@ -745,15 +734,15 @@ Item{
                 else brakeCircuit2_L.source = "/DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuit2.png"
             }
         }
-        //        Connections {
-        //            target: menuLoader.item
-        //            onMenuOff: {
-        //                if (menuStateOff === true) {
-        //                    //console.log("main")
-        //                    menuLoader.active = false
-        //                }
-        //            }
-        //        }
+        Connections {
+            target: menuLoader.item
+//            onMenuOff: {
+//                if (menuStateOff === true) {
+//                    //console.log("main")
+//                    menuLoader.active = false
+//                }
+//            }
+        }
         Image {
             id: dials
             x: 0

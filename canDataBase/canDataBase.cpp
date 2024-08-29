@@ -584,7 +584,7 @@ static CanMessageRx TMS(gMessageName_TMS, TMS_arraySignals, TMS_NumberOfSignals,
 
 const uint8_t VDC1_NumberOfSignals = 2;
 signalNameCharStruct gSignalName_VDC_FullyOperational{"VDC_FullyOperational",MAX_LENGTH_NAME};
-static CanSignal VDC_FullyOperational{ 8, 8, gSignalName_VDC_FullyOperational, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal VDC_FullyOperational{ 2, 2, gSignalName_VDC_FullyOperational, 1, 0, canIntel, canUint, 0, 0, 0};
 signalNameCharStruct gSignalName_VDC_InformationSignal{"VDC_InformationSignal",MAX_LENGTH_NAME};
 static CanSignal VDC_InformationSignal{ 0, 2, gSignalName_VDC_InformationSignal, 1, 0, canIntel, canUint, 0, 0, 0};
 static CanSignal *VDC1_arraySignals[VDC1_NumberOfSignals] = {&VDC_FullyOperational, &VDC_InformationSignal};

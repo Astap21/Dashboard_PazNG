@@ -622,6 +622,11 @@ Item {
                     esc_L.lampToggle()
                     warningSound.play()
                 }
+                else if (inputUint === 3){
+                    esc_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ESC_Off_2.png"
+                    esc_L.lampOn()
+                    warningSound.play()
+                }
                 else if (inputUint === 2){
                     esc_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/ESC_On.png"
                     esc_L.lampOn()

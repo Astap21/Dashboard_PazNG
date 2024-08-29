@@ -71,46 +71,33 @@ Item {
 //            }
 
 //        }
-        Engine_M {
-            id: engine
-            itemIndex: 0;
-        }
-        Transmission_M{
-            itemIndex: 1;
-        }
-        Fuel_M{
-            itemIndex: 2;
-        }
-        AdBlue_M{
-            itemIndex: 3;
+        BrakesAndTiresInfo_M{
+            itemIndex: 0
         }
         Wipers_M{
-            itemIndex: 4;
+            itemIndex: 1
         }
-        AxleLoad_M{
-            itemIndex: 5;
-        }
-        Suspension_M{
-            itemIndex: 6;
-        }
-        DisableFaults_M{
-            itemIndex: 7;
-        }
-        ClimateControl_M{
-            itemIndex: 8;
-        }
-        BrakesAndTiresInfo_M{
-            itemIndex: 9;
-        }
-        FireExtinguishersAndValves_M{
-            itemIndex: 10;
-        }
-        DoorControl_M{
-            itemIndex: 11;
-        }
+//        AxleLoad_M{
+//            itemIndex: 2
+//        }
+//        Suspension_M{
+//            itemIndex: 3
+//        }
+//        DisableFaults_M{
+//            itemIndex: 4
+//        }
+//        ClimateControl_M{
+//            itemIndex: 4
+//        }
+//        FireExtinguishersAndValves_M{
+//            itemIndex: 5
+//        }
+//        DoorControl_M{
+//            itemIndex: 6
+//        }
         Settings_M{
             id: setting
-            itemIndex: 12;
+            itemIndex: 2
         }
     }
 }
