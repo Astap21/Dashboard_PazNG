@@ -1,4 +1,4 @@
-//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Thu Aug 22 14:58:24 2024
+//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Thu Aug 29 13:40:06 2024
 #include "canDataBase/canDataBase.h"
 
 using namespace canBus;
@@ -383,12 +383,14 @@ static CanSignal *EDSC2_2_arraySignals[EDSC2_2_NumberOfSignals] = {&RequestOpenR
 messageNameCharStruct gMessageName_EDSC2_2{"EDSC2_2",MAX_LENGTH_NAME};
 static CanMessageRx EDSC2_2(gMessageName_EDSC2_2, EDSC2_2_arraySignals, EDSC2_2_NumberOfSignals, 0x18FFBDCD, 8, 100);
 
-const uint8_t EPBS1_NumberOfSignals = 2;
-signalNameCharStruct gSignalName_AutoHold{"AutoHold",MAX_LENGTH_NAME};
-static CanSignal AutoHold{ 4, 2, gSignalName_AutoHold, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_ParkingBrake{"ParkingBrake",MAX_LENGTH_NAME};
-static CanSignal ParkingBrake{ 0, 2, gSignalName_ParkingBrake, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *EPBS1_arraySignals[EPBS1_NumberOfSignals] = {&AutoHold, &ParkingBrake};
+const uint8_t EPBS1_NumberOfSignals = 3;
+signalNameCharStruct gSignalName_ElectricParkingBrake{"ElectricParkingBrake",MAX_LENGTH_NAME};
+static CanSignal ElectricParkingBrake{ 0, 2, gSignalName_ElectricParkingBrake, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_ParkingWorkStatus1{"ParkingWorkStatus1",MAX_LENGTH_NAME};
+static CanSignal ParkingWorkStatus1{ 2, 2, gSignalName_ParkingWorkStatus1, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_ParkingWorkStatus2{"ParkingWorkStatus2",MAX_LENGTH_NAME};
+static CanSignal ParkingWorkStatus2{ 4, 2, gSignalName_ParkingWorkStatus2, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *EPBS1_arraySignals[EPBS1_NumberOfSignals] = {&ElectricParkingBrake, &ParkingWorkStatus1, &ParkingWorkStatus2};
 messageNameCharStruct gMessageName_EPBS1{"EPBS1",MAX_LENGTH_NAME};
 static CanMessageRx EPBS1(gMessageName_EPBS1, EPBS1_arraySignals, EPBS1_NumberOfSignals, 0x18FE1250, 8, 100);
 
