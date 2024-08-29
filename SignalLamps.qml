@@ -688,6 +688,10 @@ Item {
                     parkingBrake_L.lampOn()
                 }
                 else if (inputUint === 4){
+                    parkingBrake_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/autoHold.png"
+                    parkingBrake_L.lampToggle()
+                }
+                else if (inputUint === 5){
                     errorSound.play()
                     parkingBrake_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/errorEPB.png"
                     parkingBrake_L.lampOn()
@@ -750,12 +754,12 @@ Item {
                 }
             }
             function onSendLowTirePressureToQml(inputBool){
-                if (inputBool){
-                    lowTirePressure_L.lampOn()
-                }
-                else {
-                    lowTirePressure_L.lampOff()
-                }
+//                if (inputBool){
+//                    lowTirePressure_L.lampOn()
+//                }
+//                else {
+//                    lowTirePressure_L.lampOff()
+//                }
             }
         }
 
@@ -799,7 +803,7 @@ Item {
         y: 284
         width: 45
         height: lowTirePressure_L.width
-        visible: true
+        visible: false
         source: "DashboardGeneral/images/signalLamps/brakeSystem/lowTyrePressure.png"
         test: signalLampTest
     }

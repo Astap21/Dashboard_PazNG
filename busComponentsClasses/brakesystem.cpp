@@ -200,11 +200,16 @@ void BrakeSystem::ReadStateFromCanDB(){
     if (gCanDB.GetSignalValueUint32_t(gSignalName_ParkingBrakeState, gMessageName_CCVS1) == 1) {
         parkingBrake_Indication = 2;
     }
-    else if (gCanDB.GetSignalValueUint32_t(gSignalName_AutoHold, gMessageName_EPBS1) == 1) {
+    else if ((gCanDB.GetSignalValueUint32_t(gSignalName_ParkingWorkStatus1, gMessageName_EPBS1)) == 2 &&
+             (gCanDB.GetSignalValueUint32_t(gSignalName_ParkingWorkStatus2, gMessageName_EPBS1)) == 1) {
         parkingBrake_Indication = 3;
     }
-    else if (gCanDB.GetSignalValueUint32_t(gSignalName_EPB_Error, gMessageName_DM1_EPB) == 1) {
+    else if ((gCanDB.GetSignalValueUint32_t(gSignalName_ParkingWorkStatus1, gMessageName_EPBS1)) == 1 &&
+             (gCanDB.GetSignalValueUint32_t(gSignalName_ParkingWorkStatus2, gMessageName_EPBS1)) == 1) {
         parkingBrake_Indication = 4;
+    }
+    else if (gCanDB.GetSignalValueUint32_t(gSignalName_EPB_Error, gMessageName_DM1_EPB) == 1) {
+        parkingBrake_Indication = 5;
     }
     else {
         parkingBrake_Indication = 0;
