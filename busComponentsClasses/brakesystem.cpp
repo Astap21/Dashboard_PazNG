@@ -96,14 +96,14 @@ void BrakeSystem::ReadStateFromCanDB(){
     if (pressureCircuit2_Indication != previousComponentState) emit sendPressureCircuit2LampToQml(pressureCircuit2_Indication);
 
     previousComponentState = pressureCircuit3_Indication;
-    pressure_kpa = gCanDB.GetSignalValueFloat(gSignalName_AuxiliaryEquipmentSupplyPressure, gMessageName_AIR1);
+    pressure_kpa = gCanDB.GetSignalValueFloat(gSignalName_ParkingAirPressure, gMessageName_AIR1);
     float pressureCircuit3_bar = pressure_kpa / 98.066f;
     if (pressureCircuit3_bar < lowBarPressure) pressureCircuit3_Indication = 1;
     else pressureCircuit3_Indication = 0;
     if (pressureCircuit3_Indication != previousComponentState) emit sendPressureCircuit3LampToQml(pressureCircuit3_Indication);
 
     previousComponentState = pressureCircuit4_Indication;
-    pressure_kpa = gCanDB.GetSignalValueFloat(gSignalName_AirSuspensionSupplyPressure, gMessageName_AIR1);
+    pressure_kpa = gCanDB.GetSignalValueFloat(gSignalName_AuxiliaryEquipmentSupplyPressure, gMessageName_AIR1);
     float pressureCircuit4_bar = pressure_kpa / 98.066f;
     if (pressureCircuit4_bar < lowBarPressure) pressureCircuit4_Indication = 1;
     else pressureCircuit4_Indication = 0;
@@ -113,10 +113,14 @@ void BrakeSystem::ReadStateFromCanDB(){
     if (gCanDB.GetSignalValueUint32_t(gSignalName_EBS_RedLamp, gMessageName_EBC1) == canBus::canSignalStateStructObj.on) EBS_Indication = EBS_Lamp.redLamp;
     else if (gCanDB.GetSignalValueUint32_t(gSignalName_EBS_WarningLamp, gMessageName_EBC1) == canBus::canSignalStateStructObj.on) EBS_Indication = EBS_Lamp.yellowLamp;
     else EBS_Indication = EBS_Lamp.off;
-//    uint32_t CountMissedMessages = gCanDB.CheckNumberMissedMessages(gCanDB.GetMessageId(gMessageName_EBC1));
-//    uint32_t limitMissedMessages = 5;
-//    if (CountMissedMessages > limitMissedMessages)EBS_Indication = EBS_Lamp.redLampFlashing;
-    if (EBS_Indication != previousComponentState) emit sendEBS_IndicationToQml(EBS_Indication);
+    uint32_t CountMissedMessages = gCanDB.CheckNumberMissedMessages(gCanDB.GetMessageId(gMessageName_EBC1));
+    uint32_t limitMissedMessages = 5;
+    if (CountMissedMessages > limitMissedMessages){
+        EBS_Indication = EBS_Lamp.redLampFlashing;
+    }
+    if (EBS_Indication != previousComponentState) {
+        emit sendEBS_IndicationToQml(EBS_Indication);
+    }
     //qDebug() << EBS_Indication;
 
     previousComponentState = TractionControl;
