@@ -62,5 +62,21 @@
         <file>DashboardGeneral/sound/turnSignalSound.wav</file>
         <file>DashboardGeneral/sound/warningSound.wav</file>
         <file>DashboardGeneral/qmlUserClass/baseClasses/ShiftSelector_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/BaseMenuItem_1.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/mainMenu.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/paramDiezel.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/settingsDiezel.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/SubMenu.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/SubMenuItem.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/liazNG/AdBlue2_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/liazNG/BrakesAndTiresInfo2_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/liazNG/Engine2_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/liazNG/FireExtinguishersAndValves2_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/liazNG/IconNameStatusNg_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/liazNG/Settings2_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/liazNG/Transmission2_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/paramElectro.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/ParamProto.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/ProgressBarNg_M.qml</file>
     </qresource>
 </RCC>

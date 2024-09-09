@@ -73,17 +73,11 @@ Item{
     }
     Loader {
         id: menuLoader
-        x: 621
-        y: -63
-        width: 1155
-        height: 600
-        anchors.verticalCenterOffset: 13
-        anchors.horizontalCenterOffset: 0
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         asynchronous: true
         active: false
-        source: "qrc:/menu.qml"
+        source: "qrc:/DashboardGeneral/qmlUserClass/menuItem/commonElement/mainMenu.qml"
         z: 2
     }
 
@@ -489,8 +483,8 @@ Item{
             target: speedArrow
             property int angleForZeroIndication: -90
             property double angleRotation: angleForZeroIndication
-            property int maxIndicator: 140
-            property int fullRotation: 210
+            property int maxIndicator: 120
+            property int fullRotation: 215
             property double angleKoef: fullRotation/maxIndicator
             property double previosAngle: angleForZeroIndication
             property int baseDuration: 30
@@ -531,15 +525,11 @@ Item{
             // Разница в том, что добавляем в начале on и далее пишем
             // с заглавной буквы
             //
-            function onSendButtonOkStateToQml(state){
-                if (state && menuLoader.active === false) {
-                    menuLoader.active = true
-                }
-            }
             function onSendButtonMenuStateToQml(state) {
                 //console.log("menu " + state)
                 if (state && menuLoader.active === false) {
                     menuLoader.active = true
+                    menuLoader.setSource("qrc:/DashboardGeneral/qmlUserClass/menuItem/commonElement/mainMenu.qml", {"typeMenu": "Electro"});
                 }
                 if (state && menuLoader.active === true) {
                     menuLoader.active = false
@@ -736,12 +726,12 @@ Item{
         }
         Connections {
             target: menuLoader.item
-//            onMenuOff: {
-//                if (menuStateOff === true) {
-//                    //console.log("main")
-//                    menuLoader.active = false
-//                }
-//            }
+            function onMenuOff(menuStateOff) {
+                if (menuStateOff === true) {
+                    //console.log("main")
+                    menuLoader.active = false
+                }
+            }
         }
         Image {
             id: dials
