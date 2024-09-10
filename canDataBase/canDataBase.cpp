@@ -105,7 +105,7 @@ signalNameCharStruct gSignalName_Btn6_Vol_M{"Btn6_Vol_M",MAX_LENGTH_NAME};
 static CanSignal Btn6_Vol_M{ 52, 2, gSignalName_Btn6_Vol_M, 1, 0, canIntel, canUint, 0, 0, 0};
 static CanSignal *BJM1_arraySignals[BJM1_NumberOfSignals] = {&Btn12_Menu, &Btn1_Ok, &Btn2_Back, &Btn3_Left, &Btn4_Right, &Btn5_Vol_P, &Btn6_Vol_M};
 messageNameCharStruct gMessageName_BJM1{"BJM1",MAX_LENGTH_NAME};
-static CanMessageRx BJM1(gMessageName_BJM1, BJM1_arraySignals, BJM1_NumberOfSignals, 0x0CFDD64D, 8, 100);
+static CanMessageRx BJM1(gMessageName_BJM1, BJM1_arraySignals, BJM1_NumberOfSignals, 0x0CFDD61E, 8, 100);
 
 const uint8_t CCUT1_NumberOfSignals = 4;
 signalNameCharStruct gSignalName_RoofTemp{"RoofTemp",MAX_LENGTH_NAME};
