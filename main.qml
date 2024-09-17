@@ -541,9 +541,6 @@ Item{
                     menuLoader.active = true
                     menuLoader.setSource("qrc:/DashboardGeneral/qmlUserClass/menuItem/commonElement/mainMenu.qml", {"typeMenu": "Electro"});
                 }
-                if (state === 2 && menuLoader.active === true) {
-                    menuLoader.active = false
-                }
             }
             function onSendAddErrorCanSignalToQml(canSignalName) {
                 dynamicTextRow.addCanSignalError(canSignalName);
