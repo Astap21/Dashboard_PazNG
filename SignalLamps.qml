@@ -135,7 +135,7 @@ Item {
             }
 
             function onSendSeatBeltSwitchToQml(inputUint){
-                if (inputUint === 1) seatBeltSwitch_L.lampOn()
+                if (inputUint === 0) seatBeltSwitch_L.lampOn()
                 else seatBeltSwitch_L.lampOff()
             }
             function onSendRouteIndicatorToQml(inputUint){

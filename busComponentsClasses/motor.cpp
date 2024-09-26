@@ -67,6 +67,7 @@ void Motor::ReadStateFromCanDB(){
 
     previousComponentStateString = actualGear;
     //Селектор
+    bool wrongGear = false;
     uint8_t gear = gCanDB.GetSignalValueUint32_t(gSignalName_TransmissionCurrentGear, gMessageName_ETC2);
     if (movementBanByDoor || movementBanByBrakeSystem){
         actualGear = "STOP";
@@ -77,10 +78,15 @@ void Motor::ReadStateFromCanDB(){
     else if (gear == 0xFB) actualGear = "P";
     else if (gear == 0xFC) actualGear = "D";
     else{
-        qDebug() << "Actual gear error -" << gear;
         actualGear = "STOP";
+        wrongGear = true;
     }
-    if (actualGear != previousComponentStateString) emit sendActualGearToQml(actualGear);
+    if (actualGear != previousComponentStateString) {
+        emit sendActualGearToQml(actualGear);
+        if(wrongGear){
+            qDebug() << "Actual gear ERROR -" << gear;
+        }
+    }
 
     previousComponentState = tractionMotorError;
     if (gCanDB.GetSignalValueUint32_t(gSignalName_EngineRedStopLC, gMessageName_DLCC1) == canBus::canSignalStateStructObj.on) tractionMotorError = 1;

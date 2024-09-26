@@ -78,5 +78,6 @@
         <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/paramElectro.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/ParamProto.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/ProgressBarNg_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/Triangle.qml</file>
     </qresource>
 </RCC>

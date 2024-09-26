@@ -26,7 +26,7 @@
 
 int main(int argc, char *argv[])
 {
-    QString softVersion = "1.1.16";
+    QString softVersion = "1.1.17";
     //Установка переменных среды
     //qputenv("QT_GSTREAMER_PLAYBIN_AUDIOSINK", "alsasink");
     //qputenv("QT_GSTREAMER_USE_PLAYBIN_VOLUME", "1");
@@ -48,11 +48,11 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("trans", &trans);
 
     qRegisterMetaType<QCanBusDevice::CanBusError>();
-    CanBus canBus("SCAN", "socketcan", "can0", 500000, &gCanDB, false);
-    canBus.addMessageToMissedMsgCheckList(gMessageName_EBC1);
-    canBus.addMessageToMissedMsgCheckList(gMessageName_ASC1);
-    canBus.addMessageToFastReceived(gMessageName_LD);
-    engine.rootContext()->setContextProperty("canBus", &canBus);
+    CanBus ican("SCAN", "socketcan", "can0", 500000, &gCanDB, false, true);
+    ican.addMessageToMissedMsgCheckList(gMessageName_EBC1);
+    ican.addMessageToMissedMsgCheckList(gMessageName_ASC1);
+    ican.addMessageToFastReceived(gMessageName_LD);
+    engine.rootContext()->setContextProperty("ican", &ican);
 
     //QThread thread;
     //pwm.moveToThread(&thread);
@@ -62,41 +62,41 @@ int main(int argc, char *argv[])
 
     DoorsPaz doors;
     engine.rootContext()->setContextProperty("doors", &doors);
-    QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &doors, &DoorsPaz::canDBUpdated);
+    QObject::connect(&ican, &CanBus::sendCanDBUpdated, &doors, &DoorsPaz::canDBUpdated);
 
     Tachograph tachograph;
     engine.rootContext()->setContextProperty("tachograph", &tachograph);
-    QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &doors, &Tachograph::canDBUpdated);
+    QObject::connect(&ican, &CanBus::sendCanDBUpdated, &doors, &Tachograph::canDBUpdated);
 
     Adas adas;
     engine.rootContext()->setContextProperty("adas", &adas);
-    QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &doors, &Adas::canDBUpdated);
+    QObject::connect(&ican, &CanBus::sendCanDBUpdated, &doors, &Adas::canDBUpdated);
 
     BrakeSystem brakeSystem;
     engine.rootContext()->setContextProperty("brakeSystem", &brakeSystem);
-    QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &brakeSystem, &BrakeSystem::canDBUpdated);
+    QObject::connect(&ican, &CanBus::sendCanDBUpdated, &brakeSystem, &BrakeSystem::canDBUpdated);
 
     Motor motor;
     engine.rootContext()->setContextProperty("motor", &motor);
-    QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &motor, &Motor::canDBUpdated);
+    QObject::connect(&ican, &CanBus::sendCanDBUpdated, &motor, &Motor::canDBUpdated);
 
     Suspension suspension;
     engine.rootContext()->setContextProperty("suspension", &suspension);
-    QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &suspension, &Suspension::canDBUpdated);
+    QObject::connect(&ican, &CanBus::sendCanDBUpdated, &suspension, &Suspension::canDBUpdated);
 
     ExteriorLightning exteriorLightning;
     engine.rootContext()->setContextProperty("exteriorLightning", &exteriorLightning);
-    QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &exteriorLightning, &ExteriorLightning::canDBUpdated);
+    QObject::connect(&ican, &CanBus::sendCanDBUpdated, &exteriorLightning, &ExteriorLightning::canDBUpdated);
     //QObject::connect(&exteriorLightning, &ExteriorLightning::sendCanMsg, &canBus, &CanBus::sendCanMsgById);
     //exteriorLightning.moveToThread(&criticalThread);
 
     DriverCabin driverCabin;
     engine.rootContext()->setContextProperty("driverCabin", &driverCabin);
-    QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &driverCabin, &DriverCabin::canDBUpdated);
+    QObject::connect(&ican, &CanBus::sendCanDBUpdated, &driverCabin, &DriverCabin::canDBUpdated);
 
     BusInterior busInterior;
     engine.rootContext()->setContextProperty("busInterior", &busInterior);
-    QObject::connect(&canBus, &CanBus::sendCanDBUpdated, &busInterior, &BusInterior::canDBUpdated);
+    QObject::connect(&ican, &CanBus::sendCanDBUpdated, &busInterior, &BusInterior::canDBUpdated);
     //    EnergyConsumption energyConsumption;
     //    engine.rootContext()->setContextProperty("energyConsumption", &energyConsumption);
 
@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
 
     DashboardClass dashboardObject(softVersion, &KL_15, &backlightControlObject);
     engine.rootContext()->setContextProperty("dashboardObject", &dashboardObject);
-    QObject::connect(&canBus, &CanBus::writtenMsg_DB1, &dashboardObject, &DashboardClass::incHearthBeatCounter);
+    QObject::connect(&ican, &CanBus::writtenMsg_DB1, &dashboardObject, &DashboardClass::incHearthBeatCounter);
 
     InterfaceForConnectToQml interfaceForConnectToQml("interfaceForConnectToQml");
     engine.rootContext()->setContextProperty("connectionFromCpp", &interfaceForConnectToQml);
