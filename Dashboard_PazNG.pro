@@ -22,8 +22,11 @@ INCLUDEPATH += DashboardGeneral
 SOURCES += \
     DashboardGeneral/DashBoardClasses/backlightcontrolclass.cpp \
     DashboardGeneral/DashBoardClasses/button.cpp \
+    DashboardGeneral/DashBoardClasses/calculateconsumptionenergyclass.cpp \
+    DashboardGeneral/DashBoardClasses/calculatemileage.cpp \
     DashboardGeneral/DashBoardClasses/copylinyxlogmessage.cpp \
     DashboardGeneral/DashBoardClasses/dashboardclass.cpp \
+    DashboardGeneral/DashBoardClasses/datetimereadclass.cpp \
     DashboardGeneral/DashBoardClasses/fpstext.cpp \
     DashboardGeneral/DashBoardClasses/gpio.cpp \
     DashboardGeneral/DashBoardClasses/logtofile.cpp \
@@ -77,8 +80,11 @@ target.path     = /home/root
 HEADERS += \
     DashboardGeneral/DashBoardClasses/backlightcontrolclass.h \
     DashboardGeneral/DashBoardClasses/button.h \
+    DashboardGeneral/DashBoardClasses/calculateconsumptionenergyclass.h \
+    DashboardGeneral/DashBoardClasses/calculatemileage.h \
     DashboardGeneral/DashBoardClasses/copylinyxlogmessage.h \
     DashboardGeneral/DashBoardClasses/dashboardclass.h \
+    DashboardGeneral/DashBoardClasses/datetimereadclass.h \
     DashboardGeneral/DashBoardClasses/fpstext.h \
     DashboardGeneral/DashBoardClasses/gpio.h \
     DashboardGeneral/DashBoardClasses/logtofile.h \

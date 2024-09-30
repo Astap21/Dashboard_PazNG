@@ -68,16 +68,18 @@
         <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/settingsDiezel.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/SubMenu.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/SubMenuItem.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/liazNG/AdBlue2_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/liazNG/BrakesAndTiresInfo2_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/liazNG/Engine2_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/liazNG/FireExtinguishersAndValves2_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/liazNG/IconNameStatusNg_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/liazNG/Settings2_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/liazNG/Transmission2_M.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/paramElectro.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/ParamProto.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/ProgressBarNg_M.qml</file>
         <file>DashboardGeneral/qmlUserClass/baseClasses/Triangle.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/NG/ProgressBarNg_С.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/DiezelParam/AdBlue2_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/DiezelParam/BrakesAndTiresInfo2_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/DiezelParam/Engine2_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/DiezelParam/FireExtinguishersAndValves2_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/DiezelParam/IconNameStatusNg_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/DiezelParam/Transmission2_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/Settings/DoorControl_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/NG/TextSwitchNG_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/Settings/Settings2_M.qml</file>
     </qresource>
 </RCC>
