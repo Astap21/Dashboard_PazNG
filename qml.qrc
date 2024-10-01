@@ -81,5 +81,6 @@
         <file>DashboardGeneral/qmlUserClass/menuItem/NG/Settings/DoorControl_M.qml</file>
         <file>DashboardGeneral/qmlUserClass/baseClasses/NG/TextSwitchNG_C.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/NG/Settings/Settings2_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/NG/TextValueNG_C.qml</file>
     </qresource>
 </RCC>
