@@ -18,6 +18,7 @@
 #include "DashBoardClasses/dashboardclass.h"
 #include "DashBoardClasses/trans.h"
 #include "DashBoardClasses/logtofile.h"
+#include "DashBoardClasses/fpstext.h"
 
 #include "canDataBase/canDataBase.h"
 //#include <libudev.h>
@@ -27,7 +28,7 @@
 
 int main(int argc, char *argv[])
 {
-    QString softVersion = "1.1.18";
+    QString softVersion = "1.1.19";
     //Установка переменных среды
     //qputenv("QT_GSTREAMER_PLAYBIN_AUDIOSINK", "alsasink");
     //qputenv("QT_GSTREAMER_USE_PLAYBIN_VOLUME", "1");
@@ -42,6 +43,7 @@ int main(int argc, char *argv[])
     //criticalThread.setPriority(QThread::TimeCriticalPriority);
 
     //LogToFile logtofile;
+    qmlRegisterType<FPSText>("com.ast", 1, 0, "FPSText");
     qmlRegisterUncreatableType<SignalLampE>("com.gaz.signalLampE", 1, 0, "SignalLampE", "Enum only");
 
     Trans trans(&engine);
@@ -101,13 +103,13 @@ int main(int argc, char *argv[])
     //    EnergyConsumption energyConsumption;
     //    engine.rootContext()->setContextProperty("energyConsumption", &energyConsumption);
 
-    BacklightControlClass backlightControlObject("backlightControlObject");
-    backlightControlObject.backlightLevelChanged(100);
-    engine.rootContext()->setContextProperty("backlightControlObject", &backlightControlObject);
+    BacklightControlClass backlightControl("backlightControl");
+    backlightControl.backlightLevelChanged(100);
+    engine.rootContext()->setContextProperty("backlightControl", &backlightControl);
 
     Gpio KL_15(165, GPIO_INPUT);
 
-    DashboardClass dashboardObject(softVersion, &KL_15, &backlightControlObject);
+    DashboardClass dashboardObject(softVersion, &KL_15, &backlightControl);
     engine.rootContext()->setContextProperty("dashboardObject", &dashboardObject);
     QObject::connect(&ican, &CanBus::writtenMsg_DB1, &dashboardObject, &DashboardClass::incHearthBeatCounter);
 

@@ -25,10 +25,10 @@ Item {
     }
     ShiftSelector_C {
         id: shiftSelector
-        x: 902
-        y: 84
-        width: 120
-        height: 80
+        x: 918
+        y: 92
+        width: 92
+        height: 64
     }
     Connections{
             target: busInterior
@@ -1111,7 +1111,7 @@ Item {
         width: 45
         height: width
         visible: true
-        source: "DashboardGeneral/images/fireExtinguishersAndTaps/fireExtinguisherRed.png"
+        source: "DashboardGeneral/images/menu/fireExtinguishersAndTaps/fireExtinguisherRed.png"
         fillMode: Image.PreserveAspectFit
         autoTransform: true
         test: signalLampTest
@@ -1130,11 +1130,11 @@ Item {
 
     SignalLamp_C {
         id: door2Valve_L
-        x: 799
+        x: 797
         y: 345
         width: 44
         height: door2Valve_L.width
-        source: "DashboardGeneral/images/fireExtinguishersAndTaps/valveCloseCapOpen.png"
+        source: "DashboardGeneral/images/menu/doors/valveYellow.png"
         test: signalLampTest
     }
 
@@ -1161,10 +1161,10 @@ Item {
     SignalLamp_C {
         id: door1Valve_L
         x: 997
-        y: 361
+        y: 363
         width: 44
         height: 44
-        source: "DashboardGeneral/images/fireExtinguishersAndTaps/valveCloseCapOpen.png"
+        source: "DashboardGeneral/images/menu/doors/valveYellow.png"
         test: signalLampTest
     }
 

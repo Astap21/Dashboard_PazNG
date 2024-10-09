@@ -6,24 +6,6 @@
         <file>DashboardGeneral/images/Doors/doorNotDefined.png</file>
         <file>DashboardGeneral/images/Doors/emergencyOpeningDoor.png</file>
         <file>DashboardGeneral/images/Doors/jammingDoor.png</file>
-        <file>DashboardGeneral/images/fireExtinguishersAndTaps/fireExtinguisherRed.png</file>
-        <file>DashboardGeneral/images/fireExtinguishersAndTaps/fireExtinguisherWhite.png</file>
-        <file>DashboardGeneral/images/fireExtinguishersAndTaps/hammerRed.png</file>
-        <file>DashboardGeneral/images/fireExtinguishersAndTaps/hammerWhite.png</file>
-        <file>DashboardGeneral/images/fireExtinguishersAndTaps/valveCloseCapClose.png</file>
-        <file>DashboardGeneral/images/fireExtinguishersAndTaps/valveCloseCapOpen.png</file>
-        <file>DashboardGeneral/images/fireExtinguishersAndTaps/valveOpenCapClose.png</file>
-        <file>DashboardGeneral/images/fireExtinguishersAndTaps/valveOpenCapOpen.png</file>
-        <file>DashboardGeneral/images/menu24v/icon24v.png</file>
-        <file>DashboardGeneral/images/menuBrakesAndTires/brakesAndTiresFont.png</file>
-        <file>DashboardGeneral/images/menuBrakesAndTires/pressureIndicator.png</file>
-        <file>DashboardGeneral/images/menuBrakesAndTires/redBrake.png</file>
-        <file>DashboardGeneral/images/menuBrakesAndTires/redTire.png</file>
-        <file>DashboardGeneral/images/menuBrakesAndTires/tempIndicator.png</file>
-        <file>DashboardGeneral/images/menuBrakesAndTires/tempUnit.png</file>
-        <file>DashboardGeneral/images/menuBrakesAndTires/whiteBrake.png</file>
-        <file>DashboardGeneral/images/menuBrakesAndTires/yellowTirePressure.png</file>
-        <file>DashboardGeneral/images/menuBrakesAndTires/yellowTireTemp.png</file>
         <file>DashboardGeneral/images/signalLamps/ADAS/deadZoneRight.png</file>
         <file>DashboardGeneral/images/signalLamps/ADAS/ldws.png</file>
         <file>DashboardGeneral/images/signalLamps/ADAS/lkas.png</file>
@@ -136,12 +118,10 @@
         <file>DashboardGeneral/images/backgroundLoader.png</file>
         <file>DashboardGeneral/images/backgroundMain.png</file>
         <file>DashboardGeneral/images/driverCabin.png</file>
-        <file>DashboardGeneral/images/estimatedRange.png</file>
         <file>DashboardGeneral/images/logo.png</file>
         <file>DashboardGeneral/images/nature.png</file>
         <file>DashboardGeneral/images/newDials.png</file>
         <file>DashboardGeneral/images/salon.png</file>
-        <file>DashboardGeneral/images/estimated_range_new.png</file>
         <file>DashboardGeneral/images/busFrontView_LiazNG.png</file>
         <file>DashboardGeneral/images/busRearView_PazNG.png</file>
         <file>DashboardGeneral/images/busSideView_LiazNG.png</file>
@@ -180,5 +160,88 @@
         <file>DashboardGeneral/images/signalLamps/ADAS/deadZoneLeft.png</file>
         <file>DashboardGeneral/images/signalLamps/brakeSystem/ESC_Off_2.png</file>
         <file>DashboardGeneral/images/signalLamps/brakeSystem/removeMoveBlock.png</file>
+        <file>DashboardGeneral/images/menu/dashboard/backlight.png</file>
+        <file>DashboardGeneral/images/menu/dashboard/help.png</file>
+        <file>DashboardGeneral/images/menu/dashboard/language.png</file>
+        <file>DashboardGeneral/images/menu/dashboard/volume.png</file>
+        <file>DashboardGeneral/images/menu/doors/autoClosing.png</file>
+        <file>DashboardGeneral/images/menu/doors/autoOpening.png</file>
+        <file>DashboardGeneral/images/menu/doors/passControl.png</file>
+        <file>DashboardGeneral/images/menu/doors/passInDoor.png</file>
+        <file>DashboardGeneral/images/menu/doors/valveRed.png</file>
+        <file>DashboardGeneral/images/menu/doors/valveYellow.png</file>
+        <file>DashboardGeneral/images/menu/engine/adBlueLevel.png</file>
+        <file>DashboardGeneral/images/menu/engine/adBlueTemp.png</file>
+        <file>DashboardGeneral/images/menu/engine/oilTemp.png</file>
+        <file>DashboardGeneral/images/menu/engine/temp.png</file>
+        <file>DashboardGeneral/images/menu/fireExtinguishersAndTaps/fireExtinguisherRed.png</file>
+        <file>DashboardGeneral/images/menu/fireExtinguishersAndTaps/fireExtinguisherWhite.png</file>
+        <file>DashboardGeneral/images/menu/fireExtinguishersAndTaps/hammerRed.png</file>
+        <file>DashboardGeneral/images/menu/fireExtinguishersAndTaps/hammerWhite.png</file>
+        <file>DashboardGeneral/images/menu/fireExtinguishersAndTaps/valveCloseCapClose.png</file>
+        <file>DashboardGeneral/images/menu/fireExtinguishersAndTaps/valveCloseCapOpen.png</file>
+        <file>DashboardGeneral/images/menu/fireExtinguishersAndTaps/valveOpenCapClose.png</file>
+        <file>DashboardGeneral/images/menu/fireExtinguishersAndTaps/valveOpenCapOpen.png</file>
+        <file>DashboardGeneral/images/menu/lights/color/exteriorLight.png</file>
+        <file>DashboardGeneral/images/menu/lights/color/frontFogLights.png</file>
+        <file>DashboardGeneral/images/menu/lights/color/highBeam.png</file>
+        <file>DashboardGeneral/images/menu/lights/color/lowBeam.png</file>
+        <file>DashboardGeneral/images/menu/lights/color/markerLights.png</file>
+        <file>DashboardGeneral/images/menu/lights/color/movingLights.png</file>
+        <file>DashboardGeneral/images/menu/lights/color/parking.png</file>
+        <file>DashboardGeneral/images/menu/lights/color/rear.png</file>
+        <file>DashboardGeneral/images/menu/lights/color/rearFogLights.png</file>
+        <file>DashboardGeneral/images/menu/lights/color/turns.png</file>
+        <file>DashboardGeneral/images/menu/lights/grey/frontFogLights.png</file>
+        <file>DashboardGeneral/images/menu/lights/grey/highBeam.png</file>
+        <file>DashboardGeneral/images/menu/lights/grey/lowBeam.png</file>
+        <file>DashboardGeneral/images/menu/lights/grey/markerLights.png</file>
+        <file>DashboardGeneral/images/menu/lights/grey/movingLights.png</file>
+        <file>DashboardGeneral/images/menu/lights/grey/parking.png</file>
+        <file>DashboardGeneral/images/menu/lights/grey/rear.png</file>
+        <file>DashboardGeneral/images/menu/lights/grey/rearFogLights.png</file>
+        <file>DashboardGeneral/images/menu/lights/grey/turns.png</file>
+        <file>DashboardGeneral/images/menu/menu24v/icon24v.png</file>
+        <file>DashboardGeneral/images/menu/menuBrakesAndTires/brakesAndTiresFont.png</file>
+        <file>DashboardGeneral/images/menu/menuBrakesAndTires/pressureIndicator.png</file>
+        <file>DashboardGeneral/images/menu/menuBrakesAndTires/redBrake.png</file>
+        <file>DashboardGeneral/images/menu/menuBrakesAndTires/redTire.png</file>
+        <file>DashboardGeneral/images/menu/menuBrakesAndTires/tempIndicator.png</file>
+        <file>DashboardGeneral/images/menu/menuBrakesAndTires/tempUnit.png</file>
+        <file>DashboardGeneral/images/menu/menuBrakesAndTires/whiteBrake.png</file>
+        <file>DashboardGeneral/images/menu/menuBrakesAndTires/yellowTirePressure.png</file>
+        <file>DashboardGeneral/images/menu/menuBrakesAndTires/yellowTireTemp.png</file>
+        <file>DashboardGeneral/images/menu/menuValves/arrowGreen.png</file>
+        <file>DashboardGeneral/images/menu/menuValves/arrowWhite.png</file>
+        <file>DashboardGeneral/images/menu/menuValves/valveRed.png</file>
+        <file>DashboardGeneral/images/menu/menuValves/valveWhite.png</file>
+        <file>DashboardGeneral/images/menu/suspension/autoKniling.png</file>
+        <file>DashboardGeneral/images/menu/suspension/badRoad.png</file>
+        <file>DashboardGeneral/images/menu/beaconLight.png</file>
+        <file>DashboardGeneral/images/menu/diagnostic.png</file>
+        <file>DashboardGeneral/images/menu/erase.png</file>
+        <file>DashboardGeneral/images/menu/key.png</file>
+        <file>DashboardGeneral/images/menu/ok.png</file>
+        <file>DashboardGeneral/images/menu/parameters.png</file>
+        <file>DashboardGeneral/images/menu/salonLights.png</file>
+        <file>DashboardGeneral/images/menu/service.png</file>
+        <file>DashboardGeneral/images/menu/settings.png</file>
+        <file>DashboardGeneral/images/menu/spinnerBlue.png</file>
+        <file>DashboardGeneral/images/menu/washerLevel.png</file>
+        <file>DashboardGeneral/images/menu/worker.png</file>
+        <file>DashboardGeneral/images/signalLamps/brakeSystem/brakeSystemError.png</file>
+        <file>DashboardGeneral/images/signalLamps/busInterior/liquidHeaterError.png</file>
+        <file>DashboardGeneral/images/signalLamps/motorSystem/eco.png</file>
+        <file>DashboardGeneral/images/signalLamps/motorSystem/eco.png:Zone.Identifier</file>
+        <file>DashboardGeneral/images/signalLamps/turnSignals/rightTurnSignal — копия.png:Zone.Identifier</file>
+        <file>DashboardGeneral/images/signalLamps/turnSignals/rightTurnSignalWhite.png</file>
+        <file>DashboardGeneral/images/signalLamps/needService.png</file>
+        <file>DashboardGeneral/images/backgroundMain_v2.png</file>
+        <file>DashboardGeneral/images/blackFon.png</file>
+        <file>DashboardGeneral/images/busSideViewMenu_LiazNG.png</file>
+        <file>DashboardGeneral/images/estimatedRangeDiesel.png</file>
+        <file>DashboardGeneral/images/iceRoad.png</file>
+        <file>DashboardGeneral/images/signalLampFont_LiazNG.png</file>
+        <file>DashboardGeneral/images/estimatedRangeElectro.png</file>
     </qresource>
 </RCC>

@@ -506,9 +506,9 @@ Item{
             property string skString;
             function onSendIpToQml(inputStr){
                 skString = inputStr
-                if (skString.indexOf("10.0") !== -1 || skString.indexOf("10.6") !== -1 || skString.indexOf("172.19") !== -1){
+                if (skString.indexOf("10.0") !== -1 || skString.indexOf("10.6") !== -1 || skString.indexOf("172") !== -1){
                     buttonIsVisible = true
-                    backlightControlObject.backlightLevelChanged(30)
+                    backlightControl.backlightLevelChanged(30)
                 }
                 else{
                     buttonIsVisible = false
@@ -740,19 +740,14 @@ Item{
                 }
             }
         }
-        Image {
+        Item {
             id: dials
             x: 0
             y: 0
             width: 1920
             height: 720
-            sourceSize.height: 0
-            sourceSize.width: 0
             visible: true
             z: 0
-            fillMode: Image.Pad
-            source: "img/dials.png"
-
             Item{
 
                 id: actualMileageItem
@@ -1015,31 +1010,17 @@ Item{
                         font.pixelSize: 60
                         horizontalAlignment: Text.AlignRight
                         verticalAlignment: Text.AlignVCenter
-
-                        Text {
-                            id: estimatedKilometersRangeText
-                            x: 0
-                            y: 0
-                            width: estimatedKilometersRangeValue.width + 40
-                            height: estimatedKilometersRangeValue.height
-                            color: "#ffffff"
-                            text: qsTr("км")
-                            font.pixelSize: estimatedKilometersRangeValue.font.pixelSize / 2
-                            font.family: "Arial"
-                            horizontalAlignment: Text.AlignRight
-                            verticalAlignment: Text.AlignVCenter
-                        }
                     }
 
                     Image {
 
                         id: estimatedRangeImage
-                        x: 101
-                        y: 14
-                        width: 100
-                        height: 42
+                        x: 106
+                        y: -13
+                        width: 134
+                        height: 87
                         fillMode: Image.PreserveAspectFit
-                        source: "DashboardGeneral/images/estimated_range_new.png"
+                        source: "DashboardGeneral/images/estimatedRangeElectro.png"
                     }
                 }
 

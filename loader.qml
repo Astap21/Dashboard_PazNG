@@ -10,8 +10,7 @@ Window {
     visible: true
     width: 1920
     height: 720
-    color: "#ffffff"
-    property alias baseHeight: base.height
+    color: "#000000"
     title: qsTr("DashBoard")
     Loader {
         id: myLoader
@@ -20,15 +19,6 @@ Window {
         asynchronous: true
         active: false
         source: "qrc:/main.qml"
-
-        Rectangle {
-            id: base
-            width: myLoader.width
-            height: myLoader.height
-            color: "#000000"
-            z: 0
-            border.width: 0
-        }
         Image {
             id: logo
             x: 710

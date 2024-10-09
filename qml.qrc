@@ -64,23 +64,44 @@
         <file>DashboardGeneral/qmlUserClass/baseClasses/ShiftSelector_C.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/BaseMenuItem_1.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/mainMenu.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/paramDiezel.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/settingsDiezel.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/SubMenu.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/SubMenuItem.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/paramElectro.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/ParamProto.qml</file>
         <file>DashboardGeneral/qmlUserClass/baseClasses/Triangle.qml</file>
         <file>DashboardGeneral/qmlUserClass/baseClasses/NG/ProgressBarNg_С.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/NG/DiezelParam/AdBlue2_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/NG/DiezelParam/BrakesAndTiresInfo2_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/NG/DiezelParam/Engine2_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/NG/DiezelParam/FireExtinguishersAndValves2_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/NG/DiezelParam/IconNameStatusNg_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/NG/DiezelParam/Transmission2_M.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/NG/Settings/DoorControl_M.qml</file>
         <file>DashboardGeneral/qmlUserClass/baseClasses/NG/TextSwitchNG_C.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/NG/Settings/Settings2_M.qml</file>
         <file>DashboardGeneral/qmlUserClass/baseClasses/NG/TextValueNG_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/NG/ImgAndRectNg_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/NG/ImgRectTextNg_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/NG/TextNg_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/NG/TextScaleNg_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/NG/TextSwitchNG_2_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/NG/TextSwitchNG_3_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/NG/TriangleNg_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/NG/TriangleScaleNg_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/NG/ValveNg_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/EasyProgressBar_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/baseClasses/FpsItem_C.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/paramDiesel.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/commonElement/settingsDiesel.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/Diagnostic/DiagnosticDiezel_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/DieselParam/AdBlue2_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/DieselParam/BrakesAndTiresInfo2_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/DieselParam/Engine2_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/DieselParam/FireExtinguishersAndValves2_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/DieselParam/IconNameStatusNg_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/DieselParam/Transmission2_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/Service/serviceEnter.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/Settings/DoorPassControl_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/Settings/Help.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/Settings/LightDiagnostic_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/Settings/SalonLight_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/Settings/Sensor_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/Settings/Suspension_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/Settings/ValveControl_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/Settings/Wipers_M.qml</file>
     </qresource>
 </RCC>
