@@ -240,8 +240,9 @@
         <file>DashboardGeneral/images/blackFon.png</file>
         <file>DashboardGeneral/images/busSideViewMenu_LiazNG.png</file>
         <file>DashboardGeneral/images/estimatedRangeDiesel.png</file>
-        <file>DashboardGeneral/images/iceRoad.png</file>
         <file>DashboardGeneral/images/signalLampFont_LiazNG.png</file>
         <file>DashboardGeneral/images/estimatedRangeElectro.png</file>
+        <file>img/backFon_2.png</file>
+        <file>DashboardGeneral/images/signalLamps/iceRoad.png</file>
     </qresource>
 </RCC>

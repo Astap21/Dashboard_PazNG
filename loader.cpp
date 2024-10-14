@@ -118,7 +118,8 @@ int main(int argc, char *argv[])
 
     softVersion = softVersion  + " - " + QString::number(GetGitCommitHash(),16);
     qDebug() << "softVersion " << softVersion;
-    AdditionalTasks additionalTasks("additionalTasksOdject", &interfaceForConnectToQml, softVersion);
+    AdditionalTasks additionalTasks("additionalTasks", &interfaceForConnectToQml, softVersion);
+    engine.rootContext()->setContextProperty("additionalTasks", &additionalTasks);
 
     QObject::connect(&brakeSystem, &BrakeSystem::sendMovementsBanState, &motor, &Motor::NeedMovementBanByBrakeSystem);
     QObject::connect(&doors, &Doors::sendMovementsBanState, &motor, &Motor::NeedMovementBanByDoor);

@@ -51,7 +51,7 @@ Item{
         visible: true
         sourceSize.height: 0
         sourceSize.width: 0
-        source: "img/backFon.png"
+        source: "img/backFon_2.png"
         z: 0
         fillMode: Image.PreserveAspectFit
         property bool bootAnimation: true
@@ -290,6 +290,7 @@ Item{
             doors.dashboardLoadFinished()
             adas.dashboardLoadFinished()
             tachograph.dashboardLoadFinished()
+            additionalTasks.dashboardLoadFinished()
         }
     }
     PropertyAnimation {
@@ -412,7 +413,7 @@ Item{
             x: 1830
             y: 96
             width: 50
-            height: batteryVoltage_L.Width
+            height: batteryVoltage_L.width
             fillMode: Image.PreserveAspectFit
             source: "DashboardGeneral/images/signalLamps/battery/batHvOn.png"
         }
@@ -437,7 +438,7 @@ Item{
             x: 1828
             y: 608
             width: 50
-            height: soc_L.Width
+            height: soc_L.width
             fillMode: Image.PreserveAspectFit
             source: "DashboardGeneral/images/signalLamps/battery/batHvOff.png"
         }
