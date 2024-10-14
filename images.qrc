@@ -116,21 +116,13 @@
         <file>DashboardGeneral/images/signalLamps/route.png</file>
         <file>DashboardGeneral/images/signalLamps/service.png</file>
         <file>DashboardGeneral/images/backgroundLoader.png</file>
-        <file>DashboardGeneral/images/backgroundMain.png</file>
         <file>DashboardGeneral/images/driverCabin.png</file>
         <file>DashboardGeneral/images/logo.png</file>
         <file>DashboardGeneral/images/nature.png</file>
-        <file>DashboardGeneral/images/newDials.png</file>
         <file>DashboardGeneral/images/salon.png</file>
-        <file>DashboardGeneral/images/busFrontView_LiazNG.png</file>
-        <file>DashboardGeneral/images/busRearView_PazNG.png</file>
-        <file>DashboardGeneral/images/busSideView_LiazNG.png</file>
-        <file>DashboardGeneral/images/busSideView_PazNG.png</file>
-        <file>img/dials.png</file>
         <file>img/busFrontView.png</file>
         <file>DashboardGeneral/images/signalLamps/battery/batHvOn.png</file>
         <file>DashboardGeneral/images/signalLamps/battery/batHvWarning.png</file>
-        <file>img/backFon.png</file>
         <file>DashboardGeneral/images/Doors/requestOpenDoor.png</file>
         <file>DashboardGeneral/images/signalLamps/battery/batHvFail.png</file>
         <file>DashboardGeneral/images/signalLamps/battery/batHvOff.png</file>
@@ -236,13 +228,10 @@
         <file>DashboardGeneral/images/signalLamps/turnSignals/rightTurnSignal — копия.png:Zone.Identifier</file>
         <file>DashboardGeneral/images/signalLamps/turnSignals/rightTurnSignalWhite.png</file>
         <file>DashboardGeneral/images/signalLamps/needService.png</file>
-        <file>DashboardGeneral/images/backgroundMain_v2.png</file>
-        <file>DashboardGeneral/images/blackFon.png</file>
-        <file>DashboardGeneral/images/busSideViewMenu_LiazNG.png</file>
         <file>DashboardGeneral/images/estimatedRangeDiesel.png</file>
-        <file>DashboardGeneral/images/signalLampFont_LiazNG.png</file>
         <file>DashboardGeneral/images/estimatedRangeElectro.png</file>
-        <file>img/backFon_2.png</file>
         <file>DashboardGeneral/images/signalLamps/iceRoad.png</file>
+        <file>img/backFon_3.png</file>
+        <file>img/busSideView_PazNG.png</file>
     </qresource>
 </RCC>

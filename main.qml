@@ -51,7 +51,7 @@ Item{
         visible: true
         sourceSize.height: 0
         sourceSize.width: 0
-        source: "img/backFon_2.png"
+        source: "img/backFon_3.png"
         z: 0
         fillMode: Image.PreserveAspectFit
         property bool bootAnimation: true
