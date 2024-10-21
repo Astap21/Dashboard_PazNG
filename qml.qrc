@@ -3,7 +3,6 @@
         <file>loader.qml</file>
         <file>SignalLamps.qml</file>
         <file>main.qml</file>
-        <file>menu.qml</file>
         <file>SignalLamp_C.qml</file>
         <file>TurnSignals_C.qml</file>
         <file>DashboardGeneral/fonts/Digital/Digital_Font.ttf</file>
@@ -45,19 +44,6 @@
         <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/PropulsionBattery_M.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/ServiceInfo_M.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/TractionInverter_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/AdBlue_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/AxleLoad_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/BrakesAndTiresInfo_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/ClimateControl_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/DisableFaults_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/DoorControl_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/Engine_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/FireExtinguishersAndValves_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/Fuel_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/Settings_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/Suspension_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/Transmission_M.qml</file>
-        <file>DashboardGeneral/qmlUserClass/menuItem/Wipers_M.qml</file>
         <file>DashboardGeneral/sound/errorSound.wav</file>
         <file>DashboardGeneral/sound/turnSignalSound.wav</file>
         <file>DashboardGeneral/sound/warningSound.wav</file>
@@ -103,5 +89,19 @@
         <file>DashboardGeneral/qmlUserClass/menuItem/NG/Settings/Suspension_M.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/NG/Settings/ValveControl_M.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/NG/Settings/Wipers_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/Settings/Mileage_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/AdBlue_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/AxleLoad_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/BrakesAndTiresInfo_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/ClimateControl_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/DisableFaults_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/DoorControl_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/Engine_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/FireExtinguishersAndValves_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/Fuel_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/Settings_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/Suspension_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/Transmission_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/Wipers_M.qml</file>
     </qresource>
 </RCC>

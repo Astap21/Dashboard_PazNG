@@ -13,7 +13,7 @@ DriverCabin::DriverCabin(QObject *parent) : PrimaryBusComponent(parent)
     WipersStatus = 0;
     SeatHeating = 0;
 
-    WasherFluidLevel = 0;
+    washerFluidLevel = 0;
 
     timerPeriod_ms = 500;
     timerForTask.setInterval(timerPeriod_ms);
@@ -26,7 +26,9 @@ void DriverCabin::SetWipersWorkCounter(const uint& inputUint){
     wipersWorkCounter = inputUint;
     emit sendWipersWorkCounter(wipersWorkCounter);
 }
-
+float DriverCabin::GetWasherFluidLevel(void){
+    return washerFluidLevel;
+}
 void DriverCabin::ReadStateFromCanDB(){
         previousComponentState = 0;
 
@@ -49,11 +51,11 @@ void DriverCabin::ReadStateFromCanDB(){
         //qDebug() << HeaterMirrorsStatus;
 
         previousComponentState = WasherFluidLamp;
-        WasherFluidLevel = gCanDB.GetSignalValueFloat(gSignalName_DD1_WasherFluidLow, gMessageName_DD1_1E);
+        washerFluidLevel = gCanDB.GetSignalValueFloat(gSignalName_DD1_WasherFluidLow, gMessageName_DD1_1E);
         float washerFluidLampLevel_percent = 25;
         float washerFluidHysteresisLevel_percent = 5;
-        if (WasherFluidLevel < washerFluidLampLevel_percent) WasherFluidLamp = 1;
-        if (WasherFluidLevel > (washerFluidLampLevel_percent + washerFluidHysteresisLevel_percent)) WasherFluidLamp = 0;
+        if (washerFluidLevel < washerFluidLampLevel_percent) WasherFluidLamp = 1;
+        if (washerFluidLevel > (washerFluidLampLevel_percent + washerFluidHysteresisLevel_percent)) WasherFluidLamp = 0;
         if (previousComponentState != WasherFluidLamp) emit sendWasherFluidLampToQml(WasherFluidLamp);
 
         if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_FrontNonOperatorWiperSwitch, gMessageName_OWW, &gCanDB), WipersAutoStatus)) emit sendWipersAutoStatusToQml(WipersAutoStatus);
@@ -62,7 +64,7 @@ void DriverCabin::ReadStateFromCanDB(){
 
     }
 void DriverCabin::SendStateToQml(){
-    emit sendWasherFluidLevelToQml(WasherFluidLevel);
+    emit sendWasherFluidLevelToQml(washerFluidLevel);
 }
 void DriverCabin::dashboardLoadFinished(){
     emit sendWindshieldHeatingStatusToQml(ElecticHeatedWindshield);

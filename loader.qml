@@ -4,6 +4,7 @@ import QtQuick 2.9
 import QtQuick.Window 2.3
 import QtMultimedia 5.9
 import QtQml 2.5
+import "DashboardGeneral/qmlUserClass/baseClasses"
 
 Window {
     id: dashBoard
@@ -12,6 +13,14 @@ Window {
     height: 720
     color: "#000000"
     title: qsTr("DashBoard")
+    FpsItem_C{
+        x: 0
+        y: 0
+        width: 140
+        height: 34
+        color: "#000000"
+        z: 2
+    }
     Loader {
         id: myLoader
         width: 1920

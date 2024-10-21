@@ -18,17 +18,8 @@ Item{
     property int generalOpacity: 1
     opacity: mainItem.opacity
     Component.onCompleted: {
-        //a_incLogoOpacity.running = true
         a_decLogoOpacity.running = true
         a_incMainItemOpacity.running = true
-        //a_incDownTextRowOpacity.running = true
-        //        brakeSystem.dashboardLoadFinished()
-        //        tractionBattery.dashboardLoadFinished()
-        //        motor.dashboardLoadFinished()
-        //        suspension.dashboardLoadFinished()
-        //        exteriorLightning.dashboardLoadFinished()
-        //        driverCabin.dashboardLoadFinished()
-        //        busInterior.dashboardLoadFinished()
         background.bootAnimation = true
     }
     SoundEffect{
@@ -80,110 +71,86 @@ Item{
         source: "qrc:/DashboardGeneral/qmlUserClass/menuItem/commonElement/mainMenu.qml"
         z: 2
     }
-
-    PressureCircuitBar_C {
+    EasyProgressBar_C {
         id: brakePressureCircuit_1
-        x: 303
-        y: 310
-        highPressure: 12
-        actualPressure: 0
-        counterClockwise: true
-        lowPressure: 6
-        maxPressure: 12
+        x: 32
+        y: 158
         z: -1
-        size: 650
-        arcOffset: 309
-        lineWidth: 40
-        arcMax: -32.5
+        width: 100
+        height: 177
+        color: "#b7b7b7"
+        rotation: 23
+        maxValue: 12
+        minValue: 0
+        lowValue: 6
+        maxHeight: 172
     }
-
-    PressureCircuitBar_C {
+    EasyProgressBar_C {
         id: brakePressureCircuit_2
-        x: 351
-        y: 316
+        x: 32
+        y: 412
         z: -1
-        arcOffset: 233.5
-        size: 740
-        opacity: 1
-        highPressure: 12
-        maxPressure: 12
-        lowPressure: 6
-        lineWidth: 35
-        arcMax: 28.3
-        actualPressure: 0
+        width: 100
+        height: 177
+        color: "#b7b7b7"
+        rotation: -23
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 133
+        maxValue: 12
+        minValue: 0
+        lowValue: 6
+        maxHeight: 172
     }
-
-    ProgressCycle_C {
+    EasyProgressBar_C {
         id: voltageBar
-        property double arcMax: 32.5
-        property double koef: arcMax / (maxValue - minValue)
-        property double actualValue: 0
-        property double minValue: 0
-        property double maxValue: 800
-        property double lowValue: 420
-        x: 1264
-        y: 53
-        arcEnd: 82
+        x: 1789
+        y: 159
         z: -1
-        arcBegin: arcEnd - ((actualValue - minValue) * koef*1.05)
-        size: 625
-        arcOffset: 0
-        lineWidth: 38.5
-        beginAnimation: false
-        endAnimation: false
-        isPie: false
-        colorCircleStartGrad:"#b7b7b7"
-        colorCircleStopGrad: "#b7b7b7"
-        opacity: 1
-
+        width: 100
+        height: 177
+        color: "#b7b7b7"
+        rotation: -23
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 386
+        maxValue: 800
+        minValue: 0
+        lowValue: 200
+        maxHeight: 172
         function updateValue(inputValue){
             if (inputValue > maxValue) actualValue = maxValue
             else if (inputValue < minValue) actualValue = minValue
             else actualValue = inputValue
+            height = maxHeight * (actualValue / (maxValue - minValue))
             if (actualValue < lowValue) {
-                voltageBar.colorCircleStopGrad= "#ff0000"
-                voltageBar.colorCircleStartGrad= "#ff0000"
+                voltageBar.color= "#ff0000"
             }
             else {
-                voltageBar.colorCircleStopGrad = "#b7b7b7"
-                voltageBar.colorCircleStartGrad = "#b7b7b7"
+                voltageBar.color = "#b7b7b7"
             }
         }
     }
-
-    ProgressCycle_C {
+    EasyProgressBar_C {
         id: socBar
-        property double arcMax: 32.5
-        property double koef: arcMax / (maxValue - minValue)
-        property double actualValue: 0
-        property double minValue: 0
-        property double maxValue: 100
-        property double lowValue: 20
-        property double criticalLowValue: 10
-
-        x: 1259
-        y: 80
-        arcEnd: 30.5
+        x: 1786
+        y: 411
         z: -1
-        arcBegin: arcEnd - ((actualValue - minValue)  * koef * 1.03)
-        size: 625
-        arcOffset: 98
-        lineWidth: 36
-        beginAnimation: false
-        endAnimation: false
-        isPie: false
-        colorCircleStartGrad:"#b7b7b7"
-        colorCircleStopGrad: "#b7b7b7"
-        opacity: 1
-
+        width: 100
+        height: 180
+        rotation: 23
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 132
+        maxValue: 100
+        lowValue: 20
+        maxHeight: 172
+        property int criticalLowValue: 10
         function updateValue(inputValue){
             if (inputValue > maxValue) actualValue = maxValue
             else if (inputValue < minValue) actualValue = minValue
             else actualValue = inputValue
             socValue.text = actualValue.toFixed(0) + " %"
+            height = maxHeight * (actualValue / (maxValue - minValue))
             if (actualValue < criticalLowValue) {
-                socBar.colorCircleStopGrad= "#ff0000"
-                socBar.colorCircleStartGrad= "#ff0000"
+                socBar.color= "#ff0000"
                 soc_L.source = "DashboardGeneral/images/signalLamps/battery/batHvWarning.png"
                 soc_L.lampToggle()
             }
@@ -194,13 +161,133 @@ Item{
                 soc_L.lampOn()
             }
             else {
-                socBar.colorCircleStopGrad = "#b7b7b7"
-                socBar.colorCircleStartGrad = "#b7b7b7"
+                socBar.color = "#b7b7b7"
                 soc_L.source = "DashboardGeneral/images/signalLamps/battery/batHvOff.png"
                 soc_L.lampOn()
             }
         }
     }
+
+//    PressureCircuitBar_C {
+//        id: brakePressureCircuit_1
+//        x: 303
+//        y: 310
+//        highPressure: 12
+//        actualPressure: 0
+//        counterClockwise: true
+//        lowPressure: 6
+//        maxPressure: 12
+//        z: -1
+//        size: 650
+//        arcOffset: 309
+//        lineWidth: 40
+//        arcMax: -32.5
+//    }
+
+//    PressureCircuitBar_C {
+//        id: brakePressureCircuit_2
+//        x: 351
+//        y: 316
+//        z: -1
+//        arcOffset: 233.5
+//        size: 740
+//        opacity: 1
+//        highPressure: 12
+//        maxPressure: 12
+//        lowPressure: 6
+//        lineWidth: 35
+//        arcMax: 28.3
+//        actualPressure: 0
+//    }
+
+//    ProgressCycle_C {
+//        id: voltageBar
+//        property double arcMax: 32.5
+//        property double koef: arcMax / (maxValue - minValue)
+//        property double actualValue: 0
+//        property double minValue: 0
+//        property double maxValue: 800
+//        property double lowValue: 420
+//        x: 1264
+//        y: 53
+//        arcEnd: 82
+//        z: -1
+//        arcBegin: arcEnd - ((actualValue - minValue) * koef*1.05)
+//        size: 625
+//        arcOffset: 0
+//        lineWidth: 38.5
+//        beginAnimation: false
+//        endAnimation: false
+//        isPie: false
+//        colorCircleStartGrad:"#b7b7b7"
+//        colorCircleStopGrad: "#b7b7b7"
+//        opacity: 1
+
+//        function updateValue(inputValue){
+//            if (inputValue > maxValue) actualValue = maxValue
+//            else if (inputValue < minValue) actualValue = minValue
+//            else actualValue = inputValue
+//            if (actualValue < lowValue) {
+//                voltageBar.colorCircleStopGrad= "#ff0000"
+//                voltageBar.colorCircleStartGrad= "#ff0000"
+//            }
+//            else {
+//                voltageBar.colorCircleStopGrad = "#b7b7b7"
+//                voltageBar.colorCircleStartGrad = "#b7b7b7"
+//            }
+//        }
+//    }
+
+//    ProgressCycle_C {
+//        id: socBar
+//        property double arcMax: 32.5
+//        property double koef: arcMax / (maxValue - minValue)
+//        property double actualValue: 0
+//        property double minValue: 0
+//        property double maxValue: 100
+//        property double lowValue: 20
+//        property double criticalLowValue: 10
+
+//        x: 1259
+//        y: 80
+//        arcEnd: 30.5
+//        z: -1
+//        arcBegin: arcEnd - ((actualValue - minValue)  * koef * 1.03)
+//        size: 625
+//        arcOffset: 98
+//        lineWidth: 36
+//        beginAnimation: false
+//        endAnimation: false
+//        isPie: false
+//        colorCircleStartGrad:"#b7b7b7"
+//        colorCircleStopGrad: "#b7b7b7"
+//        opacity: 1
+
+//        function updateValue(inputValue){
+//            if (inputValue > maxValue) actualValue = maxValue
+//            else if (inputValue < minValue) actualValue = minValue
+//            else actualValue = inputValue
+//            socValue.text = actualValue.toFixed(0) + " %"
+//            if (actualValue < criticalLowValue) {
+//                socBar.colorCircleStopGrad= "#ff0000"
+//                socBar.colorCircleStartGrad= "#ff0000"
+//                soc_L.source = "DashboardGeneral/images/signalLamps/battery/batHvWarning.png"
+//                soc_L.lampToggle()
+//            }
+//            else if(actualValue < lowValue) {
+//                socBar.colorCircleStopGrad= "#ff0000"
+//                socBar.colorCircleStartGrad= "#ff0000"
+//                soc_L.source = "DashboardGeneral/images/signalLamps/battery/batHvWarning.png"
+//                soc_L.lampOn()
+//            }
+//            else {
+//                socBar.colorCircleStopGrad = "#b7b7b7"
+//                socBar.colorCircleStartGrad = "#b7b7b7"
+//                soc_L.source = "DashboardGeneral/images/signalLamps/battery/batHvOff.png"
+//                soc_L.lampOn()
+//            }
+//        }
+//    }
 
     PropertyAnimation {
         id: a_incLogoOpacity
@@ -291,6 +378,7 @@ Item{
             adas.dashboardLoadFinished()
             tachograph.dashboardLoadFinished()
             additionalTasks.dashboardLoadFinished()
+            calculateMileage.dashboardLoadFinished()
         }
     }
     PropertyAnimation {
@@ -519,6 +607,15 @@ Item{
                 dynamicTextRow.insertRowToArray(inputStr)
             }
         }
+        Connections {
+            target: calculateMileage
+            function onSendTotalMileageToQml(totalMileageCalc) {
+                totalMileageValue.text = totalMileageCalc;
+            }
+            function onSendActualMileageToQml(actualMileageCalc) {
+                actualMileageValue.text = actualMileageCalc;
+            }
+        }
         Connections  {
             target: connectionFromCpp // Указываем целевое соединение
             // Объявляем и реализуем функцию, как параметр
@@ -586,12 +683,6 @@ Item{
             //            function onSendEstimatedKmRangeToQml(){
             //                estimatedKilometersRangeValue.text = inputFloat.toFixed(0)
             //            }
-            function onSendTotalMileageToQml(totalMileageCalc) {
-                totalMileageValue.text = totalMileageCalc;
-            }
-            function onSendActualMileageToQml(actualMileageCalc) {
-                actualMileageValue.text = actualMileageCalc;
-            }
         }
         //        Connections {
         //            target: canBus
@@ -709,12 +800,12 @@ Item{
             target: brakeSystem
             function onSendPressureCircuit1ToQml(inputFloat) {
                 if (background.bootAnimation === false) {
-                    brakePressureCircuit_1.updatePressure(inputFloat)
+                    brakePressureCircuit_1.updateValue(inputFloat)
                 }
             }
             function onSendPressureCircuit2ToQml(inputFloat) {
                 if (background.bootAnimation === false) {
-                    brakePressureCircuit_2.updatePressure(inputFloat)
+                    brakePressureCircuit_2.updateValue(inputFloat)
                 }
             }
             function onSendPressureCircuit1LampToQml(inputBool) {

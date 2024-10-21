@@ -19,6 +19,7 @@
 #include "DashBoardClasses/trans.h"
 #include "DashBoardClasses/logtofile.h"
 #include "DashBoardClasses/fpstext.h"
+#include "DashBoardClasses/calculatemileage.h"
 
 #include "canDataBase/canDataBase.h"
 //#include <libudev.h>
@@ -120,6 +121,9 @@ int main(int argc, char *argv[])
     qDebug() << "softVersion " << softVersion;
     AdditionalTasks additionalTasks("additionalTasks", &interfaceForConnectToQml, softVersion);
     engine.rootContext()->setContextProperty("additionalTasks", &additionalTasks);
+
+    CalculateMileage calculateMileage("calculateMileage");
+    engine.rootContext()->setContextProperty("calculateMileage", &calculateMileage);
 
     QObject::connect(&brakeSystem, &BrakeSystem::sendMovementsBanState, &motor, &Motor::NeedMovementBanByBrakeSystem);
     QObject::connect(&doors, &Doors::sendMovementsBanState, &motor, &Motor::NeedMovementBanByDoor);

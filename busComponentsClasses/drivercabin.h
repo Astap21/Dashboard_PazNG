@@ -8,6 +8,7 @@ class DriverCabin : public PrimaryBusComponent
 {
     Q_OBJECT
     Q_PROPERTY(uint wipersWorkCounter READ GetWipersWorkCounter WRITE SetWipersWorkCounter NOTIFY sendWipersWorkCounter)
+    Q_PROPERTY(float washerFluidLevel READ GetWasherFluidLevel NOTIFY sendWasherFluidLevelToQml)
 public:
     explicit DriverCabin(QObject *parent = nullptr);
     void SendStateToQml() override;
@@ -29,7 +30,7 @@ private:
     uint SeatBelt = 0;
     uint NoDriver = 0;
     uint SeatHeating = 0;
-    float WasherFluidLevel = 0;
+    float washerFluidLevel = 0;
     uint routeIndicator = 0;
     uint heatedSteering = 0;
     struct {
@@ -38,7 +39,7 @@ private:
         uint8_t LampOnSpeed2 = 2;
         uint8_t LampOnIntermittentMode = 3;
     } wipersStatusLamp;
-
+    float GetWasherFluidLevel(void);
 signals:
     void sendWindshieldHeatingStatusToQml(const uint& inputUint);
     void sendElecticHeatedSideWindowsStatusToQml(const uint& inputUint);
