@@ -13,14 +13,14 @@ Window {
     height: 720
     color: "#000000"
     title: qsTr("DashBoard")
-    FpsItem_C{
-        x: 0
-        y: 0
-        width: 140
-        height: 34
-        color: "#000000"
-        z: 2
-    }
+//    FpsItem_C{
+//        x: 0
+//        y: 0
+//        width: 140
+//        height: 34
+//        color: "#000000"
+//        z: 2
+//    }
     Loader {
         id: myLoader
         width: 1920

@@ -1085,7 +1085,7 @@ Item{
 
                 Item {
                     id: estimatedRange
-                    x: 12
+                    x: -15
                     y: 103
                     width: 208
                     height: 60
