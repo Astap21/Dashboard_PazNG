@@ -7,8 +7,8 @@ DoorsPaz::DoorsPaz(QObject *parent) : Doors(parent)
 
 }
 
-uint DoorsPaz::returnValveStatus(const int &_doorNumber){
-    return 0;
+valve_state_e DoorsPaz::GetValveStatus(const int &doorNumber, const valve_side_e &side){
+    return valve_state_e::closeValveCloseCap;
 //    canBus::messageNameCharStruct *EDSC2;
 //    canBus::signalNameCharStruct *ValveOut;
 //    canBus::signalNameCharStruct *ValveIn;
@@ -105,4 +105,17 @@ uint DoorsPaz::returnDoorStatus(const int &_doorNumber){
     if ((gCanDB.GetSignalValueUint32_t(*DoorNotDefained, *canMsg)) == 1) doorStatus = 5;
 
     return doorStatus;
+}
+uint DoorsPaz::GetRampState(){
+    uint rampStatus;
+    if (gCanDB.GetSignalValueUint32_t(gSignalName_RampError, gMessageName_DC1) == 1) {
+        rampStatus = 1;
+    }
+    else if (gCanDB.GetSignalValueUint32_t(gSignalName_RampError, gMessageName_DC1) == 2) {
+        rampStatus = 2;
+    }
+    else {
+        rampStatus = 0;
+    }
+    return rampStatus;
 }

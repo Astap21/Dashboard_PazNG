@@ -12,7 +12,8 @@ class DoorsPaz : public Doors
 public:
     explicit DoorsPaz(QObject *parent = nullptr);
     uint returnDoorStatus(const int& doorNumber) override;
-    uint returnValveStatus(const int& doorNumber) override;
+    valve_state_e GetValveStatus(const int &doorNumber, const valve_side_e &side) override;
+    uint GetRampState() override;
 };
 
 #endif // DOORSPAZ_H

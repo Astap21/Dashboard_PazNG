@@ -1,6 +1,4 @@
-﻿import QtQuick 2.9
-import QtQuick.Window 2.3
-import QtQml 2.5
+﻿import QtQuick 2.0
 import "DashboardGeneral/qmlUserClass"
 import "DashboardGeneral/qmlUserClass/baseClasses"
 
@@ -27,8 +25,8 @@ Item {
         id: shiftSelector
         x: 918
         y: 92
-        width: 92
-        height: 64
+        width: 78
+        height: 78
     }
     Connections{
             target: busInterior
@@ -199,12 +197,13 @@ Item {
                 }
             }
             function onSendActualGearToQml(inputString){
-                if (inputString === "STOP"){
-                    shiftSelector.viewShiftSelector(false, inputString)
-                }
-                else{
-                    shiftSelector.viewShiftSelector(true, inputString)
-                }
+//                if (inputString === "STOP"){
+//                    shiftSelector.viewShiftSelector(false, inputString)
+//                }
+//                else{
+//                    shiftSelector.viewShiftSelector(true, inputString)
+//                }
+                shiftSelector.viewShiftSelector(inputString)
             }
             function onSendEngineLowCoolantLevelToQml(inputUint) {
                 if (inputUint) {
@@ -970,7 +969,7 @@ Item {
         y: 370
         width: 50
         height: disablePersonRequest_L.width
-        source: "DashboardGeneral/images/signalLamps/disabledPersonRequest.png"
+        source: "DashboardGeneral/images/signalLamps/doors/disabledPersonRequest.png"
         test: signalLampTest
     }
 
@@ -1134,7 +1133,7 @@ Item {
         y: 345
         width: 44
         height: door2Valve_L.width
-        source: "DashboardGeneral/images/menu/doors/valveYellow.png"
+        source: "../Dashboard_LiazNG/DashboardGeneral/images/signalLamps/doors/valveYellow.png"
         test: signalLampTest
     }
 
@@ -1164,7 +1163,7 @@ Item {
         y: 363
         width: 44
         height: 44
-        source: "DashboardGeneral/images/menu/doors/valveYellow.png"
+        source: "../Dashboard_LiazNG/DashboardGeneral/images/signalLamps/doors/valveYellow.png"
         test: signalLampTest
     }
 

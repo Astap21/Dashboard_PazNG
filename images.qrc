@@ -4,7 +4,6 @@
         <file>DashboardGeneral/images/Doors/doorIsClose.png</file>
         <file>DashboardGeneral/images/Doors/doorIsOpen.png</file>
         <file>DashboardGeneral/images/Doors/doorNotDefined.png</file>
-        <file>DashboardGeneral/images/Doors/emergencyOpeningDoor.png</file>
         <file>DashboardGeneral/images/Doors/jammingDoor.png</file>
         <file>DashboardGeneral/images/signalLamps/ADAS/deadZoneRight.png</file>
         <file>DashboardGeneral/images/signalLamps/ADAS/ldws.png</file>
@@ -84,7 +83,6 @@
         <file>DashboardGeneral/images/signalLamps/motorSystem/motorFailure.png</file>
         <file>DashboardGeneral/images/signalLamps/motorSystem/motorWarning.png</file>
         <file>DashboardGeneral/images/signalLamps/motorSystem/overheatAGB.png</file>
-        <file>DashboardGeneral/images/signalLamps/motorSystem/retarder.png</file>
         <file>DashboardGeneral/images/signalLamps/motorSystem/warningExhaust.png</file>
         <file>DashboardGeneral/images/signalLamps/motorSystem/waterInFuel.png</file>
         <file>DashboardGeneral/images/signalLamps/suspension/autoKneeling.png</file>
@@ -110,7 +108,6 @@
         <file>DashboardGeneral/images/signalLamps/windshield/windshielFluidLevelWarning.png</file>
         <file>DashboardGeneral/images/signalLamps/battery24v.png</file>
         <file>DashboardGeneral/images/signalLamps/battery24vFailure.png</file>
-        <file>DashboardGeneral/images/signalLamps/disabledPersonRequest.png</file>
         <file>DashboardGeneral/images/signalLamps/failure.png</file>
         <file>DashboardGeneral/images/signalLamps/rampError.png</file>
         <file>DashboardGeneral/images/signalLamps/route.png</file>
@@ -160,8 +157,6 @@
         <file>DashboardGeneral/images/menu/doors/autoOpening.png</file>
         <file>DashboardGeneral/images/menu/doors/passControl.png</file>
         <file>DashboardGeneral/images/menu/doors/passInDoor.png</file>
-        <file>DashboardGeneral/images/menu/doors/valveRed.png</file>
-        <file>DashboardGeneral/images/menu/doors/valveYellow.png</file>
         <file>DashboardGeneral/images/menu/engine/adBlueLevel.png</file>
         <file>DashboardGeneral/images/menu/engine/adBlueTemp.png</file>
         <file>DashboardGeneral/images/menu/engine/oilTemp.png</file>
@@ -224,7 +219,6 @@
         <file>DashboardGeneral/images/signalLamps/brakeSystem/brakeSystemError.png</file>
         <file>DashboardGeneral/images/signalLamps/busInterior/liquidHeaterError.png</file>
         <file>DashboardGeneral/images/signalLamps/motorSystem/eco.png</file>
-        <file>DashboardGeneral/images/signalLamps/motorSystem/eco.png:Zone.Identifier</file>
         <file>DashboardGeneral/images/signalLamps/turnSignals/rightTurnSignal — копия.png:Zone.Identifier</file>
         <file>DashboardGeneral/images/signalLamps/turnSignals/rightTurnSignalWhite.png</file>
         <file>DashboardGeneral/images/signalLamps/needService.png</file>
@@ -233,5 +227,11 @@
         <file>DashboardGeneral/images/signalLamps/iceRoad.png</file>
         <file>img/backFon_3.png</file>
         <file>img/busSideView_PazNG.png</file>
+        <file>DashboardGeneral/images/signalLamps/doors/childRequest.png</file>
+        <file>DashboardGeneral/images/signalLamps/doors/conductorRequest.png</file>
+        <file>DashboardGeneral/images/signalLamps/doors/disabledPersonRequest.png</file>
+        <file>DashboardGeneral/images/signalLamps/doors/disabledPersonRequest_2.png</file>
+        <file>DashboardGeneral/images/signalLamps/doors/valveRed.png</file>
+        <file>DashboardGeneral/images/signalLamps/doors/valveYellow.png</file>
     </qresource>
 </RCC>

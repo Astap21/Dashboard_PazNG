@@ -69,16 +69,16 @@ void Motor::ReadStateFromCanDB(){
     //Селектор
     bool wrongGear = false;
     uint8_t gear = gCanDB.GetSignalValueUint32_t(gSignalName_TransmissionCurrentGear, gMessageName_ETC2);
-    if (movementBanByDoor || movementBanByBrakeSystem){
-        actualGear = "STOP";
-    }
-    else if (gear == 0x7D) actualGear = "N";
+//    if (movementBanByDoor || movementBanByBrakeSystem){
+//        actualGear = "STOP";
+//    }
+    if (gear == 0x7D) actualGear = "N";
     else if (gear == 0xDF) actualGear = "R";
     else if (gear == 0xE0) actualGear = "P";
     else if (gear == 0xFB) actualGear = "P";
     else if (gear == 0xFC) actualGear = "D";
     else{
-        actualGear = "STOP";
+        actualGear = "P";
         wrongGear = true;
     }
     if (actualGear != previousComponentStateString) {
