@@ -92,7 +92,12 @@ void BusInterior::ReadStateFromCanDB(){
             insideTempS = convertFloatToStrForTemp(insideTempF);
             emit sendTempInsideToQml(insideTempS);
         }
-        if (checkValueChangeBy_1(gCanDB.GetSignalValueFloat(gSignalName_CabInteriorTempB, gMessageName_AMB), salonTempF)){
+        float salonTemp1 = gCanDB.GetSignalValueFloat(gSignalName_SalonTemp_1, gMessageName_CCUT1);
+        float salonTemp2 = gCanDB.GetSignalValueFloat(gSignalName_SalonTemp_2, gMessageName_CCUT1);
+        float salonTemp3 = gCanDB.GetSignalValueFloat(gSignalName_SalonTemp_3, gMessageName_CCUT1);
+        float salonTemp4 = gCanDB.GetSignalValueFloat(gSignalName_RoofTemp, gMessageName_CCUT1);
+
+        if (checkValueChangeBy_1((salonTemp1 + salonTemp2 + salonTemp3 + salonTemp4) / 4, salonTempF)){
             salonTempS = convertFloatToStrForTemp(salonTempF);
             emit sendTempSalonToQml(salonTempS);
         }
@@ -117,11 +122,13 @@ void BusInterior::dashboardLoadFinished(){
 
 QString BusInterior::convertFloatToStrForTemp(double inputNumber){
     QString returnedSting;
-    if (inputNumber > 0) returnedSting = "+" + QString::number(round(inputNumber));
-    else returnedSting = QString::number(round(inputNumber));
+//    if (inputNumber > 0) returnedSting = "+" + QString::number(round(inputNumber));
+//    else returnedSting = QString::number(round(inputNumber));
+    returnedSting = QString::number(round(inputNumber));
     if (inputNumber < -99) returnedSting = "-99";
     if (inputNumber > 99) returnedSting = "99";
     if (returnedSting.length() > 3) returnedSting.resize(3);
     //qDebug() << inputNumber;
+    returnedSting += "°";
     return returnedSting;
 }

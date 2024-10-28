@@ -29,7 +29,7 @@
 
 int main(int argc, char *argv[])
 {
-    QString softVersion = "1.1.21";
+    QString softVersion = "1.2.0";
     //Установка переменных среды
     //qputenv("QT_GSTREAMER_PLAYBIN_AUDIOSINK", "alsasink");
     //qputenv("QT_GSTREAMER_USE_PLAYBIN_VOLUME", "1");
@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("trans", &trans);
 
     qRegisterMetaType<QCanBusDevice::CanBusError>();
-    CanBus ican("SCAN", "socketcan", "can0", 500000, &gCanDB, false, true);
+    CanBus ican("SCAN", "socketcan", "can0", 500000, &gCanDB, true, true);
     ican.addMessageToMissedMsgCheckList(gMessageName_EBC1);
     ican.addMessageToMissedMsgCheckList(gMessageName_ASC1);
     ican.addMessageToFastReceived(gMessageName_LD);

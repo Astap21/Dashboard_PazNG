@@ -905,24 +905,24 @@ Item{
                 height: 40
                 Text {
                     id: tempOutsideValue
-                    y: 1
+                    y: 0
                     width: 55
                     height: 40
                     color: "#ffffff"
                     text: qsTr("-17°")
                     anchors.left: parent.left
-                    verticalAlignment: Text.AlignTop
+                    verticalAlignment: Text.AlignVCenter
                     anchors.leftMargin: 78
                     z: 1
-                    horizontalAlignment: Text.AlignRight
-                    font.family: "Open Sans"
+                    horizontalAlignment: Text.AlignHCenter
+                    font.family: "Arial"
                     font.pixelSize: 35
                 }
 
                 Image {
                     id: tempOutsideIcon
                     x: 21
-                    y: 4
+                    y: 0
                     width: 45
                     height: 39
                     source: "DashboardGeneral/images/nature.png"
@@ -934,7 +934,7 @@ Item{
             Item {
                 id: tempCabin
                 x: 1650
-                y: 10
+                y: 13
                 width: 135
                 height: 40
                 Text {
@@ -943,20 +943,20 @@ Item{
                     width: 70
                     height: 40
                     color: "#ffffff"
-                    text: qsTr("+20°")
+                    text: qsTr("20°")
                     anchors.left: parent.left
                     font.pixelSize: 35
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment: Text.AlignTop
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
                     anchors.leftMargin: 63
-                    font.family: "Open Sans"
+                    font.family: "Arial"
                     z: 1
                 }
 
                 Image {
                     id: tempCabinIcon
                     x: 18
-                    y: 8
+                    y: 0
                     width: 45
                     height: 39
                     source: "DashboardGeneral/images/driverCabin.png"
@@ -967,8 +967,8 @@ Item{
             Item {
                 id: tempSalon
                 x: 1798
-                y: 10
-                width: 135
+                y: 13
+                width: 122
                 height: 40
                 Text {
                     id: tempSalonValue
@@ -976,20 +976,20 @@ Item{
                     width: 70
                     height: 40
                     color: "#ffffff"
-                    text: qsTr("+24°")
+                    text: qsTr("24°")
                     anchors.left: parent.left
                     font.pixelSize: 35
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment: Text.AlignTop
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
                     anchors.leftMargin: 40
-                    font.family: "Open Sans"
+                    font.family: "Arial"
                     z: 1
                 }
 
                 Image {
                     id: tempSalonIcon
                     x: -6
-                    y: 8
+                    y: 0
                     width: 45
                     height: 39
                     source: "DashboardGeneral/images/salon.png"

@@ -1,4 +1,4 @@
-//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Thu Aug 29 13:40:06 2024
+//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Mon Oct 28 15:23:23 2024
 #include "canDataBase/canDataBase.h"
 
 using namespace canBus;
@@ -180,6 +180,13 @@ static CanSignal HeaterLiquidState{ 48, 4, gSignalName_HeaterLiquidState, 1, 0, 
 static CanSignal *CM1_E1_arraySignals[CM1_E1_NumberOfSignals] = {&HeaterLiquidState};
 messageNameCharStruct gMessageName_CM1_E1{"CM1_E1",MAX_LENGTH_NAME};
 static CanMessageRx CM1_E1(gMessageName_CM1_E1, CM1_E1_arraySignals, CM1_E1_NumberOfSignals, 0x18FE17E1, 8, 0);
+
+const uint8_t CheckConnection_NumberOfSignals = 1;
+signalNameCharStruct gSignalName_CheckConnectionSig{"CheckConnectionSig",MAX_LENGTH_NAME};
+static CanSignal CheckConnectionSig{ 0, 8, gSignalName_CheckConnectionSig, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *CheckConnection_arraySignals[CheckConnection_NumberOfSignals] = {&CheckConnectionSig};
+messageNameCharStruct gMessageName_CheckConnection{"CheckConnection",MAX_LENGTH_NAME};
+static CanMessageRx CheckConnection(gMessageName_CheckConnection, CheckConnection_arraySignals, CheckConnection_NumberOfSignals, 0x18FF07FD, 8, 0);
 
 const uint8_t DC1_NumberOfSignals = 1;
 signalNameCharStruct gSignalName_RampError{"RampError",MAX_LENGTH_NAME};
@@ -436,6 +443,13 @@ static CanSignal *FS1_arraySignals[FS1_NumberOfSignals] = {&EmergHammer_1, &Emer
 messageNameCharStruct gMessageName_FS1{"FS1",MAX_LENGTH_NAME};
 static CanMessageRx FS1(gMessageName_FS1, FS1_arraySignals, FS1_NumberOfSignals, 0x18FF505D, 8, 200);
 
+const uint8_t FinishLoad_NumberOfSignals = 1;
+signalNameCharStruct gSignalName_FinishLoadSig{"FinishLoadSig",MAX_LENGTH_NAME};
+static CanSignal FinishLoadSig{ 0, 8, gSignalName_FinishLoadSig, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *FinishLoad_arraySignals[FinishLoad_NumberOfSignals] = {&FinishLoadSig};
+messageNameCharStruct gMessageName_FinishLoad{"FinishLoad",MAX_LENGTH_NAME};
+static CanMessageRx FinishLoad(gMessageName_FinishLoad, FinishLoad_arraySignals, FinishLoad_NumberOfSignals, 0x18FF06FD, 8, 0);
+
 const uint8_t HVESSD1_NumberOfSignals = 2;
 signalNameCharStruct gSignalName_HVESS_Current{"HVESS_Current",MAX_LENGTH_NAME};
 static CanSignal HVESS_Current{ 48, 16, gSignalName_HVESS_Current, 0.05, -1600, canIntel, canUint, 1612.75, -1600, 0};
@@ -515,12 +529,28 @@ static CanSignal *PCM1_arraySignals[PCM1_NumberOfSignals] = {&PantographModuleSt
 messageNameCharStruct gMessageName_PCM1{"PCM1",MAX_LENGTH_NAME};
 static CanMessageRx PCM1(gMessageName_PCM1, PCM1_arraySignals, PCM1_NumberOfSignals, 0x18FF4F42, 8, 100);
 
+const uint8_t RawData_NumberOfSignals = 1;
+signalNameCharStruct gSignalName_rawDataSig{"rawDataSig",MAX_LENGTH_NAME};
+static CanSignal rawDataSig{ 0, 64, gSignalName_rawDataSig, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *RawData_arraySignals[RawData_NumberOfSignals] = {&rawDataSig};
+messageNameCharStruct gMessageName_RawData{"RawData",MAX_LENGTH_NAME};
+static CanMessageRx RawData(gMessageName_RawData, RawData_arraySignals, RawData_NumberOfSignals, 0x18FF05FD, 8, 0);
+
 const uint8_t SCU2CLM_NumberOfSignals = 1;
 signalNameCharStruct gSignalName_HeatingWheel{"HeatingWheel",MAX_LENGTH_NAME};
 static CanSignal HeatingWheel{ 6, 2, gSignalName_HeatingWheel, 1, 0, canIntel, canUint, 0, 0, 0};
 static CanSignal *SCU2CLM_arraySignals[SCU2CLM_NumberOfSignals] = {&HeatingWheel};
 messageNameCharStruct gMessageName_SCU2CLM{"SCU2CLM",MAX_LENGTH_NAME};
 static CanMessageRx SCU2CLM(gMessageName_SCU2CLM, SCU2CLM_arraySignals, SCU2CLM_NumberOfSignals, 0x18FF114D, 8, 50);
+
+const uint8_t StartLoad_NumberOfSignals = 2;
+signalNameCharStruct gSignalName_crc32{"crc32",MAX_LENGTH_NAME};
+static CanSignal crc32{ 32, 32, gSignalName_crc32, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_fwLen{"fwLen",MAX_LENGTH_NAME};
+static CanSignal fwLen{ 0, 32, gSignalName_fwLen, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *StartLoad_arraySignals[StartLoad_NumberOfSignals] = {&crc32, &fwLen};
+messageNameCharStruct gMessageName_StartLoad{"StartLoad",MAX_LENGTH_NAME};
+static CanMessageRx StartLoad(gMessageName_StartLoad, StartLoad_arraySignals, StartLoad_NumberOfSignals, 0x18FF04FD, 8, 0);
 
 const uint8_t TCO1_NumberOfSignals = 14;
 signalNameCharStruct gSignalName_DirectionIndicator{"DirectionIndicator",MAX_LENGTH_NAME};
@@ -593,21 +623,21 @@ static CanSignal *VDC1_arraySignals[VDC1_NumberOfSignals] = {&VDC_FullyOperation
 messageNameCharStruct gMessageName_VDC1{"VDC1",MAX_LENGTH_NAME};
 static CanMessageRx VDC1(gMessageName_VDC1, VDC1_arraySignals, VDC1_NumberOfSignals, 0x18FE4F0B, 8, 100);
 
-const uint8_t VDHR_NumberOfSignals = 2;
-signalNameCharStruct gSignalName_TotalVehicleDistance{"TotalVehicleDistance",MAX_LENGTH_NAME};
-static CanSignal TotalVehicleDistance{ 0, 32, gSignalName_TotalVehicleDistance, 0.005, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_TripDistance{"TripDistance",MAX_LENGTH_NAME};
-static CanSignal TripDistance{ 32, 32, gSignalName_TripDistance, 0.005, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *VDHR_arraySignals[VDHR_NumberOfSignals] = {&TotalVehicleDistance, &TripDistance};
-messageNameCharStruct gMessageName_VDHR{"VDHR",MAX_LENGTH_NAME};
-static CanMessageRx VDHR(gMessageName_VDHR, VDHR_arraySignals, VDHR_NumberOfSignals, 0x18FEC1EE, 8, 1000);
-
 const uint8_t VEP1_NumberOfSignals = 1;
 signalNameCharStruct gSignalName_ActualVoltage_24v{"ActualVoltage_24v",MAX_LENGTH_NAME};
 static CanSignal ActualVoltage_24v{ 32, 16, gSignalName_ActualVoltage_24v, 0.05, 0, canIntel, canUint, 3212.75, 0, 0};
 static CanSignal *VEP1_arraySignals[VEP1_NumberOfSignals] = {&ActualVoltage_24v};
 messageNameCharStruct gMessageName_VEP1{"VEP1",MAX_LENGTH_NAME};
 static CanMessageRx VEP1(gMessageName_VEP1, VEP1_arraySignals, VEP1_NumberOfSignals, 0x18FEF71E, 8, 1000);
+
+const uint8_t Answer_DB_NumberOfSignals = 2;
+signalNameCharStruct gSignalName_ansTypeDB{"ansTypeDB",MAX_LENGTH_NAME};
+static CanSignal ansTypeDB{ 0, 8, gSignalName_ansTypeDB, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_packetCounter{"packetCounter",MAX_LENGTH_NAME};
+static CanSignal packetCounter{ 8, 16, gSignalName_packetCounter, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *Answer_DB_arraySignals[Answer_DB_NumberOfSignals] = {&ansTypeDB, &packetCounter};
+messageNameCharStruct gMessageName_Answer_DB{"Answer_DB",MAX_LENGTH_NAME};
+static CanMessageTx Answer_DB(gMessageName_Answer_DB, Answer_DB_arraySignals, Answer_DB_NumberOfSignals, 0x18FF0517, 8, 0);
 
 const uint8_t DB_1_NumberOfSignals = 13;
 signalNameCharStruct gSignalName_BtnBackAns{"BtnBackAns",MAX_LENGTH_NAME};
@@ -664,8 +694,17 @@ static CanSignal *DB_3_arraySignals[DB_3_NumberOfSignals] = {&TurnLeftLamp, &Tur
 messageNameCharStruct gMessageName_DB_3{"DB_3",MAX_LENGTH_NAME};
 static CanMessageTx DB_3(gMessageName_DB_3, DB_3_arraySignals, DB_3_NumberOfSignals, 0x18FF1117, 8, 0);
 
-const uint8_t numberOfRxMessages = 52;
-static CanMessageRx *arrayRxMessages[numberOfRxMessages] = { &ADAS_1, &AIR1, &AMB, &ASC1, &ASC2, &BCH1, &BDS, &BJM1, &CCUT1, &CCVS1, &CCVS1_03, &CDC, &CECU_A0, &CL, &CM1, &CM1_E1, &DC1, &DC2, &DD1_12, &DD1_1E, &DLCC1, &DLCC2, &DLDC1, &DM1_EBS, &DM1_EPB, &DOZC_1, &DOZC_2, &EBC1, &EBC4, &EBC5, &ECO, &EDSC2_2, &EPBS1, &ESC2, &ET1, &ETC2, &FS1, &HVESSD1, &HVESSD2, &HVESSS1, &LD, &LD_2, &OWW, &PCM1, &SCU2CLM, &TCO1, &TCO1_EE, &TIRE, &TMS, &VDC1, &VDHR, &VEP1};
-const uint8_t numberOfTxMessages = 3;
-static CanMessageTx *arrayTxMessages[numberOfTxMessages] = { &DB_1, &DB_2, &DB_3};
+const uint8_t VDHR_NumberOfSignals = 2;
+signalNameCharStruct gSignalName_TotalVehicleDistance{"TotalVehicleDistance",MAX_LENGTH_NAME};
+static CanSignal TotalVehicleDistance{ 0, 32, gSignalName_TotalVehicleDistance, 0.005, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_TripDistance{"TripDistance",MAX_LENGTH_NAME};
+static CanSignal TripDistance{ 32, 32, gSignalName_TripDistance, 0.005, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *VDHR_arraySignals[VDHR_NumberOfSignals] = {&TotalVehicleDistance, &TripDistance};
+messageNameCharStruct gMessageName_VDHR{"VDHR",MAX_LENGTH_NAME};
+static CanMessageTx VDHR(gMessageName_VDHR, VDHR_arraySignals, VDHR_NumberOfSignals, 0x18FEC117, 8, 1000);
+
+const uint8_t numberOfRxMessages = 56;
+static CanMessageRx *arrayRxMessages[numberOfRxMessages] = { &ADAS_1, &AIR1, &AMB, &ASC1, &ASC2, &BCH1, &BDS, &BJM1, &CCUT1, &CCUT1, &CCVS1, &CCVS1_03, &CDC, &CECU_A0, &CL, &CM1, &CM1_E1, &CheckConnection, &DC1, &DC2, &DD1_12, &DD1_1E, &DLCC1, &DLCC2, &DLDC1, &DM1_EBS, &DM1_EPB, &DOZC_1, &DOZC_2, &EBC1, &EBC4, &EBC5, &ECO, &EDSC2_2, &EPBS1, &ESC2, &ET1, &ETC2, &FS1, &FinishLoad, &HVESSD1, &HVESSD2, &HVESSS1, &LD, &LD_2, &OWW, &PCM1, &RawData, &SCU2CLM, &StartLoad, &TCO1, &TCO1_EE, &TIRE, &TMS, &VDC1, &VEP1};
+const uint8_t numberOfTxMessages = 5;
+static CanMessageTx *arrayTxMessages[numberOfTxMessages] = { &Answer_DB, &DB_1, &DB_2, &DB_3, &VDHR};
 CanDataBase gCanDB(arrayRxMessages,numberOfRxMessages,arrayTxMessages,numberOfTxMessages);

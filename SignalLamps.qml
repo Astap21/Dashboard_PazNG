@@ -1133,7 +1133,7 @@ Item {
         y: 345
         width: 44
         height: door2Valve_L.width
-        source: "../Dashboard_LiazNG/DashboardGeneral/images/signalLamps/doors/valveYellow.png"
+        source: "DashboardGeneral/images/signalLamps/doors/valveYellow.png"
         test: signalLampTest
     }
 
@@ -1163,7 +1163,7 @@ Item {
         y: 363
         width: 44
         height: 44
-        source: "../Dashboard_LiazNG/DashboardGeneral/images/signalLamps/doors/valveYellow.png"
+        source: "DashboardGeneral/images/signalLamps/doors/valveYellow.png"
         test: signalLampTest
     }
 

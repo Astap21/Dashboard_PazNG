@@ -1,4 +1,4 @@
-//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Thu Aug 29 13:40:06 2024
+//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Mon Oct 28 15:23:23 2024
 #ifndef CANDATABASE_H_
 #define CANDATABASE_H_
 
@@ -85,6 +85,9 @@ extern canBus::messageNameCharStruct gMessageName_CM1;
 
 extern canBus::signalNameCharStruct gSignalName_HeaterLiquidState;
 extern canBus::messageNameCharStruct gMessageName_CM1_E1;
+
+extern canBus::signalNameCharStruct gSignalName_CheckConnectionSig;
+extern canBus::messageNameCharStruct gMessageName_CheckConnection;
 
 extern canBus::signalNameCharStruct gSignalName_RampError;
 extern canBus::messageNameCharStruct gMessageName_DC1;
@@ -203,6 +206,9 @@ extern canBus::signalNameCharStruct gSignalName_FireExting_3;
 extern canBus::signalNameCharStruct gSignalName_FireExting_4;
 extern canBus::messageNameCharStruct gMessageName_FS1;
 
+extern canBus::signalNameCharStruct gSignalName_FinishLoadSig;
+extern canBus::messageNameCharStruct gMessageName_FinishLoad;
+
 extern canBus::signalNameCharStruct gSignalName_HVESS_Current;
 extern canBus::signalNameCharStruct gSignalName_HVESS_VoltageLevel;
 extern canBus::messageNameCharStruct gMessageName_HVESSD1;
@@ -239,8 +245,15 @@ extern canBus::messageNameCharStruct gMessageName_OWW;
 extern canBus::signalNameCharStruct gSignalName_PantographModuleState;
 extern canBus::messageNameCharStruct gMessageName_PCM1;
 
+extern canBus::signalNameCharStruct gSignalName_rawDataSig;
+extern canBus::messageNameCharStruct gMessageName_RawData;
+
 extern canBus::signalNameCharStruct gSignalName_HeatingWheel;
 extern canBus::messageNameCharStruct gMessageName_SCU2CLM;
+
+extern canBus::signalNameCharStruct gSignalName_crc32;
+extern canBus::signalNameCharStruct gSignalName_fwLen;
+extern canBus::messageNameCharStruct gMessageName_StartLoad;
 
 extern canBus::signalNameCharStruct gSignalName_DirectionIndicator;
 extern canBus::signalNameCharStruct gSignalName_Driver1TimeRelatedStates;
@@ -275,12 +288,12 @@ extern canBus::signalNameCharStruct gSignalName_VDC_FullyOperational;
 extern canBus::signalNameCharStruct gSignalName_VDC_InformationSignal;
 extern canBus::messageNameCharStruct gMessageName_VDC1;
 
-extern canBus::signalNameCharStruct gSignalName_TotalVehicleDistance;
-extern canBus::signalNameCharStruct gSignalName_TripDistance;
-extern canBus::messageNameCharStruct gMessageName_VDHR;
-
 extern canBus::signalNameCharStruct gSignalName_ActualVoltage_24v;
 extern canBus::messageNameCharStruct gMessageName_VEP1;
+
+extern canBus::signalNameCharStruct gSignalName_ansTypeDB;
+extern canBus::signalNameCharStruct gSignalName_packetCounter;
+extern canBus::messageNameCharStruct gMessageName_Answer_DB;
 
 extern canBus::signalNameCharStruct gSignalName_BtnBackAns;
 extern canBus::signalNameCharStruct gSignalName_BtnMinusAns;
@@ -307,6 +320,10 @@ extern canBus::messageNameCharStruct gMessageName_DB_2;
 extern canBus::signalNameCharStruct gSignalName_TurnLeftLamp;
 extern canBus::signalNameCharStruct gSignalName_TurnRightLamp;
 extern canBus::messageNameCharStruct gMessageName_DB_3;
+
+extern canBus::signalNameCharStruct gSignalName_TotalVehicleDistance;
+extern canBus::signalNameCharStruct gSignalName_TripDistance;
+extern canBus::messageNameCharStruct gMessageName_VDHR;
 
 extern CanDataBase gCanDB;
 #endif /* CANDATABASE_H_ */
