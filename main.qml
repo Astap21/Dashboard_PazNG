@@ -73,54 +73,66 @@ Item{
     }
     EasyProgressBar_C {
         id: brakePressureCircuit_1
-        x: 32
-        y: 158
+        x: 56
+        y: 161
         z: -1
         width: 100
-        height: 177
+        height: 170
         color: "#b7b7b7"
-        rotation: 23
+        transformOrigin: Item.Top
+        rotation: 8
+        maxRotation: 8
+        minRotation: 37
         maxValue: 12
         minValue: 0
         lowValue: 6
         maxHeight: 172
+        visible: mainItem.opacity > 0.9 ? true : false
     }
     EasyProgressBar_C {
         id: brakePressureCircuit_2
-        x: 32
+        x: 57
         y: 412
         z: -1
         width: 100
-        height: 177
+        height: 170
         color: "#b7b7b7"
-        rotation: -23
+        transformOrigin: Item.Bottom
+        rotation: -8
+        maxRotation: -8
+        minRotation: -37
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 133
+        anchors.bottomMargin: 138
         maxValue: 12
         minValue: 0
         lowValue: 6
         maxHeight: 172
+        visible: mainItem.opacity > 0.9 ? true : false
     }
     EasyProgressBar_C {
         id: voltageBar
-        x: 1789
-        y: 159
+        x: 1795
+        y: 156
         z: -1
         width: 100
-        height: 177
+        height: 175
         color: "#b7b7b7"
-        rotation: -23
+        rotation: -37
+        maxRotation: -37
+        minRotation: -8
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 386
+        anchors.bottomMargin: 387
         maxValue: 800
         minValue: 0
         lowValue: 200
         maxHeight: 172
+        visible: mainItem.opacity > 0.9 ? true : false
         function updateValue(inputValue){
             if (inputValue > maxValue) actualValue = maxValue
             else if (inputValue < minValue) actualValue = minValue
             else actualValue = inputValue
             height = maxHeight * (actualValue / (maxValue - minValue))
+            rotation = ((maxRotation - minRotation) * actualValuePart) + minRotation
             if (actualValue < lowValue) {
                 voltageBar.color= "#ff0000"
             }
@@ -131,14 +143,16 @@ Item{
     }
     EasyProgressBar_C {
         id: socBar
-        x: 1786
-        y: 411
+        x: 1773
+        y: 415
         z: -1
         width: 100
-        height: 180
-        rotation: 23
+        height: 170
+        rotation: 8
+        maxRotation: 8
+        minRotation: 37
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 132
+        anchors.bottomMargin: 135
         maxValue: 100
         lowValue: 20
         maxHeight: 172
@@ -149,6 +163,7 @@ Item{
             else actualValue = inputValue
             socValue.text = actualValue.toFixed(0) + " %"
             height = maxHeight * (actualValue / (maxValue - minValue))
+            rotation = ((maxRotation - minRotation) * actualValuePart) + minRotation
             if (actualValue < criticalLowValue) {
                 socBar.color= "#ff0000"
                 soc_L.source = "DashboardGeneral/images/signalLamps/battery/batHvWarning.png"
@@ -997,15 +1012,13 @@ Item{
                 }
             }
 
-            Rectangle {
+            Item {
                 id: speedCover
                 x: 236
                 y: 249
                 width: 250
                 height: speedCover.width
                 z: 1
-                color: "#00000000"
-                radius: speedCover.width / 2
                 Text {
                     id: speedDigital
                     x: 55
@@ -1059,14 +1072,12 @@ Item{
                 }
             }
 
-            Rectangle {
+            Item {
                 id: rightCover
                 x: 1430
                 y: 235
                 width: 250
                 height: rightCover.width
-                color: "#00000000"
-                radius: rightCover.width / 2
                 z: 0
                 Image {
                     id: rightArrow

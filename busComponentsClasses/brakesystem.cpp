@@ -75,7 +75,7 @@ void BrakeSystem::ReadStateFromCanDB(){
     previousComponentState = 0;
     //kpa->bar
     float pressure_kpa = gCanDB.GetSignalValueFloat(gSignalName_ServiceBrakeCircuit1AirPress,gMessageName_AIR1);
-    if (checkValueChangeBy_01(pressure_kpa / 98.066f, pressureCircuit1_bar)){
+    if (checkValueChangeBy_001(pressure_kpa / 98.066f, pressureCircuit1_bar)){
         //qDebug() << pressureCircuit1_bar;
         emit sendPressureCircuit1ToQml(pressureCircuit1_bar);
     }
@@ -88,7 +88,7 @@ void BrakeSystem::ReadStateFromCanDB(){
 
     previousComponentState = pressureCircuit2_Indication;
     pressure_kpa = gCanDB.GetSignalValueFloat(gSignalName_ServiceBrakeCircuit2AirPress, gMessageName_AIR1);
-    if (checkValueChangeBy_01(pressure_kpa / 98.066f, pressureCircuit2_bar)){
+    if (checkValueChangeBy_001(pressure_kpa / 98.066f, pressureCircuit2_bar)){
         emit sendPressureCircuit2ToQml(pressureCircuit2_bar);
     }
     if (pressureCircuit2_bar < lowBarPressure) pressureCircuit2_Indication = 1;

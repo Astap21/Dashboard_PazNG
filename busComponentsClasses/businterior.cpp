@@ -117,6 +117,9 @@ void BusInterior::dashboardLoadFinished(){
     emit sendFireExtingStatusToQml(fireExtingusherLamp);
     emit sendRampErrorToQml(rampError);
     emit sendDoorValveToQml(doorValve);
+    emit sendTempSalonToQml(convertFloatToStrForTemp(salonTempF));
+    emit sendTempOutsideToQml(convertFloatToStrForTemp(outsideTempF));
+    emit sendTempInsideToQml(convertFloatToStrForTemp(insideTempF));
     emit sendBattery24VoltageToQml(BatteryVoltage24v);
 }
 
@@ -125,8 +128,8 @@ QString BusInterior::convertFloatToStrForTemp(double inputNumber){
 //    if (inputNumber > 0) returnedSting = "+" + QString::number(round(inputNumber));
 //    else returnedSting = QString::number(round(inputNumber));
     returnedSting = QString::number(round(inputNumber));
-    if (inputNumber < -99) returnedSting = "-99";
-    if (inputNumber > 99) returnedSting = "99";
+    if (inputNumber < -39) returnedSting = "--";
+    if (inputNumber > 200) returnedSting = "--";
     if (returnedSting.length() > 3) returnedSting.resize(3);
     //qDebug() << inputNumber;
     returnedSting += "°";
