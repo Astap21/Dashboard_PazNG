@@ -233,5 +233,6 @@
         <file>DashboardGeneral/images/signalLamps/doors/disabledPersonRequest_2.png</file>
         <file>DashboardGeneral/images/signalLamps/doors/valveRed.png</file>
         <file>DashboardGeneral/images/signalLamps/doors/valveYellow.png</file>
+        <file>DashboardGeneral/images/menu/dashboard/updateFirmware.png</file>
     </qresource>
 </RCC>

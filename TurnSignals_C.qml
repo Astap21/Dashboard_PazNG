@@ -97,7 +97,7 @@ Item {
     SoundEffect{
         id: turnSignalSound
         source: "qrc:/DashboardGeneral/sound/turnSignalSound.wav"
-        volume: 1.0
+        volume: dashboardObject.volumeLevel
     }
     Timer {
         id: timerTurnToggle

@@ -25,12 +25,12 @@ Item{
     SoundEffect{
         id: warningSound
         source: "qrc:/DashboardGeneral/sound/warningSound.wav"
-        volume: 1.0
+        volume: dashboardObject.volumeLevel
     }
     SoundEffect{
         id: errorSound
         source: "qrc:/DashboardGeneral/sound/errorSound.wav"
-        volume: 1.0
+        volume: dashboardObject.volumeLevel
     }
 
     Image {
@@ -182,128 +182,6 @@ Item{
             }
         }
     }
-
-//    PressureCircuitBar_C {
-//        id: brakePressureCircuit_1
-//        x: 303
-//        y: 310
-//        highPressure: 12
-//        actualPressure: 0
-//        counterClockwise: true
-//        lowPressure: 6
-//        maxPressure: 12
-//        z: -1
-//        size: 650
-//        arcOffset: 309
-//        lineWidth: 40
-//        arcMax: -32.5
-//    }
-
-//    PressureCircuitBar_C {
-//        id: brakePressureCircuit_2
-//        x: 351
-//        y: 316
-//        z: -1
-//        arcOffset: 233.5
-//        size: 740
-//        opacity: 1
-//        highPressure: 12
-//        maxPressure: 12
-//        lowPressure: 6
-//        lineWidth: 35
-//        arcMax: 28.3
-//        actualPressure: 0
-//    }
-
-//    ProgressCycle_C {
-//        id: voltageBar
-//        property double arcMax: 32.5
-//        property double koef: arcMax / (maxValue - minValue)
-//        property double actualValue: 0
-//        property double minValue: 0
-//        property double maxValue: 800
-//        property double lowValue: 420
-//        x: 1264
-//        y: 53
-//        arcEnd: 82
-//        z: -1
-//        arcBegin: arcEnd - ((actualValue - minValue) * koef*1.05)
-//        size: 625
-//        arcOffset: 0
-//        lineWidth: 38.5
-//        beginAnimation: false
-//        endAnimation: false
-//        isPie: false
-//        colorCircleStartGrad:"#b7b7b7"
-//        colorCircleStopGrad: "#b7b7b7"
-//        opacity: 1
-
-//        function updateValue(inputValue){
-//            if (inputValue > maxValue) actualValue = maxValue
-//            else if (inputValue < minValue) actualValue = minValue
-//            else actualValue = inputValue
-//            if (actualValue < lowValue) {
-//                voltageBar.colorCircleStopGrad= "#ff0000"
-//                voltageBar.colorCircleStartGrad= "#ff0000"
-//            }
-//            else {
-//                voltageBar.colorCircleStopGrad = "#b7b7b7"
-//                voltageBar.colorCircleStartGrad = "#b7b7b7"
-//            }
-//        }
-//    }
-
-//    ProgressCycle_C {
-//        id: socBar
-//        property double arcMax: 32.5
-//        property double koef: arcMax / (maxValue - minValue)
-//        property double actualValue: 0
-//        property double minValue: 0
-//        property double maxValue: 100
-//        property double lowValue: 20
-//        property double criticalLowValue: 10
-
-//        x: 1259
-//        y: 80
-//        arcEnd: 30.5
-//        z: -1
-//        arcBegin: arcEnd - ((actualValue - minValue)  * koef * 1.03)
-//        size: 625
-//        arcOffset: 98
-//        lineWidth: 36
-//        beginAnimation: false
-//        endAnimation: false
-//        isPie: false
-//        colorCircleStartGrad:"#b7b7b7"
-//        colorCircleStopGrad: "#b7b7b7"
-//        opacity: 1
-
-//        function updateValue(inputValue){
-//            if (inputValue > maxValue) actualValue = maxValue
-//            else if (inputValue < minValue) actualValue = minValue
-//            else actualValue = inputValue
-//            socValue.text = actualValue.toFixed(0) + " %"
-//            if (actualValue < criticalLowValue) {
-//                socBar.colorCircleStopGrad= "#ff0000"
-//                socBar.colorCircleStartGrad= "#ff0000"
-//                soc_L.source = "DashboardGeneral/images/signalLamps/battery/batHvWarning.png"
-//                soc_L.lampToggle()
-//            }
-//            else if(actualValue < lowValue) {
-//                socBar.colorCircleStopGrad= "#ff0000"
-//                socBar.colorCircleStartGrad= "#ff0000"
-//                soc_L.source = "DashboardGeneral/images/signalLamps/battery/batHvWarning.png"
-//                soc_L.lampOn()
-//            }
-//            else {
-//                socBar.colorCircleStopGrad = "#b7b7b7"
-//                socBar.colorCircleStartGrad = "#b7b7b7"
-//                soc_L.source = "DashboardGeneral/images/signalLamps/battery/batHvOff.png"
-//                soc_L.lampOn()
-//            }
-//        }
-//    }
-
     PropertyAnimation {
         id: a_incLogoOpacity
         target: logo
