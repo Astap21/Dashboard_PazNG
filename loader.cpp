@@ -5,7 +5,7 @@
 #include "additionaltask.h"
 #include "can_bus.h"
 #include "signal_lamp.h"
-#include "DashBoardClasses/backlightcontrolclass.h"
+#include "DashBoardClasses/hardware/backlightcontrolclass.h"
 #include "busComponentsClasses/brakesystem.h"
 #include "busComponentsClasses/motor.h"
 #include "busComponentsClasses/suspension.h"
@@ -15,21 +15,21 @@
 #include "busComponentsClasses/doorsPaz.h"
 #include "busComponentsClasses/tachograph.h"
 #include "busComponentsClasses/adas.h"
-#include "DashBoardClasses/dashboardclass.h"
+#include "DashBoardClasses/application/dashboardclass.h"
 #include "DashBoardClasses/trans.h"
 #include "DashBoardClasses/logtofile.h"
-#include "DashBoardClasses/fpstext.h"
-#include "DashBoardClasses/calculatemileage.h"
+#include "DashBoardClasses/application/fpstext.h"
+#include "DashBoardClasses/application/calculatemileage.h"
 
 #include "canDataBase/canDataBase.h"
 //#include <libudev.h>
 
-#include "DashBoardClasses/gpio.h"
-//#include "DashBoardClasses/fpstext.h"
+#include "DashBoardClasses/hardware/gpio.h"
+
 
 int main(int argc, char *argv[])
 {
-    QString softVersion = "1.2.1";
+    QString softVersion = "1.2.2";
     //Установка переменных среды
     //qputenv("QT_GSTREAMER_PLAYBIN_AUDIOSINK", "alsasink");
     //qputenv("QT_GSTREAMER_USE_PLAYBIN_VOLUME", "1");

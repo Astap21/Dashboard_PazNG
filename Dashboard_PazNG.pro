@@ -20,19 +20,21 @@ DEFINES += BUTTONS
 INCLUDEPATH += DashboardGeneral
 
 SOURCES += \
-    DashboardGeneral/DashBoardClasses/backlightcontrolclass.cpp \
-    DashboardGeneral/DashBoardClasses/button.cpp \
-    DashboardGeneral/DashBoardClasses/calculateconsumptionenergyclass.cpp \
-    DashboardGeneral/DashBoardClasses/calculatemileage.cpp \
+    DashboardGeneral/DashBoardClasses/application/calculateconsumptionenergyclass.cpp \
+    DashboardGeneral/DashBoardClasses/application/calculatemileage.cpp \
+    DashboardGeneral/DashBoardClasses/application/dashboardclass.cpp \
+    DashboardGeneral/DashBoardClasses/application/datetimereadclass.cpp \
+    DashboardGeneral/DashBoardClasses/application/fpstext.cpp \
+    DashboardGeneral/DashBoardClasses/application/menuclass.cpp \
     DashboardGeneral/DashBoardClasses/copylinyxlogmessage.cpp \
-    DashboardGeneral/DashBoardClasses/dashboardclass.cpp \
-    DashboardGeneral/DashBoardClasses/datetimereadclass.cpp \
-    DashboardGeneral/DashBoardClasses/fpstext.cpp \
-    DashboardGeneral/DashBoardClasses/gpio.cpp \
+    DashboardGeneral/DashBoardClasses/hardware/backlightcontrolclass.cpp \
+    DashboardGeneral/DashBoardClasses/hardware/button.cpp \
+    DashboardGeneral/DashBoardClasses/hardware/gpio.cpp \
+    DashboardGeneral/DashBoardClasses/hardware/pwm.cpp \
     DashboardGeneral/DashBoardClasses/logtofile.cpp \
-    DashboardGeneral/DashBoardClasses/menuclass.cpp \
-    DashboardGeneral/DashBoardClasses/pwm.cpp \
     DashboardGeneral/DashBoardClasses/trans.cpp \
+    DashboardGeneral/DashBoardClasses/vcdiff/vcdiff.cpp \
+    DashboardGeneral/DashBoardClasses/vcdiff/vcdiff_user.cpp \
     DashboardGeneral/additionaltask.cpp \
     DashboardGeneral/busComponentsClasses/adas.cpp \
     DashboardGeneral/busComponentsClasses/doors.cpp \
@@ -78,19 +80,21 @@ INSTALLS        = target
 target.path     = /home/root
 
 HEADERS += \
-    DashboardGeneral/DashBoardClasses/backlightcontrolclass.h \
-    DashboardGeneral/DashBoardClasses/button.h \
-    DashboardGeneral/DashBoardClasses/calculateconsumptionenergyclass.h \
-    DashboardGeneral/DashBoardClasses/calculatemileage.h \
+    DashboardGeneral/DashBoardClasses/application/calculateconsumptionenergyclass.h \
+    DashboardGeneral/DashBoardClasses/application/calculatemileage.h \
+    DashboardGeneral/DashBoardClasses/application/dashboardclass.h \
+    DashboardGeneral/DashBoardClasses/application/datetimereadclass.h \
+    DashboardGeneral/DashBoardClasses/application/fpstext.h \
+    DashboardGeneral/DashBoardClasses/application/menuclass.h \
     DashboardGeneral/DashBoardClasses/copylinyxlogmessage.h \
-    DashboardGeneral/DashBoardClasses/dashboardclass.h \
-    DashboardGeneral/DashBoardClasses/datetimereadclass.h \
-    DashboardGeneral/DashBoardClasses/fpstext.h \
-    DashboardGeneral/DashBoardClasses/gpio.h \
+    DashboardGeneral/DashBoardClasses/hardware/backlightcontrolclass.h \
+    DashboardGeneral/DashBoardClasses/hardware/button.h \
+    DashboardGeneral/DashBoardClasses/hardware/gpio.h \
+    DashboardGeneral/DashBoardClasses/hardware/pwm.h \
     DashboardGeneral/DashBoardClasses/logtofile.h \
-    DashboardGeneral/DashBoardClasses/menuclass.h \
-    DashboardGeneral/DashBoardClasses/pwm.h \
     DashboardGeneral/DashBoardClasses/trans.h \
+    DashboardGeneral/DashBoardClasses/vcdiff/vcdiff.h \
+    DashboardGeneral/DashBoardClasses/vcdiff/vcdiff_user.h \
     DashboardGeneral/additionaltask.h \
     DashboardGeneral/busComponentsClasses/adas.h \
     DashboardGeneral/busComponentsClasses/doors.h \
