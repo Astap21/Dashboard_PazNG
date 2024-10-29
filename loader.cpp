@@ -44,18 +44,24 @@ int main(int argc, char *argv[])
     //criticalThread.setPriority(QThread::TimeCriticalPriority);
 
     //LogToFile logtofile;
-    qmlRegisterType<FPSText>("com.ast", 1, 0, "FPSText");
-    qmlRegisterUncreatableType<SignalLampE>("com.gaz.signalLampE", 1, 0, "SignalLampE", "Enum only");
+//    qmlRegisterType<FPSText>("com.ast", 1, 0, "FPSText");
+//    qmlRegisterUncreatableType<SignalLampE>("com.gaz.signalLampE", 1, 0, "SignalLampE", "Enum only");
+    qRegisterMetaType<QCanBusDevice::CanBusError>();
+    qRegisterMetaType<uint32_t>();
 
     Trans trans(&engine);
     // make this object available from QML side
     engine.rootContext()->setContextProperty("trans", &trans);
 
     qRegisterMetaType<QCanBusDevice::CanBusError>();
-    CanBus ican("SCAN", "socketcan", "can0", 500000, &gCanDB, true, true);
+    CanBus ican("SCAN", "socketcan", "can0", 500000, &gCanDB, true, false);
     ican.addMessageToMissedMsgCheckList(gMessageName_EBC1);
     ican.addMessageToMissedMsgCheckList(gMessageName_ASC1);
     ican.addMessageToFastReceived(gMessageName_LD);
+    ican.addMessageToFastReceived(gMessageName_StartLoad);
+    ican.addMessageToFastReceived(gMessageName_RawData);
+    ican.addMessageToFastReceived(gMessageName_FinishLoad);
+    ican.addMessageToFastReceived(gMessageName_CheckConnection);
     engine.rootContext()->setContextProperty("ican", &ican);
 
     //QThread thread;
@@ -113,6 +119,8 @@ int main(int argc, char *argv[])
     DashboardClass dashboardObject(softVersion, &KL_15, &backlightControl);
     engine.rootContext()->setContextProperty("dashboardObject", &dashboardObject);
     QObject::connect(&ican, &CanBus::writtenMsg_DB1, &dashboardObject, &DashboardClass::incHearthBeatCounter);
+    QObject::connect(&ican, &CanBus::sendCanDBFastUpdated, &dashboardObject, &DashboardClass::canDBUpdated);
+    QObject::connect(&dashboardObject, &DashboardClass::sendCanMsgById, &ican, &CanBus::sendCanMsgById);
 
     InterfaceForConnectToQml interfaceForConnectToQml("interfaceForConnectToQml");
     engine.rootContext()->setContextProperty("connectionFromCpp", &interfaceForConnectToQml);
