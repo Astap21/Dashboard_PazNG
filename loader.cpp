@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
 
     ExteriorLightning exteriorLightning;
     engine.rootContext()->setContextProperty("exteriorLightning", &exteriorLightning);
-    QObject::connect(&ican, &CanBus::sendCanDBUpdated, &exteriorLightning, &ExteriorLightning::canDBUpdated);
+    QObject::connect(&ican, &CanBus::sendCanDBFastUpdated, &exteriorLightning, &ExteriorLightning::canDBUpdated);
     //QObject::connect(&exteriorLightning, &ExteriorLightning::sendCanMsg, &canBus, &CanBus::sendCanMsgById);
     //exteriorLightning.moveToThread(&criticalThread);
 
