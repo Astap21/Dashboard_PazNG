@@ -1,4 +1,4 @@
-//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Mon Oct 28 15:23:23 2024
+//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Tue Oct 29 15:11:41 2024
 #include "canDataBase/canDataBase.h"
 
 using namespace canBus;
@@ -38,7 +38,7 @@ signalNameCharStruct gSignalName_CabInteriorTempB{"CabInteriorTempB",MAX_LENGTH_
 static CanSignal CabInteriorTempB{ 40, 16, gSignalName_CabInteriorTempB, 0.03125, -273, canIntel, canUint, 1734.97, -273, 0};
 static CanSignal *AMB_arraySignals[AMB_NumberOfSignals] = {&AmbientAirTemp, &CabInteriorTempA, &CabInteriorTempB};
 messageNameCharStruct gMessageName_AMB{"AMB",MAX_LENGTH_NAME};
-static CanMessageRx AMB(gMessageName_AMB, AMB_arraySignals, AMB_NumberOfSignals, 0x18FEF51E, 8, 1000);
+static CanMessageRx AMB(gMessageName_AMB, AMB_arraySignals, AMB_NumberOfSignals, 0x18FEF53A, 8, 1000);
 
 const uint8_t ASC1_NumberOfSignals = 11;
 signalNameCharStruct gSignalName_AboveNominalLevelFrontAxle{"AboveNominalLevelFrontAxle",MAX_LENGTH_NAME};
@@ -703,8 +703,8 @@ static CanSignal *VDHR_arraySignals[VDHR_NumberOfSignals] = {&TotalVehicleDistan
 messageNameCharStruct gMessageName_VDHR{"VDHR",MAX_LENGTH_NAME};
 static CanMessageTx VDHR(gMessageName_VDHR, VDHR_arraySignals, VDHR_NumberOfSignals, 0x18FEC117, 8, 1000);
 
-const uint8_t numberOfRxMessages = 56;
-static CanMessageRx *arrayRxMessages[numberOfRxMessages] = { &ADAS_1, &AIR1, &AMB, &ASC1, &ASC2, &BCH1, &BDS, &BJM1, &CCUT1, &CCUT1, &CCVS1, &CCVS1_03, &CDC, &CECU_A0, &CL, &CM1, &CM1_E1, &CheckConnection, &DC1, &DC2, &DD1_12, &DD1_1E, &DLCC1, &DLCC2, &DLDC1, &DM1_EBS, &DM1_EPB, &DOZC_1, &DOZC_2, &EBC1, &EBC4, &EBC5, &ECO, &EDSC2_2, &EPBS1, &ESC2, &ET1, &ETC2, &FS1, &FinishLoad, &HVESSD1, &HVESSD2, &HVESSS1, &LD, &LD_2, &OWW, &PCM1, &RawData, &SCU2CLM, &StartLoad, &TCO1, &TCO1_EE, &TIRE, &TMS, &VDC1, &VEP1};
+const uint8_t numberOfRxMessages = 55;
+static CanMessageRx *arrayRxMessages[numberOfRxMessages] = { &ADAS_1, &AIR1, &AMB, &ASC1, &ASC2, &BCH1, &BDS, &BJM1, &CCUT1, &CCVS1, &CCVS1_03, &CDC, &CECU_A0, &CL, &CM1, &CM1_E1, &CheckConnection, &DC1, &DC2, &DD1_12, &DD1_1E, &DLCC1, &DLCC2, &DLDC1, &DM1_EBS, &DM1_EPB, &DOZC_1, &DOZC_2, &EBC1, &EBC4, &EBC5, &ECO, &EDSC2_2, &EPBS1, &ESC2, &ET1, &ETC2, &FS1, &FinishLoad, &HVESSD1, &HVESSD2, &HVESSS1, &LD, &LD_2, &OWW, &PCM1, &RawData, &SCU2CLM, &StartLoad, &TCO1, &TCO1_EE, &TIRE, &TMS, &VDC1, &VEP1};
 const uint8_t numberOfTxMessages = 5;
 static CanMessageTx *arrayTxMessages[numberOfTxMessages] = { &Answer_DB, &DB_1, &DB_2, &DB_3, &VDHR};
 CanDataBase gCanDB(arrayRxMessages,numberOfRxMessages,arrayTxMessages,numberOfTxMessages);
