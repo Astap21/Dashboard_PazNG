@@ -1,4 +1,4 @@
-//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Tue Oct 29 15:11:41 2024
+//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Thu Oct 31 09:45:59 2024
 #include "canDataBase/canDataBase.h"
 
 using namespace canBus;
@@ -109,13 +109,13 @@ static CanMessageRx BJM1(gMessageName_BJM1, BJM1_arraySignals, BJM1_NumberOfSign
 
 const uint8_t CCUT1_NumberOfSignals = 4;
 signalNameCharStruct gSignalName_RoofTemp{"RoofTemp",MAX_LENGTH_NAME};
-static CanSignal RoofTemp{ 48, 8, gSignalName_RoofTemp, 1, -40, canIntel, canUint, 0, 0, 0};
+static CanSignal RoofTemp{ 48, 8, gSignalName_RoofTemp, 1, -40, canIntel, canUint, 215, -40, 0};
 signalNameCharStruct gSignalName_SalonTemp_1{"SalonTemp_1",MAX_LENGTH_NAME};
-static CanSignal SalonTemp_1{ 0, 8, gSignalName_SalonTemp_1, 1, -40, canIntel, canUint, 0, 0, 0};
+static CanSignal SalonTemp_1{ 0, 8, gSignalName_SalonTemp_1, 1, -40, canIntel, canUint, 215, -40, 0};
 signalNameCharStruct gSignalName_SalonTemp_2{"SalonTemp_2",MAX_LENGTH_NAME};
-static CanSignal SalonTemp_2{ 8, 8, gSignalName_SalonTemp_2, 1, -40, canIntel, canUint, 0, 0, 0};
+static CanSignal SalonTemp_2{ 8, 8, gSignalName_SalonTemp_2, 1, -40, canIntel, canUint, 215, -40, 0};
 signalNameCharStruct gSignalName_SalonTemp_3{"SalonTemp_3",MAX_LENGTH_NAME};
-static CanSignal SalonTemp_3{ 16, 8, gSignalName_SalonTemp_3, 1, -40, canIntel, canUint, 0, 0, 0};
+static CanSignal SalonTemp_3{ 16, 8, gSignalName_SalonTemp_3, 1, -40, canIntel, canUint, 215, -40, 0};
 static CanSignal *CCUT1_arraySignals[CCUT1_NumberOfSignals] = {&RoofTemp, &SalonTemp_1, &SalonTemp_2, &SalonTemp_3};
 messageNameCharStruct gMessageName_CCUT1{"CCUT1",MAX_LENGTH_NAME};
 static CanMessageRx CCUT1(gMessageName_CCUT1, CCUT1_arraySignals, CCUT1_NumberOfSignals, 0x18FF0D3A, 8, 500);
@@ -186,7 +186,7 @@ signalNameCharStruct gSignalName_CheckConnectionSig{"CheckConnectionSig",MAX_LEN
 static CanSignal CheckConnectionSig{ 0, 8, gSignalName_CheckConnectionSig, 1, 0, canIntel, canUint, 0, 0, 0};
 static CanSignal *CheckConnection_arraySignals[CheckConnection_NumberOfSignals] = {&CheckConnectionSig};
 messageNameCharStruct gMessageName_CheckConnection{"CheckConnection",MAX_LENGTH_NAME};
-static CanMessageRx CheckConnection(gMessageName_CheckConnection, CheckConnection_arraySignals, CheckConnection_NumberOfSignals, 0x18FF07FD, 8, 0);
+static CanMessageRx CheckConnection(gMessageName_CheckConnection, CheckConnection_arraySignals, CheckConnection_NumberOfSignals, 0x00FF07FD, 8, 0);
 
 const uint8_t DC1_NumberOfSignals = 1;
 signalNameCharStruct gSignalName_RampError{"RampError",MAX_LENGTH_NAME};
@@ -448,7 +448,7 @@ signalNameCharStruct gSignalName_FinishLoadSig{"FinishLoadSig",MAX_LENGTH_NAME};
 static CanSignal FinishLoadSig{ 0, 8, gSignalName_FinishLoadSig, 1, 0, canIntel, canUint, 0, 0, 0};
 static CanSignal *FinishLoad_arraySignals[FinishLoad_NumberOfSignals] = {&FinishLoadSig};
 messageNameCharStruct gMessageName_FinishLoad{"FinishLoad",MAX_LENGTH_NAME};
-static CanMessageRx FinishLoad(gMessageName_FinishLoad, FinishLoad_arraySignals, FinishLoad_NumberOfSignals, 0x18FF06FD, 8, 0);
+static CanMessageRx FinishLoad(gMessageName_FinishLoad, FinishLoad_arraySignals, FinishLoad_NumberOfSignals, 0x00FF06FD, 8, 0);
 
 const uint8_t HVESSD1_NumberOfSignals = 2;
 signalNameCharStruct gSignalName_HVESS_Current{"HVESS_Current",MAX_LENGTH_NAME};
@@ -534,7 +534,7 @@ signalNameCharStruct gSignalName_rawDataSig{"rawDataSig",MAX_LENGTH_NAME};
 static CanSignal rawDataSig{ 0, 64, gSignalName_rawDataSig, 1, 0, canIntel, canUint, 0, 0, 0};
 static CanSignal *RawData_arraySignals[RawData_NumberOfSignals] = {&rawDataSig};
 messageNameCharStruct gMessageName_RawData{"RawData",MAX_LENGTH_NAME};
-static CanMessageRx RawData(gMessageName_RawData, RawData_arraySignals, RawData_NumberOfSignals, 0x18FF05FD, 8, 0);
+static CanMessageRx RawData(gMessageName_RawData, RawData_arraySignals, RawData_NumberOfSignals, 0x00FF05FD, 8, 0);
 
 const uint8_t SCU2CLM_NumberOfSignals = 1;
 signalNameCharStruct gSignalName_HeatingWheel{"HeatingWheel",MAX_LENGTH_NAME};
@@ -550,7 +550,7 @@ signalNameCharStruct gSignalName_fwLen{"fwLen",MAX_LENGTH_NAME};
 static CanSignal fwLen{ 0, 32, gSignalName_fwLen, 1, 0, canIntel, canUint, 0, 0, 0};
 static CanSignal *StartLoad_arraySignals[StartLoad_NumberOfSignals] = {&crc32, &fwLen};
 messageNameCharStruct gMessageName_StartLoad{"StartLoad",MAX_LENGTH_NAME};
-static CanMessageRx StartLoad(gMessageName_StartLoad, StartLoad_arraySignals, StartLoad_NumberOfSignals, 0x18FF04FD, 8, 0);
+static CanMessageRx StartLoad(gMessageName_StartLoad, StartLoad_arraySignals, StartLoad_NumberOfSignals, 0x00FF04FD, 8, 0);
 
 const uint8_t TCO1_NumberOfSignals = 14;
 signalNameCharStruct gSignalName_DirectionIndicator{"DirectionIndicator",MAX_LENGTH_NAME};
@@ -632,12 +632,12 @@ static CanMessageRx VEP1(gMessageName_VEP1, VEP1_arraySignals, VEP1_NumberOfSign
 
 const uint8_t Answer_DB_NumberOfSignals = 2;
 signalNameCharStruct gSignalName_ansTypeDB{"ansTypeDB",MAX_LENGTH_NAME};
-static CanSignal ansTypeDB{ 0, 8, gSignalName_ansTypeDB, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal ansTypeDB{ 0, 16, gSignalName_ansTypeDB, 1, 0, canIntel, canUint, 0, 0, 0};
 signalNameCharStruct gSignalName_packetCounter{"packetCounter",MAX_LENGTH_NAME};
-static CanSignal packetCounter{ 8, 16, gSignalName_packetCounter, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal packetCounter{ 16, 32, gSignalName_packetCounter, 1, 0, canIntel, canUint, 0, 0, 0};
 static CanSignal *Answer_DB_arraySignals[Answer_DB_NumberOfSignals] = {&ansTypeDB, &packetCounter};
 messageNameCharStruct gMessageName_Answer_DB{"Answer_DB",MAX_LENGTH_NAME};
-static CanMessageTx Answer_DB(gMessageName_Answer_DB, Answer_DB_arraySignals, Answer_DB_NumberOfSignals, 0x18FF0517, 8, 0);
+static CanMessageTx Answer_DB(gMessageName_Answer_DB, Answer_DB_arraySignals, Answer_DB_NumberOfSignals, 0x00FF0517, 8, 0);
 
 const uint8_t DB_1_NumberOfSignals = 13;
 signalNameCharStruct gSignalName_BtnBackAns{"BtnBackAns",MAX_LENGTH_NAME};

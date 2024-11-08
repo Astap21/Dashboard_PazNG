@@ -16,16 +16,32 @@ DEFINES += QT_DEPRECATED_WARNINGS
 GIT_COMMIT_HASH = $$system(git rev-parse --verify HEAD)
 DEFINES += GIT_COMMIT_HASH="\\\"$$GIT_COMMIT_HASH\\\""
 DEFINES += BUTTONS
+DEFINES += PROGRAMM_NAME=\\\"Dashboard_PazNG\\\"
 
 INCLUDEPATH += DashboardGeneral
+CONFIG -= qtquickcompiler
 
 SOURCES += \
-    DashboardGeneral/DashBoardClasses/application/calculateconsumptionenergyclass.cpp \
+    DashboardGeneral/DashBoardClasses/application/calculateconsumptionenergy.cpp \
     DashboardGeneral/DashBoardClasses/application/calculatemileage.cpp \
     DashboardGeneral/DashBoardClasses/application/dashboardclass.cpp \
     DashboardGeneral/DashBoardClasses/application/datetimereadclass.cpp \
     DashboardGeneral/DashBoardClasses/application/fpstext.cpp \
     DashboardGeneral/DashBoardClasses/application/menuclass.cpp \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/addrcache.cc \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/blockhash.cc \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/codetable.cc \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/decodetable.cc \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/encodetable.cc \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/headerparser.cc \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/instruction_map.cc \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/jsonwriter.cc \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/logging.cc \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/varint_bigendian.cc \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/vcdecoder.cc \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/vcdiffengine.cc \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/vcencoder.cc \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/zlib/adler32.c \
     DashboardGeneral/DashBoardClasses/copylinyxlogmessage.cpp \
     DashboardGeneral/DashBoardClasses/hardware/backlightcontrolclass.cpp \
     DashboardGeneral/DashBoardClasses/hardware/button.cpp \
@@ -33,8 +49,6 @@ SOURCES += \
     DashboardGeneral/DashBoardClasses/hardware/pwm.cpp \
     DashboardGeneral/DashBoardClasses/logtofile.cpp \
     DashboardGeneral/DashBoardClasses/trans.cpp \
-    DashboardGeneral/DashBoardClasses/vcdiff/vcdiff.cpp \
-    DashboardGeneral/DashBoardClasses/vcdiff/vcdiff_user.cpp \
     DashboardGeneral/additionaltask.cpp \
     DashboardGeneral/busComponentsClasses/adas.cpp \
     DashboardGeneral/busComponentsClasses/doors.cpp \
@@ -42,10 +56,12 @@ SOURCES += \
     DashboardGeneral/busComponentsClasses/primarybuscomponent.cpp \
     DashboardGeneral/busComponentsClasses/tachograph.cpp \
     DashboardGeneral/busComponentsClasses/tire.cpp \
+    DashboardGeneral/can/canisotphandler.cpp \
     DashboardGeneral/canDataBase/canDataClass.cpp \
     DashboardGeneral/canDataBase/canMessageClass.cpp \
     DashboardGeneral/canDataBase/canSignalClass.cpp \
-    DashboardGeneral/can_bus.cpp \
+    DashboardGeneral/can/can_bus.cpp \
+    DashboardGeneral/common_func.cpp \
     DashboardGeneral/qml_interface.cpp \
     busComponentsClasses/brakesystem.cpp \
     busComponentsClasses/businterior.cpp \
@@ -80,12 +96,38 @@ INSTALLS        = target
 target.path     = /home/root
 
 HEADERS += \
-    DashboardGeneral/DashBoardClasses/application/calculateconsumptionenergyclass.h \
+    DashboardGeneral/DashBoardClasses/application/calculateconsumptionenergy.h \
     DashboardGeneral/DashBoardClasses/application/calculatemileage.h \
     DashboardGeneral/DashBoardClasses/application/dashboardclass.h \
     DashboardGeneral/DashBoardClasses/application/datetimereadclass.h \
     DashboardGeneral/DashBoardClasses/application/fpstext.h \
     DashboardGeneral/DashBoardClasses/application/menuclass.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/addrcache.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/blockhash.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/checksum.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/codetable.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/compile_assert.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/decodetable.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/google/codetablewriter_interface.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/google/encodetable.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/google/format_extension_flags.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/google/jsonwriter.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/google/output_string.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/google/vcdecoder.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/google/vcencoder.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/headerparser.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/instruction_map.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/logging.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/output_string_crope.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/rolling_hash.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/testing.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/unique_ptr.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/varint_bigendian.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/vcdecoder_test.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/vcdiff_defs.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/vcdiffengine.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/zlib/zconf.h \
+    DashboardGeneral/DashBoardClasses/application/open-vcdiff/zlib/zlib.h \
     DashboardGeneral/DashBoardClasses/copylinyxlogmessage.h \
     DashboardGeneral/DashBoardClasses/hardware/backlightcontrolclass.h \
     DashboardGeneral/DashBoardClasses/hardware/button.h \
@@ -93,8 +135,6 @@ HEADERS += \
     DashboardGeneral/DashBoardClasses/hardware/pwm.h \
     DashboardGeneral/DashBoardClasses/logtofile.h \
     DashboardGeneral/DashBoardClasses/trans.h \
-    DashboardGeneral/DashBoardClasses/vcdiff/vcdiff.h \
-    DashboardGeneral/DashBoardClasses/vcdiff/vcdiff_user.h \
     DashboardGeneral/additionaltask.h \
     DashboardGeneral/busComponentsClasses/adas.h \
     DashboardGeneral/busComponentsClasses/doors.h \
@@ -102,11 +142,14 @@ HEADERS += \
     DashboardGeneral/busComponentsClasses/primarybuscomponent.h \
     DashboardGeneral/busComponentsClasses/tachograph.h \
     DashboardGeneral/busComponentsClasses/tire.h \
+    DashboardGeneral/can/canisotphandler.h \
+    DashboardGeneral/can/uds.h \
     DashboardGeneral/canDataBase/canDB_Libs.h \
     DashboardGeneral/canDataBase/canDataClass.h \
     DashboardGeneral/canDataBase/canMessageClass.h \
     DashboardGeneral/canDataBase/canSignalClass.h \
-    DashboardGeneral/can_bus.h \
+    DashboardGeneral/can/can_bus.h \
+    DashboardGeneral/common_func.h \
     DashboardGeneral/qml_interface.h \
     DashboardGeneral/signal_lamp.h \
     busComponentsClasses/brakesystem.h \

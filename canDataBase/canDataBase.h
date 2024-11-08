@@ -1,4 +1,4 @@
-//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Tue Oct 29 15:11:41 2024
+//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Thu Oct 31 09:45:59 2024
 #ifndef CANDATABASE_H_
 #define CANDATABASE_H_
 

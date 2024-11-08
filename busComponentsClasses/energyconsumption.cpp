@@ -1,6 +1,6 @@
 ﻿#include "energyconsumption.h"
 #include <QTimer>
-#include "can_bus.h"
+#include "can/can_bus.h"
 
 EnergyConsumption::EnergyConsumption(QObject *parent) : PrimaryBusComponent(parent)
 {

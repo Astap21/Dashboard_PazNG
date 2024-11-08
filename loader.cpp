@@ -3,7 +3,8 @@
 #include <QQmlContext>
 
 #include "additionaltask.h"
-#include "can_bus.h"
+#include "can/can_bus.h"
+#include "can/canisotphandler.h"
 #include "signal_lamp.h"
 #include "DashBoardClasses/hardware/backlightcontrolclass.h"
 #include "busComponentsClasses/brakesystem.h"
@@ -29,7 +30,7 @@
 
 int main(int argc, char *argv[])
 {
-    QString softVersion = "1.2.2";
+    QString softVersion = "1.3.0";
     //Установка переменных среды
     //qputenv("QT_GSTREAMER_PLAYBIN_AUDIOSINK", "alsasink");
     //qputenv("QT_GSTREAMER_USE_PLAYBIN_VOLUME", "1");
@@ -58,10 +59,8 @@ int main(int argc, char *argv[])
     ican.addMessageToMissedMsgCheckList(gMessageName_EBC1);
     ican.addMessageToMissedMsgCheckList(gMessageName_ASC1);
     ican.addMessageToFastReceived(gMessageName_LD);
-    ican.addMessageToFastReceived(gMessageName_StartLoad);
-    ican.addMessageToFastReceived(gMessageName_RawData);
-    ican.addMessageToFastReceived(gMessageName_FinishLoad);
-    ican.addMessageToFastReceived(gMessageName_CheckConnection);
+    QObject::connect(&ican, &CanBus::receivedMsgFromPc,  &canIsoTpHandler_single, &CanIsoTpHandler::processReceivedFrames);
+    QObject::connect(&canIsoTpHandler_single, &CanIsoTpHandler::sendCanFrame, &ican, &CanBus::sendCanMsgSlot);
     engine.rootContext()->setContextProperty("ican", &ican);
 
     //QThread thread;
@@ -116,11 +115,12 @@ int main(int argc, char *argv[])
 
     Gpio KL_15(165, GPIO_INPUT);
 
-    DashboardClass dashboardObject(softVersion, &KL_15, &backlightControl);
-    engine.rootContext()->setContextProperty("dashboardObject", &dashboardObject);
-    QObject::connect(&ican, &CanBus::writtenMsg_DB1, &dashboardObject, &DashboardClass::incHearthBeatCounter);
-    QObject::connect(&ican, &CanBus::sendCanDBFastUpdated, &dashboardObject, &DashboardClass::canDBUpdated);
-    QObject::connect(&dashboardObject, &DashboardClass::sendCanMsgById, &ican, &CanBus::sendCanMsgById);
+    DashboardClass dashboard(softVersion, &KL_15, &backlightControl);
+    engine.rootContext()->setContextProperty("dashboardObject", &dashboard);
+    QObject::connect(&ican, &CanBus::writtenMsg_DB1, &dashboard, &DashboardClass::incHearthBeatCounter);
+    QObject::connect(&dashboard, &DashboardClass::sendUdsAnswer,  &canIsoTpHandler_single, &CanIsoTpHandler::sendIsoTpMessage);
+    QObject::connect(&canIsoTpHandler_single, &CanIsoTpHandler::messageReceived, &dashboard, &DashboardClass::ParseUdsPacket);
+    QObject::connect(&canIsoTpHandler_single, &CanIsoTpHandler::wrongConsecutiveNumber, &dashboard, &DashboardClass::wrongConsecutiveNumber);
 
     InterfaceForConnectToQml interfaceForConnectToQml("interfaceForConnectToQml");
     engine.rootContext()->setContextProperty("connectionFromCpp", &interfaceForConnectToQml);
