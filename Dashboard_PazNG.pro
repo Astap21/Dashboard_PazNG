@@ -16,7 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 GIT_COMMIT_HASH = $$system(git rev-parse --verify HEAD)
 DEFINES += GIT_COMMIT_HASH="\\\"$$GIT_COMMIT_HASH\\\""
 DEFINES += BUTTONS
-DEFINES += PROGRAMM_NAME=\\\"Dashboard_PazNG\\\"
+DEFINES += PROGRAM_NAME=\\\"Dashboard_PazNG\\\"
 
 INCLUDEPATH += DashboardGeneral
 CONFIG -= qtquickcompiler
