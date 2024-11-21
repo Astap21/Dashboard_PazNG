@@ -1,4 +1,4 @@
-//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Thu Oct 31 09:45:59 2024
+//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Thu Nov 21 10:21:59 2024
 #ifndef CANDATABASE_H_
 #define CANDATABASE_H_
 
@@ -86,9 +86,6 @@ extern canBus::messageNameCharStruct gMessageName_CM1;
 extern canBus::signalNameCharStruct gSignalName_HeaterLiquidState;
 extern canBus::messageNameCharStruct gMessageName_CM1_E1;
 
-extern canBus::signalNameCharStruct gSignalName_CheckConnectionSig;
-extern canBus::messageNameCharStruct gMessageName_CheckConnection;
-
 extern canBus::signalNameCharStruct gSignalName_RampError;
 extern canBus::messageNameCharStruct gMessageName_DC1;
 
@@ -127,26 +124,34 @@ extern canBus::messageNameCharStruct gMessageName_DM1_EBS;
 extern canBus::signalNameCharStruct gSignalName_EPB_Error;
 extern canBus::messageNameCharStruct gMessageName_DM1_EPB;
 
+extern canBus::signalNameCharStruct gSignalName_Door1CapInside;
+extern canBus::signalNameCharStruct gSignalName_Door1CapOutside;
 extern canBus::signalNameCharStruct gSignalName_Door1Close;
 extern canBus::signalNameCharStruct gSignalName_Door1Closing;
-extern canBus::signalNameCharStruct gSignalName_Door1EmergencyOpening1;
-extern canBus::signalNameCharStruct gSignalName_Door1NotDefine;
 extern canBus::signalNameCharStruct gSignalName_Door1Open;
 extern canBus::signalNameCharStruct gSignalName_Door1Opening;
-extern canBus::signalNameCharStruct gSignalName_Door1Pinching;
-extern canBus::signalNameCharStruct gSignalName_Door1RqOpenInv;
-extern canBus::signalNameCharStruct gSignalName_Door1RqOpenPas;
+extern canBus::signalNameCharStruct gSignalName_Door1Pinching1;
+extern canBus::signalNameCharStruct gSignalName_Door1Pinching2;
+extern canBus::signalNameCharStruct gSignalName_Door1Pinching3;
+extern canBus::signalNameCharStruct gSignalName_Door1RqOpenInside;
+extern canBus::signalNameCharStruct gSignalName_Door1RqOpenOutside;
+extern canBus::signalNameCharStruct gSignalName_Door1ValveInside;
+extern canBus::signalNameCharStruct gSignalName_Door1ValveOutside;
 extern canBus::messageNameCharStruct gMessageName_DOZC_1;
 
+extern canBus::signalNameCharStruct gSignalName_Door2CapInside;
+extern canBus::signalNameCharStruct gSignalName_Door2CapOutside;
 extern canBus::signalNameCharStruct gSignalName_Door2Close;
 extern canBus::signalNameCharStruct gSignalName_Door2Closing;
-extern canBus::signalNameCharStruct gSignalName_Door2EmergencyOpening1;
-extern canBus::signalNameCharStruct gSignalName_Door2NotDefine;
 extern canBus::signalNameCharStruct gSignalName_Door2Open;
 extern canBus::signalNameCharStruct gSignalName_Door2Opening;
-extern canBus::signalNameCharStruct gSignalName_Door2Pinching;
-extern canBus::signalNameCharStruct gSignalName_Door2RqOpenInv;
-extern canBus::signalNameCharStruct gSignalName_Door2RqOpenPas;
+extern canBus::signalNameCharStruct gSignalName_Door2Pinching1;
+extern canBus::signalNameCharStruct gSignalName_Door2Pinching2;
+extern canBus::signalNameCharStruct gSignalName_Door2Pinching3;
+extern canBus::signalNameCharStruct gSignalName_Door2RqOpenInside;
+extern canBus::signalNameCharStruct gSignalName_Door2RqOpenOutside;
+extern canBus::signalNameCharStruct gSignalName_Door2ValveInside;
+extern canBus::signalNameCharStruct gSignalName_Door2ValveOutside;
 extern canBus::messageNameCharStruct gMessageName_DOZC_2;
 
 extern canBus::signalNameCharStruct gSignalName_ABS_Active;
@@ -206,9 +211,6 @@ extern canBus::signalNameCharStruct gSignalName_FireExting_3;
 extern canBus::signalNameCharStruct gSignalName_FireExting_4;
 extern canBus::messageNameCharStruct gMessageName_FS1;
 
-extern canBus::signalNameCharStruct gSignalName_FinishLoadSig;
-extern canBus::messageNameCharStruct gMessageName_FinishLoad;
-
 extern canBus::signalNameCharStruct gSignalName_HVESS_Current;
 extern canBus::signalNameCharStruct gSignalName_HVESS_VoltageLevel;
 extern canBus::messageNameCharStruct gMessageName_HVESSD1;
@@ -222,6 +224,9 @@ extern canBus::signalNameCharStruct gSignalName_HVESS_HvBusPrechargeRelay;
 extern canBus::signalNameCharStruct gSignalName_HVESS_HvNegativeContactorState;
 extern canBus::signalNameCharStruct gSignalName_HVESS_HvPositiveContactorState;
 extern canBus::messageNameCharStruct gMessageName_HVESSS1;
+
+extern canBus::signalNameCharStruct gSignalName_IsoTpDataPC;
+extern canBus::messageNameCharStruct gMessageName_ISOTP_PC_ID;
 
 extern canBus::signalNameCharStruct gSignalName_FrontFogLight;
 extern canBus::signalNameCharStruct gSignalName_HighBeamHeadLight;
@@ -245,15 +250,8 @@ extern canBus::messageNameCharStruct gMessageName_OWW;
 extern canBus::signalNameCharStruct gSignalName_PantographModuleState;
 extern canBus::messageNameCharStruct gMessageName_PCM1;
 
-extern canBus::signalNameCharStruct gSignalName_rawDataSig;
-extern canBus::messageNameCharStruct gMessageName_RawData;
-
 extern canBus::signalNameCharStruct gSignalName_HeatingWheel;
 extern canBus::messageNameCharStruct gMessageName_SCU2CLM;
-
-extern canBus::signalNameCharStruct gSignalName_crc32;
-extern canBus::signalNameCharStruct gSignalName_fwLen;
-extern canBus::messageNameCharStruct gMessageName_StartLoad;
 
 extern canBus::signalNameCharStruct gSignalName_DirectionIndicator;
 extern canBus::signalNameCharStruct gSignalName_Driver1TimeRelatedStates;
@@ -291,10 +289,6 @@ extern canBus::messageNameCharStruct gMessageName_VDC1;
 extern canBus::signalNameCharStruct gSignalName_ActualVoltage_24v;
 extern canBus::messageNameCharStruct gMessageName_VEP1;
 
-extern canBus::signalNameCharStruct gSignalName_ansTypeDB;
-extern canBus::signalNameCharStruct gSignalName_packetCounter;
-extern canBus::messageNameCharStruct gMessageName_Answer_DB;
-
 extern canBus::signalNameCharStruct gSignalName_BtnBackAns;
 extern canBus::signalNameCharStruct gSignalName_BtnMinusAns;
 extern canBus::signalNameCharStruct gSignalName_BtnOkAns;
@@ -320,6 +314,9 @@ extern canBus::messageNameCharStruct gMessageName_DB_2;
 extern canBus::signalNameCharStruct gSignalName_TurnLeftLamp;
 extern canBus::signalNameCharStruct gSignalName_TurnRightLamp;
 extern canBus::messageNameCharStruct gMessageName_DB_3;
+
+extern canBus::signalNameCharStruct gSignalName_IsoTpDataDB;
+extern canBus::messageNameCharStruct gMessageName_ISOTP_DASHBOARD_ID;
 
 extern canBus::signalNameCharStruct gSignalName_TotalVehicleDistance;
 extern canBus::signalNameCharStruct gSignalName_TripDistance;

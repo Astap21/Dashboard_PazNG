@@ -44,6 +44,7 @@ Item {
             turnSignalLeft_L.turnStateOn = false
             if (!turnSignalRight_L.turnStateOn) {
                 lampsOff()
+                //console.log("3")
             }
         }
     }
@@ -58,14 +59,15 @@ Item {
             turnSignalRight_L.turnStateOn = false
             if (!turnSignalRight_L.turnStateOn) {
                 lampsOff()
+                //console.log("4")
             }
         }
 
     }
     function lampsToggle(turnId){
+        //console.log(turnId)
         if (!timerTurnToggle.running) {
             //console.log(turnId)
-            turnSignalSound.play()
             timerTurnToggle.start()
         }
     }
@@ -138,7 +140,6 @@ Item {
                 turnSignalSound.play()
                 //console.log("*")
             }
-            //exteriorLightning.RightTurnLight_lamp = turnSignalRight_L.visible
         }
     }
 }

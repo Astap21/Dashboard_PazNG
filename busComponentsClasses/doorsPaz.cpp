@@ -4,108 +4,50 @@
 
 DoorsPaz::DoorsPaz(QObject *parent) : Doors(parent)
 {
-
+    maxDoors = 2;
 }
 
-valve_state_e DoorsPaz::GetValveStatus(const int &doorNumber, const valve_side_e &side){
-    return valve_state_e::closeValveCloseCap;
-//    canBus::messageNameCharStruct *EDSC2;
-//    canBus::signalNameCharStruct *ValveOut;
-//    canBus::signalNameCharStruct *ValveIn;
-//    canBus::signalNameCharStruct *CapValveOut;
-//    canBus::signalNameCharStruct *CapValveIn;
-//    if (_doorNumber == 1) {
-//        EDSC2 = new canBus::messageNameCharStruct(gMessageName_EDSC2_1);
-//        ValveOut = new canBus::signalNameCharStruct(gSignalName_EmergencyCraneOut_1);
-//        ValveIn = new canBus::signalNameCharStruct(gSignalName_EmergencyCraneIn_1);
-//        CapValveOut = new canBus::signalNameCharStruct(gSignalName_EmergencyCraneOutCap_1);
-//        CapValveIn = new canBus::signalNameCharStruct(gSignalName_EmergencyCraneInCap_1);
-//    }
-//    else if (_doorNumber == 2) {
-//        EDSC2 = new canBus::messageNameCharStruct(gMessageName_EDSC2_2);
-//        ValveOut = new canBus::signalNameCharStruct(gSignalName_EmergencyCraneOut_2);
-//        ValveIn = new canBus::signalNameCharStruct(gSignalName_EmergencyCraneIn_2);
-//        CapValveOut = new canBus::signalNameCharStruct(gSignalName_EmergencyCraneOutCap_2);
-//        CapValveIn = new canBus::signalNameCharStruct(gSignalName_EmergencyCraneInCap_2);
-//    }
-//    else{
-//        qWarning() << "Wrong door number";
-//        return 0;
-//    }
-
-//    uint valveInStatus = 0;
-//    if (((gCanDB_ICAN.GetSignalValueUint32_t(*ValveIn, *EDSC2)) == 0) && ((gCanDB_ICAN.GetSignalValueUint32_t(*CapValveIn, *EDSC2)) == 0)) valveInStatus = 0;
-//    else if (((gCanDB_ICAN.GetSignalValueUint32_t(*ValveIn, *EDSC2)) == 0) && ((gCanDB_ICAN.GetSignalValueUint32_t(*CapValveIn, *EDSC2)) == 1)) valveInStatus = 1;
-//    else if (((gCanDB_ICAN.GetSignalValueUint32_t(*ValveIn, *EDSC2)) == 1) && ((gCanDB_ICAN.GetSignalValueUint32_t(*CapValveIn, *EDSC2)) == 0)) valveInStatus = 2;
-//    else if (((gCanDB_ICAN.GetSignalValueUint32_t(*ValveIn, *EDSC2)) == 1) && ((gCanDB_ICAN.GetSignalValueUint32_t(*CapValveIn, *EDSC2)) == 1)) valveInStatus = 3;
-//    else valveInStatus = 0;
-
-//    uint valveOutStatus = 0;
-//    if (((gCanDB_ICAN.GetSignalValueUint32_t(*ValveOut, *EDSC2)) == 0) && ((gCanDB_ICAN.GetSignalValueUint32_t(*CapValveOut, *EDSC2)) == 0)) valveOutStatus = 0;
-//    else if (((gCanDB_ICAN.GetSignalValueUint32_t(*ValveOut, *EDSC2)) == 0) && ((gCanDB_ICAN.GetSignalValueUint32_t(*CapValveOut, *EDSC2)) == 1)) valveOutStatus = 1;
-//    else if (((gCanDB_ICAN.GetSignalValueUint32_t(*ValveOut, *EDSC2)) == 1) && ((gCanDB_ICAN.GetSignalValueUint32_t(*CapValveOut, *EDSC2)) == 0)) valveOutStatus = 2;
-//    else if (((gCanDB_ICAN.GetSignalValueUint32_t(*ValveOut, *EDSC2)) == 1) && ((gCanDB_ICAN.GetSignalValueUint32_t(*CapValveOut, *EDSC2)) == 1)) valveOutStatus = 3;
-//    else valveOutStatus = 0;
-
-//    uint valvesStatus = valveInStatus | (valveOutStatus << 4);
-
-//    //qDebug() << "Door number=" << _doorNumber << "Status In valve" << valveInStatus << "Status Out valve" << valveOutStatus << "All Status valve" << valvesStatus;
-//    return valvesStatus;
-}
-
-uint DoorsPaz::returnDoorStatus(const int &_doorNumber){
+valve_state_e DoorsPaz::GetValveStatus(const int &_doorNumber, const valve_side_e &side){
     canBus::messageNameCharStruct *canMsg;
-    canBus::signalNameCharStruct *Open;
-    canBus::signalNameCharStruct *Close;
-    canBus::signalNameCharStruct *EmergencyOpeningFlag;
-    canBus::signalNameCharStruct *AntiPinch;
-    canBus::signalNameCharStruct *PassengerButton;
-    canBus::signalNameCharStruct *DoorNotDefained;
-
-    if (_doorNumber == 1) {
-        canMsg = new canBus::messageNameCharStruct(gMessageName_DOZC_1);
-        Open = new canBus::signalNameCharStruct(gSignalName_Door1Open);
-        Close = new canBus::signalNameCharStruct(gSignalName_Door1Close);
-        PassengerButton = new canBus::signalNameCharStruct(gSignalName_Door1RqOpenPas);
-        EmergencyOpeningFlag = new canBus::signalNameCharStruct(gSignalName_Door1EmergencyOpening1);
-        AntiPinch =  new canBus::signalNameCharStruct(gSignalName_Door1Pinching);
-        DoorNotDefained =  new canBus::signalNameCharStruct(gSignalName_Door1NotDefine);
+    canBus::signalNameCharStruct *cap;
+    canBus::signalNameCharStruct *valve;
+    if (_doorNumber == 1 && side == valve_side_e::in) {
+        canMsg = &gMessageName_DOZC_1;
+        valve =  &gSignalName_Door1ValveInside;
+        cap =  &gSignalName_Door1CapInside;
     }
-    else if (_doorNumber == 2) {
-        canMsg = new canBus::messageNameCharStruct(gMessageName_DOZC_2);
-        Open = new canBus::signalNameCharStruct(gSignalName_Door2Open);
-        Close = new canBus::signalNameCharStruct(gSignalName_Door2Close);
-        PassengerButton = new canBus::signalNameCharStruct(gSignalName_Door2RqOpenPas);
-        EmergencyOpeningFlag = new canBus::signalNameCharStruct(gSignalName_Door2EmergencyOpening1);
-        AntiPinch =  new canBus::signalNameCharStruct(gSignalName_Door2Pinching);
-        DoorNotDefained =  new canBus::signalNameCharStruct(gSignalName_Door2NotDefine);
-
+    else if (_doorNumber == 2 && side == valve_side_e::in) {
+        canMsg = &gMessageName_DOZC_2;
+        valve =  &gSignalName_Door2ValveInside;
+        cap =  &gSignalName_Door2CapInside;
     }
-    else if (_doorNumber == 3) {
-        return 0;
+    if (_doorNumber == 1 && side == valve_side_e::out) {
+        canMsg = &gMessageName_DOZC_1;
+        valve =  &gSignalName_Door1ValveOutside;
+        cap =  &gSignalName_Door1CapOutside;
+    }
+    else if (_doorNumber == 2 && side == valve_side_e::out) {
+        canMsg = &gMessageName_DOZC_2;
+        valve =  &gSignalName_Door2ValveOutside;
+        cap =  &gSignalName_Door2CapOutside;
     }
     else{
-        qWarning() << "Wrong door number - " << _doorNumber;
-        return 0;
+        return valve_state_e::openValve;
     }
 
-    // 0 - close
-    // 1 - reqOpen
-    // 2 - open
-    // 3 - EmgOpen
-    // 4 - Jamming
-    // 5 - doorNotDefined
-
-    uint doorStatus = 0;
-    if ((gCanDB.GetSignalValueUint32_t(*Close, *canMsg)) == 1) doorStatus = 0;
-    if ((gCanDB.GetSignalValueUint32_t(*PassengerButton, *canMsg)) == 1) doorStatus = 1;
-    if ((gCanDB.GetSignalValueUint32_t(*Open, *canMsg)) == 1) doorStatus = 2;
-    if ((gCanDB.GetSignalValueUint32_t(*EmergencyOpeningFlag, *canMsg)) == 1) doorStatus = 3;
-    if ((gCanDB.GetSignalValueUint32_t(*AntiPinch, *canMsg)) == 1) doorStatus = 4;
-    if ((gCanDB.GetSignalValueUint32_t(*DoorNotDefained, *canMsg)) == 1) doorStatus = 5;
-
-    return doorStatus;
+    valve_state_e valve_state = valve_state_e::openValve;
+    if ((gCanDB.GetSignalValueUint32_t(*valve, *canMsg)) == 1) {
+        valve_state = valve_state_e::openValve;
+    }
+    else if ((gCanDB.GetSignalValueUint32_t(*cap, *canMsg)) == 1) {
+        valve_state = valve_state_e::closeValveOpenCap;
+    }
+    else{
+        valve_state = valve_state_e::closeValveCloseCap;
+    }
+    return valve_state;
 }
+
 uint DoorsPaz::GetRampState(){
     uint rampStatus;
     if (gCanDB.GetSignalValueUint32_t(gSignalName_RampError, gMessageName_DC1) == 1) {
@@ -118,4 +60,70 @@ uint DoorsPaz::GetRampState(){
         rampStatus = 0;
     }
     return rampStatus;
+}
+
+uint DoorsPaz::returnDoorStatus(const int &_doorNumber){
+    canBus::messageNameCharStruct *canMsg;
+    canBus::signalNameCharStruct *AntiPinch1;
+    canBus::signalNameCharStruct *AntiPinch2;
+    canBus::signalNameCharStruct *AntiPinch3;
+    canBus::signalNameCharStruct *RqOpenInside;
+    canBus::signalNameCharStruct *RqOpenOutside;
+    canBus::signalNameCharStruct *Open;
+    canBus::signalNameCharStruct *Closing;
+    canBus::signalNameCharStruct *Opening;
+    canBus::signalNameCharStruct *Close;
+    if (_doorNumber == 1) {
+        canMsg = &gMessageName_DOZC_1;
+        AntiPinch1 =  &gSignalName_Door1Pinching1;
+        AntiPinch2 =  &gSignalName_Door1Pinching2;
+        AntiPinch3 =  &gSignalName_Door1Pinching3;
+        RqOpenInside =  &gSignalName_Door1RqOpenInside;
+        RqOpenOutside =  &gSignalName_Door1RqOpenOutside;
+        Open = &gSignalName_Door1Open;
+        Closing = &gSignalName_Door1Closing;
+        Opening = &gSignalName_Door1Opening;
+        Close = &gSignalName_Door1Close;
+    }
+    else if (_doorNumber == 2) {
+        canMsg = &gMessageName_DOZC_2;
+        AntiPinch1 =  &gSignalName_Door2Pinching1;
+        AntiPinch2 =  &gSignalName_Door2Pinching2;
+        AntiPinch3 =  &gSignalName_Door2Pinching3;
+        RqOpenInside =  &gSignalName_Door2RqOpenInside;
+        RqOpenOutside =  &gSignalName_Door2RqOpenOutside;
+        Open = &gSignalName_Door2Open;
+        Closing = &gSignalName_Door2Closing;
+        Opening = &gSignalName_Door2Opening;
+        Close = &gSignalName_Door2Close;
+    }
+    else{
+        return 0;
+    }
+    enum class door_e{
+        close = 0,
+        reqOpen = 1,
+        open = 2,
+        EmgOpen = 3,
+        Jamming = 4,
+        doorNotDefined = 5,
+    };
+
+    door_e doorStatus = door_e::close;
+    if ((gCanDB.GetSignalValueUint32_t(*Close, *canMsg)) == 1) doorStatus = door_e::close;
+    else if ((gCanDB.GetSignalValueUint32_t(*Opening, *canMsg)) == 1) doorStatus = door_e::close;
+    else if ((gCanDB.GetSignalValueUint32_t(*Closing, *canMsg)) == 1) doorStatus = door_e::close;
+    else if ((gCanDB.GetSignalValueUint32_t(*Open, *canMsg)) == 1) doorStatus = door_e::open;
+    else{
+        doorStatus = door_e::doorNotDefined;
+    }
+    if (doorStatus == door_e::close){
+        if ((gCanDB.GetSignalValueUint32_t(*RqOpenInside, *canMsg)) == 1) doorStatus = door_e::reqOpen;
+        if ((gCanDB.GetSignalValueUint32_t(*RqOpenOutside, *canMsg)) == 1) doorStatus = door_e::reqOpen;
+    }
+    if ((gCanDB.GetSignalValueUint32_t(*AntiPinch1, *canMsg)) == 1) doorStatus = door_e::Jamming;
+    if ((gCanDB.GetSignalValueUint32_t(*AntiPinch2, *canMsg)) == 1) doorStatus = door_e::Jamming;
+    if ((gCanDB.GetSignalValueUint32_t(*AntiPinch3, *canMsg)) == 1) doorStatus = door_e::Jamming;
+
+    return static_cast<uint>(doorStatus);
 }

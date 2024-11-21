@@ -1,4 +1,4 @@
-//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Thu Oct 31 09:45:59 2024
+//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Thu Nov 21 10:21:59 2024
 #include "canDataBase/canDataBase.h"
 
 using namespace canBus;
@@ -181,13 +181,6 @@ static CanSignal *CM1_E1_arraySignals[CM1_E1_NumberOfSignals] = {&HeaterLiquidSt
 messageNameCharStruct gMessageName_CM1_E1{"CM1_E1",MAX_LENGTH_NAME};
 static CanMessageRx CM1_E1(gMessageName_CM1_E1, CM1_E1_arraySignals, CM1_E1_NumberOfSignals, 0x18FE17E1, 8, 0);
 
-const uint8_t CheckConnection_NumberOfSignals = 1;
-signalNameCharStruct gSignalName_CheckConnectionSig{"CheckConnectionSig",MAX_LENGTH_NAME};
-static CanSignal CheckConnectionSig{ 0, 8, gSignalName_CheckConnectionSig, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *CheckConnection_arraySignals[CheckConnection_NumberOfSignals] = {&CheckConnectionSig};
-messageNameCharStruct gMessageName_CheckConnection{"CheckConnection",MAX_LENGTH_NAME};
-static CanMessageRx CheckConnection(gMessageName_CheckConnection, CheckConnection_arraySignals, CheckConnection_NumberOfSignals, 0x00FF07FD, 8, 0);
-
 const uint8_t DC1_NumberOfSignals = 1;
 signalNameCharStruct gSignalName_RampError{"RampError",MAX_LENGTH_NAME};
 static CanSignal RampError{ 4, 2, gSignalName_RampError, 1, 0, canIntel, canUint, 0, 0, 0};
@@ -273,49 +266,65 @@ static CanSignal *DM1_EPB_arraySignals[DM1_EPB_NumberOfSignals] = {&EPB_Error};
 messageNameCharStruct gMessageName_DM1_EPB{"DM1_EPB",MAX_LENGTH_NAME};
 static CanMessageRx DM1_EPB(gMessageName_DM1_EPB, DM1_EPB_arraySignals, DM1_EPB_NumberOfSignals, 0x18FECA50, 8, 1000);
 
-const uint8_t DOZC_1_NumberOfSignals = 9;
+const uint8_t DOZC_1_NumberOfSignals = 13;
+signalNameCharStruct gSignalName_Door1CapInside{"Door1CapInside",MAX_LENGTH_NAME};
+static CanSignal Door1CapInside{ 50, 2, gSignalName_Door1CapInside, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_Door1CapOutside{"Door1CapOutside",MAX_LENGTH_NAME};
+static CanSignal Door1CapOutside{ 54, 2, gSignalName_Door1CapOutside, 1, 0, canIntel, canUint, 0, 0, 0};
 signalNameCharStruct gSignalName_Door1Close{"Door1Close",MAX_LENGTH_NAME};
 static CanSignal Door1Close{ 30, 2, gSignalName_Door1Close, 1, 0, canIntel, canUint, 0, 0, 0};
 signalNameCharStruct gSignalName_Door1Closing{"Door1Closing",MAX_LENGTH_NAME};
 static CanSignal Door1Closing{ 26, 2, gSignalName_Door1Closing, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Door1EmergencyOpening1{"Door1EmergencyOpening1",MAX_LENGTH_NAME};
-static CanSignal Door1EmergencyOpening1{ 18, 2, gSignalName_Door1EmergencyOpening1, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Door1NotDefine{"Door1NotDefine",MAX_LENGTH_NAME};
-static CanSignal Door1NotDefine{ 62, 2, gSignalName_Door1NotDefine, 1, 0, canIntel, canUint, 0, 0, 0};
 signalNameCharStruct gSignalName_Door1Open{"Door1Open",MAX_LENGTH_NAME};
 static CanSignal Door1Open{ 20, 2, gSignalName_Door1Open, 1, 0, canIntel, canUint, 0, 0, 0};
 signalNameCharStruct gSignalName_Door1Opening{"Door1Opening",MAX_LENGTH_NAME};
 static CanSignal Door1Opening{ 28, 2, gSignalName_Door1Opening, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Door1Pinching{"Door1Pinching",MAX_LENGTH_NAME};
-static CanSignal Door1Pinching{ 16, 2, gSignalName_Door1Pinching, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Door1RqOpenInv{"Door1RqOpenInv",MAX_LENGTH_NAME};
-static CanSignal Door1RqOpenInv{ 40, 2, gSignalName_Door1RqOpenInv, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Door1RqOpenPas{"Door1RqOpenPas",MAX_LENGTH_NAME};
-static CanSignal Door1RqOpenPas{ 38, 2, gSignalName_Door1RqOpenPas, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *DOZC_1_arraySignals[DOZC_1_NumberOfSignals] = {&Door1Close, &Door1Closing, &Door1EmergencyOpening1, &Door1NotDefine, &Door1Open, &Door1Opening, &Door1Pinching, &Door1RqOpenInv, &Door1RqOpenPas};
+signalNameCharStruct gSignalName_Door1Pinching1{"Door1Pinching1",MAX_LENGTH_NAME};
+static CanSignal Door1Pinching1{ 6, 2, gSignalName_Door1Pinching1, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_Door1Pinching2{"Door1Pinching2",MAX_LENGTH_NAME};
+static CanSignal Door1Pinching2{ 8, 2, gSignalName_Door1Pinching2, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_Door1Pinching3{"Door1Pinching3",MAX_LENGTH_NAME};
+static CanSignal Door1Pinching3{ 10, 2, gSignalName_Door1Pinching3, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_Door1RqOpenInside{"Door1RqOpenInside",MAX_LENGTH_NAME};
+static CanSignal Door1RqOpenInside{ 14, 2, gSignalName_Door1RqOpenInside, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_Door1RqOpenOutside{"Door1RqOpenOutside",MAX_LENGTH_NAME};
+static CanSignal Door1RqOpenOutside{ 12, 2, gSignalName_Door1RqOpenOutside, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_Door1ValveInside{"Door1ValveInside",MAX_LENGTH_NAME};
+static CanSignal Door1ValveInside{ 52, 2, gSignalName_Door1ValveInside, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_Door1ValveOutside{"Door1ValveOutside",MAX_LENGTH_NAME};
+static CanSignal Door1ValveOutside{ 56, 2, gSignalName_Door1ValveOutside, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *DOZC_1_arraySignals[DOZC_1_NumberOfSignals] = {&Door1CapInside, &Door1CapOutside, &Door1Close, &Door1Closing, &Door1Open, &Door1Opening, &Door1Pinching1, &Door1Pinching2, &Door1Pinching3, &Door1RqOpenInside, &Door1RqOpenOutside, &Door1ValveInside, &Door1ValveOutside};
 messageNameCharStruct gMessageName_DOZC_1{"DOZC_1",MAX_LENGTH_NAME};
 static CanMessageRx DOZC_1(gMessageName_DOZC_1, DOZC_1_arraySignals, DOZC_1_NumberOfSignals, 0x18FD1ECC, 8, 100);
 
-const uint8_t DOZC_2_NumberOfSignals = 9;
+const uint8_t DOZC_2_NumberOfSignals = 13;
+signalNameCharStruct gSignalName_Door2CapInside{"Door2CapInside",MAX_LENGTH_NAME};
+static CanSignal Door2CapInside{ 50, 2, gSignalName_Door2CapInside, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_Door2CapOutside{"Door2CapOutside",MAX_LENGTH_NAME};
+static CanSignal Door2CapOutside{ 54, 2, gSignalName_Door2CapOutside, 1, 0, canIntel, canUint, 0, 0, 0};
 signalNameCharStruct gSignalName_Door2Close{"Door2Close",MAX_LENGTH_NAME};
 static CanSignal Door2Close{ 30, 2, gSignalName_Door2Close, 1, 0, canIntel, canUint, 0, 0, 0};
 signalNameCharStruct gSignalName_Door2Closing{"Door2Closing",MAX_LENGTH_NAME};
 static CanSignal Door2Closing{ 26, 2, gSignalName_Door2Closing, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Door2EmergencyOpening1{"Door2EmergencyOpening1",MAX_LENGTH_NAME};
-static CanSignal Door2EmergencyOpening1{ 18, 2, gSignalName_Door2EmergencyOpening1, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Door2NotDefine{"Door2NotDefine",MAX_LENGTH_NAME};
-static CanSignal Door2NotDefine{ 62, 2, gSignalName_Door2NotDefine, 1, 0, canIntel, canUint, 0, 0, 0};
 signalNameCharStruct gSignalName_Door2Open{"Door2Open",MAX_LENGTH_NAME};
 static CanSignal Door2Open{ 20, 2, gSignalName_Door2Open, 1, 0, canIntel, canUint, 0, 0, 0};
 signalNameCharStruct gSignalName_Door2Opening{"Door2Opening",MAX_LENGTH_NAME};
 static CanSignal Door2Opening{ 28, 2, gSignalName_Door2Opening, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Door2Pinching{"Door2Pinching",MAX_LENGTH_NAME};
-static CanSignal Door2Pinching{ 16, 2, gSignalName_Door2Pinching, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Door2RqOpenInv{"Door2RqOpenInv",MAX_LENGTH_NAME};
-static CanSignal Door2RqOpenInv{ 40, 2, gSignalName_Door2RqOpenInv, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_Door2RqOpenPas{"Door2RqOpenPas",MAX_LENGTH_NAME};
-static CanSignal Door2RqOpenPas{ 38, 2, gSignalName_Door2RqOpenPas, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *DOZC_2_arraySignals[DOZC_2_NumberOfSignals] = {&Door2Close, &Door2Closing, &Door2EmergencyOpening1, &Door2NotDefine, &Door2Open, &Door2Opening, &Door2Pinching, &Door2RqOpenInv, &Door2RqOpenPas};
+signalNameCharStruct gSignalName_Door2Pinching1{"Door2Pinching1",MAX_LENGTH_NAME};
+static CanSignal Door2Pinching1{ 6, 2, gSignalName_Door2Pinching1, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_Door2Pinching2{"Door2Pinching2",MAX_LENGTH_NAME};
+static CanSignal Door2Pinching2{ 8, 2, gSignalName_Door2Pinching2, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_Door2Pinching3{"Door2Pinching3",MAX_LENGTH_NAME};
+static CanSignal Door2Pinching3{ 10, 2, gSignalName_Door2Pinching3, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_Door2RqOpenInside{"Door2RqOpenInside",MAX_LENGTH_NAME};
+static CanSignal Door2RqOpenInside{ 14, 2, gSignalName_Door2RqOpenInside, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_Door2RqOpenOutside{"Door2RqOpenOutside",MAX_LENGTH_NAME};
+static CanSignal Door2RqOpenOutside{ 12, 2, gSignalName_Door2RqOpenOutside, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_Door2ValveInside{"Door2ValveInside",MAX_LENGTH_NAME};
+static CanSignal Door2ValveInside{ 52, 2, gSignalName_Door2ValveInside, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_Door2ValveOutside{"Door2ValveOutside",MAX_LENGTH_NAME};
+static CanSignal Door2ValveOutside{ 56, 2, gSignalName_Door2ValveOutside, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *DOZC_2_arraySignals[DOZC_2_NumberOfSignals] = {&Door2CapInside, &Door2CapOutside, &Door2Close, &Door2Closing, &Door2Open, &Door2Opening, &Door2Pinching1, &Door2Pinching2, &Door2Pinching3, &Door2RqOpenInside, &Door2RqOpenOutside, &Door2ValveInside, &Door2ValveOutside};
 messageNameCharStruct gMessageName_DOZC_2{"DOZC_2",MAX_LENGTH_NAME};
 static CanMessageRx DOZC_2(gMessageName_DOZC_2, DOZC_2_arraySignals, DOZC_2_NumberOfSignals, 0x18FD1ECD, 8, 100);
 
@@ -443,13 +452,6 @@ static CanSignal *FS1_arraySignals[FS1_NumberOfSignals] = {&EmergHammer_1, &Emer
 messageNameCharStruct gMessageName_FS1{"FS1",MAX_LENGTH_NAME};
 static CanMessageRx FS1(gMessageName_FS1, FS1_arraySignals, FS1_NumberOfSignals, 0x18FF505D, 8, 200);
 
-const uint8_t FinishLoad_NumberOfSignals = 1;
-signalNameCharStruct gSignalName_FinishLoadSig{"FinishLoadSig",MAX_LENGTH_NAME};
-static CanSignal FinishLoadSig{ 0, 8, gSignalName_FinishLoadSig, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *FinishLoad_arraySignals[FinishLoad_NumberOfSignals] = {&FinishLoadSig};
-messageNameCharStruct gMessageName_FinishLoad{"FinishLoad",MAX_LENGTH_NAME};
-static CanMessageRx FinishLoad(gMessageName_FinishLoad, FinishLoad_arraySignals, FinishLoad_NumberOfSignals, 0x00FF06FD, 8, 0);
-
 const uint8_t HVESSD1_NumberOfSignals = 2;
 signalNameCharStruct gSignalName_HVESS_Current{"HVESS_Current",MAX_LENGTH_NAME};
 static CanSignal HVESS_Current{ 48, 16, gSignalName_HVESS_Current, 0.05, -1600, canIntel, canUint, 1612.75, -1600, 0};
@@ -480,6 +482,13 @@ static CanSignal HVESS_HvPositiveContactorState{ 0, 2, gSignalName_HVESS_HvPosit
 static CanSignal *HVESSS1_arraySignals[HVESSS1_NumberOfSignals] = {&HVESS_CenterOfPackContactor, &HVESS_HvBusConnectionStatus, &HVESS_HvBusPrechargeRelay, &HVESS_HvNegativeContactorState, &HVESS_HvPositiveContactorState};
 messageNameCharStruct gMessageName_HVESSS1{"HVESSS1",MAX_LENGTH_NAME};
 static CanMessageRx HVESSS1(gMessageName_HVESSS1, HVESSS1_arraySignals, HVESSS1_NumberOfSignals, 0x0CF096F3, 8, 100);
+
+const uint8_t ISOTP_PC_ID_NumberOfSignals = 1;
+signalNameCharStruct gSignalName_IsoTpDataPC{"IsoTpDataPC",MAX_LENGTH_NAME};
+static CanSignal IsoTpDataPC{ 0, 64, gSignalName_IsoTpDataPC, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *ISOTP_PC_ID_arraySignals[ISOTP_PC_ID_NumberOfSignals] = {&IsoTpDataPC};
+messageNameCharStruct gMessageName_ISOTP_PC_ID{"ISOTP_PC_ID",MAX_LENGTH_NAME};
+static CanMessageRx ISOTP_PC_ID(gMessageName_ISOTP_PC_ID, ISOTP_PC_ID_arraySignals, ISOTP_PC_ID_NumberOfSignals, 0x00FF04FD, 8, 0);
 
 const uint8_t LD_NumberOfSignals = 9;
 signalNameCharStruct gSignalName_FrontFogLight{"FrontFogLight",MAX_LENGTH_NAME};
@@ -529,28 +538,12 @@ static CanSignal *PCM1_arraySignals[PCM1_NumberOfSignals] = {&PantographModuleSt
 messageNameCharStruct gMessageName_PCM1{"PCM1",MAX_LENGTH_NAME};
 static CanMessageRx PCM1(gMessageName_PCM1, PCM1_arraySignals, PCM1_NumberOfSignals, 0x18FF4F42, 8, 100);
 
-const uint8_t RawData_NumberOfSignals = 1;
-signalNameCharStruct gSignalName_rawDataSig{"rawDataSig",MAX_LENGTH_NAME};
-static CanSignal rawDataSig{ 0, 64, gSignalName_rawDataSig, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *RawData_arraySignals[RawData_NumberOfSignals] = {&rawDataSig};
-messageNameCharStruct gMessageName_RawData{"RawData",MAX_LENGTH_NAME};
-static CanMessageRx RawData(gMessageName_RawData, RawData_arraySignals, RawData_NumberOfSignals, 0x00FF05FD, 8, 0);
-
 const uint8_t SCU2CLM_NumberOfSignals = 1;
 signalNameCharStruct gSignalName_HeatingWheel{"HeatingWheel",MAX_LENGTH_NAME};
 static CanSignal HeatingWheel{ 6, 2, gSignalName_HeatingWheel, 1, 0, canIntel, canUint, 0, 0, 0};
 static CanSignal *SCU2CLM_arraySignals[SCU2CLM_NumberOfSignals] = {&HeatingWheel};
 messageNameCharStruct gMessageName_SCU2CLM{"SCU2CLM",MAX_LENGTH_NAME};
 static CanMessageRx SCU2CLM(gMessageName_SCU2CLM, SCU2CLM_arraySignals, SCU2CLM_NumberOfSignals, 0x18FF114D, 8, 50);
-
-const uint8_t StartLoad_NumberOfSignals = 2;
-signalNameCharStruct gSignalName_crc32{"crc32",MAX_LENGTH_NAME};
-static CanSignal crc32{ 32, 32, gSignalName_crc32, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_fwLen{"fwLen",MAX_LENGTH_NAME};
-static CanSignal fwLen{ 0, 32, gSignalName_fwLen, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *StartLoad_arraySignals[StartLoad_NumberOfSignals] = {&crc32, &fwLen};
-messageNameCharStruct gMessageName_StartLoad{"StartLoad",MAX_LENGTH_NAME};
-static CanMessageRx StartLoad(gMessageName_StartLoad, StartLoad_arraySignals, StartLoad_NumberOfSignals, 0x00FF04FD, 8, 0);
 
 const uint8_t TCO1_NumberOfSignals = 14;
 signalNameCharStruct gSignalName_DirectionIndicator{"DirectionIndicator",MAX_LENGTH_NAME};
@@ -630,15 +623,6 @@ static CanSignal *VEP1_arraySignals[VEP1_NumberOfSignals] = {&ActualVoltage_24v}
 messageNameCharStruct gMessageName_VEP1{"VEP1",MAX_LENGTH_NAME};
 static CanMessageRx VEP1(gMessageName_VEP1, VEP1_arraySignals, VEP1_NumberOfSignals, 0x18FEF71E, 8, 1000);
 
-const uint8_t Answer_DB_NumberOfSignals = 2;
-signalNameCharStruct gSignalName_ansTypeDB{"ansTypeDB",MAX_LENGTH_NAME};
-static CanSignal ansTypeDB{ 0, 16, gSignalName_ansTypeDB, 1, 0, canIntel, canUint, 0, 0, 0};
-signalNameCharStruct gSignalName_packetCounter{"packetCounter",MAX_LENGTH_NAME};
-static CanSignal packetCounter{ 16, 32, gSignalName_packetCounter, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *Answer_DB_arraySignals[Answer_DB_NumberOfSignals] = {&ansTypeDB, &packetCounter};
-messageNameCharStruct gMessageName_Answer_DB{"Answer_DB",MAX_LENGTH_NAME};
-static CanMessageTx Answer_DB(gMessageName_Answer_DB, Answer_DB_arraySignals, Answer_DB_NumberOfSignals, 0x00FF0517, 8, 0);
-
 const uint8_t DB_1_NumberOfSignals = 13;
 signalNameCharStruct gSignalName_BtnBackAns{"BtnBackAns",MAX_LENGTH_NAME};
 static CanSignal BtnBackAns{ 50, 2, gSignalName_BtnBackAns, 1, 0, canIntel, canUint, 3, 0, 0};
@@ -694,6 +678,13 @@ static CanSignal *DB_3_arraySignals[DB_3_NumberOfSignals] = {&TurnLeftLamp, &Tur
 messageNameCharStruct gMessageName_DB_3{"DB_3",MAX_LENGTH_NAME};
 static CanMessageTx DB_3(gMessageName_DB_3, DB_3_arraySignals, DB_3_NumberOfSignals, 0x18FF1117, 8, 0);
 
+const uint8_t ISOTP_DASHBOARD_ID_NumberOfSignals = 1;
+signalNameCharStruct gSignalName_IsoTpDataDB{"IsoTpDataDB",MAX_LENGTH_NAME};
+static CanSignal IsoTpDataDB{ 0, 64, gSignalName_IsoTpDataDB, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *ISOTP_DASHBOARD_ID_arraySignals[ISOTP_DASHBOARD_ID_NumberOfSignals] = {&IsoTpDataDB};
+messageNameCharStruct gMessageName_ISOTP_DASHBOARD_ID{"ISOTP_DASHBOARD_ID",MAX_LENGTH_NAME};
+static CanMessageTx ISOTP_DASHBOARD_ID(gMessageName_ISOTP_DASHBOARD_ID, ISOTP_DASHBOARD_ID_arraySignals, ISOTP_DASHBOARD_ID_NumberOfSignals, 0x00FF0517, 8, 0);
+
 const uint8_t VDHR_NumberOfSignals = 2;
 signalNameCharStruct gSignalName_TotalVehicleDistance{"TotalVehicleDistance",MAX_LENGTH_NAME};
 static CanSignal TotalVehicleDistance{ 0, 32, gSignalName_TotalVehicleDistance, 0.005, 0, canIntel, canUint, 0, 0, 0};
@@ -703,8 +694,8 @@ static CanSignal *VDHR_arraySignals[VDHR_NumberOfSignals] = {&TotalVehicleDistan
 messageNameCharStruct gMessageName_VDHR{"VDHR",MAX_LENGTH_NAME};
 static CanMessageTx VDHR(gMessageName_VDHR, VDHR_arraySignals, VDHR_NumberOfSignals, 0x18FEC117, 8, 1000);
 
-const uint8_t numberOfRxMessages = 55;
-static CanMessageRx *arrayRxMessages[numberOfRxMessages] = { &ADAS_1, &AIR1, &AMB, &ASC1, &ASC2, &BCH1, &BDS, &BJM1, &CCUT1, &CCVS1, &CCVS1_03, &CDC, &CECU_A0, &CL, &CM1, &CM1_E1, &CheckConnection, &DC1, &DC2, &DD1_12, &DD1_1E, &DLCC1, &DLCC2, &DLDC1, &DM1_EBS, &DM1_EPB, &DOZC_1, &DOZC_2, &EBC1, &EBC4, &EBC5, &ECO, &EDSC2_2, &EPBS1, &ESC2, &ET1, &ETC2, &FS1, &FinishLoad, &HVESSD1, &HVESSD2, &HVESSS1, &LD, &LD_2, &OWW, &PCM1, &RawData, &SCU2CLM, &StartLoad, &TCO1, &TCO1_EE, &TIRE, &TMS, &VDC1, &VEP1};
+const uint8_t numberOfRxMessages = 52;
+static CanMessageRx *arrayRxMessages[numberOfRxMessages] = { &ADAS_1, &AIR1, &AMB, &ASC1, &ASC2, &BCH1, &BDS, &BJM1, &CCUT1, &CCVS1, &CCVS1_03, &CDC, &CECU_A0, &CL, &CM1, &CM1_E1, &DC1, &DC2, &DD1_12, &DD1_1E, &DLCC1, &DLCC2, &DLDC1, &DM1_EBS, &DM1_EPB, &DOZC_1, &DOZC_2, &EBC1, &EBC4, &EBC5, &ECO, &EDSC2_2, &EPBS1, &ESC2, &ET1, &ETC2, &FS1, &HVESSD1, &HVESSD2, &HVESSS1, &ISOTP_PC_ID, &LD, &LD_2, &OWW, &PCM1, &SCU2CLM, &TCO1, &TCO1_EE, &TIRE, &TMS, &VDC1, &VEP1};
 const uint8_t numberOfTxMessages = 5;
-static CanMessageTx *arrayTxMessages[numberOfTxMessages] = { &Answer_DB, &DB_1, &DB_2, &DB_3, &VDHR};
+static CanMessageTx *arrayTxMessages[numberOfTxMessages] = { &DB_1, &DB_2, &DB_3, &ISOTP_DASHBOARD_ID, &VDHR};
 CanDataBase gCanDB(arrayRxMessages,numberOfRxMessages,arrayTxMessages,numberOfTxMessages);

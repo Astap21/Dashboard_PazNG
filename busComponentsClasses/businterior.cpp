@@ -38,9 +38,17 @@ void BusInterior::ReadStateFromCanDB(){
         if (checkValueChange(uint(getNewValueFromOneCanSignalU32(gSignalName_EngineHatchOpen, gMessageName_DC2, &gCanDB)), rearCompartment)) emit sendRearCompartmentStatusToQml(rearCompartment);
 //        if (checkValueChange(uint(getNewValueFromOneCanSignalF(gSignalName_FrontCompartmentStatus, gMessageName_MUX_to_DB, &gCanDB)), frontCompartment)) emit sendFrontCompartmentStatusToQml(frontCompartment);
         previousComponentState = requestDisablePerson;
-        if (gCanDB.GetSignalValueUint32_t(gSignalName_Door1RqOpenInv, gMessageName_DOZC_1) == 1) requestDisablePerson = 1;
-        else if (gCanDB.GetSignalValueUint32_t(gSignalName_Door2RqOpenInv, gMessageName_DOZC_2) == 1) requestDisablePerson = 1;
-        else requestDisablePerson = 0;
+        if (gCanDB.GetSignalValueUint32_t(gSignalName_Door1RqOpenInside, gMessageName_DOZC_1) == 1 ||
+                gCanDB.GetSignalValueUint32_t(gSignalName_Door1RqOpenOutside, gMessageName_DOZC_1) == 1) {
+            requestDisablePerson = 1;
+        }
+        else if (gCanDB.GetSignalValueUint32_t(gSignalName_Door2RqOpenInside, gMessageName_DOZC_2) == 1 ||
+                 gCanDB.GetSignalValueUint32_t(gSignalName_Door2RqOpenOutside, gMessageName_DOZC_2) == 1) {
+            requestDisablePerson = 1;
+        }
+        else {
+            requestDisablePerson = 0;
+        }
         if (previousComponentState != requestDisablePerson) emit sendRequestDisablePersonToQml(requestDisablePerson);
 
 
