@@ -979,7 +979,8 @@ Item {
         y: 411
         width: 56
         height: ebsState_L.width
-        source: "DashboardGeneral/images/signalLamps/brakeSystem/EBS_Red.png"
+        fillMode: Image.PreserveAspectFit
+        source: "DashboardGeneral/images/signalLamps/brakeSystem/EBS_Yellow.png"
         test: signalLampTest
     }
 
