@@ -103,5 +103,6 @@
         <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/Suspension_M.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/Transmission_M.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/oldMenuItem/Wipers_M.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/ElectroParam/climateSystem.qml</file>
     </qresource>
 </RCC>

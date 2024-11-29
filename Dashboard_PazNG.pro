@@ -66,6 +66,7 @@ SOURCES += \
     DashboardGeneral/qml_interface.cpp \
     busComponentsClasses/brakesystem.cpp \
     busComponentsClasses/businterior.cpp \
+    busComponentsClasses/climate_system.cpp \
     busComponentsClasses/doorsPaz.cpp \
     busComponentsClasses/drivercabin.cpp \
     busComponentsClasses/energyconsumption.cpp \
@@ -155,6 +156,7 @@ HEADERS += \
     DashboardGeneral/signal_lamp.h \
     busComponentsClasses/brakesystem.h \
     busComponentsClasses/businterior.h \
+    busComponentsClasses/climate_system.h \
     busComponentsClasses/doorsPaz.h \
     busComponentsClasses/drivercabin.h \
     busComponentsClasses/energyconsumption.h \

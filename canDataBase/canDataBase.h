@@ -1,4 +1,4 @@
-//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Thu Nov 21 10:21:59 2024
+//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Fri Nov 29 10:58:11 2024
 #ifndef CANDATABASE_H_
 #define CANDATABASE_H_
 
@@ -103,6 +103,7 @@ extern canBus::signalNameCharStruct gSignalName_EngineAmberWarningLC;
 extern canBus::signalNameCharStruct gSignalName_EngineCoolantLevelLowLC;
 extern canBus::signalNameCharStruct gSignalName_EngineCoolantTempHighLC;
 extern canBus::signalNameCharStruct gSignalName_EngineRedStopLC;
+extern canBus::signalNameCharStruct gSignalName_LowLevelSalonLiquid;
 extern canBus::signalNameCharStruct gSignalName_ReadyForUseLC;
 extern canBus::messageNameCharStruct gMessageName_DLCC1;
 
@@ -218,6 +219,14 @@ extern canBus::messageNameCharStruct gMessageName_HVESSD1;
 extern canBus::signalNameCharStruct gSignalName_HVESS_FastUpdateSoc;
 extern canBus::messageNameCharStruct gMessageName_HVESSD2;
 
+extern canBus::signalNameCharStruct gSignalName_AverageCellTemp;
+extern canBus::signalNameCharStruct gSignalName_HighestCellTemp;
+extern canBus::signalNameCharStruct gSignalName_LowestCellTemp;
+extern canBus::messageNameCharStruct gMessageName_HVESSD3;
+
+extern canBus::signalNameCharStruct gSignalName_ElectronicTemp;
+extern canBus::messageNameCharStruct gMessageName_HVESSD6;
+
 extern canBus::signalNameCharStruct gSignalName_HVESS_CenterOfPackContactor;
 extern canBus::signalNameCharStruct gSignalName_HVESS_HvBusConnectionStatus;
 extern canBus::signalNameCharStruct gSignalName_HVESS_HvBusPrechargeRelay;
@@ -242,6 +251,9 @@ extern canBus::messageNameCharStruct gMessageName_LD;
 extern canBus::signalNameCharStruct gSignalName_LowBeamLightAuto;
 extern canBus::messageNameCharStruct gMessageName_LD_2;
 
+extern canBus::signalNameCharStruct gSignalName_ElectricEngineTemp;
+extern canBus::messageNameCharStruct gMessageName_MCU2VCU2;
+
 extern canBus::signalNameCharStruct gSignalName_FrontNonOperatorWiperSwitch;
 extern canBus::signalNameCharStruct gSignalName_FrontOperatorWiperSwitch;
 extern canBus::signalNameCharStruct gSignalName_WindshieldWasherOn;
@@ -252,6 +264,11 @@ extern canBus::messageNameCharStruct gMessageName_PCM1;
 
 extern canBus::signalNameCharStruct gSignalName_HeatingWheel;
 extern canBus::messageNameCharStruct gMessageName_SCU2CLM;
+
+extern canBus::signalNameCharStruct gSignalName_InletWaterTemp;
+extern canBus::signalNameCharStruct gSignalName_OutletWaterTemp;
+extern canBus::signalNameCharStruct gSignalName_TMS_FaultCode;
+extern canBus::messageNameCharStruct gMessageName_T2B_TMS1;
 
 extern canBus::signalNameCharStruct gSignalName_DirectionIndicator;
 extern canBus::signalNameCharStruct gSignalName_Driver1TimeRelatedStates;
