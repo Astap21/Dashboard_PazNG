@@ -2,8 +2,8 @@
 import QtQuick.Window 2.3
 import "DashboardGeneral/qmlUserClass"
 import "DashboardGeneral/qmlUserClass/baseClasses"
+import "DashboardGeneral/qmlUserClass/baseClasses/NG"
 import QtMultimedia 5.9
-//import QtQuick.Controls 2.11
 import QtQuick.Controls 2.11
 import QtQml 2.11
 
@@ -299,6 +299,14 @@ Item{
         height: 720
         visible: true
         opacity: generalOpacity // general UI opacity
+        Banner_C{
+            id: banner
+            width: 600
+            height: 300
+            z: 1
+            visible: false
+            //Component.onCompleted: banner.showWarning(10000, "Добрый вечер")
+        }
         Image {
             Door_C {
                 id: door_1

@@ -234,5 +234,7 @@
         <file>DashboardGeneral/images/signalLamps/doors/valveRed.png</file>
         <file>DashboardGeneral/images/signalLamps/doors/valveYellow.png</file>
         <file>DashboardGeneral/images/menu/dashboard/updateFirmware.png</file>
+        <file>DashboardGeneral/images/warningBannerIcon.png</file>
+        <file>DashboardGeneral/images/errorBannerIcon.png</file>
     </qresource>
 </RCC>

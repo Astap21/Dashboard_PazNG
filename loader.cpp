@@ -130,8 +130,9 @@ int main(int argc, char *argv[])
     InterfaceForConnectToQml interfaceForConnectToQml("interfaceForConnectToQml");
     engine.rootContext()->setContextProperty("connectionFromCpp", &interfaceForConnectToQml);
 
+    qDebug() << "softVersion " << softVersion << "-" << GIT_COMMIT_HASH;
     softVersion = softVersion  + " - " + QString::number(GetGitCommitHash(),16);
-    qDebug() << "softVersion " << softVersion;
+    //qDebug() << "softVersion " << softVersion;
     AdditionalTasks additionalTasks("additionalTasks", &interfaceForConnectToQml, softVersion);
     engine.rootContext()->setContextProperty("additionalTasks", &additionalTasks);
 
