@@ -28,23 +28,6 @@ Window {
         asynchronous: true
         active: false
         source: "qrc:/main.qml"
-        Image {
-            id: logo
-            x: 710
-            y: 100
-            width: 427
-            height: 579
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-            opacity: 0
-            //fillMode: Image.PreserveAspectFit
-            fillMode: Image.Stretch
-            source: "/DashboardGeneral/images/logo.png"
-            Component.onCompleted: {
-                //myLoader.active = true
-                a_incLogoOpacity.running = true
-            }
-        }
         PropertyAnimation {
             id: a_incLogoOpacity
             target: logo
@@ -54,6 +37,36 @@ Window {
             onStopped: {
                 myLoader.active = true
             }
+        }
+    }
+    Image {
+        id: logo
+        x: 746
+        y: 70
+        width: 427
+        height: 579
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        opacity: 0
+        fillMode: Image.Stretch
+        source: "/DashboardGeneral/images/logo.png"
+        Component.onCompleted: {
+            a_incLogoOpacity.running = true
+        }
+
+        Text {
+            id: softVersion
+            text: qsTr("Новая версия ПО " + dashboardObject.softVersionStr)
+            anchors.bottom: parent.top
+            anchors.bottomMargin: 15
+            font.family: "Arial"
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.pixelSize: 35
+            width: parent.width
+            color: "#ffffff"
+            visible: dashboardObject.flagNewSoftVersion
         }
     }
     Connections{
