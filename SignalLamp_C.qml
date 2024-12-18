@@ -20,17 +20,23 @@ Image {
 
 
     function lampOn(textArea){
-        lampOff() // так мы выключаем моргание
+        lampOff(textArea) // так мы выключаем моргание
         visible = true
         //console.log(textMessage)
         if (textMessageNumberString === -1 && textMessage != "No message" && textArea !== undefined){
-            textMessageNumberString = textArea.insertNewMessage(textMessage)
+            textMessageNumberString = textArea.insertRowToArray(textMessage)
         }
-        else if(textArea === undefined && textMessage != "No message") console.log("textArea === undefined")
+        else if(textArea === undefined && textMessage != "No message") {
+            console.log("textArea === undefined")
+        }
     }
     function lampOff(textArea){
+        if(textArea === undefined && textMessage != "No message") {
+            console.log("textArea === undefined")
+            console.log(signalLamp.source)
+        }
         if (textMessageNumberString != -1){
-            textArea.deleteMessage(textMessageNumberString)
+            textArea.deleteRowFromArray(textMessage)
             textMessageNumberString = -1
         }
         //во время теста лампы всегда горят
@@ -41,24 +47,37 @@ Image {
         toggling = false
     }
     function lampToggle(textArea){
-        if (timerToggle.running === false) {
-            lampOn(textArea)
-            timerToggle.start()
-            toggling = true
+        if (toggling === false){
+            if (timerToggle.running === false) {
+                lampOn(textArea)
+                timerToggle.start()
+                toggling = true
+            }
         }
     }
-    function checkStatus(status, textArea){
+    function changeStatus(status, textArea){
        if(status === 1){
            lampOn(textArea)
        }
-       else if (status === 3){
+       else if (status === 2){
            lampToggle(textArea)
        }
        else{
            lampOff(textArea)
        }
     }
-
+    function changeStatusAndPlayWarning(status, textArea){
+       if(status === 1){
+           warningSound.play()
+       }
+       changeStatus(status, textArea)
+    }
+    function changeStatusAndPlayError(status, textArea){
+       if(status === 1){
+           errorSound.play()
+       }
+       changeStatus(status, textArea)
+    }
     Timer {
         id: timerToggle
         interval: togglingPeriod; running: false; repeat: true
@@ -70,4 +89,3 @@ Image {
         }
     }
 }
-//}

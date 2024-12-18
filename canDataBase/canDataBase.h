@@ -1,4 +1,4 @@
-//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Fri Nov 29 10:58:11 2024
+//C:/Users/Astap/workspace/python_projects/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Wed Dec 18 13:21:00 2024
 #ifndef CANDATABASE_H_
 #define CANDATABASE_H_
 
@@ -53,6 +53,9 @@ extern canBus::signalNameCharStruct gSignalName_Btn5_Vol_P;
 extern canBus::signalNameCharStruct gSignalName_Btn6_Vol_M;
 extern canBus::messageNameCharStruct gMessageName_BJM1;
 
+extern canBus::signalNameCharStruct gSignalName_EstimatedRange;
+extern canBus::messageNameCharStruct gMessageName_CCU1_DB;
+
 extern canBus::signalNameCharStruct gSignalName_RoofTemp;
 extern canBus::signalNameCharStruct gSignalName_SalonTemp_1;
 extern canBus::signalNameCharStruct gSignalName_SalonTemp_2;
@@ -70,9 +73,6 @@ extern canBus::messageNameCharStruct gMessageName_CCVS1_03;
 extern canBus::signalNameCharStruct gSignalName_MirrorHeatLeft;
 extern canBus::signalNameCharStruct gSignalName_MirrorHeatRight;
 extern canBus::messageNameCharStruct gMessageName_CDC;
-
-extern canBus::signalNameCharStruct gSignalName_EstimatedRange;
-extern canBus::messageNameCharStruct gMessageName_CECU_A0;
 
 extern canBus::signalNameCharStruct gSignalName_SalonLightning;
 extern canBus::messageNameCharStruct gMessageName_CL;
@@ -298,6 +298,22 @@ extern canBus::messageNameCharStruct gMessageName_TIRE;
 extern canBus::signalNameCharStruct gSignalName_TmsError;
 extern canBus::signalNameCharStruct gSignalName_TmsMode;
 extern canBus::messageNameCharStruct gMessageName_TMS;
+
+extern canBus::signalNameCharStruct gSignalName_Energy_for_traction_daily;
+extern canBus::signalNameCharStruct gSignalName_Energy_for_traction_total;
+extern canBus::messageNameCharStruct gMessageName_TTS6;
+
+extern canBus::signalNameCharStruct gSignalName_Energy_with_recuperation_daily;
+extern canBus::signalNameCharStruct gSignalName_Energy_with_recuperation_total;
+extern canBus::messageNameCharStruct gMessageName_TTS7;
+
+extern canBus::signalNameCharStruct gSignalName_Energy_recuperation_total;
+extern canBus::signalNameCharStruct gSignalName_Ratio_recup_to_energy_total;
+extern canBus::messageNameCharStruct gMessageName_TTS8;
+
+extern canBus::signalNameCharStruct gSignalName_Energy_recuperation_daily;
+extern canBus::signalNameCharStruct gSignalName_Ratio_recup_to_energy_daily;
+extern canBus::messageNameCharStruct gMessageName_TTS9;
 
 extern canBus::signalNameCharStruct gSignalName_VDC_FullyOperational;
 extern canBus::signalNameCharStruct gSignalName_VDC_InformationSignal;

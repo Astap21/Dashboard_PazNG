@@ -23,6 +23,7 @@ public:
     void ReadStateFromCanDB() override;
 public slots:
     void dashboardLoadFinished() override;
+    void menuLoadFinished();
 private:
     Tire *tire_00;
     Tire *tire_01;

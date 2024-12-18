@@ -297,6 +297,24 @@ void BrakeSystem::dashboardLoadFinished(){
     emit sendPressureCircuit1ToQml(pressureCircuit1_bar);
     emit sendPressureCircuit2ToQml(pressureCircuit2_bar);
 }
+void BrakeSystem::menuLoadFinished(){
+    emit sendFrontLeftBrakePercentToQml(frontLeftBrakePads_Percent);
+    emit sendFrontRightBrakePercentToQml(frontRightBrakePads_Percent);
+    emit sendRearLeftBrakePercentToQml(rearLeftBrakePads_Percent);
+    emit sendRearRightBrakePercentToQml(rearRightBrakePads_Percent);
+//    emit sendPressureFrontLeftTireToQml(tire_00->getPressure());
+//    emit sendTempFrontLeftTireToQml(const float& inputFloat);
+//    emit sendPressureRearLeftTire1ToQml(const float& inputFloat);
+//    emit sendTempRearLeftTire1ToQml(const float& inputFloat);
+//    emit sendPressureRearLeftTire2ToQml(const float& inputFloat);
+//    emit sendTempRearLeftTire2ToQml(const float& inputFloat);
+//    emit sendPressureFrontRightTireToQml(const float& inputFloat);
+//    emit sendTempFrontRightTireToQml(const float& inputFloat);
+//    emit sendPressureRearRightTire1ToQml(const float& inputFloat);
+//    emit sendTempRearRightTire1ToQml(const float& inputFloat);
+//    emit sendPressureRearRightTire2ToQml(const float& inputFloat);
+//    emit sendTempRearRightTire2ToQml(const float& inputFloat);
+}
 float BrakeSystem::getLowTirePressure(){return lowTirePressure;}
 float BrakeSystem::getHighTirePressure(){return highTirePressure;}
 float BrakeSystem::getHighTireTemp(){return highTireTemp;}

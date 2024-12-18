@@ -17,6 +17,7 @@
 #include "busComponentsClasses/tachograph.h"
 #include "busComponentsClasses/adas.h"
 #include "busComponentsClasses/climate_system.h"
+#include "busComponentsClasses/energyconsumption.h"
 #include "DashBoardClasses/application/dashboardclass.h"
 #include "DashBoardClasses/trans.h"
 #include "DashBoardClasses/logtofile.h"
@@ -31,7 +32,7 @@
 
 int main(int argc, char *argv[])
 {
-    QString softVersion = "1.3.2";
+    QString softVersion = "1.3.3";
     //Установка переменных среды
     //qputenv("QT_GSTREAMER_PLAYBIN_AUDIOSINK", "alsasink");
     //qputenv("QT_GSTREAMER_USE_PLAYBIN_VOLUME", "1");
@@ -112,7 +113,10 @@ int main(int argc, char *argv[])
 
     climate_system climate_system;
     engine.rootContext()->setContextProperty("climate_system", &climate_system);
-    QObject::connect(&ican, &CanBus::sendCanDBUpdated, &climate_system, &Suspension::canDBUpdated);
+    QObject::connect(&ican, &CanBus::sendCanDBUpdated, &climate_system, &climate_system::canDBUpdated);
+    EnergyConsumption energyConsumption;
+    engine.rootContext()->setContextProperty("energyConsumption", &energyConsumption);
+    QObject::connect(&ican, &CanBus::sendCanDBUpdated, &energyConsumption, &EnergyConsumption::canDBUpdated);
 
     BacklightControlClass backlightControl("backlightControl");
     backlightControl.backlightLevelChanged(100);

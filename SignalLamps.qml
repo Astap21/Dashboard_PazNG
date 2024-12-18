@@ -523,20 +523,20 @@ Item {
         Connections {
             target: adas
             function onSendLdwsToQml(inputUint){
-                ldws_L.checkStatus(inputUint)
+                ldws_L.changeStatus(inputUint)
             }
             function onSendDeadZoneToQml(inputUint){
-                deadZoneRight_L.checkStatus(inputUint)
-                deadZoneLeft_L.checkStatus(inputUint)
+                deadZoneRight_L.changeStatus(inputUint)
+                deadZoneLeft_L.changeStatus(inputUint)
             }
             function onSendObstacleToQml(inputUint){
-                obstruction_L.checkStatus(inputUint)
+                obstruction_L.changeStatus(inputUint)
             }
             function onSendLkasToQml(inputUint){
-                lkas_L.checkStatus(inputUint)
+                lkas_L.changeStatus(inputUint)
             }
             function onSendFcwsToQml(inputUint){
-                fkws_L.checkStatus(inputUint)
+                fkws_L.changeStatus(inputUint)
             }
             function onSendCruiseControlToQml(inputUint){
                 if (inputUint === 1 || inputUint === 6){
@@ -550,7 +550,7 @@ Item {
                 }
             }
             function onSendParkingAssistanceToQml(inputUint){
-                parkingAssistance_L.checkStatus(inputUint)
+                parkingAssistance_L.changeStatus(inputUint)
             }
         }
         Connections {
@@ -559,13 +559,13 @@ Item {
                 if (inputUint !== 0){
                     tachographError_L.source = "DashboardGeneral/images/signalLamps/tachograph/tachographFailure.png"
                 }
-                tachographError_L.checkStatus(inputUint)
+                tachographError_L.changeStatus(inputUint)
             }
             function onSendTachographWarning(inputUint){
                 if (inputUint !== 0){
                     tachographError_L.source = "DashboardGeneral/images/signalLamps/tachograph/tachographWarning.png"
                 }
-                tachographError_L.checkStatus(inputUint)
+                tachographError_L.changeStatus(inputUint)
             }
             function onSendTachographState(inputUint){
                 if (inputUint === 0){

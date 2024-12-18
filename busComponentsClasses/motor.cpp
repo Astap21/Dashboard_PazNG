@@ -22,7 +22,7 @@ void Motor::ReadStateFromCanDB(){
     hvCurrent = gCanDB.GetSignalValueFloat(gSignalName_HVESS_Current, gMessageName_HVESSD1);
     hvVoltage = gCanDB.GetSignalValueFloat(gSignalName_HVESS_VoltageLevel, gMessageName_HVESSD1);
     hvSoc = gCanDB.GetSignalValueFloat(gSignalName_HVESS_FastUpdateSoc, gMessageName_HVESSD2);
-    if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_EstimatedRange, gMessageName_CECU_A0, &gCanDB), estimatedRange)) emit sendEstimatedRangeToQml(estimatedRange);
+    if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_EstimatedRange, gMessageName_CCU1_DB, &gCanDB), estimatedRange)) emit sendEstimatedRangeToQml(estimatedRange);
 
     previousComponentState = batteryStatus;
     if ((getNewValueFromOneCanSignalU32(gSignalName_Optional1LC, gMessageName_DLCC2, &gCanDB) == canBus::canSignalStateStructObj.on)){

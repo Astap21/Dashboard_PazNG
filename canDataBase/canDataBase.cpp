@@ -1,4 +1,4 @@
-//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Fri Nov 29 10:58:11 2024
+//C:/Users/Astap/workspace/python_projects/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Wed Dec 18 13:21:00 2024
 #include "canDataBase/canDataBase.h"
 
 using namespace canBus;
@@ -107,6 +107,13 @@ static CanSignal *BJM1_arraySignals[BJM1_NumberOfSignals] = {&Btn12_Menu, &Btn1_
 messageNameCharStruct gMessageName_BJM1{"BJM1",MAX_LENGTH_NAME};
 static CanMessageRx BJM1(gMessageName_BJM1, BJM1_arraySignals, BJM1_NumberOfSignals, 0x0CFDD61E, 8, 100);
 
+const uint8_t CCU1_DB_NumberOfSignals = 1;
+signalNameCharStruct gSignalName_EstimatedRange{"EstimatedRange",MAX_LENGTH_NAME};
+static CanSignal EstimatedRange{ 16, 8, gSignalName_EstimatedRange, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *CCU1_DB_arraySignals[CCU1_DB_NumberOfSignals] = {&EstimatedRange};
+messageNameCharStruct gMessageName_CCU1_DB{"CCU1_DB",MAX_LENGTH_NAME};
+static CanMessageRx CCU1_DB(gMessageName_CCU1_DB, CCU1_DB_arraySignals, CCU1_DB_NumberOfSignals, 0x1830A03A, 8, 1000);
+
 const uint8_t CCUT1_NumberOfSignals = 4;
 signalNameCharStruct gSignalName_RoofTemp{"RoofTemp",MAX_LENGTH_NAME};
 static CanSignal RoofTemp{ 48, 8, gSignalName_RoofTemp, 1, -40, canIntel, canUint, 215, -40, 0};
@@ -146,13 +153,6 @@ static CanSignal MirrorHeatRight{ 50, 2, gSignalName_MirrorHeatRight, 1, 0, canI
 static CanSignal *CDC_arraySignals[CDC_NumberOfSignals] = {&MirrorHeatLeft, &MirrorHeatRight};
 messageNameCharStruct gMessageName_CDC{"CDC",MAX_LENGTH_NAME};
 static CanMessageRx CDC(gMessageName_CDC, CDC_arraySignals, CDC_NumberOfSignals, 0x14FC121E, 8, 100);
-
-const uint8_t CECU_A0_NumberOfSignals = 1;
-signalNameCharStruct gSignalName_EstimatedRange{"EstimatedRange",MAX_LENGTH_NAME};
-static CanSignal EstimatedRange{ 16, 8, gSignalName_EstimatedRange, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *CECU_A0_arraySignals[CECU_A0_NumberOfSignals] = {&EstimatedRange};
-messageNameCharStruct gMessageName_CECU_A0{"CECU_A0",MAX_LENGTH_NAME};
-static CanMessageRx CECU_A0(gMessageName_CECU_A0, CECU_A0_arraySignals, CECU_A0_NumberOfSignals, 0x1830A05B, 8, 1000);
 
 const uint8_t CL_NumberOfSignals = 1;
 signalNameCharStruct gSignalName_SalonLightning{"SalonLightning",MAX_LENGTH_NAME};
@@ -472,11 +472,11 @@ static CanMessageRx HVESSD2(gMessageName_HVESSD2, HVESSD2_arraySignals, HVESSD2_
 
 const uint8_t HVESSD3_NumberOfSignals = 3;
 signalNameCharStruct gSignalName_AverageCellTemp{"AverageCellTemp",MAX_LENGTH_NAME};
-static CanSignal AverageCellTemp{ 32, 16, gSignalName_AverageCellTemp, 0.03125, -273, canIntel, canUint, 2000, -273, 0};
+static CanSignal AverageCellTemp{ 32, 16, gSignalName_AverageCellTemp, 0.3125, -273, canIntel, canUint, 2000, -273, 0};
 signalNameCharStruct gSignalName_HighestCellTemp{"HighestCellTemp",MAX_LENGTH_NAME};
-static CanSignal HighestCellTemp{ 0, 16, gSignalName_HighestCellTemp, 0.03125, -273, canIntel, canUint, 2000, -273, 0};
+static CanSignal HighestCellTemp{ 0, 16, gSignalName_HighestCellTemp, 0.3125, -273, canIntel, canUint, 2000, -273, 0};
 signalNameCharStruct gSignalName_LowestCellTemp{"LowestCellTemp",MAX_LENGTH_NAME};
-static CanSignal LowestCellTemp{ 16, 16, gSignalName_LowestCellTemp, 0.03125, -273, canIntel, canUint, 2000, -273, 0};
+static CanSignal LowestCellTemp{ 16, 16, gSignalName_LowestCellTemp, 0.3125, -273, canIntel, canUint, 2000, -273, 0};
 static CanSignal *HVESSD3_arraySignals[HVESSD3_NumberOfSignals] = {&AverageCellTemp, &HighestCellTemp, &LowestCellTemp};
 messageNameCharStruct gMessageName_HVESSD3{"HVESSD3",MAX_LENGTH_NAME};
 static CanMessageRx HVESSD3(gMessageName_HVESSD3, HVESSD3_arraySignals, HVESSD3_NumberOfSignals, 0x0CF092F3, 8, 1000);
@@ -645,6 +645,42 @@ static CanSignal *TMS_arraySignals[TMS_NumberOfSignals] = {&TmsError, &TmsMode};
 messageNameCharStruct gMessageName_TMS{"TMS",MAX_LENGTH_NAME};
 static CanMessageRx TMS(gMessageName_TMS, TMS_arraySignals, TMS_NumberOfSignals, 0x18FFF345, 8, 1000);
 
+const uint8_t TTS6_NumberOfSignals = 2;
+signalNameCharStruct gSignalName_Energy_for_traction_daily{"Energy_for_traction_daily",MAX_LENGTH_NAME};
+static CanSignal Energy_for_traction_daily{ 32, 32, gSignalName_Energy_for_traction_daily, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_Energy_for_traction_total{"Energy_for_traction_total",MAX_LENGTH_NAME};
+static CanSignal Energy_for_traction_total{ 0, 32, gSignalName_Energy_for_traction_total, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *TTS6_arraySignals[TTS6_NumberOfSignals] = {&Energy_for_traction_daily, &Energy_for_traction_total};
+messageNameCharStruct gMessageName_TTS6{"TTS6",MAX_LENGTH_NAME};
+static CanMessageRx TTS6(gMessageName_TTS6, TTS6_arraySignals, TTS6_NumberOfSignals, 0x18FF0CFD, 8, 0);
+
+const uint8_t TTS7_NumberOfSignals = 2;
+signalNameCharStruct gSignalName_Energy_with_recuperation_daily{"Energy_with_recuperation_daily",MAX_LENGTH_NAME};
+static CanSignal Energy_with_recuperation_daily{ 32, 32, gSignalName_Energy_with_recuperation_daily, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_Energy_with_recuperation_total{"Energy_with_recuperation_total",MAX_LENGTH_NAME};
+static CanSignal Energy_with_recuperation_total{ 0, 32, gSignalName_Energy_with_recuperation_total, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *TTS7_arraySignals[TTS7_NumberOfSignals] = {&Energy_with_recuperation_daily, &Energy_with_recuperation_total};
+messageNameCharStruct gMessageName_TTS7{"TTS7",MAX_LENGTH_NAME};
+static CanMessageRx TTS7(gMessageName_TTS7, TTS7_arraySignals, TTS7_NumberOfSignals, 0x18FF0DFD, 8, 0);
+
+const uint8_t TTS8_NumberOfSignals = 2;
+signalNameCharStruct gSignalName_Energy_recuperation_total{"Energy_recuperation_total",MAX_LENGTH_NAME};
+static CanSignal Energy_recuperation_total{ 0, 32, gSignalName_Energy_recuperation_total, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_Ratio_recup_to_energy_total{"Ratio_recup_to_energy_total",MAX_LENGTH_NAME};
+static CanSignal Ratio_recup_to_energy_total{ 32, 32, gSignalName_Ratio_recup_to_energy_total, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *TTS8_arraySignals[TTS8_NumberOfSignals] = {&Energy_recuperation_total, &Ratio_recup_to_energy_total};
+messageNameCharStruct gMessageName_TTS8{"TTS8",MAX_LENGTH_NAME};
+static CanMessageRx TTS8(gMessageName_TTS8, TTS8_arraySignals, TTS8_NumberOfSignals, 0x18FF0EFD, 8, 0);
+
+const uint8_t TTS9_NumberOfSignals = 2;
+signalNameCharStruct gSignalName_Energy_recuperation_daily{"Energy_recuperation_daily",MAX_LENGTH_NAME};
+static CanSignal Energy_recuperation_daily{ 0, 32, gSignalName_Energy_recuperation_daily, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_Ratio_recup_to_energy_daily{"Ratio_recup_to_energy_daily",MAX_LENGTH_NAME};
+static CanSignal Ratio_recup_to_energy_daily{ 32, 32, gSignalName_Ratio_recup_to_energy_daily, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *TTS9_arraySignals[TTS9_NumberOfSignals] = {&Energy_recuperation_daily, &Ratio_recup_to_energy_daily};
+messageNameCharStruct gMessageName_TTS9{"TTS9",MAX_LENGTH_NAME};
+static CanMessageRx TTS9(gMessageName_TTS9, TTS9_arraySignals, TTS9_NumberOfSignals, 0x18FF0FFD, 8, 0);
+
 const uint8_t VDC1_NumberOfSignals = 2;
 signalNameCharStruct gSignalName_VDC_FullyOperational{"VDC_FullyOperational",MAX_LENGTH_NAME};
 static CanSignal VDC_FullyOperational{ 2, 2, gSignalName_VDC_FullyOperational, 1, 0, canIntel, canUint, 0, 0, 0};
@@ -732,8 +768,8 @@ static CanSignal *VDHR_arraySignals[VDHR_NumberOfSignals] = {&TotalVehicleDistan
 messageNameCharStruct gMessageName_VDHR{"VDHR",MAX_LENGTH_NAME};
 static CanMessageTx VDHR(gMessageName_VDHR, VDHR_arraySignals, VDHR_NumberOfSignals, 0x18FEC117, 8, 1000);
 
-const uint8_t numberOfRxMessages = 56;
-static CanMessageRx *arrayRxMessages[numberOfRxMessages] = { &ADAS_1, &AIR1, &AMB, &ASC1, &ASC2, &BCH1, &BDS, &BJM1, &CCUT1, &CCVS1, &CCVS1_03, &CDC, &CECU_A0, &CL, &CM1, &CM1_E1, &DC1, &DC2, &DD1_12, &DD1_1E, &DLCC1, &DLCC2, &DLDC1, &DM1_EBS, &DM1_EPB, &DOZC_1, &DOZC_2, &EBC1, &EBC4, &EBC5, &ECO, &EDSC2_2, &EPBS1, &ESC2, &ET1, &ETC2, &FS1, &HVESSD1, &HVESSD2, &HVESSD3, &HVESSD6, &HVESSS1, &ISOTP_PC_ID, &LD, &LD_2, &MCU2VCU2, &OWW, &PCM1, &SCU2CLM, &T2B_TMS1, &TCO1, &TCO1_EE, &TIRE, &TMS, &VDC1, &VEP1};
+const uint8_t numberOfRxMessages = 60;
+static CanMessageRx *arrayRxMessages[numberOfRxMessages] = { &ADAS_1, &AIR1, &AMB, &ASC1, &ASC2, &BCH1, &BDS, &BJM1, &CCU1_DB, &CCUT1, &CCVS1, &CCVS1_03, &CDC, &CL, &CM1, &CM1_E1, &DC1, &DC2, &DD1_12, &DD1_1E, &DLCC1, &DLCC2, &DLDC1, &DM1_EBS, &DM1_EPB, &DOZC_1, &DOZC_2, &EBC1, &EBC4, &EBC5, &ECO, &EDSC2_2, &EPBS1, &ESC2, &ET1, &ETC2, &FS1, &HVESSD1, &HVESSD2, &HVESSD3, &HVESSD6, &HVESSS1, &ISOTP_PC_ID, &LD, &LD_2, &MCU2VCU2, &OWW, &PCM1, &SCU2CLM, &T2B_TMS1, &TCO1, &TCO1_EE, &TIRE, &TMS, &TTS6, &TTS7, &TTS8, &TTS9, &VDC1, &VEP1};
 const uint8_t numberOfTxMessages = 5;
 static CanMessageTx *arrayTxMessages[numberOfTxMessages] = { &DB_1, &DB_2, &DB_3, &ISOTP_DASHBOARD_ID, &VDHR};
 CanDataBase gCanDB(arrayRxMessages,numberOfRxMessages,arrayTxMessages,numberOfTxMessages);
