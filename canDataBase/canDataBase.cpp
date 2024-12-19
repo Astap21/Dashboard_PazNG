@@ -472,11 +472,11 @@ static CanMessageRx HVESSD2(gMessageName_HVESSD2, HVESSD2_arraySignals, HVESSD2_
 
 const uint8_t HVESSD3_NumberOfSignals = 3;
 signalNameCharStruct gSignalName_AverageCellTemp{"AverageCellTemp",MAX_LENGTH_NAME};
-static CanSignal AverageCellTemp{ 32, 16, gSignalName_AverageCellTemp, 0.3125, -273, canIntel, canUint, 2000, -273, 0};
+static CanSignal AverageCellTemp{ 32, 16, gSignalName_AverageCellTemp, 0.03125, -273, canIntel, canUint, 2000, -273, 0};
 signalNameCharStruct gSignalName_HighestCellTemp{"HighestCellTemp",MAX_LENGTH_NAME};
-static CanSignal HighestCellTemp{ 0, 16, gSignalName_HighestCellTemp, 0.3125, -273, canIntel, canUint, 2000, -273, 0};
+static CanSignal HighestCellTemp{ 0, 16, gSignalName_HighestCellTemp, 0.03125, -273, canIntel, canUint, 2000, -273, 0};
 signalNameCharStruct gSignalName_LowestCellTemp{"LowestCellTemp",MAX_LENGTH_NAME};
-static CanSignal LowestCellTemp{ 16, 16, gSignalName_LowestCellTemp, 0.3125, -273, canIntel, canUint, 2000, -273, 0};
+static CanSignal LowestCellTemp{ 16, 16, gSignalName_LowestCellTemp, 0.03125, -273, canIntel, canUint, 2000, -273, 0};
 static CanSignal *HVESSD3_arraySignals[HVESSD3_NumberOfSignals] = {&AverageCellTemp, &HighestCellTemp, &LowestCellTemp};
 messageNameCharStruct gMessageName_HVESSD3{"HVESSD3",MAX_LENGTH_NAME};
 static CanMessageRx HVESSD3(gMessageName_HVESSD3, HVESSD3_arraySignals, HVESSD3_NumberOfSignals, 0x0CF092F3, 8, 1000);
