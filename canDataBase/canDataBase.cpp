@@ -190,7 +190,7 @@ static CanMessageRx DC1(gMessageName_DC1, DC1_arraySignals, DC1_NumberOfSignals,
 
 const uint8_t DC2_NumberOfSignals = 1;
 signalNameCharStruct gSignalName_EngineHatchOpen{"EngineHatchOpen",MAX_LENGTH_NAME};
-static CanSignal EngineHatchOpen{ 50, 2, gSignalName_EngineHatchOpen, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal EngineHatchOpen{ 26, 2, gSignalName_EngineHatchOpen, 1, 0, canIntel, canUint, 0, 0, 0};
 static CanSignal *DC2_arraySignals[DC2_NumberOfSignals] = {&EngineHatchOpen};
 messageNameCharStruct gMessageName_DC2{"DC2",MAX_LENGTH_NAME};
 static CanMessageRx DC2(gMessageName_DC2, DC2_arraySignals, DC2_NumberOfSignals, 0x18FDA51E, 8, 100);
