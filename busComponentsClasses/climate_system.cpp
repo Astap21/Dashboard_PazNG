@@ -6,7 +6,7 @@ climate_system::climate_system()
     timerForTask.setInterval(timerPeriod_ms);
 }
 void climate_system::ReadStateFromCanDB(){
-    checkSendSignalChg1(gCanDB.GetSignalValueInt(gSignalName_ElectricEngineTemp, gMessageName_MCU2VCU2), EngineTemp, [&](int value) { emit sendEngineTemp(value);});
+    checkSendSignalChg1(gCanDB.GetSignalValueInt(gSignalName_Temp_CL, gMessageName_ET1), EngineTemp, [&](int value) { emit sendEngineTemp(value);});
     checkSendSignalChg1(gCanDB.GetSignalValueInt(gSignalName_SalonTemp_1, gMessageName_CCUT1), MeasuredTemp1, [&](int value) { emit sendMeasuredTemp1(value);});
     checkSendSignalChg1(gCanDB.GetSignalValueInt(gSignalName_SalonTemp_2, gMessageName_CCUT1), MeasuredTemp2, [&](int value) { emit sendMeasuredTemp2(value);});
     checkSendSignalChg1(gCanDB.GetSignalValueInt(gSignalName_SalonTemp_3, gMessageName_CCUT1), MeasuredTemp3, [&](int value) { emit sendMeasuredTemp3(value);});
