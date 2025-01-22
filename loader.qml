@@ -54,20 +54,20 @@ Window {
             a_incLogoOpacity.running = true
         }
 
-        Text {
-            id: softVersion
-            text: qsTr("Новая версия ПО " + dashboardObject.softVersionStr)
-            anchors.bottom: parent.top
-            anchors.bottomMargin: 15
-            font.family: "Arial"
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-            font.pixelSize: 35
-            width: parent.width
-            color: "#ffffff"
-            visible: dashboardObject.flagNewSoftVersion
-        }
+//        Text {
+//            id: softVersion
+//            text: qsTr("Новая версия ПО " + dashboardObject.softVersionStr)
+//            anchors.bottom: parent.top
+//            anchors.bottomMargin: 15
+//            font.family: "Arial"
+//            verticalAlignment: Text.AlignVCenter
+//            horizontalAlignment: Text.AlignHCenter
+//            anchors.horizontalCenter: parent.horizontalCenter
+//            font.pixelSize: 35
+//            width: parent.width
+//            color: "#ffffff"
+//            visible: dashboardObject.flagNewSoftVersion
+//        }
     }
     Connections{
         target: dashboardObject
