@@ -127,6 +127,7 @@ int main(int argc, char *argv[])
     DashboardClass dashboard(softVersion, &KL_15, &backlightControl);
     engine.rootContext()->setContextProperty("dashboardObject", &dashboard);
     QObject::connect(&ican, &CanBus::writtenMsg_DB1, &dashboard, &DashboardClass::incHearthBeatCounter);
+    QObject::connect(&ican, &CanBus::canbusConnectionLoss, &dashboard, &DashboardClass::sendCanConnectionLoss);
     QObject::connect(&dashboard, &DashboardClass::sendUdsAnswer,  &canIsoTpHandler_single, &CanIsoTpHandler::sendIsoTpMessage);
     QObject::connect(&canIsoTpHandler_single, &CanIsoTpHandler::messageReceived, &dashboard, &DashboardClass::ParseUdsPacket);
     QObject::connect(&canIsoTpHandler_single, &CanIsoTpHandler::wrongConsecutiveNumber, &dashboard, &DashboardClass::wrongConsecutiveNumber);

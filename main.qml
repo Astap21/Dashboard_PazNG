@@ -507,6 +507,15 @@ Item{
                 dynamicTextRow.deleteRowFromArray(oldIp)
                 dynamicTextRow.insertRowToArray(inputStr)
             }
+            property string connectionLossMsg: "Нет связи по CAN шине";
+            function onSendCanConnectionLoss(inputBool){
+                if(inputBool){
+                    dynamicTextRow.insertRowToArray(connectionLossMsg)
+                }
+                else{
+                    dynamicTextRow.deleteRowFromArray(connectionLossMsg)
+                }
+            }
         }
         Connections {
             target: calculateMileage
