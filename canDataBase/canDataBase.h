@@ -1,4 +1,4 @@
-//C:/Users/Astap/workspace/python_projects/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Wed Dec 18 13:21:00 2024
+//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Fri Dec 27 12:37:47 2024
 #ifndef CANDATABASE_H_
 #define CANDATABASE_H_
 
@@ -223,6 +223,10 @@ extern canBus::signalNameCharStruct gSignalName_AverageCellTemp;
 extern canBus::signalNameCharStruct gSignalName_HighestCellTemp;
 extern canBus::signalNameCharStruct gSignalName_LowestCellTemp;
 extern canBus::messageNameCharStruct gMessageName_HVESSD3;
+
+extern canBus::signalNameCharStruct gSignalName_ChargeCurrentLimit;
+extern canBus::signalNameCharStruct gSignalName_DischargeCurrentLimit;
+extern canBus::messageNameCharStruct gMessageName_HVESSD5;
 
 extern canBus::signalNameCharStruct gSignalName_ElectronicTemp;
 extern canBus::messageNameCharStruct gMessageName_HVESSD6;

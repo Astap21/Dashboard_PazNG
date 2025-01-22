@@ -51,6 +51,8 @@ private:
 
     float vehicleSpeed = 0;
     float hvCurrent = 0;
+    float hvChargeCurrent = 0;
+    float hvDishargeCurrent = 0;
     float hvVoltage = 0;
     float hvSoc = 0;
     int engineTemp = 0;
@@ -73,6 +75,8 @@ signals:
     void sendActualGearToQml(const QString& inputString);
     //ELECTRO
     void sendHvCurrentToQml(const float& inputFloat);
+    void sendHvChargeCurrentToQml(const float& inputFloat);
+    void sendHvDischargeCurrentToQml(const float& inputFloat);
     void sendHvVoltageToQml(const float& inputFloat);
     void sendHvSocToQml(const float& inputFloat);
     void sendBatteryStatusToQml(const uint& inputUint);
