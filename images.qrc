@@ -5,8 +5,6 @@
         <file>DashboardGeneral/images/Doors/doorIsOpen.png</file>
         <file>DashboardGeneral/images/Doors/doorNotDefined.png</file>
         <file>DashboardGeneral/images/Doors/jammingDoor.png</file>
-        <file>DashboardGeneral/images/signalLamps/ADAS/deadZoneRight.png</file>
-        <file>DashboardGeneral/images/signalLamps/ADAS/ldws.png</file>
         <file>DashboardGeneral/images/signalLamps/ADAS/lkas.png</file>
         <file>DashboardGeneral/images/signalLamps/ADAS/obstruction.png</file>
         <file>DashboardGeneral/images/signalLamps/brakeSystem/ASR_Off.png</file>
@@ -146,7 +144,6 @@
         <file>DashboardGeneral/images/signalLamps/battery/contactorFailure.png</file>
         <file>DashboardGeneral/images/signalLamps/brakeSystem/ASR_Yellow.png</file>
         <file>DashboardGeneral/images/signalLamps/ADAS/fkws.png</file>
-        <file>DashboardGeneral/images/signalLamps/ADAS/deadZoneLeft.png</file>
         <file>DashboardGeneral/images/signalLamps/brakeSystem/ESC_Off_2.png</file>
         <file>DashboardGeneral/images/signalLamps/brakeSystem/removeMoveBlock.png</file>
         <file>DashboardGeneral/images/menu/dashboard/backlight.png</file>

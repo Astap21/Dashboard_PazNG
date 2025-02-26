@@ -701,19 +701,23 @@ Item {
                 //console.log(inputUint)
                 if (inputUint === 0) {
                     ebsState_L.lampOff()
+                    dynamicTextRow.deleteRowFromArray("Критическая неисправность EBS")
                 } else if (inputUint === 1) {
                     warningSound.play()
                     ebsState_L.lampOn()
                     ebsState_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/EBS_Yellow.png"
+                    dynamicTextRow.deleteRowFromArray("Критическая неисправность EBS")
                 } else if (inputUint === 2) {
                     errorSound.play()
                     ebsState_L.lampOn()
                     ebsState_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/EBS_Red.png"
+                    dynamicTextRow.insertRowToArray("Критическая неисправность EBS")
                 }
                 else if (inputUint === 3) {
                     errorSound.play()
                     ebsState_L.lampToggle()
                     ebsState_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/EBS_Red.png"
+                    dynamicTextRow.insertRowToArray("Критическая неисправность EBS")
                 }
 
             }
@@ -733,16 +737,24 @@ Item {
                     errorSound.play()
                     airBrake3_L.visible = true;
                     airBrake3_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuit3Failure.png"
+                    dynamicTextRow.insertRowToArray("Низкое давление в стояночном контуре")
                 }
-                else airBrake3_L.visible = false
+                else {
+                    airBrake3_L.visible = false
+                    dynamicTextRow.deleteRowFromArray("Низкое давление в стояночном контуре")
+                }
             }
             function onSendPressureCircuit4LampToQml(inputBool) {
                 if (inputBool) {
                     errorSound.play()
                     airBrake4_L.visible = true;
                     airBrake4_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuit4Failure.png"
+                    dynamicTextRow.insertRowToArray("Низкое давление в контуре дверей")
                 }
-                else airBrake4_L.visible = false
+                else {
+                    airBrake4_L.visible = false
+                    dynamicTextRow.deleteRowFromArray("Низкое давление в контуре дверей")
+                }
             }
             function onSendRetarderPercentToQml(inputFloat){
                 if(inputFloat > 0){

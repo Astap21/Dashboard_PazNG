@@ -722,15 +722,23 @@ Item{
                 if (inputBool) {
                     errorSound.play()
                     brakeCircuit1_L.source = "/DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuit1Failure.png"
+                    dynamicTextRow.insertRowToArray("Низкое давление в контуре 1")
                 }
-                else brakeCircuit1_L.source = "/DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuit1.png"
+                else {
+                    brakeCircuit1_L.source = "/DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuit1.png"
+                    dynamicTextRow.deleteRowFromArray("Низкое давление в контуре 1")
+                }
             }
             function onSendPressureCircuit2LampToQml(inputBool) {
                 if (inputBool) {
                     errorSound.play()
                     brakeCircuit2_L.source = "/DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuit2Failure.png"
+                    dynamicTextRow.insertRowToArray("Низкое давление в контуре 2")
                 }
-                else brakeCircuit2_L.source = "/DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuit2.png"
+                else {
+                    brakeCircuit2_L.source = "/DashboardGeneral/images/signalLamps/brakeSystem/brakeCircuit2.png"
+                    dynamicTextRow.deleteRowFromArray("Низкое давление в контуре 2")
+                }
             }
         }
         Connections {
