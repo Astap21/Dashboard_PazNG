@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.0
 import "DashboardGeneral/qmlUserClass"
 import "DashboardGeneral/qmlUserClass/baseClasses"
+import "DashboardGeneral/qmlUserClass/baseClasses/NG"
 
 Item {
     id: signalLamps
@@ -221,21 +222,25 @@ Item {
                     errorSound.play()
                     motorError_L.source = "DashboardGeneral/images/signalLamps/motorSystem/electricMotorFailure.png"
                     motorError_L.lampOn()
+                    banner.showError(5000, "Двигатель неисправен! Обратитесь в сервисный центр")
                 }
                 else if (inputUint === 3){
                     errorSound.play()
                     motorError_L.source = "DashboardGeneral/images/signalLamps/motorSystem/electricMotorFailure.png"
                     motorError_L.lampToggle()
+                    banner.showError(5000, "Двигатель неисправен! Обратитесь в сервисный центр")
                 }
                 else if (inputUint === 4){
                     warningSound.play()
                     motorError_L.source = "DashboardGeneral/images/signalLamps/motorSystem/electricMotorWarning.png"
                     motorError_L.lampToggle()
+                    banner.showWarning(5000, "Проверьте двигатель на предмет неисправностей")
                 }
                 else if (inputUint === 1) {
                     warningSound.play()
                     motorError_L.lampOn()
                     motorError_L.source = "DashboardGeneral/images/signalLamps/motorSystem/electricMotorWarning.png"
+                    banner.showWarning(5000, "Проверьте двигатель на предмет неисправностей")
                 }
                 else {
                     motorError_L.lampOff()

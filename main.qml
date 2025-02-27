@@ -623,6 +623,7 @@ Item{
                 else if (inputUint === 1) {
                     rampState_L.source = "/DashboardGeneral/images/signalLamps/busExterior/theRampIsOpen.png"
                     rampState_L.lampOn()
+                    banner.showWarning(5000, "Выдвинута аппарель")
                 }
                 else{
                     rampState_L.lampOff()
