@@ -53,7 +53,7 @@ void BusInterior::ReadStateFromCanDB(){
 
 
         previousComponentState = rampStatus;
-        if (gCanDB.GetSignalValueUint32_t(gSignalName_RampError, gMessageName_DC1) == 1) rampStatus = 1;
+        if ((gCanDB.GetSignalValueUint32_t(gSignalName_RampError, gMessageName_DC1) == 1) || (gCanDB.GetSignalValueUint32_t(gSignalName_Door2RampOpen, gMessageName_DOZC_2) == 1)) rampStatus = 1;
         else if (gCanDB.GetSignalValueUint32_t(gSignalName_RampError, gMessageName_DC1) == 2) rampStatus = 2;
         else rampStatus = 0;
         if (previousComponentState != rampStatus) emit sendRampStatusToQml(rampStatus);
@@ -96,6 +96,15 @@ void BusInterior::ReadStateFromCanDB(){
             outsideTempS = convertFloatToStrForTemp(outsideTempF);
             emit sendTempOutsideToQml(outsideTempS);
         }
+        previousComponentState = iceRoad;
+        if (outsideTempF <= 4){
+            iceRoad = 1;
+        }
+        else {
+            iceRoad = 0;
+        }
+        if (previousComponentState != iceRoad) emit sendIceRoadToQml(iceRoad);
+
         if (checkValueChangeBy_1(gCanDB.GetSignalValueFloat(gSignalName_CabInteriorTempA, gMessageName_AMB), insideTempF)){
             insideTempS = convertFloatToStrForTemp(insideTempF);
             emit sendTempInsideToQml(insideTempS);
@@ -129,6 +138,10 @@ void BusInterior::dashboardLoadFinished(){
     emit sendTempOutsideToQml(convertFloatToStrForTemp(outsideTempF));
     emit sendTempInsideToQml(convertFloatToStrForTemp(insideTempF));
     emit sendBattery24VoltageToQml(BatteryVoltage24v);
+    emit sendIceRoadToQml(iceRoad);
+    emit sendTempInsideToQml(insideTempS);
+    emit sendTempSalonToQml(salonTempS);
+    emit sendTempOutsideToQml(outsideTempS);
 }
 
 QString BusInterior::convertFloatToStrForTemp(double inputNumber){

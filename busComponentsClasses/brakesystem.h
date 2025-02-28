@@ -43,6 +43,7 @@ private:
     bool pressureCircuit2_Indication;
     bool pressureCircuit3_Indication;
     bool pressureCircuit4_Indication;
+    uint pressureCircuitSuspension_Indication;
     float brakePedalPosition;
     float retarderPercent = 0;
     uint reqStopSound = 0;
@@ -124,6 +125,7 @@ signals:
     void sendPressureCircuit2LampToQml(const bool& inputBool);
     void sendPressureCircuit3LampToQml(const bool& inputBool);
     void sendPressureCircuit4LampToQml(const bool& inputBool);
+    void sendLowPressureSuspensionToQml(const uint& inputUint);
     void sendCompressorStateToQml(const uint& inputUint);
 
 

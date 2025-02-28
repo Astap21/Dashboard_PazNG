@@ -73,6 +73,7 @@ uint DoorsPaz::returnDoorStatus(const int &_doorNumber){
     canBus::signalNameCharStruct *Closing;
     canBus::signalNameCharStruct *Opening;
     canBus::signalNameCharStruct *Close;
+    canBus::signalNameCharStruct *EmgOpen;
     if (_doorNumber == 1) {
         canMsg = &gMessageName_DOZC_1;
         AntiPinch1 =  &gSignalName_Door1Pinching1;
@@ -84,6 +85,7 @@ uint DoorsPaz::returnDoorStatus(const int &_doorNumber){
         Closing = &gSignalName_Door1Closing;
         Opening = &gSignalName_Door1Opening;
         Close = &gSignalName_Door1Close;
+        EmgOpen = &gSignalName_Door1EmgOpening;
     }
     else if (_doorNumber == 2) {
         canMsg = &gMessageName_DOZC_2;
@@ -96,6 +98,7 @@ uint DoorsPaz::returnDoorStatus(const int &_doorNumber){
         Closing = &gSignalName_Door2Closing;
         Opening = &gSignalName_Door2Opening;
         Close = &gSignalName_Door2Close;
+        EmgOpen = &gSignalName_Door2EmgOpening;
     }
     else{
         return 0;
@@ -124,6 +127,7 @@ uint DoorsPaz::returnDoorStatus(const int &_doorNumber){
     if ((gCanDB.GetSignalValueUint32_t(*AntiPinch1, *canMsg)) == 1) doorStatus = door_e::Jamming;
     if ((gCanDB.GetSignalValueUint32_t(*AntiPinch2, *canMsg)) == 1) doorStatus = door_e::Jamming;
     if ((gCanDB.GetSignalValueUint32_t(*AntiPinch3, *canMsg)) == 1) doorStatus = door_e::Jamming;
+    if ((gCanDB.GetSignalValueUint32_t(*EmgOpen, *canMsg)) == 1) doorStatus = door_e::EmgOpen;
 
     return static_cast<uint>(doorStatus);
 }

@@ -98,7 +98,7 @@ signals:
     void send_tmsErrorToQml(const uint& inputUint);
     void send_tmsOnToQml(const uint& inputUint);
     void send_motorStatusToQml(const uint& inputUint);
-    void send_steeringWheelToQml(const uint& inputUint);
+    void sendSteeringWheelToQml(const uint& inputUint);
     void send_batteryHeatingToQml(const uint& inputUint);
     void send_externalCordToQml(const uint& inputUint);
     void send_isolationToQml(const uint& inputUint);

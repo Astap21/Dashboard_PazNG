@@ -1,4 +1,4 @@
-//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Fri Dec 27 12:37:47 2024
+//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Fri Feb 28 18:26:58 2025
 #ifndef CANDATABASE_H_
 #define CANDATABASE_H_
 
@@ -37,6 +37,9 @@ extern canBus::messageNameCharStruct gMessageName_ASC1;
 
 extern canBus::signalNameCharStruct gSignalName_AutoKneeling;
 extern canBus::messageNameCharStruct gMessageName_ASC2;
+
+extern canBus::signalNameCharStruct gSignalName_Aux2;
+extern canBus::messageNameCharStruct gMessageName_AUXIO_R;
 
 extern canBus::signalNameCharStruct gSignalName_BatteryCharger1State;
 extern canBus::messageNameCharStruct gMessageName_BCH1;
@@ -118,17 +121,33 @@ extern canBus::messageNameCharStruct gMessageName_DLCC2;
 extern canBus::signalNameCharStruct gSignalName_LowLevel_CL;
 extern canBus::messageNameCharStruct gMessageName_DLDC1;
 
-extern canBus::signalNameCharStruct gSignalName_EbsError;
-extern canBus::signalNameCharStruct gSignalName_EbsWarning;
+extern canBus::signalNameCharStruct gSignalName_EBS_DM_AmberLamp;
+extern canBus::signalNameCharStruct gSignalName_EBS_DM_CM;
+extern canBus::signalNameCharStruct gSignalName_EBS_DM_FMI;
+extern canBus::signalNameCharStruct gSignalName_EBS_DM_Mailfunction;
+extern canBus::signalNameCharStruct gSignalName_EBS_DM_OC;
+extern canBus::signalNameCharStruct gSignalName_EBS_DM_ProtectLamp;
+extern canBus::signalNameCharStruct gSignalName_EBS_DM_RedLamp;
+extern canBus::signalNameCharStruct gSignalName_EBS_DM_SPN1;
+extern canBus::signalNameCharStruct gSignalName_EBS_DM_SPN2;
 extern canBus::messageNameCharStruct gMessageName_DM1_EBS;
 
-extern canBus::signalNameCharStruct gSignalName_EPB_Error;
+extern canBus::signalNameCharStruct gSignalName_EPB_DM_AmberLamp;
+extern canBus::signalNameCharStruct gSignalName_EPB_DM_CM;
+extern canBus::signalNameCharStruct gSignalName_EPB_DM_FMI;
+extern canBus::signalNameCharStruct gSignalName_EPB_DM_Mailfunction;
+extern canBus::signalNameCharStruct gSignalName_EPB_DM_OC;
+extern canBus::signalNameCharStruct gSignalName_EPB_DM_ProtectLamp;
+extern canBus::signalNameCharStruct gSignalName_EPB_DM_RedLamp;
+extern canBus::signalNameCharStruct gSignalName_EPB_DM_SPN1;
+extern canBus::signalNameCharStruct gSignalName_EPB_DM_SPN2;
 extern canBus::messageNameCharStruct gMessageName_DM1_EPB;
 
 extern canBus::signalNameCharStruct gSignalName_Door1CapInside;
 extern canBus::signalNameCharStruct gSignalName_Door1CapOutside;
 extern canBus::signalNameCharStruct gSignalName_Door1Close;
 extern canBus::signalNameCharStruct gSignalName_Door1Closing;
+extern canBus::signalNameCharStruct gSignalName_Door1EmgOpening;
 extern canBus::signalNameCharStruct gSignalName_Door1Open;
 extern canBus::signalNameCharStruct gSignalName_Door1Opening;
 extern canBus::signalNameCharStruct gSignalName_Door1Pinching1;
@@ -144,11 +163,13 @@ extern canBus::signalNameCharStruct gSignalName_Door2CapInside;
 extern canBus::signalNameCharStruct gSignalName_Door2CapOutside;
 extern canBus::signalNameCharStruct gSignalName_Door2Close;
 extern canBus::signalNameCharStruct gSignalName_Door2Closing;
+extern canBus::signalNameCharStruct gSignalName_Door2EmgOpening;
 extern canBus::signalNameCharStruct gSignalName_Door2Open;
 extern canBus::signalNameCharStruct gSignalName_Door2Opening;
 extern canBus::signalNameCharStruct gSignalName_Door2Pinching1;
 extern canBus::signalNameCharStruct gSignalName_Door2Pinching2;
 extern canBus::signalNameCharStruct gSignalName_Door2Pinching3;
+extern canBus::signalNameCharStruct gSignalName_Door2RampOpen;
 extern canBus::signalNameCharStruct gSignalName_Door2RqOpenInside;
 extern canBus::signalNameCharStruct gSignalName_Door2RqOpenOutside;
 extern canBus::signalNameCharStruct gSignalName_Door2ValveInside;
@@ -272,6 +293,7 @@ extern canBus::messageNameCharStruct gMessageName_SCU2CLM;
 extern canBus::signalNameCharStruct gSignalName_InletWaterTemp;
 extern canBus::signalNameCharStruct gSignalName_OutletWaterTemp;
 extern canBus::signalNameCharStruct gSignalName_TMS_FaultCode;
+extern canBus::signalNameCharStruct gSignalName_TmsMode;
 extern canBus::messageNameCharStruct gMessageName_T2B_TMS1;
 
 extern canBus::signalNameCharStruct gSignalName_DirectionIndicator;
@@ -298,10 +320,6 @@ extern canBus::signalNameCharStruct gSignalName_TireLocation;
 extern canBus::signalNameCharStruct gSignalName_TirePressure;
 extern canBus::signalNameCharStruct gSignalName_TireTemp;
 extern canBus::messageNameCharStruct gMessageName_TIRE;
-
-extern canBus::signalNameCharStruct gSignalName_TmsError;
-extern canBus::signalNameCharStruct gSignalName_TmsMode;
-extern canBus::messageNameCharStruct gMessageName_TMS;
 
 extern canBus::signalNameCharStruct gSignalName_Energy_for_traction_daily;
 extern canBus::signalNameCharStruct gSignalName_Energy_for_traction_total;

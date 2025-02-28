@@ -49,14 +49,15 @@ void Motor::ReadStateFromCanDB(){
     if (batteryStatus != previousComponentState) emit sendBatteryStatusToQml(batteryStatus);
     //sqDebug() << estimatedRange;
     engineTemp = gCanDB.GetSignalValueFloat(gSignalName_Temp_CL,gMessageName_ET1);
-    const float highTemp = 65;
-    if (engineTemp >= highTemp && tractionMotorOverheat != 1){
+    const float highTemp = 85;
+    previousComponentState = tractionMotorOverheat;
+    if ((engineTemp >= highTemp) || (gCanDB.GetSignalValueUint32_t(gSignalName_EngineCoolantTempHighLC, gMessageName_DLCC1) == 1)){
         tractionMotorOverheat = 1;
-        emit sendOverheatMotorToQml(tractionMotorOverheat);
     }
     else{
-        if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_EngineCoolantTempHighLC, gMessageName_DLCC1, &gCanDB), tractionMotorOverheat)) emit sendOverheatMotorToQml(tractionMotorOverheat);
+        tractionMotorOverheat = 0;
     }
+    if (tractionMotorOverheat != previousComponentState) emit sendOverheatMotorToQml(tractionMotorOverheat);
 
     //oilPressure = gCanDB.GetSignalValueInt(gSignalName_EngineOilPressure,gMessageName_EFL);
    // oilTemp = (gCanDB.GetSignalValueInt(gSignalName_EngineOilTemp, gMessageName_ET1));
@@ -111,7 +112,7 @@ void Motor::ReadStateFromCanDB(){
     if (gCanDB.GetSignalValueUint32_t(gSignalName_WheelSteerActuatorState, gMessageName_ESC2) == 2) steeringWheel = lamp.redLamp;
     else if (gCanDB.GetSignalValueUint32_t(gSignalName_WheelSteerActuatorState, gMessageName_ESC2) == 0) steeringWheel = lamp.yellowLamp;
     else steeringWheel = lamp.off;
-    if (steeringWheel != previousComponentState) emit send_steeringWheelToQml(steeringWheel);
+    if (steeringWheel != previousComponentState) emit sendSteeringWheelToQml(steeringWheel);
 
     previousComponentState = isolation;
     if (gCanDB.GetSignalValueUint32_t(gSignalName_Optional4LC, gMessageName_DLCC2) == canBus::canSignalStateStructObj.on) isolation = 5;
@@ -140,17 +141,14 @@ void Motor::ReadStateFromCanDB(){
     }
 
     previousComponentState = batteryHeating;
-    if (gCanDB.GetSignalValueUint32_t(gSignalName_TmsMode, gMessageName_TMS) == 2) batteryHeating = 1;
+    if (gCanDB.GetSignalValueUint32_t(gSignalName_TmsMode, gMessageName_T2B_TMS1) == 2) batteryHeating = 1;
     else batteryHeating = 0;
     if (batteryHeating != previousComponentState) emit send_batteryHeatingToQml(batteryHeating);
 
-    previousComponentState = tmsError;
-    if (gCanDB.GetSignalValueUint32_t(gSignalName_TmsError, gMessageName_TMS) != 0) tmsError = 1;
-    else tmsError = 0;
-    if (tmsError != previousComponentState) emit send_tmsErrorToQml(tmsError);
+    checkSendSignalChg1(gCanDB.GetSignalValueInt(gSignalName_TMS_FaultCode, gMessageName_T2B_TMS1), tmsError, [&](int value) { emit send_tmsErrorToQml(value);});
 
 
-    if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_TmsMode, gMessageName_TMS, &gCanDB), tmsOn)) emit send_tmsOnToQml(tmsOn);
+    if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_TmsMode, gMessageName_T2B_TMS1, &gCanDB), tmsOn)) emit send_tmsOnToQml(tmsOn);
     if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_BatteryCharger1State, gMessageName_BCH1, &gCanDB), chargingStatus)) emit send_externalCordToQml(chargingStatus);
     if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_EngineCoolantLevelLowLC, gMessageName_DLCC1, &gCanDB), lowLiquidLevelMotorSystem)) emit sendEngineLowCoolantLevelToQml(lowLiquidLevelMotorSystem);
     if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_ReadyForUseLC, gMessageName_DLCC1, &gCanDB), readyToMove)) emit sendReadyToMoveToQml(readyToMove);
@@ -192,7 +190,7 @@ void Motor::dashboardLoadFinished(){
     emit send_motorStatusToQml(motorStatus);
     emit send_tmsErrorToQml(tmsError);
     emit send_externalCordToQml(chargingStatus);
-    emit send_steeringWheelToQml(steeringWheel);
+    emit sendSteeringWheelToQml(steeringWheel);
     emit send_isolationToQml(isolation);
     emit send_pantToQml(pant);
     emit send_contactorToQml(contactor);

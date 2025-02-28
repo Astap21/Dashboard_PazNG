@@ -95,6 +95,13 @@ void BrakeSystem::ReadStateFromCanDB(){
     else pressureCircuit2_Indication = 0;
     if (pressureCircuit2_Indication != previousComponentState) emit sendPressureCircuit2LampToQml(pressureCircuit2_Indication);
 
+    previousComponentState = pressureCircuitSuspension_Indication;
+    pressure_kpa = gCanDB.GetSignalValueFloat(gSignalName_AirSuspensionSupplyPressure, gMessageName_AIR1);
+    float pressureCircuitSus_bar = pressure_kpa / 98.066f;
+    if (pressureCircuitSus_bar < lowBarPressure) pressureCircuitSuspension_Indication = 1;
+    else pressureCircuitSuspension_Indication = 0;
+    if (pressureCircuitSuspension_Indication != previousComponentState) emit sendLowPressureSuspensionToQml(pressureCircuitSuspension_Indication);
+
     previousComponentState = pressureCircuit3_Indication;
     pressure_kpa = gCanDB.GetSignalValueFloat(gSignalName_ParkingAirPressure, gMessageName_AIR1);
     float pressureCircuit3_bar = pressure_kpa / 98.066f;
@@ -111,7 +118,8 @@ void BrakeSystem::ReadStateFromCanDB(){
 
     previousComponentState = EBS_Indication;
     if (gCanDB.GetSignalValueUint32_t(gSignalName_EBS_RedLamp, gMessageName_EBC1) == canBus::canSignalStateStructObj.on) EBS_Indication = EBS_Lamp.redLamp;
-    else if (gCanDB.GetSignalValueUint32_t(gSignalName_EBS_WarningLamp, gMessageName_EBC1) == canBus::canSignalStateStructObj.on) EBS_Indication = EBS_Lamp.yellowLamp;
+    else if ((gCanDB.GetSignalValueUint32_t(gSignalName_EBS_WarningLamp, gMessageName_EBC1) == canBus::canSignalStateStructObj.on) ||
+             (gCanDB.GetSignalValueUint32_t(gSignalName_EBS_DM_AmberLamp, gMessageName_DM1_EBS) == canBus::canSignalStateStructObj.on)) EBS_Indication = EBS_Lamp.yellowLamp;
     else EBS_Indication = EBS_Lamp.off;
     uint32_t CountMissedMessages = gCanDB.CheckNumberMissedMessages(gCanDB.GetMessageId(gMessageName_EBC1));
     uint32_t limitMissedMessages = 5;
@@ -212,7 +220,7 @@ void BrakeSystem::ReadStateFromCanDB(){
              (gCanDB.GetSignalValueUint32_t(gSignalName_ParkingWorkStatus2, gMessageName_EPBS1)) == 1) {
         parkingBrake_Indication = 4;
     }
-    else if (gCanDB.GetSignalValueUint32_t(gSignalName_EPB_Error, gMessageName_DM1_EPB) == 1) {
+    else if ((gCanDB.GetSignalValueUint32_t(gSignalName_EPB_DM_RedLamp, gMessageName_DM1_EPB) == 1) || (gCanDB.GetSignalValueUint32_t(gSignalName_EPB_DM_AmberLamp, gMessageName_DM1_EPB) == 1)) {
         parkingBrake_Indication = 5;
     }
     else {
@@ -296,6 +304,7 @@ void BrakeSystem::dashboardLoadFinished(){
 
     emit sendPressureCircuit1ToQml(pressureCircuit1_bar);
     emit sendPressureCircuit2ToQml(pressureCircuit2_bar);
+    emit sendLowPressureSuspensionToQml(pressureCircuitSuspension_Indication);
 }
 void BrakeSystem::menuLoadFinished(){
     emit sendFrontLeftBrakePercentToQml(frontLeftBrakePads_Percent);

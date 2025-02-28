@@ -9,7 +9,7 @@ Item {
     height: 720
     property int imageWidth: 100
     property bool signalLampTest: true
-
+    property int busSpeed: 0
     Image {
         id: signalLamps_font
         x: 0
@@ -34,6 +34,12 @@ Item {
             function onSendError24VToQml(inputUint){
                 battery24v_L.errorLamp = inputUint
             }
+            function onSendIceRoadToQml(inputUint) {
+                iceRoad_L.changeStatusAndPlayWarning(inputUint)
+                if (inputUint === 1){
+                    banner.showWarningFor5s("Скользкая дорога!")
+                }
+            }
             function onSendBattery24VoltageToQml(inputFloat) {
                 if (battery24v_L.errorLamp == 2){
                     battery24v_L.lampToggle()()
@@ -46,6 +52,10 @@ Item {
                 }
                 else {
                     battery24v_L.source = "DashboardGeneral/images/signalLamps/battery24v.png"
+                }
+                if (inputFloat <= 22) {
+                    errorSound.play()
+                    banner.showErrorFor5s("Низкий уровень заряда АКБ!")
                 }
                 battery24Voltage_T.text = inputFloat.toFixed(1)
             }
@@ -116,6 +126,7 @@ Item {
                 if (inputUint) {
                     washerFluidLevel_L.lampOn()
                     warningSound.play()
+                    banner.showWarningFor5s("Низкий уровень стеклоомывающей жидкости. Долейте жидкость в бачок")
                 }
                 else washerFluidLevel_L.lampOff()
             }
@@ -156,6 +167,9 @@ Item {
         }
         Connections {
             target: motor
+            function onSendSpeedToQml(inputFloat) {
+                signalLamps.busSpeed = inputFloat.toFixed(0)
+            }
             function onSend_pantToQml(inputUint){
                 if (inputUint === 0 || inputUint === 15){
                     pantograph_L.lampOff()
@@ -188,6 +202,7 @@ Item {
                 if (inputUint === 1){
                     errorSound.play()
                     motorOverheat_L.lampOn()
+                    banner.showErrorFor5s("Перегрев двигателя!")
                 }
                 else if (inputUint === 2){
                     errorSound.play()
@@ -210,6 +225,7 @@ Item {
                 if (inputUint) {
                     errorSound.play()
                     lowCoolantEngineLevel_L.lampOn();
+                    banner.showErrorFor5s("Низкий уровень охлаждающей жидкости тягового электропривода!")
                 }
                 else if (inputUint === 2){
                     errorSound.play()
@@ -262,6 +278,8 @@ Item {
                 if(inputUint === 1){
                     hvBatError_L.lampOn()
                     hvBatError_L.source = "DashboardGeneral/images/signalLamps/battery/batHvFail.png"
+                    errorSound.play()
+                    banner.showErrorFor5s("Критическая неисправность тяговых батарей!")
                 }
                 else if(inputUint === 2){
                     hvBatError_L.lampToggle()
@@ -270,6 +288,8 @@ Item {
                 else if(inputUint === 3){
                     hvBatError_L.lampOn()
                     hvBatError_L.source = "DashboardGeneral/images/signalLamps/battery/batHvWarning.png"
+                    warningSound.play()
+                    banner.showWarningFor5s("Неисправность тяговых батарей!")
                 }
                 else if(inputUint === 4){
                     hvBatError_L.lampToggle()
@@ -295,16 +315,20 @@ Item {
                 }
             }
             function onSend_tmsErrorToQml(inputUint){
-                if(inputUint !== 0){
+                if(inputUint !== 0 && inputUint !== 12){
                     tmsError_L.lampOn()
+                    errorSound.play()
+                    banner.showErrorFor5s("Неисправность системы термостатирования батарей")
+                    tmsWarning_L.lampOff()
+                }
+                else if (inputUint === 0x0C){
+                    tmsWarning_L.lampOn()
+                    warningSound.play()
+                    banner.showWarningFor5s("Низкий уровень ОЖ системы TMS тяговых батарей")
+                    tmsError_L.lampOff()
                 }
                 else{
                     tmsError_L.lampOff()
-                }
-                if (inputUint === 12){
-                    tmsWarning_L.lampOn()
-                }
-                else{
                     tmsWarning_L.lampOff()
                 }
             }
@@ -329,7 +353,7 @@ Item {
                     motorError_L.lampOff()
                 }
             }
-            function onSend_steeringWheelToQml(inputUint){
+            function onSendSteeringWheelToQml(inputUint){
                 if(inputUint === 1){
                     steering_L.lampOn()
                     steering_L.source = "DashboardGeneral/images/signalLamps/steering/steeringOff.png"
@@ -337,6 +361,13 @@ Item {
                 else if(inputUint === 2){
                     steering_L.lampOn()
                     steering_L.source = "DashboardGeneral/images/signalLamps/steering/steeringFailure.png"
+                    errorSound.play()
+                    if (signalLamps.busSpeed > 1){
+                        banner.showErrorFor5s("Неисправность системы ГУР!  Останови ТС")
+                    }
+                    else{
+                        banner.showErrorFor5s("Неисправность системы ГУР!")
+                    }
                 }
                 else{
                     steering_L.lampOff()
@@ -353,9 +384,13 @@ Item {
             function onSendLowPowerToQml(inputUint){
                 if(inputUint === 1){
                     lowPower_L.lampOn()
+                    warningSound.play()
+                    banner.showWarningFor5s("Возможно начало движения с ограничением момента, возможно включение системы отопления")
                 }
                 else if(inputUint === 2){
                     lowPower_L.lampToggle()
+                    warningSound.play()
+                    banner.showWarningFor5s("Для пуска, подключить зарядную станцию или пантограф")
                 }
                 else{
                     lowPower_L.lampOff()
@@ -385,14 +420,18 @@ Item {
                 if(inputUint === 5){
                     isolation_L.lampOn()
                     isolation_L.source = "DashboardGeneral/images/signalLamps/battery/insulationControlFailure.png"
+                    warningSound.play()
+                    banner.showWarningFor5s("Критическая ошибка контроля изоляции!")
                 }
                 else if(inputUint === 4){
                     isolation_L.lampToggle()
                     isolation_L.source = "DashboardGeneral/images/signalLamps/battery/insulationControlFailure.png"
                 }
-                else if(inputUint === 3){
+                else if(inputUint === 3){                    
                     isolation_L.lampOn()
                     isolation_L.source = "DashboardGeneral/images/signalLamps/battery/insulationControlWarning.png"
+                    warningSound.play()
+                    banner.showWarningFor5s("Ошибка контроля изоляции!")
                 }
                 else if(inputUint === 2){
                     isolation_L.lampToggle()
@@ -650,6 +689,8 @@ Item {
             function onSendCompressorStateToQml(inputUint){
                 if (inputUint === 2){
                    compressorError_L.lampOn()
+                   errorSound.play()
+                   banner.showErrorFor5s("Неисправность системы воздушного компрессора !")
                 }
                 else{
                     compressorError_L.lampOff()
@@ -677,6 +718,12 @@ Item {
 //                    tractionControl_L.lampOff()
 //                }
             }
+            function onSendLowPressureSuspensionToQml(inputUint){
+                if (inputUint === 1){
+                    errorSound.play()
+                    banner.showError(5000, "Низкое давление в контуре пневмоподвески")
+                }
+            }
             function onSendPressureCircuitParkBrakeToQml(inputUint){
                 if (inputUint === 1) {
                     errorSound.play()
@@ -699,6 +746,7 @@ Item {
                     errorSound.play()
                     parkingBrake_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/errorEPB.png"
                     parkingBrake_L.lampOn()
+                    banner.showError(5000, "Неисправность стояночного тормоза")
                 }
                 else parkingBrake_L.lampOff()
             }
@@ -712,6 +760,7 @@ Item {
                     ebsState_L.lampOn()
                     ebsState_L.source = "DashboardGeneral/images/signalLamps/brakeSystem/EBS_Yellow.png"
                     dynamicTextRow.deleteRowFromArray("Критическая неисправность EBS")
+                    banner.showWarningFor5s("Неисправность EBS!")
                 } else if (inputUint === 2) {
                     errorSound.play()
                     ebsState_L.lampOn()
@@ -1026,9 +1075,9 @@ Item {
 
     SignalLamp_C {
         id: kneelingStatus_L
-        x: 1172
-        y: 153
-        width: 50
+        x: 1177
+        y: 162
+        width: 37
         height: kneelingStatus_L.width
         source: "DashboardGeneral/images/signalLamps/suspension/kneeling.png"
         test: signalLampTest
@@ -1369,7 +1418,7 @@ Item {
         width: 50
         height: deadZoneRight_L.width
         visible: true
-        source: "DashboardGeneral/images/signalLamps/ADAS/deadZoneRight.png"
+        source: "DashboardGeneral/images/signalLamps/ADAS/deadZoneRightY.png"
         test: signalLampTest
     }
 
@@ -1380,7 +1429,7 @@ Item {
         width: 50
         height: deadZoneLeft_L.width
         visible: true
-        source: "DashboardGeneral/images/signalLamps/ADAS/deadZoneLeft.png"
+        source: "DashboardGeneral/images/signalLamps/ADAS/deadZoneLeftY.png"
         test: signalLampTest
     }
 
@@ -1398,12 +1447,12 @@ Item {
 
     SignalLamp_C {
         id: ldws_L
-        x: 205
+        x: 199
         y: 348
         width: 47
         height: ldws_L.width
         visible: true
-        source: "DashboardGeneral/images/signalLamps/ADAS/ldws.png"
+        source: "DashboardGeneral/images/signalLamps/ADAS/ldwsLeftY.png"
         test: signalLampTest
     }
 
@@ -1507,5 +1556,15 @@ Item {
         test: signalLampTest
         property int lowLevel: 25
         property int criticalLowlevel: 15
+    }
+
+    SignalLamp_C {
+        id: iceRoad_L
+        x: 1501
+        y: 22
+        width: 30
+        height: iceRoad_L.width
+        test: signalLampTest
+        source: "DashboardGeneral/images/signalLamps/iceRoad.png"
     }
 }

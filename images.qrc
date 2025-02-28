@@ -233,5 +233,21 @@
         <file>DashboardGeneral/images/menu/dashboard/updateFirmware.png</file>
         <file>DashboardGeneral/images/warningBannerIcon.png</file>
         <file>DashboardGeneral/images/errorBannerIcon.png</file>
+        <file>DashboardGeneral/images/signalLamps/ADAS/slr.png</file>
+        <file>DashboardGeneral/images/signalLamps/ADAS/pcw.png</file>
+        <file>DashboardGeneral/images/signalLamps/ADAS/ldwsRightY.png</file>
+        <file>DashboardGeneral/images/signalLamps/ADAS/ldwsRightR.png</file>
+        <file>DashboardGeneral/images/signalLamps/ADAS/ldwsRightG.png</file>
+        <file>DashboardGeneral/images/signalLamps/ADAS/ldwsLeftY.png</file>
+        <file>DashboardGeneral/images/signalLamps/ADAS/ldwsLeftR.png</file>
+        <file>DashboardGeneral/images/signalLamps/ADAS/ldwsLeftG.png</file>
+        <file>DashboardGeneral/images/signalLamps/ADAS/fkws_r.png</file>
+        <file>DashboardGeneral/images/signalLamps/ADAS/deadZoneRightY.png</file>
+        <file>DashboardGeneral/images/signalLamps/ADAS/deadZoneRightR.png</file>
+        <file>DashboardGeneral/images/signalLamps/ADAS/deadZoneRightG.png</file>
+        <file>DashboardGeneral/images/signalLamps/ADAS/deadZoneLeftY.png</file>
+        <file>DashboardGeneral/images/signalLamps/ADAS/deadZoneLeftR.png</file>
+        <file>DashboardGeneral/images/signalLamps/ADAS/deadZoneLeftG.png</file>
+        <file>DashboardGeneral/images/signalLamps/ADAS/dddm_g.png</file>
     </qresource>
 </RCC>

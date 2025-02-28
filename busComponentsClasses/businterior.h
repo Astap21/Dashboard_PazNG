@@ -27,6 +27,7 @@ private:
     uint rampError = 0;
     uint doorValve = 0;
     uint error24v = 0;
+    uint iceRoad = 0;
     float FuelLevel = 0;
     float BatteryVoltage24v = 0;
     float insideTempF = 0;
@@ -55,6 +56,7 @@ signals:
     void sendTempSalonToQml(const QString& inputString);
     void sendRampErrorToQml(const uint& inputUint);
     void sendDoorValveToQml(const uint& inputUint);
+    void sendIceRoadToQml(const uint& inputUint);
 
 };
 
