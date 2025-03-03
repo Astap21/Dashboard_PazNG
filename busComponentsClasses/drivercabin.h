@@ -33,6 +33,7 @@ private:
     float washerFluidLevel = 0;
     uint routeIndicator = 0;
     uint heatedSteering = 0;
+    uint buttonsOnWheel = 0;
     struct {
         uint8_t LampOff = 0;
         uint8_t LampOnSpeed1 = 1;
@@ -54,6 +55,7 @@ signals:
     void sendWipersWorkCounter(const uint& inputUint);
     void sendRouteIndicatorToQml(const uint& inputUint);
     void sendHeatedSteeringToQml(const uint& inputUint);
+    void sendButtonsOnWheelToQml(const uint& inputUint);
 };
 
 #endif // DRIVERCABIN_H

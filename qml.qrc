@@ -106,5 +106,6 @@
         <file>DashboardGeneral/qmlUserClass/menuItem/NG/ElectroParam/climateSystem.qml</file>
         <file>DashboardGeneral/qmlUserClass/baseClasses/NG/Banner_C.qml</file>
         <file>DashboardGeneral/qmlUserClass/menuItem/NG/ElectroParam/energyConsumptionNG.qml</file>
+        <file>DashboardGeneral/qmlUserClass/menuItem/NG/ElectroParam/swVersions.qml</file>
     </qresource>
 </RCC>

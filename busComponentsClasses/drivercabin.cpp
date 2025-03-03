@@ -5,16 +5,6 @@
 
 DriverCabin::DriverCabin(QObject *parent) : PrimaryBusComponent(parent)
 {
-    ElecticHeatedWindshield = 0;
-    ElecticHeatedSideWindows = 0;
-    WasherFluidLamp = 0;
-    WipersAutoStatus = 0;
-    HeaterMirrorsStatus = 0;
-    WipersStatus = 0;
-    SeatHeating = 0;
-
-    washerFluidLevel = 0;
-
     timerPeriod_ms = 500;
     timerForTask.setInterval(timerPeriod_ms);
 }
@@ -61,6 +51,7 @@ void DriverCabin::ReadStateFromCanDB(){
         if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_FrontNonOperatorWiperSwitch, gMessageName_OWW, &gCanDB), WipersAutoStatus)) emit sendWipersAutoStatusToQml(WipersAutoStatus);
         if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_OperatorSeatDirectionSwitch, gMessageName_CM1, &gCanDB), NoDriver)) emit sendOperatorSeatDirectionSwitchToQml(NoDriver);
         if (checkValueChange(getNewValueFromOneCanSignalU32(gSignalName_SeatBeltSwitch, gMessageName_BDS, &gCanDB), SeatBelt)) emit sendSeatBeltSwitchToQml(SeatBelt);
+        checkSendSignalChg1(gCanDB.GetSignalValueUint32_t(gSignalName_Aux2, gMessageName_AUXIO_R), buttonsOnWheel, [&](int value) { emit sendButtonsOnWheelToQml(value);});
 
     }
 void DriverCabin::SendStateToQml(){

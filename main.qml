@@ -486,12 +486,19 @@ Item{
                 if (doorStatus === 3){
                     banner.showErrorFor5s("Несанкционированное открытие дверей!")
                 }
+                else{
+                    banner.stopRepeat()
+                }
+
                 //console.log(door1Status);
             }
             function onSendDoor2StatusToQml(doorStatus){
                 door_2.checkStatus(doorStatus);
                 if (doorStatus === 3){
                     banner.showErrorFor5s("Несанкционированное открытие дверей!")
+                }
+                else{
+                    banner.stopRepeat()
                 }
                 //console.log(door2Status);
             }
@@ -625,6 +632,7 @@ Item{
                 if (inputUint === 2) {
                     rampState_L.source = "/DashboardGeneral/images/signalLamps/busExterior/rampSensorMalfunction.png"
                     rampState_L.lampOn()
+                    banner.stopRepeat()
                 }
                 else if (inputUint === 1) {
                     rampState_L.source = "/DashboardGeneral/images/signalLamps/busExterior/theRampIsOpen.png"
@@ -634,6 +642,7 @@ Item{
                 }
                 else{
                     rampState_L.lampOff()
+                    banner.stopRepeat()
                 }
             }
             function onSendRearCompartmentStatusToQml(inputUint) {
@@ -642,7 +651,10 @@ Item{
                     rearCompartmentIsOpen_L.lampOn()
                     banner.showErrorFor5s("Открыт отсек двигателя!")
                 }
-                else rearCompartmentIsOpen_L.lampOff()
+                else {
+                    banner.stopRepeat()
+                    rearCompartmentIsOpen_L.lampOff()
+                }
             }
             function onSendFrontCompartmentStatusToQml(inputUint) {
                 if (inputUint){
