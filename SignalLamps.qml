@@ -2,6 +2,7 @@
 import "DashboardGeneral/qmlUserClass"
 import "DashboardGeneral/qmlUserClass/baseClasses"
 import "DashboardGeneral/qmlUserClass/baseClasses/NG"
+import my_enum.lampState 1.0
 
 Item {
     id: signalLamps
@@ -311,24 +312,24 @@ Item {
                 }
             }
             function onSendBatteryStatusToQml(inputUint){
-                if(inputUint === 1){
+                if(inputUint === LampState.LampOnRed){
                     hvBatError_L.lampOn()
                     hvBatError_L.source = "DashboardGeneral/images/signalLamps/battery/batHvFail.png"
                     errorSound.play()
                     banner.showErrorFor5s("Критическая неисправность тяговых батарей!")
                 }
-                else if(inputUint === 2){
+                else if(inputUint === LampState.LampToggleRed){
                     hvBatError_L.lampToggle()
                     hvBatError_L.source = "DashboardGeneral/images/signalLamps/battery/batHvFail.png"
                     banner.stopRepeat()
                 }
-                else if(inputUint === 3){
+                else if(inputUint === LampState.LampOnRed){
                     hvBatError_L.lampOn()
                     hvBatError_L.source = "DashboardGeneral/images/signalLamps/battery/batHvWarning.png"
                     warningSound.play()
                     banner.showWarningFor5s("Неисправность тяговых батарей!")
                 }
-                else if(inputUint === 4){
+                else if(inputUint === LampState.LampToggleYellow){
                     hvBatError_L.lampToggle()
                     hvBatError_L.source = "DashboardGeneral/images/signalLamps/battery/batHvWarning.png"
                     banner.stopRepeat()
@@ -372,14 +373,6 @@ Item {
                     tmsWarning_L.lampOff()
                 }
             }
-//            function onSend_tmsOnToQml(inputUint){
-//                if(inputUint === 2){
-//                    tmsHeating_L.lampOn()
-//                }
-//                else{
-//                    tmsHeating_L.lampOff()
-//                }
-//            }
             function onSend_motorStatusToQml(inputUint){
                 if(inputUint === 1){
                     motorError_L.lampOn()
@@ -509,26 +502,26 @@ Item {
             target: suspension
             function onSendSuspensionStatusToQml(inputUint) {
                 //console.log(inputUint)
-                if (inputUint === 0){
+                if (inputUint === LampSuspension.LampOff){
                     suspensionStatus_L.lampOff()
                 }
-                else if(inputUint === 1){
+                else if(inputUint === LampSuspension.LampOnYellow){
                     suspensionStatus_L.lampOn()
                     suspensionStatus_L.source = "DashboardGeneral/images/signalLamps/suspension/heightControlNotNormal.png"
                 }
-                else if(inputUint === 2){
+                else if(inputUint === LampSuspension.LampOnUp){
                     suspensionStatus_L.lampOn()
                     suspensionStatus_L.source = "DashboardGeneral/images/signalLamps/suspension/heightIncrease.png"
                 }
-                else if(inputUint === 3){
+                else if(inputUint === LampSuspension.LampToggleUp){
                     suspensionStatus_L.lampToggle()
                     suspensionStatus_L.source = "DashboardGeneral/images/signalLamps/suspension/heightIncrease.png"
                 }
-                else if(inputUint === 4){
+                else if(inputUint === LampSuspension.LampOnDown){
                     suspensionStatus_L.lampOn()
                     suspensionStatus_L.source = "DashboardGeneral/images/signalLamps/suspension/heightDecrease.png"
                 }
-                else if(inputUint === 5){
+                else if(inputUint === LampSuspension.LampToggleDown){
                     suspensionStatus_L.lampToggle()
                     suspensionStatus_L.source = "DashboardGeneral/images/signalLamps/suspension/heightDecrease.png"
                 }

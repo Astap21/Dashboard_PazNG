@@ -2,6 +2,7 @@
 #include "canDataBase/canDataBase.h"
 #include "canDataBase/canDB_Libs.h"
 #include "qdebug.h"
+#include "lamp_state.h"
 
 Motor::Motor(QObject *parent) : PrimaryBusComponent(parent)
 {
@@ -26,22 +27,22 @@ void Motor::ReadStateFromCanDB(){
 
     previousComponentState = batteryStatus;
     if ((getNewValueFromOneCanSignalU32(gSignalName_Optional1LC, gMessageName_DLCC2, &gCanDB) == canBus::canSignalStateStructObj.on)){
-        batteryStatus = 1;
+        batteryStatus = LampState::LampOnRed;
     }
     else if ((getNewValueFromOneCanSignalU32(gSignalName_Optional1LC, gMessageName_DLCC2, &gCanDB) == canBus::canSignalStateStructObj.error)){
-        batteryStatus = 2;
+        batteryStatus =  LampState::LampToggleRed;
     }
     else if ((getNewValueFromOneCanSignalU32(gSignalName_Optional2LC, gMessageName_DLCC2, &gCanDB) == canBus::canSignalStateStructObj.on)){
-        batteryStatus = 3;
+        batteryStatus =  LampState::LampOnYellow;
     }
     else if ((getNewValueFromOneCanSignalU32(gSignalName_Optional2LC, gMessageName_DLCC2, &gCanDB) == canBus::canSignalStateStructObj.error)){
-        batteryStatus = 4;
+        batteryStatus =  LampState::LampToggleYellow;
     }
-    else if ((getNewValueFromOneCanSignalU32(gSignalName_HVESS_HvBusConnectionStatus, gMessageName_HVESSS1, &gCanDB) == 1)){
-        batteryStatus = 5;
+    else if ((getNewValueFromOneCanSignalU32(gSignalName_HVESS_HvBusConnectionStatus, gMessageName_HVESSS1, &gCanDB) == canBus::canSignalStateStructObj.on)){
+        batteryStatus = LampState::LampOnBlue;
     }
-    else if ((getNewValueFromOneCanSignalU32(gSignalName_HVESS_HvBusConnectionStatus, gMessageName_HVESSS1, &gCanDB) == 2)){
-        batteryStatus = 6;
+    else if ((getNewValueFromOneCanSignalU32(gSignalName_HVESS_HvBusConnectionStatus, gMessageName_HVESSS1, &gCanDB) == canBus::canSignalStateStructObj.error)){
+        batteryStatus = LampState::LampToggleBlue;
     }
     else{
         batteryStatus = 0;

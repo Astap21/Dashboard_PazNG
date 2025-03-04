@@ -6,6 +6,7 @@ import "DashboardGeneral/qmlUserClass/baseClasses/NG"
 import QtMultimedia 5.9
 import QtQuick.Controls 2.11
 import QtQml 2.11
+import my_enum.lampState 1.0
 
 Item{    
     id: baseElement
@@ -712,11 +713,11 @@ Item{
             }
             function onSendBatteryStatusToQml(inputUint){
                 if (background.bootAnimation === false) {
-                    if (inputUint === 5){
+                    if (inputUint === LampState.LampOnBlue){
                         batteryVoltage_L.lampOn()
                         batteryVoltage_L.source = "/DashboardGeneral/images/signalLamps/battery/batHvOn.png"
                     }
-                    else if(inputUint === 6){
+                    else if(inputUint === LampState.LampToggleBlue){
                         batteryVoltage_L.lampToggle()
                         batteryVoltage_L.source = "/DashboardGeneral/images/signalLamps/battery/batHvOn.png"
                     }

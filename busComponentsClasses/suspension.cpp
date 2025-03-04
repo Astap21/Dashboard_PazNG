@@ -2,10 +2,11 @@
 #include "canDataBase/canDataBase.h"
 #include <QTimer>
 #include <QDebug>
+#include "lamp_state.h"
 
 Suspension::Suspension(QObject *parent) : PrimaryBusComponent(parent)
 {
-    SuspensionState = LampOff;
+    SuspensionState = LampSuspension::LampOff;
     SuspensionError = 0;
     kneelingStatus = 0;
 
@@ -30,16 +31,16 @@ void Suspension::SuspensionLampControl(){
 
     //new
     if (((gCanDB.GetSignalValueUint32_t(gSignalName_AboveNominalLevelFrontAxle, gMessageName_ASC1)) == 1)
-        || ((gCanDB.GetSignalValueUint32_t(gSignalName_AboveNominalLevelRearAxle, gMessageName_ASC1)) == 1)) SuspensionState = LampUpperLevel;
+        || ((gCanDB.GetSignalValueUint32_t(gSignalName_AboveNominalLevelRearAxle, gMessageName_ASC1)) == 1)) SuspensionState = LampSuspension::LampOnUp;
     else if (((gCanDB.GetSignalValueUint32_t(gSignalName_BelowNominalLevelFrontAxle, gMessageName_ASC1)) == 1)
-             || ((gCanDB.GetSignalValueUint32_t(gSignalName_BelowNominalLevelRearAxle, gMessageName_ASC1)) == 1)) SuspensionState = LampLowerLevel;
+             || ((gCanDB.GetSignalValueUint32_t(gSignalName_BelowNominalLevelRearAxle, gMessageName_ASC1)) == 1)) SuspensionState = LampSuspension::LampOnDown;
     else if ((gCanDB.GetSignalValueUint32_t(gSignalName_BelowNominalLevelFrontAxle, gMessageName_ASC1) == 2)
-             || (gCanDB.GetSignalValueUint32_t(gSignalName_BelowNominalLevelRearAxle, gMessageName_ASC1))== 2) SuspensionState = LampLowerLevelToggle;
+             || (gCanDB.GetSignalValueUint32_t(gSignalName_BelowNominalLevelRearAxle, gMessageName_ASC1))== 2) SuspensionState = LampSuspension::LampToggleDown;
     else if ((gCanDB.GetSignalValueUint32_t(gSignalName_AboveNominalLevelRearAxle, gMessageName_ASC1) == 2)
-             || (gCanDB.GetSignalValueUint32_t(gSignalName_AboveNominalLevelFrontAxle, gMessageName_ASC1)) == 2) SuspensionState = LampUpperLevelToggle;
+             || (gCanDB.GetSignalValueUint32_t(gSignalName_AboveNominalLevelFrontAxle, gMessageName_ASC1)) == 2) SuspensionState = LampSuspension::LampToggleUp;
     else if (((gCanDB.GetSignalValueUint32_t(gSignalName_NominalLevelFrontAxle, gMessageName_ASC1)) == 0.0f)
-             || ((gCanDB.GetSignalValueUint32_t(gSignalName_NominalLevelRearAxle, gMessageName_ASC1)) == 0.0f)) SuspensionState = LampNotNormal;
-    else SuspensionState = LampOff;
+             || ((gCanDB.GetSignalValueUint32_t(gSignalName_NominalLevelRearAxle, gMessageName_ASC1)) == 0.0f)) SuspensionState = LampSuspension::LampOnYellow;
+    else SuspensionState = LampSuspension::LampOff;
     if (SuspensionState != previousComponentState) emit sendSuspensionStatusToQml(SuspensionState);
 }
 

@@ -23,6 +23,7 @@
 #include "DashBoardClasses/logtofile.h"
 #include "DashBoardClasses/application/fpstext.h"
 #include "DashBoardClasses/application/calculatemileage.h"
+#include "lamp_state.h"
 
 #include "canDataBase/canDataBase.h"
 //#include <libudev.h>
@@ -48,7 +49,9 @@ int main(int argc, char *argv[])
 
     //LogToFile logtofile;
 //    qmlRegisterType<FPSText>("com.ast", 1, 0, "FPSText");
-//    qmlRegisterUncreatableType<SignalLampE>("com.gaz.signalLampE", 1, 0, "SignalLampE", "Enum only");
+    qmlRegisterType<LampState>("my_enum.lampState", 1, 0, "LampState");
+    qmlRegisterType<LampSuspension>("my_enum.lampState", 1, 0, "LampSuspension");
+
     qRegisterMetaType<QCanBusDevice::CanBusError>();
     qRegisterMetaType<uint32_t>();
 
@@ -149,9 +152,6 @@ int main(int argc, char *argv[])
 
     // Register the .qrc file containing QML resources
     QResource::registerResource(":/images.qrc");
-
-    //    qmlRegisterType<FPSText>("com.ast", 1, 0, "FPSText");
-
 
     const QUrl url(QStringLiteral("qrc:/loader.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

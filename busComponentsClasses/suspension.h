@@ -16,15 +16,7 @@ public slots:
 
 private:
     void SuspensionLampControl();
-    enum SuspensionStateLamp
-    {
-        LampOff = 0,
-        LampNotNormal = 1,
-        LampUpperLevel = 2,
-        LampUpperLevelToggle = 3,
-        LampLowerLevel = 4,
-        LampLowerLevelToggle = 5,
-    }SuspensionState;
+    uint SuspensionState;
 
     uint SuspensionError = 0;
     struct{

@@ -1,4 +1,5 @@
 ﻿import QtQuick 2.9
+import my_enum.lampState 1.0
 
 Image {
     id: signalLamp

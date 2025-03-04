@@ -152,6 +152,7 @@ HEADERS += \
     DashboardGeneral/canDataBase/canSignalClass.h \
     DashboardGeneral/can/can_bus.h \
     DashboardGeneral/common_func.h \
+    DashboardGeneral/lamp_state.h \
     DashboardGeneral/qml_interface.h \
     DashboardGeneral/signal_lamp.h \
     busComponentsClasses/brakesystem.h \
