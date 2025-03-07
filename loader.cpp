@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
     //LogToFile logtofile;
 //    qmlRegisterType<FPSText>("com.ast", 1, 0, "FPSText");
     qmlRegisterType<LampState>("my_enum.lampState", 1, 0, "LampState");
-    qmlRegisterType<LampSuspension>("my_enum.lampState", 1, 0, "LampSuspension");
+    qmlRegisterType<LampSuspension>("my_enum.lampState", 1, 0, "LampSuspensionE");
 
     qRegisterMetaType<QCanBusDevice::CanBusError>();
     qRegisterMetaType<uint32_t>();
