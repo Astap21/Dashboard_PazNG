@@ -46,7 +46,7 @@ Item {
             }
             function onSendBattery24VoltageToQml(inputFloat) {
                 if (battery24v_L.errorLamp == 2){
-                    battery24v_L.lampToggle()()
+                    battery24v_L.lampToggle()
                 }
                 else{
                     battery24v_L.lampOn()
