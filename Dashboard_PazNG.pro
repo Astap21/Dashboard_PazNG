@@ -55,6 +55,7 @@ SOURCES += \
     DashboardGeneral/busComponentsClasses/doors.cpp \
     DashboardGeneral/busComponentsClasses/exteriorlightning.cpp \
     DashboardGeneral/busComponentsClasses/primarybuscomponent.cpp \
+    DashboardGeneral/busComponentsClasses/suspension.cpp \
     DashboardGeneral/busComponentsClasses/tachograph.cpp \
     DashboardGeneral/busComponentsClasses/tire.cpp \
     DashboardGeneral/can/canisotphandler.cpp \
@@ -71,7 +72,6 @@ SOURCES += \
     busComponentsClasses/drivercabin.cpp \
     busComponentsClasses/energyconsumption.cpp \
     busComponentsClasses/motor.cpp \
-    busComponentsClasses/suspension.cpp \
     canDataBase/canDataBase.cpp \
     loader.cpp \
 
@@ -142,6 +142,7 @@ HEADERS += \
     DashboardGeneral/busComponentsClasses/doors.h \
     DashboardGeneral/busComponentsClasses/exteriorlightning.h \
     DashboardGeneral/busComponentsClasses/primarybuscomponent.h \
+    DashboardGeneral/busComponentsClasses/suspension.h \
     DashboardGeneral/busComponentsClasses/tachograph.h \
     DashboardGeneral/busComponentsClasses/tire.h \
     DashboardGeneral/can/canisotphandler.h \
@@ -162,7 +163,6 @@ HEADERS += \
     busComponentsClasses/drivercabin.h \
     busComponentsClasses/energyconsumption.h \
     busComponentsClasses/motor.h \
-    busComponentsClasses/suspension.h \
     canDataBase/canDataBase.h \
 
 QT += serialbus

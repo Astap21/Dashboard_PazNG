@@ -33,7 +33,7 @@
 
 int main(int argc, char *argv[])
 {
-    QString softVersion = "1.3.8";
+    QString softVersion = "1.3.9";
     //Установка переменных среды
     //qputenv("QT_GSTREAMER_PLAYBIN_AUDIOSINK", "alsasink");
     //qputenv("QT_GSTREAMER_USE_PLAYBIN_VOLUME", "1");
@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
     //LogToFile logtofile;
 //    qmlRegisterType<FPSText>("com.ast", 1, 0, "FPSText");
     qmlRegisterType<LampState>("my_enum.lampState", 1, 0, "LampState");
-    qmlRegisterType<LampSuspension>("my_enum.lampState", 1, 0, "LampSuspension");
+    qmlRegisterType<LampSuspension>("my_enum.lampState", 1, 0, "LampSuspensionE");
 
     qRegisterMetaType<QCanBusDevice::CanBusError>();
     qRegisterMetaType<uint32_t>();

@@ -501,63 +501,58 @@ Item {
         Connections{
             target: suspension
             function onSendSuspensionStatusToQml(inputUint) {
-                //console.log(inputUint)
-                if (inputUint === LampSuspension.LampOff){
+                if (inputUint === LampSuspensionE.LampOff){
                     suspensionStatus_L.lampOff()
                 }
-                else if(inputUint === LampSuspension.LampOnYellow){
+                else if (inputUint === LampSuspensionE.LampOnRed){
                     suspensionStatus_L.lampOn()
+                    suspensionStatus_L.source = "DashboardGeneral/images/signalLamps/suspension/suspensionError.png"
+                }
+                else if (inputUint === LampSuspensionE.LampToogleRed){
+                    suspensionStatus_L.lampToggle()
+                    suspensionStatus_L.source = "DashboardGeneral/images/signalLamps/suspension/suspensionError.png"
+                }
+                else if(inputUint === LampSuspensionE.LampOnYellow){
                     suspensionStatus_L.source = "DashboardGeneral/images/signalLamps/suspension/heightControlNotNormal.png"
+                    suspensionStatus_L.lampOn()
                 }
-                else if(inputUint === LampSuspension.LampOnUp){
+                else if (inputUint === LampSuspensionE.LampToggleYellow){
+                    suspensionStatus_L.lampToggle()
+                    suspensionStatus_L.source = "DashboardGeneral/images/signalLamps/suspension/yellowError.png"
+                }
+                else if(inputUint === LampSuspensionE.LampOnUp){
                     suspensionStatus_L.lampOn()
                     suspensionStatus_L.source = "DashboardGeneral/images/signalLamps/suspension/heightIncrease.png"
                 }
-                else if(inputUint === LampSuspension.LampToggleUp){
+                else if(inputUint === LampSuspensionE.LampToggleUp){
                     suspensionStatus_L.lampToggle()
                     suspensionStatus_L.source = "DashboardGeneral/images/signalLamps/suspension/heightIncrease.png"
                 }
-                else if(inputUint === LampSuspension.LampOnDown){
+                else if(inputUint === LampSuspensionE.LampOnDown){
                     suspensionStatus_L.lampOn()
                     suspensionStatus_L.source = "DashboardGeneral/images/signalLamps/suspension/heightDecrease.png"
                 }
-                else if(inputUint === LampSuspension.LampToggleDown){
+                else if(inputUint === LampSuspensionE.LampToggleDown){
                     suspensionStatus_L.lampToggle()
                     suspensionStatus_L.source = "DashboardGeneral/images/signalLamps/suspension/heightDecrease.png"
                 }
-            }
-            function onSendSuspensionErrorToQml(inputUint){
-                if (inputUint === 1){
-                    //suspensionError_L.lampOn()
-                    suspensionError_L.source = "DashboardGeneral/images/signalLamps/suspension/heightControlNotNormal.png"
-                }
-                else if (inputUint === 2){
-                    //suspensionError_L.lampOn()
-                    suspensionError_L.source = "DashboardGeneral/images/signalLamps/suspension/suspensionError.png"
-                }
-                //else suspensionError_L.lampOff()
             }
             function onSendKneelingStatusToQml(inputUint) {
-                if (inputUint === 2) {
+                if (inputUint === LampSuspensionE.LampToggleYellow) {
+                    kneelingStatus_L.source = "DashboardGeneral/images/signalLamps/suspension/kneeling.png"
                     kneelingStatus_L.lampToggle()
-                    //autokneelingStatus_L.lampOff()
                 }
-                else if (inputUint === 1) {
+                else if (inputUint === LampSuspensionE.LampOnYellow) {
+                    kneelingStatus_L.source = "DashboardGeneral/images/signalLamps/suspension/kneeling.png"
                     kneelingStatus_L.lampOn()
-                    //autokneelingStatus_L.lampOff()
                 }
-                else if (inputUint === 2) {
-                    //autokneelingStatus_L.lampOn()
-                    kneelingStatus_L.lampOff()
+                else if (inputUint === LampSuspensionE.LampOnAuto) {
+                    kneelingStatus_L.source = "DashboardGeneral/images/signalLamps/suspension/autoKneeling.png"
+                    kneelingStatus_L.lampOn()
                 }
                 else {
-                    //autokneelingStatus_L.lampOff()
                     kneelingStatus_L.lampOff()
                 }
-            }
-            function onSendAutoKneelingStatusToQml(inputBool) {
-    //            if (inputBool) autokneelingStatus_L.lampOn()
-    //            else autokneelingStatus_L.lampOff()
             }
         }
         Connections {

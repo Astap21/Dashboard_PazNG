@@ -1,4 +1,4 @@
-//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Fri Feb 28 18:26:58 2025
+//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Fri Mar  7 16:26:20 2025
 #ifndef CANDATABASE_H_
 #define CANDATABASE_H_
 
@@ -36,7 +36,7 @@ extern canBus::signalNameCharStruct gSignalName_NominalLevelRearAxle;
 extern canBus::messageNameCharStruct gMessageName_ASC1;
 
 extern canBus::signalNameCharStruct gSignalName_AutoKneeling;
-extern canBus::messageNameCharStruct gMessageName_ASC2;
+extern canBus::messageNameCharStruct gMessageName_ASC2_Rx;
 
 extern canBus::signalNameCharStruct gSignalName_Aux2;
 extern canBus::messageNameCharStruct gMessageName_AUXIO_R;
@@ -142,6 +142,17 @@ extern canBus::signalNameCharStruct gSignalName_EPB_DM_RedLamp;
 extern canBus::signalNameCharStruct gSignalName_EPB_DM_SPN1;
 extern canBus::signalNameCharStruct gSignalName_EPB_DM_SPN2;
 extern canBus::messageNameCharStruct gMessageName_DM1_EPB;
+
+extern canBus::signalNameCharStruct gSignalName_susDM_AmberLamp;
+extern canBus::signalNameCharStruct gSignalName_susDM_CM;
+extern canBus::signalNameCharStruct gSignalName_susDM_FMI;
+extern canBus::signalNameCharStruct gSignalName_susDM_Mailfunction;
+extern canBus::signalNameCharStruct gSignalName_susDM_OC;
+extern canBus::signalNameCharStruct gSignalName_susDM_ProtectLamp;
+extern canBus::signalNameCharStruct gSignalName_susDM_RedLamp;
+extern canBus::signalNameCharStruct gSignalName_susDM_SPN1;
+extern canBus::signalNameCharStruct gSignalName_susDM_SPN2;
+extern canBus::messageNameCharStruct gMessageName_DM1_Suspension;
 
 extern canBus::signalNameCharStruct gSignalName_Door1CapInside;
 extern canBus::signalNameCharStruct gSignalName_Door1CapOutside;
@@ -343,6 +354,11 @@ extern canBus::messageNameCharStruct gMessageName_VDC1;
 
 extern canBus::signalNameCharStruct gSignalName_ActualVoltage_24v;
 extern canBus::messageNameCharStruct gMessageName_VEP1;
+
+extern canBus::signalNameCharStruct gSignalName_KneelingControlModeReq;
+extern canBus::signalNameCharStruct gSignalName_ReqRegulationBusFrontAxle;
+extern canBus::signalNameCharStruct gSignalName_ReqRegulationBusRearAxle;
+extern canBus::messageNameCharStruct gMessageName_ASC2_Tx;
 
 extern canBus::signalNameCharStruct gSignalName_BtnBackAns;
 extern canBus::signalNameCharStruct gSignalName_BtnMinusAns;

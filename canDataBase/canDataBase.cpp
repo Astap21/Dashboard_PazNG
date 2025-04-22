@@ -1,4 +1,4 @@
-//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Fri Feb 28 18:26:58 2025
+//C:/Users/user/workspace/python/CanAst/dbcFiles/Dashboard_PazNG_v1.1.0.dbc, последние изменения Fri Mar  7 16:26:20 2025
 #include "canDataBase/canDataBase.h"
 
 using namespace canBus;
@@ -67,12 +67,12 @@ static CanSignal *ASC1_arraySignals[ASC1_NumberOfSignals] = {&AboveNominalLevelF
 messageNameCharStruct gMessageName_ASC1{"ASC1",MAX_LENGTH_NAME};
 static CanMessageRx ASC1(gMessageName_ASC1, ASC1_arraySignals, ASC1_NumberOfSignals, 0x0CFE5A2F, 8, 100);
 
-const uint8_t ASC2_NumberOfSignals = 1;
+const uint8_t ASC2_Rx_NumberOfSignals = 1;
 signalNameCharStruct gSignalName_AutoKneeling{"AutoKneeling",MAX_LENGTH_NAME};
 static CanSignal AutoKneeling{ 6, 2, gSignalName_AutoKneeling, 1, 0, canIntel, canUint, 0, 0, 0};
-static CanSignal *ASC2_arraySignals[ASC2_NumberOfSignals] = {&AutoKneeling};
-messageNameCharStruct gMessageName_ASC2{"ASC2",MAX_LENGTH_NAME};
-static CanMessageRx ASC2(gMessageName_ASC2, ASC2_arraySignals, ASC2_NumberOfSignals, 0x0CD22F27, 8, 100);
+static CanSignal *ASC2_Rx_arraySignals[ASC2_Rx_NumberOfSignals] = {&AutoKneeling};
+messageNameCharStruct gMessageName_ASC2_Rx{"ASC2_Rx",MAX_LENGTH_NAME};
+static CanMessageRx ASC2_Rx(gMessageName_ASC2_Rx, ASC2_Rx_arraySignals, ASC2_Rx_NumberOfSignals, 0x0CD22F27, 8, 100);
 
 const uint8_t AUXIO_R_NumberOfSignals = 1;
 signalNameCharStruct gSignalName_Aux2{"Aux2",MAX_LENGTH_NAME};
@@ -304,6 +304,29 @@ static CanSignal EPB_DM_SPN2{ 37, 3, gSignalName_EPB_DM_SPN2, 1, 0, canIntel, ca
 static CanSignal *DM1_EPB_arraySignals[DM1_EPB_NumberOfSignals] = {&EPB_DM_AmberLamp, &EPB_DM_CM, &EPB_DM_FMI, &EPB_DM_Mailfunction, &EPB_DM_OC, &EPB_DM_ProtectLamp, &EPB_DM_RedLamp, &EPB_DM_SPN1, &EPB_DM_SPN2};
 messageNameCharStruct gMessageName_DM1_EPB{"DM1_EPB",MAX_LENGTH_NAME};
 static CanMessageRx DM1_EPB(gMessageName_DM1_EPB, DM1_EPB_arraySignals, DM1_EPB_NumberOfSignals, 0x18FECA50, 8, 1000);
+
+const uint8_t DM1_Suspension_NumberOfSignals = 9;
+signalNameCharStruct gSignalName_susDM_AmberLamp{"susDM_AmberLamp",MAX_LENGTH_NAME};
+static CanSignal susDM_AmberLamp{ 2, 2, gSignalName_susDM_AmberLamp, 1, 0, canIntel, canUint, 3, 0, 0};
+signalNameCharStruct gSignalName_susDM_CM{"susDM_CM",MAX_LENGTH_NAME};
+static CanSignal susDM_CM{ 47, 1, gSignalName_susDM_CM, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_susDM_FMI{"susDM_FMI",MAX_LENGTH_NAME};
+static CanSignal susDM_FMI{ 32, 5, gSignalName_susDM_FMI, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_susDM_Mailfunction{"susDM_Mailfunction",MAX_LENGTH_NAME};
+static CanSignal susDM_Mailfunction{ 6, 2, gSignalName_susDM_Mailfunction, 1, 0, canIntel, canUint, 3, 0, 0};
+signalNameCharStruct gSignalName_susDM_OC{"susDM_OC",MAX_LENGTH_NAME};
+static CanSignal susDM_OC{ 40, 7, gSignalName_susDM_OC, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_susDM_ProtectLamp{"susDM_ProtectLamp",MAX_LENGTH_NAME};
+static CanSignal susDM_ProtectLamp{ 0, 2, gSignalName_susDM_ProtectLamp, 1, 0, canIntel, canUint, 3, 0, 0};
+signalNameCharStruct gSignalName_susDM_RedLamp{"susDM_RedLamp",MAX_LENGTH_NAME};
+static CanSignal susDM_RedLamp{ 4, 2, gSignalName_susDM_RedLamp, 1, 0, canIntel, canUint, 3, 0, 0};
+signalNameCharStruct gSignalName_susDM_SPN1{"susDM_SPN1",MAX_LENGTH_NAME};
+static CanSignal susDM_SPN1{ 16, 16, gSignalName_susDM_SPN1, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_susDM_SPN2{"susDM_SPN2",MAX_LENGTH_NAME};
+static CanSignal susDM_SPN2{ 37, 3, gSignalName_susDM_SPN2, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *DM1_Suspension_arraySignals[DM1_Suspension_NumberOfSignals] = {&susDM_AmberLamp, &susDM_CM, &susDM_FMI, &susDM_Mailfunction, &susDM_OC, &susDM_ProtectLamp, &susDM_RedLamp, &susDM_SPN1, &susDM_SPN2};
+messageNameCharStruct gMessageName_DM1_Suspension{"DM1_Suspension",MAX_LENGTH_NAME};
+static CanMessageRx DM1_Suspension(gMessageName_DM1_Suspension, DM1_Suspension_arraySignals, DM1_Suspension_NumberOfSignals, 0x18FECA2F, 8, 0);
 
 const uint8_t DOZC_1_NumberOfSignals = 14;
 signalNameCharStruct gSignalName_Door1CapInside{"Door1CapInside",MAX_LENGTH_NAME};
@@ -742,6 +765,17 @@ static CanSignal *VEP1_arraySignals[VEP1_NumberOfSignals] = {&ActualVoltage_24v}
 messageNameCharStruct gMessageName_VEP1{"VEP1",MAX_LENGTH_NAME};
 static CanMessageRx VEP1(gMessageName_VEP1, VEP1_arraySignals, VEP1_NumberOfSignals, 0x18FEF71E, 8, 1000);
 
+const uint8_t ASC2_Tx_NumberOfSignals = 3;
+signalNameCharStruct gSignalName_KneelingControlModeReq{"KneelingControlModeReq",MAX_LENGTH_NAME};
+static CanSignal KneelingControlModeReq{ 6, 2, gSignalName_KneelingControlModeReq, 1, 0, canIntel, canUint, 3, 0, 0};
+signalNameCharStruct gSignalName_ReqRegulationBusFrontAxle{"ReqRegulationBusFrontAxle",MAX_LENGTH_NAME};
+static CanSignal ReqRegulationBusFrontAxle{ 8, 4, gSignalName_ReqRegulationBusFrontAxle, 1, 0, canIntel, canUint, 0, 0, 0};
+signalNameCharStruct gSignalName_ReqRegulationBusRearAxle{"ReqRegulationBusRearAxle",MAX_LENGTH_NAME};
+static CanSignal ReqRegulationBusRearAxle{ 12, 4, gSignalName_ReqRegulationBusRearAxle, 1, 0, canIntel, canUint, 0, 0, 0};
+static CanSignal *ASC2_Tx_arraySignals[ASC2_Tx_NumberOfSignals] = {&KneelingControlModeReq, &ReqRegulationBusFrontAxle, &ReqRegulationBusRearAxle};
+messageNameCharStruct gMessageName_ASC2_Tx{"ASC2_Tx",MAX_LENGTH_NAME};
+static CanMessageTx ASC2_Tx(gMessageName_ASC2_Tx, ASC2_Tx_arraySignals, ASC2_Tx_NumberOfSignals, 0x0CD22F17, 8, 100);
+
 const uint8_t DB_1_NumberOfSignals = 13;
 signalNameCharStruct gSignalName_BtnBackAns{"BtnBackAns",MAX_LENGTH_NAME};
 static CanSignal BtnBackAns{ 50, 2, gSignalName_BtnBackAns, 1, 0, canIntel, canUint, 3, 0, 0};
@@ -813,8 +847,8 @@ static CanSignal *VDHR_arraySignals[VDHR_NumberOfSignals] = {&TotalVehicleDistan
 messageNameCharStruct gMessageName_VDHR{"VDHR",MAX_LENGTH_NAME};
 static CanMessageTx VDHR(gMessageName_VDHR, VDHR_arraySignals, VDHR_NumberOfSignals, 0x18FEC117, 8, 1000);
 
-const uint8_t numberOfRxMessages = 61;
-static CanMessageRx *arrayRxMessages[numberOfRxMessages] = { &ADAS_1, &AIR1, &AMB, &ASC1, &ASC2, &AUXIO_R, &BCH1, &BDS, &BJM1, &CCU1_DB, &CCUT1, &CCVS1, &CCVS1_03, &CDC, &CL, &CM1, &CM1_E1, &DC1, &DC2, &DD1_12, &DD1_1E, &DLCC1, &DLCC2, &DLDC1, &DM1_EBS, &DM1_EPB, &DOZC_1, &DOZC_2, &EBC1, &EBC4, &EBC5, &ECO, &EDSC2_2, &EPBS1, &ESC2, &ET1, &ETC2, &FS1, &HVESSD1, &HVESSD2, &HVESSD3, &HVESSD5, &HVESSD6, &HVESSS1, &ISOTP_PC_ID, &LD, &LD_2, &MCU2VCU2, &OWW, &PCM1, &SCU2CLM, &T2B_TMS1, &TCO1, &TCO1_EE, &TIRE, &TTS6, &TTS7, &TTS8, &TTS9, &VDC1, &VEP1};
-const uint8_t numberOfTxMessages = 5;
-static CanMessageTx *arrayTxMessages[numberOfTxMessages] = { &DB_1, &DB_2, &DB_3, &ISOTP_DASHBOARD_ID, &VDHR};
+const uint8_t numberOfRxMessages = 62;
+static CanMessageRx *arrayRxMessages[numberOfRxMessages] = { &ADAS_1, &AIR1, &AMB, &ASC1, &ASC2_Rx, &AUXIO_R, &BCH1, &BDS, &BJM1, &CCU1_DB, &CCUT1, &CCVS1, &CCVS1_03, &CDC, &CL, &CM1, &CM1_E1, &DC1, &DC2, &DD1_12, &DD1_1E, &DLCC1, &DLCC2, &DLDC1, &DM1_EBS, &DM1_EPB, &DM1_Suspension, &DOZC_1, &DOZC_2, &EBC1, &EBC4, &EBC5, &ECO, &EDSC2_2, &EPBS1, &ESC2, &ET1, &ETC2, &FS1, &HVESSD1, &HVESSD2, &HVESSD3, &HVESSD5, &HVESSD6, &HVESSS1, &ISOTP_PC_ID, &LD, &LD_2, &MCU2VCU2, &OWW, &PCM1, &SCU2CLM, &T2B_TMS1, &TCO1, &TCO1_EE, &TIRE, &TTS6, &TTS7, &TTS8, &TTS9, &VDC1, &VEP1};
+const uint8_t numberOfTxMessages = 6;
+static CanMessageTx *arrayTxMessages[numberOfTxMessages] = { &ASC2_Tx, &DB_1, &DB_2, &DB_3, &ISOTP_DASHBOARD_ID, &VDHR};
 CanDataBase gCanDB(arrayRxMessages,numberOfRxMessages,arrayTxMessages,numberOfTxMessages);
