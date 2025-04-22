@@ -193,7 +193,7 @@ signalNameCharStruct gSignalName_RampError{"RampError",MAX_LENGTH_NAME};
 static CanSignal RampError{ 4, 2, gSignalName_RampError, 1, 0, canIntel, canUint, 0, 0, 0};
 static CanSignal *DC1_arraySignals[DC1_NumberOfSignals] = {&RampError};
 messageNameCharStruct gMessageName_DC1{"DC1",MAX_LENGTH_NAME};
-static CanMessageRx DC1(gMessageName_DC1, DC1_arraySignals, DC1_NumberOfSignals, 0x18FE4EEC, 8, 100);
+static CanMessageRx DC1(gMessageName_DC1, DC1_arraySignals, DC1_NumberOfSignals, 0x18FE1ECC, 8, 100);
 
 const uint8_t DC2_NumberOfSignals = 1;
 signalNameCharStruct gSignalName_EngineHatchOpen{"EngineHatchOpen",MAX_LENGTH_NAME};
