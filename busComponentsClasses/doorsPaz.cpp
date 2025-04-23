@@ -8,9 +8,9 @@ DoorsPaz::DoorsPaz(QObject *parent) : Doors(parent)
 }
 
 valve_state_e DoorsPaz::GetValveStatus(const int &_doorNumber, const valve_side_e &side){
-    canBus::messageNameCharStruct *canMsg;
-    canBus::signalNameCharStruct *cap;
-    canBus::signalNameCharStruct *valve;
+    const canBus::messageNameCharStruct *canMsg;
+    const canBus::signalNameCharStruct *cap;
+    const canBus::signalNameCharStruct *valve;
     if (_doorNumber == 1 && side == valve_side_e::in) {
         canMsg = &gMessageName_DOZC_1;
         valve =  &gSignalName_Door1ValveInside;
@@ -50,7 +50,7 @@ valve_state_e DoorsPaz::GetValveStatus(const int &_doorNumber, const valve_side_
 
 uint DoorsPaz::GetRampState(){
     uint rampStatus;
-    if (gCanDB.GetSignalValueUint32_t(gSignalName_RampError, gMessageName_DC1) == 1) {
+    if (gCanDB.GetSignalValueUint32_t(gSignalName_Door1RampOpen, gMessageName_DOZC_1) == 1) {
         rampStatus = 1;
     }
     else if (gCanDB.GetSignalValueUint32_t(gSignalName_RampError, gMessageName_DC1) == 2) {
@@ -63,17 +63,17 @@ uint DoorsPaz::GetRampState(){
 }
 
 uint DoorsPaz::returnDoorStatus(const int &_doorNumber){
-    canBus::messageNameCharStruct *canMsg;
-    canBus::signalNameCharStruct *AntiPinch1;
-    canBus::signalNameCharStruct *AntiPinch2;
-    canBus::signalNameCharStruct *AntiPinch3;
-    canBus::signalNameCharStruct *RqOpenInside;
-    canBus::signalNameCharStruct *RqOpenOutside;
-    canBus::signalNameCharStruct *Open;
-    canBus::signalNameCharStruct *Closing;
-    canBus::signalNameCharStruct *Opening;
-    canBus::signalNameCharStruct *Close;
-    canBus::signalNameCharStruct *EmgOpen;
+    const canBus::messageNameCharStruct *canMsg;
+    const canBus::signalNameCharStruct *AntiPinch1;
+    const canBus::signalNameCharStruct *AntiPinch2;
+    const canBus::signalNameCharStruct *AntiPinch3;
+    const canBus::signalNameCharStruct *RqOpenInside;
+    const canBus::signalNameCharStruct *RqOpenOutside;
+    const canBus::signalNameCharStruct *Open;
+    const canBus::signalNameCharStruct *Closing;
+    const canBus::signalNameCharStruct *Opening;
+    const canBus::signalNameCharStruct *Close;
+    const canBus::signalNameCharStruct *EmgOpen;
     if (_doorNumber == 1) {
         canMsg = &gMessageName_DOZC_1;
         AntiPinch1 =  &gSignalName_Door1Pinching1;

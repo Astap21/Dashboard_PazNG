@@ -44,12 +44,12 @@ Window {
         x: 746
         y: 70
         width: 427
-        height: 579
+        height: 348
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         opacity: 0
         fillMode: Image.Stretch
-        source: "/DashboardGeneral/images/logo.png"
+        source: "/DashboardGeneral/images/logo2.png"
         Component.onCompleted: {
             a_incLogoOpacity.running = true
         }
