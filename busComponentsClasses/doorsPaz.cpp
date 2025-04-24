@@ -59,6 +59,7 @@ uint DoorsPaz::GetRampState(){
     else {
         rampStatus = 0;
     }
+    //qDebug() << gCanDB.GetSignalValueUint32_t(gSignalName_Door1RampOpen, gMessageName_DOZC_1);
     return rampStatus;
 }
 

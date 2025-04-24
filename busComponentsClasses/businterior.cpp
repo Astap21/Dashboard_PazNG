@@ -53,9 +53,15 @@ void BusInterior::ReadStateFromCanDB(){
 
 
         previousComponentState = rampStatus;
-        if ((gCanDB.GetSignalValueUint32_t(gSignalName_RampError, gMessageName_DC1) == 1) || (gCanDB.GetSignalValueUint32_t(gSignalName_Door2RampOpen, gMessageName_DOZC_2) == 1)) rampStatus = 1;
-        else if (gCanDB.GetSignalValueUint32_t(gSignalName_RampError, gMessageName_DC1) == 2) rampStatus = 2;
-        else rampStatus = 0;
+        if (gCanDB.GetSignalValueUint32_t(gSignalName_Door1RampOpen, gMessageName_DOZC_1) == 1) {
+            rampStatus = 1;
+        }
+        else if (gCanDB.GetSignalValueUint32_t(gSignalName_RampError, gMessageName_DC1) == 2) {
+            rampStatus = 2;
+        }
+        else {
+            rampStatus = 0;
+        }
         if (previousComponentState != rampStatus) emit sendRampStatusToQml(rampStatus);
 
         previousComponentState = hammerLamp;

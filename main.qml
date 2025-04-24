@@ -630,6 +630,7 @@ Item{
                 tempSalonValue.text = inputString
             }
             function onSendRampStatusToQml(inputUint) {
+                //console.log(inputUint) ;
                 if (inputUint === 2) {
                     rampState_L.source = "/DashboardGeneral/images/signalLamps/busExterior/rampSensorMalfunction.png"
                     rampState_L.lampOn()
