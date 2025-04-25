@@ -250,5 +250,7 @@
         <file>DashboardGeneral/images/signalLamps/ADAS/deadZoneLeftG.png</file>
         <file>DashboardGeneral/images/signalLamps/ADAS/dddm_g.png</file>
         <file>DashboardGeneral/images/logo2.png</file>
+        <file>DashboardGeneral/images/signalLamps/busExterior/theRampIsOpenFull.png</file>
+        <file>DashboardGeneral/images/signalLamps/busExterior/rampSensorMalfunctionFull.png</file>
     </qresource>
 </RCC>

@@ -363,7 +363,7 @@ Item{
                 height: 71
                 visible: true
                 fillMode: Image.PreserveAspectFit
-                source: "DashboardGeneral/images/signalLamps/busExterior/theRampIsOpen.png"
+                source: "DashboardGeneral/images/signalLamps/busExterior/theRampIsOpenFull.png"
                 z: 5
                 test: false
                 //source: "/DashboardGeneral/images/signalLamps/busExterior/rampSensorMalfunction.png"
@@ -632,12 +632,12 @@ Item{
             function onSendRampStatusToQml(inputUint) {
                 //console.log(inputUint) ;
                 if (inputUint === 2) {
-                    rampState_L.source = "/DashboardGeneral/images/signalLamps/busExterior/rampSensorMalfunction.png"
+                    rampState_L.source = "/DashboardGeneral/images/signalLamps/busExterior/rampSensorMalfunctionFull.png"
                     rampState_L.lampOn()
                     banner.stopRepeat()
                 }
                 else if (inputUint === 1) {
-                    rampState_L.source = "/DashboardGeneral/images/signalLamps/busExterior/theRampIsOpen.png"
+                    rampState_L.source = "/DashboardGeneral/images/signalLamps/busExterior/theRampIsOpenFull.png"
                     rampState_L.lampOn()
                     warningSound.play()
                     banner.showWarningFor5s("Выдвинута аппарель")
